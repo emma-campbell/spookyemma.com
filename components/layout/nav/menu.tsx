@@ -34,7 +34,11 @@ export const Menu = ({ open, setOpen, children, className }: MenuIconProps) => {
         <span className="bg-body rounded-md w-8 h-1"></span>
         <span className="bg-body rounded-md w-8 h-1"></span>
       </button>
-      <div className={!open ? "invisible" : "visible "}>{children}</div>
+      <div
+        className={[!open ? "invisible" : "visible", "flex flex-col"].join(" ")}
+      >
+        {children}
+      </div>
     </div>
   );
 };

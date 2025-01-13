@@ -20,7 +20,7 @@ const config: Config = {
     },
     colors: {
       primary: "#00715C",
-      secondary: "#FBFBFB",
+      secondary: "#FBF8ED",
       heading: "#222222",
       body: "#434343",
       highlighted: "#706E62",

@@ -37,7 +37,7 @@ export const Nav = () => {
       <Link href="/" className="text-primary col-span-1 md:col-span-3">
         EMMA.
       </Link>
-      <div className="col-span-2  w-full max-w-2xl justify-between items-end px-4 pb-16 sm:px-0">
+      <div className="col-span-2 w-full max-w-2xl justify-between items-end px-4 pb-16 sm:px-0">
         <div className="w-full flex justify-between invisible items-center sm:visible">
           {Object.entries(links).map(([path, { text, className }]) => {
             const active = path == pathname;
@@ -50,7 +50,7 @@ export const Nav = () => {
                   {
                     "text-body": !active,
                   },
-                  className,
+                  className
                 )}
               >
                 {text}
