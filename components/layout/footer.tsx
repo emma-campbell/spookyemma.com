@@ -1,3 +1,5 @@
+"use client";
+
 import FooterImage from "public/footer.png";
 import Image from "next/image";
 import moment from "moment";
