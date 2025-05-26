@@ -1,4 +1,4 @@
-name: spookyemma.com
+name: spooky-web
 
 env: 
   environment_slug: node-js
@@ -6,4 +6,4 @@ env:
     branch: main
     deploy_on_push: true
     repo: emma-campbell/spookyemma.com
-  name: spookyemma.com
+  name: spooky-web
