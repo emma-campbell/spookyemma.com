@@ -86,21 +86,6 @@ export default function Home() {
           blog in 2022.
         </p>
       </section>
-      <section id="currently-reading" className="">
-        <Link
-          href="/chronicling/books"
-          className={"flex items-center w-full justify-around"}
-        >
-          <h1 className="font-sans uppercase text-2xl tracking-[0.25em] text-body hover:underline pb-2">
-            currently reading
-          </h1>
-        </Link>
-        <Suspense>
-          <div className="col-span-3">
-            <ReadingPreview />
-          </div>
-        </Suspense>
-      </section>
       <section id={"about-the-author"}>
         <Link
           href="/chronicling"
