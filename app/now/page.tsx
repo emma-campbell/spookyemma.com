@@ -66,8 +66,7 @@ const sections: TimelineProps = {
 };
 
 export default function Now() {
-  // "2024/07/21 2:51pm EST"
-  const lastUpdated: Date = new Date(2024, 10, 12, 20, 54);
+  const lastUpdated: Date = new Date(2025, 4, 26, 14, 10);
 
   return (
     <section className="flex flex-col space-y-10 text-body">
