@@ -1,7 +1,6 @@
 {
   "name": "@spooky/blog",
   "version": "2.2.0",
-  "private": true,
   "engines": {
     "node": "^20",
     "yarn": "4.3.1"
