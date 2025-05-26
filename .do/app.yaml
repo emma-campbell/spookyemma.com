@@ -5,4 +5,5 @@ env:
   github:
     branch: main
     repo: emma-campbell/spookyemma.com
+    deploy_on_push: false
   name: spooky-web
