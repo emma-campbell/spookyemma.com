@@ -1,5 +1,5 @@
 import { LastUpdated } from "@/components/layout/last-updated";
-import { Timeline, TimelineProps } from "@/components/now/timeline";
+import { Timeline, type TimelineProps } from "@/components/now/timeline";
 import { compareDesc } from "date-fns";
 
 const sections: TimelineProps = {
@@ -8,21 +8,21 @@ const sections: TimelineProps = {
       month: 4,
       year: 2024,
       children: [
-        <>
+        <div key="apr-2024-move">
           <p>Hiking. Packing. Planning. Life is getting crazy.</p>
           <p>
             I&apos;ve picked up some part time work as a Project Manager to
             bring in some extra 💰. It&apos;s a different kind of challenge, and
             I am definitely enjoying it.
           </p>
-        </>,
+        </div>,
       ],
     },
     {
       month: 6,
       year: 2024,
       children: [
-        <>
+        <div key="jun-2024-move">
           <p>
             I&apos;m currently smack-dab in the middle of a cross-state move
             from Virginia to Indiana. At the time of writing this, I am{" "}
@@ -35,20 +35,31 @@ const sections: TimelineProps = {
             through <i>any of the platforms</i>, you&apos;re gonna have to wait
             a &apos;lil longer than usual.
           </p>
-        </>,
+        </div>,
       ],
     },
     {
       month: 10,
       year: 2024,
       children: [
-        <>
+        <div key="oct-2024-react-native">
           <p>
             I&apos;ve picked up more part time work, and as a result I am
             learning React Native 👀
           </p>
           <p>I&apos;ve also officially left Twitter, because f*ck you Elon.</p>
-        </>,
+        </div>,
+      ],
+    },
+    {
+      month: 4,
+      year: 2025,
+      children: [
+        <p key="may-2025-appticlabs">
+            I&apos;ve started a side gig with my friends building some
+            micro-sass apps. If you want to check it out, visit{" "}
+            <a className="text-primary underline hover:cursor-pointer" href="https://www.appticlabs.com">appticlabs.com</a>
+        </p>,
       ],
     },
   ],
