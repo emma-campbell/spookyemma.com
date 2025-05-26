@@ -1,8 +1,5 @@
 name: spookyemma.com
 
-domains:
-  - spookyemma.com
-
 env: 
   environment_slug: node-js
   github:
