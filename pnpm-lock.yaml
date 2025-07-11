@@ -125,6 +125,9 @@ importers:
       unified:
         specifier: ^11.0.5
         version: 11.0.5
+      unist-util-visit:
+        specifier: ^5.0.0
+        version: 5.0.0
       velite:
         specifier: ^0.2.4
         version: 0.2.4(acorn@8.15.0)
