@@ -19,7 +19,7 @@ ingress:
 name: spookyemma-com
 region: nyc
 services:
-- build_command: yarn build
+- build_command: pnpm build
   environment_slug: node-js
   envs:
   - key: DATABASE_URL

@@ -1,7 +1,6 @@
 import { posts } from "@/.velite";
 import { MDXContent } from "@/components/mdx";
 import { PostType } from "@/components/posts/post-type";
-import { ViewCounter } from "@/components/view-counter";
 import { getPost } from "@/lib/content";
 import moment from "moment";
 
@@ -46,7 +45,6 @@ export default async function NotebookEntry({ params }: { params: Params }) {
         <div className={"flex uppercase space-x-2 font-sans text-highlighted"}>
           <p>{published.format("DD MMMM YYYY")}</p>
           <p>•</p>
-          <ViewCounter track={true} slug={slug} />
           <PostType type={post.entry} />
         </div>
         <h1 className={"font-sans uppercase text-4xl"}>{post.title}</h1>
