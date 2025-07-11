@@ -2,3 +2,4 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - unrs-resolver
+shamefullyHoist: true
