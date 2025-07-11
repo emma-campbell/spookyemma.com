@@ -1,5 +1,11 @@
 ## 2.2.0
 
+## 2.3.0
+
+### Minor Changes
+
+- Added admin panel
+
 ### Minor Changes
 
 - a7de596: Change profile image

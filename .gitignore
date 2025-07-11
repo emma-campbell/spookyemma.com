@@ -42,3 +42,6 @@ next-env.d.ts
 
 # velite
 .velite/
+
+# claude things
+.claude/settings.local.json

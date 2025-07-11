@@ -58,9 +58,9 @@ export default function Home() {
           and probably in bed by 10pm. I wish I was kidding.
         </p>
         <p>
-          Generally, I am a completely unserious human who likes to write about
+          Generally, I am a completely unserious and curious human who likes to write about
           anything that comes to mind but generally involving technology,
-          sports, chronic illness, and my dog Moose.
+          sports, and my dog Moose.
         </p>
         <p>
           Thank you for visiting. Please make yourself at home and check out a
