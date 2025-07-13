@@ -1,18 +1,53 @@
 import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor, BlocksFeature, LinkFeature, UploadFeature } from '@payloadcms/richtext-lexical'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload'
 import { Post } from './collections/post'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Tag } from './collections/tag'
 import { Notebook } from './collections/notebook'
+import { s3Storage } from '@payloadcms/storage-s3'
+import { Upload } from './collections/upload'
+import computeBlurhash from 'payload-blurhash-plugin';
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      LinkFeature({
+        fields: [
+          {
+            name: 'rel',
+            label: 'Rel Attribute',
+            type: 'select',
+            options: [
+              'noopener', 'noreferrer', 'nofollow'
+            ]
+          }
+        ]
+      }),
+      UploadFeature({
+        collections: {
+          uploads: {
+            fields: [
+              {
+                name: 'alt',
+                type: 'text',
+                required: true,
+                admin: {
+                  description: 'The alt text for the image'
+                }
+              }
+            ]
+          }
+        }
+      }),
+    ],
+  }),
 
   // Define and configure your collections in this array
-  collections: [Post, Tag, Notebook],
+  collections: [Post, Tag, Notebook, Upload],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',
@@ -26,7 +61,29 @@ export default buildConfig({
   // This is optional - if you don't need to do these things,
   // you don't need it!
   sharp,
-  plugins: [seoPlugin({
-    collections: [Post],
-  })],
+  plugins: [
+    seoPlugin({
+      collections: [Post],
+    }), 
+    s3Storage({
+      collections: {
+        uploads: true,
+      },
+      bucket: process.env.SPACES_BUCKET || '',
+      config: {
+        credentials: {
+          accessKeyId: process.env.SPACES_KEY!,
+          secretAccessKey: process.env.SPACES_SECRET!,
+        },
+        region: process.env.SPACES_REGION!,
+        endpoint: process.env.SPACES_ENDPOINT!,
+        forcePathStyle: false,
+      },
+    }),
+    computeBlurhash({
+      collections: [
+        'uploads'
+      ]
+    }),
+  ],
 })
