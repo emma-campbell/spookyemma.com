@@ -9,6 +9,8 @@ import { Notebook } from './collections/notebook'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { Upload } from './collections/upload'
 import computeBlurhash from 'payload-blurhash-plugin';
+import { Code } from './blocks/Code'
+import { Table } from './blocks/Table'
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
@@ -24,6 +26,23 @@ export default buildConfig({
             options: [
               'noopener', 'noreferrer', 'nofollow'
             ]
+          },
+          {
+            name: 'target',
+            label: 'Target',
+            type: 'select',
+            options: [
+              '_blank', '_self', '_parent', '_top'
+            ]
+          },
+          {
+            name: 'href',
+            label: 'Href',
+            type: 'text',
+            required: true,
+            admin: {
+              description: 'The href attribute for the link'
+            }
           }
         ]
       }),
@@ -42,6 +61,9 @@ export default buildConfig({
             ]
           }
         }
+      }),
+      BlocksFeature({
+        blocks: [Code, Table],
       }),
     ],
   }),
@@ -64,7 +86,7 @@ export default buildConfig({
   plugins: [
     seoPlugin({
       collections: [Post],
-    }), 
+    }),
     s3Storage({
       collections: {
         uploads: true,
