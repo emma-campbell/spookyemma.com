@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 
+import { RybbitAnalytics } from "@/components/analytics/rybbit";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { LiteralWrapper } from "@/context/literal";
@@ -131,6 +132,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <Analytics />
+        <RybbitAnalytics />
       </body>
     </html>
   );
