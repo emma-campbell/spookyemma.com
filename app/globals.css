@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    .root {
+        isolation: isolate;
+    }
+
     .font-outline-primary-heading {
         -webkit-text-stroke: 0.07em #00715C;
     }

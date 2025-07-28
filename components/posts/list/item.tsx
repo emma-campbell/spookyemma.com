@@ -1,9 +1,9 @@
-import { Post } from "@velite";
 import moment from "moment";
 import Link from "next/link";
 import { format } from "date-fns";
+import { KeystaticPost } from "@/lib/posts-keystatic";
 
-export function PostListItem({ post }: { post: Post }) {
+export function PostListItem({ post }: { post: KeystaticPost }) {
   return (
     <div className="flex space-x-4 items-center justify-start">
       <p className="text-sm flex font-sans font-bold text-highlighted">

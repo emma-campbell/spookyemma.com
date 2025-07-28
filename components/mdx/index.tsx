@@ -4,7 +4,9 @@ import MdxImage from "./img";
 import * as runtime from "react/jsx-runtime";
 
 export const defaultComponents: MDXComponents = {
-  Aside,
+  Aside: ({ title, position = 'left', styled = false, ...props }) => (
+    <Aside title={title} position={position} styled={styled} {...props} />
+  ),
   h1: ({ children, className }) => {
     return (
       <h2 className="font-sans uppercase text-black text-3xl">{children}</h2>
@@ -49,7 +51,7 @@ export const defaultComponents: MDXComponents = {
 
 const useMdxComponent = (code: string) => {
   const fn = new Function(code);
-  return fn({ ...runtime }).default;
+  return fn({ ...runtime })?.default;
 };
 
 interface MDXProps {

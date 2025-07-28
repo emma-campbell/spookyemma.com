@@ -121,7 +121,7 @@ export default function RootLayout({
           href="/rss.xml"
         />
       </head>
-      <body className="mx-6 md:mx-auto max-w-xl font-serif bg-secondary pt-12 leading-relaxed">
+      <body className="root mx-6 md:mx-auto max-w-xl font-serif bg-secondary pt-12 leading-relaxed">
         <div className="flex justify-center pb-6">
           <Nav />
         </div>

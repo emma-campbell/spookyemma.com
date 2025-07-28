@@ -1,13 +1,12 @@
-import { posts } from "@/.velite";
-import { MDXContent } from "@/components/mdx";
 import { PostType } from "@/components/posts/post-type";
-import { getPost } from "@/lib/content";
+import { getKeystaticPost, getAllPostSlugs } from "@/lib/keystatic";
+import { KeystaticContent } from "@/components/mdx/keystatic-content";
 import moment from "moment";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  return posts
-    .filter((f) => f.status != "draft")
-    .map((f) => ({ slug: f.slug }));
+  const slugs = await getAllPostSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -16,15 +15,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getKeystaticPost(slug);
 
   return {
-    title: post.title,
-    description: post.description,
-    keywords: post.tags ? post.tags.map((t: any) => t.value) : undefined,
+    title: post?.title,
+    description: post?.description,
+    keywords: post?.tags || [],
     authors: {
       name: "Emma Campbell",
-      url: "https://spooky.blog",
+      url: "https://spookyemma.com",
     },
     referrer: "origin",
   };
@@ -36,7 +35,12 @@ type Params = Promise<{
 
 export default async function NotebookEntry({ params }: { params: Params }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getKeystaticPost(slug);
+
+  if (!post) {
+    notFound();
+  }
+
   const published = moment.utc(post.published);
 
   return (
@@ -47,10 +51,16 @@ export default async function NotebookEntry({ params }: { params: Params }) {
           <p>•</p>
           <PostType type={post.entry} />
         </div>
-        <h1 className={"font-sans uppercase text-4xl"}>{post.title}</h1>
+        <h1 className={"font-sans uppercase text-4xl"}>
+          {post.title}
+        </h1>
       </section>
       <section className={"flex flex-col space-y-4 text-body pb-16"}>
-        <MDXContent code={post.content} />
+        {post.content ? (
+          <KeystaticContent
+            content={typeof post.content === 'function' ? await post.content() : post.content}
+          />
+        ) : null}
       </section>
       <section>
         <h4

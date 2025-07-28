@@ -1,7 +1,7 @@
 import moment from "moment";
 import { PostListItem } from "./item";
 import { Suspense } from "react";
-import { Post } from "@velite";
+import { KeystaticPost } from "@/lib/posts-keystatic";
 
 export default function PostList({
   month,
@@ -9,7 +9,7 @@ export default function PostList({
   year,
 }: {
   month: number;
-  posts: Post[];
+  posts: KeystaticPost[];
   year?: number;
 }) {
   const textMonth = moment(month, "M").format("MMMM");

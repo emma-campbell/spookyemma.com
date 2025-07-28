@@ -1,20 +1,19 @@
-import Link from "next/link";
 import Image from "next/image";
 import MyNotebook from "public/notebook.png";
-import { Post } from "@velite";
 import moment from "moment/moment";
 import PostList from "@/components/posts/list";
-import { Posts } from "@/lib/posts";
+import { getPublishedPosts, KeystaticPost } from "@/lib/posts-keystatic";
 
-function postsByYear() {
-  const map: Map<number, Map<number, Post[]>> = new Map();
-  Posts().forEach((p) => {
+async function postsByYear() {
+  const posts = await getPublishedPosts();
+  const map: Map<number, Map<number, KeystaticPost[]>> = new Map();
+  posts.forEach((p) => {
     const publishedYear = moment.utc(p.published).year();
     const publishedMonth = moment.utc(p.published).month() + 1;
 
     const year = map.get(publishedYear);
     if (!year) {
-      const month = new Map<number, Post[]>().set(publishedMonth, [p]);
+      const month = new Map<number, KeystaticPost[]>().set(publishedMonth, [p]);
       map.set(publishedYear, month);
     } else {
       const month = year.get(publishedMonth);
@@ -40,8 +39,8 @@ function sort(map: Map<number, any>, asc?: boolean) {
   });
 }
 
-export default function Notebook() {
-  const posts = sort(postsByYear(), false);
+export default async function Notebook() {
+  const posts = sort(await postsByYear(), false);
 
   return (
     <>
@@ -58,14 +57,6 @@ export default function Notebook() {
         />
         <h1 className={"font-sans uppercase text-body text-4xl"}>notebook</h1>
         <h2 className={"text-body"}>thoughts, notes, and...other things.</h2>
-        {/* <Link
-          href={"/rss.xml"}
-          className={
-            "font-sans text-primary hover:underline hover:decoration-wavy"
-          }
-        >
-          follow feed
-        </Link> */}
       </section>
       <section className={"flex flex-col space-y-8"}>
         {posts.map((entry) => {
