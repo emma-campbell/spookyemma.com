@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { NavigationMenu } from "@base-ui-components/react/navigation-menu";
+import { AccessibleLink } from "../../ui/accessible-link";
 
 type HrefLink = {
   text: string;
@@ -27,7 +28,11 @@ function LinkItem(props: NavigationMenu.Link.Props & { text: string }) {
     <NavigationMenu.Item>
       <NavigationMenu.Link
         {...props}
-        render={({ children }) => <Link href={props.href!}><span>{props.text}</span></Link>}
+        render={({ children }) => (
+          <AccessibleLink href={props.href!}>
+            <span>{props.text}</span>
+          </AccessibleLink>
+        )}
       />
     </NavigationMenu.Item>
   );
@@ -41,7 +46,7 @@ export const Nav = () => {
   return !useBackButton ? (
     <NavigationMenu.Root>
       <NavigationMenu.List className={"flex flex-row gap-4"}>
-        <NavigationMenu.Link href="/" className={"text-accent font-bold uppercase hover:text-muted-ink font-display"}>Emma's Blog</NavigationMenu.Link>
+        <AccessibleLink href="/" className={"text-accent font-bold uppercase hover:text-muted-ink font-display"}>Emma's Blog</AccessibleLink>
         {Object.entries(links).map(([href, { text }]) => (
           <LinkItem key={href} href={href} text={text} />
         ))}

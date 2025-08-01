@@ -37,3 +37,7 @@ h5,
 h6 {
   @apply font-sans font-semibold;
 }
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}

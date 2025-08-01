@@ -5,6 +5,7 @@ import Image from "next/image";
 import { DateTime } from "luxon";
 import { default as packageJson } from "package.json";
 import Link from "next/link";
+import { AccessibleLink } from "../ui/accessible-link";
 
 export const Footer = () => {
   return (
@@ -17,12 +18,12 @@ export const Footer = () => {
         />
         <div className="col-span-2 text-body text-sm flex flex-col text-center">
           <p>© 2022 - {DateTime.now().year} Emma Campbell</p>
-          <Link
+          <AccessibleLink
             href={"/chronicling/changelog"}
             className={"hover:text-highlighted hover:underline"}
           >
             v{packageJson.version}
-          </Link>
+          </AccessibleLink>
         </div>
       </div>
     </footer>

@@ -1,10 +1,10 @@
-## 2.2.0
-
 ## 2.3.0
 
 ### Minor Changes
 
 - Added admin panel
+
+## 2.2.0
 
 ### Minor Changes
 

@@ -76,3 +76,20 @@ export async function getSiteSettings() {
   const settings = await reader.singletons.siteSettings.read();
   return settings;
 }
+
+export async function getNowEntries() {
+  try {
+    const entries = await reader.collections.now.all();
+    return entries;
+  } catch (error) {
+    console.error('Error fetching now entries:', error);
+    return [];
+  }
+}
+
+export async function getNowEntry(slug: string) {
+  const entry = await reader.collections.now.read(slug, {
+    resolveLinkedFiles: true
+  });
+  return entry;
+}

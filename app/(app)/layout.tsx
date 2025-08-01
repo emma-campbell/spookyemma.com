@@ -155,9 +155,6 @@ export default function RootLayout({
           <main className="flex-grow mx-auto w-full max-w-4xl px-4 sm:px-8 py-12 pt-20 lg:pt-12 text-md font-sans">
             {children}
           </main>
-          <div className="mx-auto w-full max-w-4xl px-4 sm:px-8">
-            <Footer />
-          </div>
         </div>
         <Analytics />
         <RybbitAnalytics />

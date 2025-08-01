@@ -162,6 +162,45 @@ export default config({
         })
       },
     }),
+    now: collection({
+      label: 'Now Entries',
+      slugField: 'slug',
+      path: 'content/now/*',
+      format: { contentField: 'content' },
+      entryLayout: "content",
+      schema: {
+        slug: fields.slug({
+          name: {
+            label: 'Entry ID',
+            description: 'Use format: YYYY-MM (e.g., 2024-04)'
+          },
+          slug: {
+            label: 'File Name',
+            description: 'Auto-generated from Entry ID'
+          }
+        }),
+        month: fields.integer({
+          label: 'Month',
+          description: 'Month (1-12)',
+          validation: { min: 1, max: 12, isRequired: true }
+        }),
+        year: fields.integer({
+          label: 'Year',
+          description: 'Year (e.g., 2024)',
+          validation: { min: 2020, max: 2030, isRequired: true }
+        }),
+        content: fields.mdx({
+          label: 'Content',
+          description: 'What you are doing now (MDX format)',
+          options: {
+            image: {
+              directory: 'public/images/now',
+              publicPath: '/images/now/'
+            }
+          }
+        })
+      },
+    }),
   },
   singletons: {
     siteSettings: singleton({
