@@ -1,7 +1,6 @@
 import Andrea from "@/public/andrea.jpeg";
 import Crew from "@/public/crew.jpeg";
 import Moose from "@/public/moose.jpg";
-import Portrait from "@/public/profile.png";
 import Headshot from "@/public/headshot.jpeg";
 import Image from "next/image";
 
@@ -11,7 +10,7 @@ export default function About() {
       <Image
         src={Headshot}
         alt={"Photo of Emma"}
-        className={"h-48 w-auto rounded-sm"}
+        className={"h-48 w-auto rounded-lg"}
         placeholder="blur"
       />
       <section className="flex flex-col text-body pt-4 space-y-6">
@@ -22,9 +21,10 @@ export default function About() {
         </p>
         <p>
           I&apos;m originally from Columbus, OH, and currently live in
-          Washington, D.C with my partner and my dog. I had a quick pit-stop in
+          Bloomington, IN with my partner and my dog. I had a quick pit-stop in
           Rochester, NY where I attended the University of Rochester to get my
-          Bachelor&apos;s degree in Computer Science.
+          Bachelor&apos;s degree in Computer Science, and Washington, D.C. for
+          a few years after college.
         </p>
         <p>
           I&apos;m a software engineer by day, and by night I&apos;m taking on
@@ -42,27 +42,19 @@ export default function About() {
         </p>
         <p>
           I love the Columbus Crew, and soccer in general. It consumes my
-          weekends. I recently got to watch the Crew win their third cup live
+          weekends. I got to watch the Crew win their third cup live in 2023
           and it&apos;s one of my favorite memories. I love sports in general,
-          and believe that they&apos;re a great way to teach kids how to work
-          together.
+          and believe that they&apos;re a great way to teach cooperation and team
+          skills.
         </p>
         <p>
-          I am odd and somewhat introverted. I hate small talk, and prefer to
+          I am odd and pretty introverted. I hate small talk, and prefer to
           talk about things that matter. At social gatherings, I tend to
           befriend the dog.
         </p>
         <p>
           Anyways, that&apos;s that&apos;s a pretty good overview and should
-          give you a good idea about who I am as a human. If you want to get in
-          touch, you{" "}
-          <a
-            href={"to:hello@spooklore.com"}
-            className={"text-highlighted underline"}
-          >
-            can email me
-          </a>
-          .
+          give you a good idea about who I am as a human.
         </p>
       </section>
       <section className="grid grid-cols-3 pt-8 gap-4 [&_img]:rounded-sm">

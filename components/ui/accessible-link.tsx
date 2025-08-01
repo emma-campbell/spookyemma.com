@@ -1,9 +1,10 @@
 "use client";
 
 import { Link as AriaLink } from "react-aria-components";
-import Link from "next/link";
 import { forwardRef } from "react";
 import { clsx } from "clsx";
+import { UnderlineToBackground } from "./underline-to-background";
+import Link from "next/link";
 
 export interface AccessibleLinkProps {
   href: string;
@@ -17,7 +18,7 @@ export interface AccessibleLinkProps {
 export const AccessibleLink = forwardRef<HTMLAnchorElement, AccessibleLinkProps>(
   ({ href, children, className, external, disabled, onPress, ...props }, ref) => {
     const isExternal = external || href.startsWith("http") || href.startsWith("mailto:");
-    
+
     const linkClasses = clsx(
       "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
       "transition-colors duration-200",
@@ -37,7 +38,9 @@ export const AccessibleLink = forwardRef<HTMLAnchorElement, AccessibleLinkProps>
           onPress={onPress}
           {...props}
         >
-          {children}
+          <UnderlineToBackground>
+            {children}
+          </UnderlineToBackground>
           <span className="sr-only"> (opens in new tab)</span>
         </AriaLink>
       );
@@ -50,16 +53,13 @@ export const AccessibleLink = forwardRef<HTMLAnchorElement, AccessibleLinkProps>
         isDisabled={disabled}
         onPress={onPress}
         {...props}
-        render={({ className: ariaClassName, ...ariaProps }) => (
-          <Link
-            href={href}
-            className={clsx(ariaClassName, className)}
-            {...ariaProps}
-          >
+      >
+        <UnderlineToBackground>
+          <Link href={href}>
             {children}
           </Link>
-        )}
-      />
+        </UnderlineToBackground>
+      </AriaLink>
     );
   }
 );

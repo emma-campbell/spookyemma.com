@@ -3,8 +3,8 @@ import { Post } from "@/lib/keystatic";
 import { DateTime } from "luxon";
 import { createMDXPreview } from "@/lib/preview";
 import { UnderlineToBackground } from "@/components/ui/underline-to-background";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { defaultComponents } from "@/components/mdx";
+import { MDXContent } from "@/components/mdx";
+import { AccessibleLink } from "@/components/ui/accessible-link";
 
 export function PostListItem({
   post,
@@ -26,22 +26,19 @@ export function PostListItem({
           {DateTime.fromISO(post?.published ?? "").toFormat("MM/dd/yy")}
         </p>
         <div className="flex-grow">
-          <Link
-            className="block group mb-2"
-            href={`/notebook/${slug}`}
-          >
+          <AccessibleLink href={`/notebook/${slug}`} className="block group mb-2">
             <h3 className="text-3xl font-medium text-text group-hover:text-highlighted">
               <UnderlineToBackground>
                 {post?.title}
               </UnderlineToBackground>
             </h3>
-          </Link>
+          </AccessibleLink>
+
 
           {preview.preview && (
             <div className="text-muted-ink text-md leading-relaxed mb-2 prose prose-sm max-w-none">
-              <MDXRemote
-                source={preview.preview}
-                components={defaultComponents}
+              <MDXContent
+                content={preview.preview}
               />
             </div>
           )}
@@ -75,19 +72,18 @@ export function PostListItem({
 
         {preview.preview && (
           <div className="text-muted-ink text-md leading-relaxed mb-2 prose prose-sm max-w-none">
-            <MDXRemote
-              source={preview.preview}
-              components={defaultComponents}
+            <MDXContent
+              content={preview.preview}
             />
           </div>
         )}
 
         {preview.hasMore && (
-          <Link href={`/notebook/${slug}`}>
+          <AccessibleLink href={`/notebook/${slug}`}>
             <span className="text-sm text-accent uppercase tracking-wide font-medium hover:text-highlighted">
               Read more →
             </span>
-          </Link>
+          </AccessibleLink>
         )}
       </div>
     </article>

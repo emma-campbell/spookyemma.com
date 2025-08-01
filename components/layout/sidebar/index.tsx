@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { UnderlineToBackground } from "@/components/ui/underline-to-background";
+import { AccessibleLink } from "@/components/ui/accessible-link";
 import { DateTime } from "luxon";
+import { default as packageJson } from "package.json";
 
 type NavItem = {
   href: string;
@@ -13,7 +14,8 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { href: "/", text: "Notebook" },
-  { href: "/chronicling", text: "Chronicling" },
+  { href: "/chronicling/bio", text: "About" },
+  { href: "/now", text: "Now" },
 ];
 
 export const Sidebar = () => {
@@ -68,15 +70,15 @@ export const Sidebar = () => {
 
               return (
                 <li key={item.href}>
-                  <Link
+                  <AccessibleLink
                     href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onPress={() => setIsMobileMenuOpen(false)}
                     className="block py-1 text-sm"
                   >
                     <UnderlineToBackground isActive={isActive}>
                       {item.text}
                     </UnderlineToBackground>
-                  </Link>
+                  </AccessibleLink>
                 </li>
               );
             })}
@@ -85,34 +87,30 @@ export const Sidebar = () => {
 
         {/* Footer Links */}
         <div className="space-y-1 text-sm">
-          <a
+          <AccessibleLink
             href="https://github.com/spookyemma"
-            target="_blank"
-            rel="noopener noreferrer"
             className="block py-1"
           >
             <UnderlineToBackground isExternal>
               GitHub
             </UnderlineToBackground>
-          </a>
-          <a
+          </AccessibleLink>
+          <AccessibleLink
             href="https://twitter.com/spookyemma"
-            target="_blank"
-            rel="noopener noreferrer"
             className="block py-1"
           >
             <UnderlineToBackground isExternal>
               Twitter
             </UnderlineToBackground>
-          </a>
-          <a
+          </AccessibleLink>
+          <AccessibleLink
             href="/rss.xml"
             className="block py-1"
           >
             <UnderlineToBackground>
               RSS
             </UnderlineToBackground>
-          </a>
+          </AccessibleLink>
         </div>
 
         {/* Copyright */}
@@ -120,6 +118,12 @@ export const Sidebar = () => {
           <p className="text-xs text-muted-ink">
             © 2022–{DateTime.now().year} Emma Campbell
           </p>
+          <AccessibleLink
+            href="/chronicling/changelog"
+            className="text-xs text-muted-ink hover:text-accent transition-colors"
+          >
+            v{packageJson.version}
+          </AccessibleLink>
         </div>
       </div>
     </aside>

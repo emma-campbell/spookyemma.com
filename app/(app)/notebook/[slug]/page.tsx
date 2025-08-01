@@ -1,6 +1,6 @@
 import { PostType } from "@/components/posts/post-type";
 import { getPost, getAllPostSlugs } from "@/lib/keystatic";
-import { KeystaticContent } from "@/components/mdx/keystatic-content";
+import { MDXContent } from "@/components/mdx";
 import { DateTime } from "luxon";
 import { notFound } from "next/navigation";
 
@@ -57,7 +57,7 @@ export default async function NotebookEntry({ params }: { params: Params }) {
       </section>
       <section className={"flex flex-col space-y-4 text-body pb-16"}>
         {post.content ? (
-          <KeystaticContent
+          <MDXContent
             content={typeof post.content === 'function' ? await post.content() : post.content}
           />
         ) : null}

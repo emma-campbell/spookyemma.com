@@ -1,68 +1,61 @@
-import { Aside } from "./aside";
-import type { MDXComponents } from "mdx/types";
-import MdxImage from "./img";
-import * as runtime from "react/jsx-runtime";
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import { Aside } from './aside'
+import MdxImage from './img'
+import { AccessibleLink } from '../ui/accessible-link'
 
-export const defaultComponents: MDXComponents = {
-  Aside: ({ title, position = 'left', styled = false, ...props }) => (
-    <Aside title={title} position={position} styled={styled} {...props} />
-  ),
-  h1: ({ children, className }) => {
-    return (
-      <h2 className="text-3xl text-inherit">{children}</h2>
-    );
-  },
-  h2: ({ children }) => {
-    return (
-      <h3 className="text-2xl text-inherit">{children}</h3>
-    );
-  },
-  h3: ({ children }) => {
-    return (
-      <h4 className="text-xl text-inherit">{children}</h4>
-    );
-  },
-  h4: ({ children }) => {
-    return (
-      <h5 className="text-lg text-inherit">{children}</h5>
-    );
-  },
-  ol: ({ children }) => {
-    return <ol className="list-inside list-decimal">{children}</ol>;
-  },
-  ul: ({ children }) => {
-    return <ul className="list-inside list-disc">{children}</ul>;
-  },
-  li: ({ children }) => {
-    return <li className="">{children}</li>;
-  },
-  blockquote: ({ children }) => {
-    return (
-      <blockquote className="border-l-4 border-primary bg-primary/10 pl-2 py-2 text-body">
-        {children}
-      </blockquote>
-    );
-  },
-  strong: ({ children }) => {
-    return <strong className="font-bold">{children}</strong>;
-  },
-  p: ({ children }) => {
-    return <p className="mb-4 last:mb-0">{children}</p>;
-  },
-  img: MdxImage,
-};
-
-const useMdxComponent = (code: string) => {
-  const fn = new Function(code);
-  return fn({ ...runtime })?.default;
-};
-
-interface MDXProps {
-  code: string;
-  components?: MDXComponents;
+interface KeystaticContentProps {
+  content: string
 }
 
-export const MDXContent = ({ code, components }: MDXProps) => {
-  const Component = useMdxComponent(code as string);
-  return <Component components={{ ...defaultComponents, ...components }} />;
-};
+export const components = {
+  // Custom components - children will be rendered as MDX by MDXRemote
+  Aside: ({ title, styled = false, children }: any) => (
+    <Aside title={title} styled={styled}>
+      {children}
+    </Aside>
+  ),
+
+  // Styled HTML elements
+  h1: ({ children }: any) => (
+    <h2 className="font-sans uppercase text-black text-3xl">{children}</h2>
+  ),
+  h2: ({ children }: any) => (
+    <h3 className="font-sans uppercase text-black text-2xl">{children}</h3>
+  ),
+  h3: ({ children }: any) => (
+    <h4 className="font-sans uppercase text-black text-xl">{children}</h4>
+  ),
+  h4: ({ children }: any) => (
+    <h5 className="font-sans uppercase text-black text-lg">{children}</h5>
+  ),
+  ol: ({ children }: any) => (
+    <ol className="list-inside list-decimal">{children}</ol>
+  ),
+  ul: ({ children }: any) => (
+    <ul className="list-inside list-disc">{children}</ul>
+  ),
+  li: ({ children }: any) => (
+    <li className="">{children}</li>
+  ),
+  blockquote: ({ children }: any) => (
+    <blockquote className="border-l-4 border-primary bg-primary/10 pl-2 py-2 text-body">
+      {children}
+    </blockquote>
+  ),
+  strong: ({ children }: any) => (
+    <strong className="font-bold">{children}</strong>
+  ),
+  img: MdxImage,
+  a: ({ children, href }: any) => {
+    return <AccessibleLink href={href} className="text-accent">{children}</AccessibleLink>
+  }
+}
+
+export function MDXContent({ content }: KeystaticContentProps) {
+  return (
+    <MDXRemote
+      source={content}
+      components={components}
+    />
+  )
+}

@@ -1,7 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 
 import { RybbitAnalytics } from "@/components/analytics/rybbit";
-import { Footer } from "@/components/layout/footer";
 import { Sidebar } from "@/components/layout/sidebar";
 import type { Metadata } from "next";
 
@@ -9,6 +8,7 @@ import { JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
 import "../globals.css";
+import { Router } from "@/context/router";
 
 const garet = localFont({
   src: [
@@ -149,16 +149,18 @@ export default function RootLayout({
           href="/rss.xml"
         />
       </head>
-      <body className="root bg-background leading-relaxed text-text">
-        <Sidebar />
-        <div className="lg:ml-48 min-h-screen flex flex-col">
-          <main className="flex-grow mx-auto w-full max-w-4xl px-4 sm:px-8 py-12 pt-20 lg:pt-12 text-md font-sans">
-            {children}
-          </main>
-        </div>
-        <Analytics />
-        <RybbitAnalytics />
-      </body>
+      <Router>
+        <body className="root bg-background leading-relaxed text-text">
+          <Sidebar />
+          <div className="lg:ml-48 min-h-screen flex flex-col">
+            <main className="flex-grow mx-auto w-full max-w-4xl px-4 sm:px-8 py-12 pt-20 lg:pt-12 text-md font-sans">
+              {children}
+            </main>
+          </div>
+        </body>
+      </Router>
+      <Analytics />
+      <RybbitAnalytics />
     </html>
   );
 }
