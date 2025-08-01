@@ -2,7 +2,7 @@
 
 import FooterImage from "public/footer.png";
 import Image from "next/image";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { default as packageJson } from "package.json";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export const Footer = () => {
           className={"h-48 w-auto"}
         />
         <div className="col-span-2 text-body text-sm flex flex-col text-center">
-          <p>© 2022 - {moment().format("YYYY")} Emma Campbell</p>
+          <p>© 2022 - {DateTime.now().year} Emma Campbell</p>
           <Link
             href={"/chronicling/changelog"}
             className={"hover:text-highlighted hover:underline"}

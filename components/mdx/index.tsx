@@ -9,22 +9,22 @@ export const defaultComponents: MDXComponents = {
   ),
   h1: ({ children, className }) => {
     return (
-      <h2 className="font-sans uppercase text-black text-3xl">{children}</h2>
+      <h2 className="text-3xl text-inherit">{children}</h2>
     );
   },
   h2: ({ children }) => {
     return (
-      <h3 className="font-sans uppercase text-black text-2xl">{children}</h3>
+      <h3 className="text-2xl text-inherit">{children}</h3>
     );
   },
   h3: ({ children }) => {
     return (
-      <h4 className="font-sans uppercase text-black text-xl">{children}</h4>
+      <h4 className="text-xl text-inherit">{children}</h4>
     );
   },
   h4: ({ children }) => {
     return (
-      <h5 className="font-sans uppercase text-black text-lg">{children}</h5>
+      <h5 className="text-lg text-inherit">{children}</h5>
     );
   },
   ol: ({ children }) => {
@@ -45,6 +45,9 @@ export const defaultComponents: MDXComponents = {
   },
   strong: ({ children }) => {
     return <strong className="font-bold">{children}</strong>;
+  },
+  p: ({ children }) => {
+    return <p className="mb-4 last:mb-0">{children}</p>;
   },
   img: MdxImage,
 };

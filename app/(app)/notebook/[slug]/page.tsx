@@ -1,7 +1,7 @@
 import { PostType } from "@/components/posts/post-type";
-import { getKeystaticPost, getAllPostSlugs } from "@/lib/keystatic";
+import { getPost, getAllPostSlugs } from "@/lib/keystatic";
 import { KeystaticContent } from "@/components/mdx/keystatic-content";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -15,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getKeystaticPost(slug);
+  const post = await getPost(slug);
 
   return {
     title: post?.title,
@@ -35,19 +35,19 @@ type Params = Promise<{
 
 export default async function NotebookEntry({ params }: { params: Params }) {
   const { slug } = await params;
-  const post = await getKeystaticPost(slug);
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();
   }
 
-  const published = moment.utc(post.published);
+  const published = DateTime.fromISO(post.published || "");
 
   return (
     <>
       <section className={"pb-8"}>
-        <div className={"flex uppercase space-x-2 font-sans text-highlighted"}>
-          <p>{published.format("DD MMMM YYYY")}</p>
+        <div className={"flex uppercase space-x-2 font-serif text-highlighted"}>
+          <p>{published.toLocaleString(DateTime.DATE_MED)}</p>
           <p>•</p>
           <PostType type={post.entry} />
         </div>
@@ -71,7 +71,7 @@ export default async function NotebookEntry({ params }: { params: Params }) {
         <div className={"flex flex-col text-body"}>
           <div className={"flex justify-between text-lg"}>
             <p>Published</p>
-            <p>{published.format("MMMM DD, YYYY")}</p>
+            <p>{published.toLocaleString(DateTime.DATE_MED)}</p>
           </div>
           {post.tags ? (
             <div className={"flex justify-between text-lg"}>

@@ -1,12 +1,15 @@
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../keystatic.config';
 
+type ElementType<T> = T extends (infer U)[] ? U : never;
+
 export const reader = createReader(process.cwd(), keystaticConfig);
 
 // Define types for our collections
-export type KeystaticPost = Awaited<ReturnType<typeof reader.collections.posts.read>>;
+export type Post = Awaited<ReturnType<typeof reader.collections.posts.read>>;
+export type PostListEntry = ElementType<Awaited<ReturnType<typeof reader.collections.posts.all>>>;
 
-export async function getKeystaticPosts() {
+export async function getPosts(): Promise<PostListEntry[]> {
   try {
     const posts = await reader.collections.posts.all();
     return posts;
@@ -16,10 +19,10 @@ export async function getKeystaticPosts() {
   }
 }
 
-export async function getKeystaticPost(slug: string): Promise<KeystaticPost | null> {
+export async function getPost(slug: string): Promise<Post | null> {
   try {
-    const post = await reader.collections.posts.read(slug, { 
-      resolveLinkedFiles: true 
+    const post = await reader.collections.posts.read(slug, {
+      resolveLinkedFiles: true
     });
     return post;
   } catch (error) {
@@ -29,9 +32,9 @@ export async function getKeystaticPost(slug: string): Promise<KeystaticPost | nu
 }
 
 // Get published posts only
-export async function getPublishedKeystaticPosts() {
+export async function getPublishedPosts(): Promise<PostListEntry[]> {
   try {
-    const allPosts = await getKeystaticPosts();
+    const allPosts = await getPosts();
     return allPosts.filter(post => post.entry.status === 'published');
   } catch (error) {
     console.error('Error fetching published posts:', error);

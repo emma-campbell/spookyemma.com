@@ -8,12 +8,12 @@ interface KeystaticContentProps {
 
 const components = {
   // Custom components - children will be rendered as MDX by MDXRemote
-  Aside: ({ title, position = 'left', styled = false, children }: any) => (
-    <Aside title={title} position={position} styled={styled}>
+  Aside: ({ title, styled = false, children }: any) => (
+    <Aside title={title} styled={styled}>
       {children}
     </Aside>
   ),
-  
+
   // Styled HTML elements
   h1: ({ children }: any) => (
     <h2 className="font-sans uppercase text-black text-3xl">{children}</h2>
@@ -49,8 +49,8 @@ const components = {
 
 export function KeystaticContent({ content }: KeystaticContentProps) {
   return (
-    <MDXRemote 
-      source={content} 
+    <MDXRemote
+      source={content}
       components={components}
     />
   )

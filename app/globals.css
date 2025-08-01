@@ -1,116 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer base {
-    .root {
-        isolation: isolate;
-    }
-
-    .font-outline-primary-heading {
-        -webkit-text-stroke: 0.07em #00715C;
-    }
-
-    .font-outline-black-heading {
-        -webkit-text-stroke: 0.07em #222222;
-    }
-
-    .font-outline-primary-1 {
-        -webkit-text-stroke: 1px #00715C;
-    }
-
-    .font-outline-black-1 {
-        -webkit-text-stroke: 1px #222222;
-    }
-
-    .font-outline-primary-2 {
-        -webkit-text-stroke: 2px #00715C;
-    }
-
-    .font-outline-black-2 {
-        -webkit-text-stroke: 2px #222222;
-    }
-
-    .font-outline-primary-4 {
-        -webkit-text-stroke: 4px #00715C;
-    }
-
-    .font-outline-black-4 {
-        -webkit-text-stroke: 4px #222222;
-    }
-}
-/* Code Block Styling */
-figure[data-rehype-pretty-code-figure] {
-    background-color: #292929;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    font-family: "var(--font-jetbrains-mono)";
+:root {
+  --background:    oklch(96.5% 0.005 240);  /* Pale sea fog */
+  --surface:       oklch(92% 0.007 240);    /* Salt-washed stone */
+  --text:          oklch(28% 0.02 270);     /* Deep tide slate */
+  --accent:        oklch(63% 0.14 165);     /* Salt moss */
+  --highlight:     oklch(85% 0.11 185);     /* Seafoam shell */
+  --muted-ink:     oklch(65% 0.04 250);     /* Weathered steel ink */
+  --info:          oklch(68% 0.07 220);     /* Dusk blue */
+  --success:       oklch(58% 0.11 145);     /* Mossy green */
+  --warning:       oklch(77% 0.19 85);      /* Golden herb */
+  --destructive:   oklch(55% 0.18 25);      /* Dried blood rose */
 }
 
-code {
-    counter-reset: line;
-    white-space: pre-wrap !important;
-    font-size: 0.75rem;
+@theme inline {
+  --font-sans: var(--font-garet);
+  --font-serif: var(--font-garet);
+  --font-display: var(--font-garet);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-accent: var(--accent);
+  --color-highlight: var(--highlight);
+  --color-muted-ink: var(--muted-ink);
+  --color-info: var(--info);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
 }
 
-code[data-line-numbers] > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    /* Other styling */
-    display: inline-block;
-    width: 1rem;
-    margin-right: 1rem;
-    text-align: right;
-    color: gray;
-}
-
-code[data-line-numbers-max-digits="2"] > [data-line]::before {
-    width: 2rem;
-}
-
-code[data-line-numbers-max-digits="3"] > [data-line]::before {
-    width: 3rem;
-}
-
-.footnotes {
-    display: flex;
-    flex-direction: column;
-
-    h5 {
-        visibility: hidden;
-    }
-
-    ol {
-        display: flex;
-        flex-direction: column;
-        counter-reset: section;
-        list-style-type: none;
-
-        li::before {
-            counter-increment: section;
-            content: "[" counter(section) "]";
-            font-size: 0.8em;
-            vertical-align: text-bottom;
-            flex-shrink: 0;
-            padding-right: 6px;
-        }
-
-        li {
-            display: flex;
-            font-size: 0.9em;
-            p {
-                color: #434343;
-                :hover {
-                    color: #706E62;
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
-}
-
-
-a.data-footnote-backref {
-    color: #7f7f7f;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-sans font-semibold;
 }

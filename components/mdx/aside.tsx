@@ -39,7 +39,7 @@ export const Aside = ({
       {/* Content */}
       <div
         className={clsx("text-blue-800 dark:text-blue-200", {
-          "text-sm italic [&>span[data-rehype-pretty-code-fragment]]:!text-xs":
+          "text-sm italic [&>span[data-rehype-pretty-code-fragment]]:text-xs!":
             styled,
         })}
       >

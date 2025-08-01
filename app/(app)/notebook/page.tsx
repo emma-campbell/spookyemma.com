@@ -1,19 +1,19 @@
 import Image from "next/image";
 import MyNotebook from "public/notebook.png";
-import moment from "moment/moment";
 import PostList from "@/components/posts/list";
-import { getPublishedPosts, KeystaticPost } from "@/lib/posts-keystatic";
+import { getPublishedPosts, PostListEntry } from "@/lib/keystatic";
+import { DateTime } from "luxon";
 
 async function postsByYear() {
   const posts = await getPublishedPosts();
-  const map: Map<number, Map<number, KeystaticPost[]>> = new Map();
+  const map: Map<number, Map<number, PostListEntry[]>> = new Map();
   posts.forEach((p) => {
-    const publishedYear = moment.utc(p.published).year();
-    const publishedMonth = moment.utc(p.published).month() + 1;
+    const publishedYear = DateTime.fromISO(p.entry.published ?? "").year;
+    const publishedMonth = DateTime.fromISO(p.entry.published ?? "").month + 1;
 
     const year = map.get(publishedYear);
     if (!year) {
-      const month = new Map<number, KeystaticPost[]>().set(publishedMonth, [p]);
+      const month = new Map<number, PostListEntry[]>().set(publishedMonth, [p]);
       map.set(publishedYear, month);
     } else {
       const month = year.get(publishedMonth);

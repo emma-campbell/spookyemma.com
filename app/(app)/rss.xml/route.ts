@@ -2,7 +2,7 @@
 import { Post, posts } from "@velite";
 import { compareDesc } from "date-fns";
 import { Feed } from "feed";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 const createFeed = () => {
   const feed = new Feed({
@@ -14,7 +14,7 @@ const createFeed = () => {
     image:
       "https://www.spooklore.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fspooklore.e786bb34.png&w=2048&q=75",
     favicon: "",
-    copyright: `2022 - ${moment().format("YYYY")}, Emma Campbell`,
+    copyright: `2022 - ${DateTime.now().year}, Emma Campbell`,
     author: {
       name: "Emma Campbell",
       link: "https://spooky.blog",
@@ -38,7 +38,7 @@ const createFeed = () => {
             name: p.entry.toString(),
           },
         ],
-        date: moment(p.published).toDate(),
+        date: DateTime.fromISO(p.published).toJSDate(),
         author: [
           {
             name: "Emma Campbell",

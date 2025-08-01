@@ -2,13 +2,14 @@ import Andrea from "@/public/andrea.jpeg";
 import Crew from "@/public/crew.jpeg";
 import Moose from "@/public/moose.jpg";
 import Portrait from "@/public/profile.png";
+import Headshot from "@/public/headshot.jpeg";
 import Image from "next/image";
 
 export default function About() {
   return (
     <>
       <Image
-        src={Portrait}
+        src={Headshot}
         alt={"Photo of Emma"}
         className={"h-48 w-auto rounded-sm"}
         placeholder="blur"
