@@ -32,7 +32,6 @@ export const AccessibleLink = forwardRef<HTMLAnchorElement, AccessibleLinkProps>
           ref={ref}
           href={href}
           target="_blank"
-          rel="noopener noreferrer"
           className={linkClasses}
           isDisabled={disabled}
           onPress={onPress}
@@ -49,15 +48,15 @@ export const AccessibleLink = forwardRef<HTMLAnchorElement, AccessibleLinkProps>
     return (
       <AriaLink
         ref={ref}
+        href={href}
         className={linkClasses}
         isDisabled={disabled}
         onPress={onPress}
+        rel="noopener noreferrer"
         {...props}
       >
         <UnderlineToBackground>
-          <Link href={href}>
-            {children}
-          </Link>
+          {children}
         </UnderlineToBackground>
       </AriaLink>
     );

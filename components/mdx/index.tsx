@@ -17,16 +17,16 @@ export const components = {
 
   // Styled HTML elements
   h1: ({ children }: any) => (
-    <h2 className="font-sans uppercase text-black text-3xl">{children}</h2>
+    <h2 className="font-sans uppercase text-inherit text-3xl">{children}</h2>
   ),
   h2: ({ children }: any) => (
-    <h3 className="font-sans uppercase text-black text-2xl">{children}</h3>
+    <h3 className="font-sans uppercase text-inherit text-2xl">{children}</h3>
   ),
   h3: ({ children }: any) => (
-    <h4 className="font-sans uppercase text-black text-xl">{children}</h4>
+    <h4 className="font-sans uppercase text-inherit text-xl">{children}</h4>
   ),
   h4: ({ children }: any) => (
-    <h5 className="font-sans uppercase text-black text-lg">{children}</h5>
+    <h5 className="font-sans uppercase text-inherit text-lg">{children}</h5>
   ),
   ol: ({ children }: any) => (
     <ol className="list-inside list-decimal">{children}</ol>
