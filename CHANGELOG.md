@@ -1,5 +1,3 @@
-## 2.3.0
-
 ## 3.0.0
 
 ### Major Changes
@@ -15,6 +13,8 @@
 
 - 8e0fa36: Add missing props to PostList component
 - 7f9bdb1: - MDX heading color changes from text-black to text-inherit for better theme compatibility
+
+## 2.3.0
 
 ### Minor Changes
 

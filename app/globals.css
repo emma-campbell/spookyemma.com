@@ -71,7 +71,7 @@ pre.shiki.line-numbers::before {
   width: 3rem;
   text-align: right;
   color: #7c8b8f;
-  font-family: 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', monospace;
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', monospace;
   font-size: 0.875rem;
   line-height: 1.5rem;
   user-select: none;

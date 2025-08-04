@@ -9,6 +9,7 @@ import localFont from "next/font/local";
 
 import "../globals.css";
 import { Router } from "@/context/router";
+import { SiteSettingsProvider } from "@/context/settings";
 
 const garet = localFont({
   src: [
@@ -150,14 +151,16 @@ export default function RootLayout({
         />
       </head>
       <Router>
-        <body className="root bg-background leading-relaxed text-text">
-          <Sidebar />
-          <div className="lg:ml-48 min-h-screen flex flex-col">
-            <main className="flex-grow mx-auto w-full max-w-4xl px-4 sm:px-8 py-12 pt-20 lg:pt-12 text-md font-sans">
-              {children}
-            </main>
-          </div>
-        </body>
+        <SiteSettingsProvider>
+          <body className="root bg-background leading-relaxed text-text">
+            <Sidebar />
+            <div className="lg:ml-48 min-h-screen flex flex-col">
+              <main className="flex-grow mx-auto w-full max-w-4xl px-4 sm:px-8 py-12 pt-20 lg:pt-12 text-md font-sans">
+                {children}
+              </main>
+            </div>
+          </body>
+        </SiteSettingsProvider>
       </Router>
       <Analytics />
       <RybbitAnalytics />

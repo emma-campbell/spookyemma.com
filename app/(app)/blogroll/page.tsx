@@ -1,6 +1,4 @@
-import Link from "next/link";
-import Newspaper from "public/newspaper.png";
-import Image from "next/image";
+import { AccessibleLink } from "@/components/ui/accessible-link";
 
 const links = [
   {
@@ -12,18 +10,6 @@ const links = [
     href: "https://rachsmith.com",
   },
   {
-    text: "AI Weirdness",
-    href: "https://aiweirdness.com",
-  },
-  {
-    text: "Amy Hupe",
-    href: "https://amyhupe.co.uk",
-  },
-  {
-    text: "She's a Beast",
-    href: "https://shesabeast.co",
-  },
-  {
     text: "Manu Moreale",
     href: "https://manuelmoreale.com",
   },
@@ -31,16 +17,19 @@ const links = [
     text: "Steph Ango",
     href: "https://stephango.com/",
   },
+  {
+    text: "Your Local Epidemiologist",
+    href: "https://yourlocalepidemiologist.substack.com"
+  },
+  {
+    text: "Health API Guy",
+    href: "https://healthapiguy.substack.com"
+  },
 ];
 
 export default function Blogroll() {
   return (
     <>
-      <Image
-        src={Newspaper}
-        alt={"Skeleton reading the newspaper"}
-        className={"h-48 w-auto"}
-      />
       <h1 className={"font-sans uppercase text-body text-4xl pb-2"}>
         Blogroll
       </h1>
@@ -52,7 +41,7 @@ export default function Blogroll() {
         <ul className="list-disc list-inside [&_a]:underline">
           {links.map((l) => (
             <li key={l.text}>
-              <Link href={l.href}>{l.text}</Link>
+              <AccessibleLink href={l.href}>{l.text}</AccessibleLink>
             </li>
           ))}
         </ul>
