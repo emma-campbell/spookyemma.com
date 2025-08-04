@@ -1,44 +1,62 @@
-import moment from "moment";
+import { DateTime } from "luxon";
 import { PostListItem } from "./item";
 import { Suspense } from "react";
-import { Post } from "@velite";
+import { PostListEntry, getPost } from "@/lib/keystatic";
+
+async function PostListItems({ posts }: { posts: PostListEntry[] }) {
+  const sortedPosts = posts.sort(
+    (a, b) =>
+      DateTime.fromISO(b?.entry?.published ?? "").toMillis() -
+      DateTime.fromISO(a?.entry?.published ?? "").toMillis()
+  );
+
+  const postsWithContent = await Promise.all(
+    sortedPosts.map(async (post) => {
+      const fullPost = await getPost(post.slug);
+      // Ensure content is resolved as a string, not a function
+      const contentString = typeof fullPost?.content === 'function' 
+        ? await fullPost.content() 
+        : fullPost?.content || '';
+      
+      return {
+        ...post,
+        contentString
+      };
+    })
+  );
+
+  return (
+    <div className="flex flex-col space-y-4">
+      {postsWithContent.map((post) => (
+        <PostListItem 
+          key={post?.entry?.title} 
+          post={post?.entry} 
+          slug={post?.slug}
+          content={post.contentString}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function PostList({
-  month,
   posts,
+  month,
   year,
+  showYear,
+  onHeaderRef,
+  sectionId,
 }: {
-  month: number;
-  posts: Post[];
+  posts: PostListEntry[];
+  month?: number;
   year?: number;
+  showYear?: boolean;
+  onHeaderRef?: (element: HTMLElement | null) => void;
+  sectionId?: string;
 }) {
-  const textMonth = moment(month, "M").format("MMMM");
   return (
-    <div className="flex flex-col space-y-2">
-      <div className="flex flex-row justify-between space-x-2 align-text-bottom">
-        <h2 className="font-sans text-lg text-highlighted">
-          {textMonth.toUpperCase()}
-        </h2>
-        {year ? (
-          <>
-            <h2 className="justify-end font-sans text-md text-highlighted">
-              {year}
-            </h2>
-          </>
-        ) : null}
-      </div>
-      <Suspense>
-        <div className="flex flex-col space-y-1">
-          {posts
-            .sort(
-              (a, b) =>
-                moment.utc(b.published).unix() - moment.utc(a.published).unix(),
-            )
-            .map((post) => (
-              <PostListItem key={post.title} post={post} />
-            ))}
-        </div>
-      </Suspense>
-    </div>
+    <Suspense>
+      <PostListItems posts={posts} />
+    </Suspense>
   );
 }

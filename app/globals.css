@@ -1,112 +1,158 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer base {
-    .font-outline-primary-heading {
-        -webkit-text-stroke: 0.07em #00715C;
-    }
-
-    .font-outline-black-heading {
-        -webkit-text-stroke: 0.07em #222222;
-    }
-
-    .font-outline-primary-1 {
-        -webkit-text-stroke: 1px #00715C;
-    }
-
-    .font-outline-black-1 {
-        -webkit-text-stroke: 1px #222222;
-    }
-
-    .font-outline-primary-2 {
-        -webkit-text-stroke: 2px #00715C;
-    }
-
-    .font-outline-black-2 {
-        -webkit-text-stroke: 2px #222222;
-    }
-
-    .font-outline-primary-4 {
-        -webkit-text-stroke: 4px #00715C;
-    }
-
-    .font-outline-black-4 {
-        -webkit-text-stroke: 4px #222222;
-    }
-}
-/* Code Block Styling */
-figure[data-rehype-pretty-code-figure] {
-    background-color: #292929;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    font-family: "var(--font-jetbrains-mono)";
+:root {
+  --background:    oklch(96.5% 0.005 240);  /* Pale sea fog */
+  --surface:       oklch(92% 0.007 240);    /* Salt-washed stone */
+  --text:          oklch(28% 0.02 270);     /* Deep tide slate */
+  --accent:        oklch(63% 0.14 165);     /* Salt moss */
+  --highlight:     oklch(85% 0.11 185);     /* Seafoam shell */
+  --muted-ink:     oklch(65% 0.04 250);     /* Weathered steel ink */
+  --info:          oklch(68% 0.07 220);     /* Dusk blue */
+  --success:       oklch(58% 0.11 145);     /* Mossy green */
+  --warning:       oklch(77% 0.19 85);      /* Golden herb */
+  --destructive:   oklch(55% 0.18 25);      /* Dried blood rose */
 }
 
-code {
-    counter-reset: line;
-    white-space: pre-wrap !important;
-    font-size: 0.75rem;
+@theme inline {
+  --font-sans: var(--font-garet);
+  --font-serif: var(--font-garet);
+  --font-display: var(--font-garet);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-accent: var(--accent);
+  --color-highlight: var(--highlight);
+  --color-muted-ink: var(--muted-ink);
+  --color-info: var(--info);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
 }
 
-code[data-line-numbers] > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    /* Other styling */
-    display: inline-block;
-    width: 1rem;
-    margin-right: 1rem;
-    text-align: right;
-    color: gray;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-sans font-semibold;
 }
 
-code[data-line-numbers-max-digits="2"] > [data-line]::before {
-    width: 2rem;
+.animation-delay-200 {
+  animation-delay: 0.2s;
 }
 
-code[data-line-numbers-max-digits="3"] > [data-line]::before {
-    width: 3rem;
+/* Shiki Syntax Highlighting */
+pre.shiki {
+  background-color: #2b3339 !important;
+  border: 1px solid #414b50;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  padding: 1.5rem !important;
+  margin: 0 !important;
 }
 
-.footnotes {
-    display: flex;
-    flex-direction: column;
-
-    h5 {
-        visibility: hidden;
-    }
-
-    ol {
-        display: flex;
-        flex-direction: column;
-        counter-reset: section;
-        list-style-type: none;
-
-        li::before {
-            counter-increment: section;
-            content: "[" counter(section) "]";
-            font-size: 0.8em;
-            vertical-align: text-bottom;
-            flex-shrink: 0;
-            padding-right: 6px;
-        }
-
-        li {
-            display: flex;
-            font-size: 0.9em;
-            p {
-                color: #434343;
-                :hover {
-                    color: #706E62;
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
+pre.shiki code {
+  background-color: transparent !important;
+  padding: 0 !important;
 }
 
+/* Line numbers - simple CSS approach */
+pre.shiki.line-numbers {
+  position: relative;
+  padding-left: 4rem;
+}
 
-a.data-footnote-backref {
-    color: #7f7f7f;
+pre.shiki.line-numbers::before {
+  content: "1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9\A 10\A 11\A 12\A 13\A 14\A 15\A 16\A 17\A 18\A 19\A 20\A 21\A 22\A 23\A 24\A 25\A 26\A 27\A 28\A 29\A 30\A 31\A 32\A 33\A 34\A 35\A 36\A 37\A 38\A 39\A 40\A 41\A 42\A 43\A 44\A 45\A 46\A 47\A 48\A 49\A 50";
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  width: 3rem;
+  text-align: right;
+  color: #7c8b8f;
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  user-select: none;
+  pointer-events: none;
+  white-space: pre;
+  padding-right: 0.5rem;
+}
+
+/* Line highlighting */
+pre code .line.highlighted {
+  background-color: rgba(139, 192, 190, 0.1);
+  border-left: 3px solid #8bbcba;
+  margin-left: -3px;
+}
+
+/* Diff styles */
+pre code .line.diff.add {
+  background-color: rgba(167, 192, 128, 0.15);
+}
+
+pre.shiki.line-numbers code .line.diff.add::after {
+  content: '+';
+  position: absolute;
+  left: 3rem;
+  color: #a7c080;
+}
+
+pre code .line.diff.remove {
+  background-color: rgba(229, 110, 112, 0.15);
+}
+
+pre.shiki.line-numbers code .line.diff.remove::after {
+  content: '-';
+  position: absolute;
+  left: 3rem;
+  color: #e56e70;
+}
+
+/* Override for inline code that's not in a code block */
+:not(pre) > code {
+  background-color: var(--surface);
+  color: var(--text);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+/* GitHub Flavored Markdown Styles */
+/* Tables */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid oklch(85% 0.02 240);
+}
+
+th {
+  background-color: var(--surface);
+  font-weight: 600;
+}
+
+/* Task Lists */
+.task-list-item {
+  list-style: none;
+  margin-left: -1.5rem;
+}
+
+.task-list-item input[type="checkbox"] {
+  margin: 0 0.5rem 0 0;
+}
+
+/* Strikethrough */
+del {
+  text-decoration-color: var(--muted-ink);
+}
+
+/* Horizontal Rules */
+hr {
+  border: none;
+  border-top: 1px solid oklch(85% 0.02 240);
+  margin: 2rem 0;
 }

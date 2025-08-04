@@ -1,31 +1,16 @@
-"use client";
-
-import { Scribble } from "@/components/svg/scribble";
-import Image from "next/image";
-import HeaderImage from "@/public/skeleton_skateboard.png";
-
 export const Hero = () => {
   return (
-    <section className={"h-72 pt-16"}>
-      <div className={"absolute"}>
-        <h1
-          className={
-            "flex-shrink-0 font-sans text-6xl text-primary tracking-widest"
-          }
-        >
-          EMMA&apos;S BLOG
-        </h1>
-        <h2 className={"font-serif text-black max-w-96 text-2xl font-semibold"}>
-          A Collection of Thoughts &{"\n"} Notes by Emma Campbell
-        </h2>
-        <Scribble className={""} />
-      </div>
-      <Image
-        className={"hidden sm:block w-72 relative left-[22em] -top-[3.5em]"}
-        src={HeaderImage}
-        alt={"Skeleton doing a kickflip on a skateboard"}
-        priority={true}
-      />
+    <section>
+      <h1
+        className={
+          "shrink-0 font-sans font-black text-accent text-8xl"
+        }
+      >
+        EMMA&apos;S BLOG
+      </h1>
+      <h2 className={"text-2xl font-light italic text-text"}>
+        A Collection of Thoughts &{"\n"} Notes by Emma Campbell
+      </h2>
     </section>
   );
 };

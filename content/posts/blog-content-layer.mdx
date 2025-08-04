@@ -1,15 +1,11 @@
 ---
 title: Configuring Contentlayer with a Next.js App
-description: Setting up Contentlayer with an existing Next.js app is a breeze! Follow along as I step through defining the needed schemas for a blog style site.
-published: '2022-11-22'
+published: 2022-11-22
 status: published
 entry: how-to
-tags: ["contentlayer", "coding", "Next.js"]
+tags: []
 ---
-
-Previously, we talked through the choices behind the tech stack used to build my developer blog. The step towards building a functional
-blog is wiring up [contentlayer](https://www.contentlayer.dev/docs/getting-started), an SDK for transforming unstructured content into type-safe
-json data structures. Contentlayer is a breeze to use, but in case you're stuck, here is how I set it up.
+Previously, we talked through the choices behind the tech stack used to build my developer blog. The step towards building a functional blog is wiring up [contentlayer](https://www.contentlayer.dev/docs/getting-started), an SDK for transforming unstructured content into type-safe json data structures. Contentlayer is a breeze to use, but in case you're stuck, here is how I set it up.
 
 # Installation
 
@@ -27,7 +23,7 @@ yarn add contentlayer next-contentlayer
 
 ### 2. Wrap your Next Config with the `withContentLayer` Function
 
-```js showLineNumbers {1, 9}
+```js
 import { withContentLayer } from "next-contentlayer";
 
 /** @type {import('next').NextConfig} */
@@ -41,7 +37,7 @@ module.exports = withContentlayer(nextConfig);
 
 ### 3. Add the Generated Contentlayer to your `tsconfig.json`
 
-```json showLineNumbers {5, 12}
+```json
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -60,8 +56,7 @@ module.exports = withContentlayer(nextConfig);
 
 # Defining Schemas
 
-I started by creating a `/content` folder within my project directory. Within the `/content` folder, I created two more folders,
-`/definitions` and `/posts`.
+I started by creating a `/content` folder within my project directory. Within the `/content` folder, I created two more folders, `/definitions` and `/posts`.
 
 ```bash
 ├── definitions
@@ -70,7 +65,7 @@ I started by creating a `/content` folder within my project directory. Within th
 
 I then put my content schemas within the `/definitions` folder, starting with `Post`.
 
-```typescript showLineNumbers
+```typescript
 import { defineDocumentType } from "contentlayer/source-files";
 
 export const Post = defineDocumentType(() => ({
@@ -90,10 +85,9 @@ export const Post = defineDocumentType(() => ({
 }));
 ```
 
-There's two more schemas I need to define: `Tag` and `Series`. Tags will be used
-to properly divide post topics, while Series will link togther posts that are sequential.
+There's two more schemas I need to define: `Tag` and `Series`. Tags will be used to properly divide post topics, while Series will link togther posts that are sequential.
 
-```typescript showLineNumbers
+```typescript
 import { defineNestedType } from "contentlayer/source-files";
 
 // define tags elsewhere (in a constants file)
@@ -116,7 +110,7 @@ export const Tag = defineNestedType(() => ({
 }));
 ```
 
-```typescript showLineNumbers
+```typescript
 import { defineNestedType } from "contentlayer/source-files";
 
 export const Series = defineNestedType(() => ({
@@ -134,10 +128,9 @@ export const Series = defineNestedType(() => ({
 }));
 ```
 
-Once I've defined `Series` and `Tag`, I can import them and use their definitions to finish
-out the fields in the `Post` model.
+Once I've defined `Series` and `Tag`, I can import them and use their definitions to finish out the fields in the `Post` model.
 
-```typescript showLineNumbers
+```typescript
 import { defineDocumentType } from "contentlayer/source-files";
 
 import { Tag } from "./tag";
@@ -173,7 +166,7 @@ export const Post = defineDocumentType(() => ({
 Now, we need to feed the post schema definition to `contentlayer`. In the root directory,
 create a `contentlayer.config.js` file.
 
-```js showLineNumbers
+```js
 import { makeSource } from "contentlayer/source-files";
 
 import { Post } from "./content/defintions/post";
@@ -199,8 +192,7 @@ nifty, and we can use all sorts of plugins during the content generation process
 
 ## Github Flavored Markdown
 
-[Github Flavored Markdown](https://github.github.com/gfm/) is a subset of markdown that Github
-uses in its readme files. We can enable it in our content using `remark-gfm`. Install it using
+[Github Flavored Markdown](https://github.github.com/gfm/) is a subset of markdown that Github uses in its readme files. We can enable it in our content using `remark-gfm`. Install it using
 
 ```bash
 yarn add remark-gfm
@@ -208,7 +200,7 @@ yarn add remark-gfm
 
 then, add it to `contentlayer.config.js`
 
-```js showLineNumbers {5, 11}
+```js
 import { makeSource } from "contentlayer/source-files";
 import { Post } from "./content/defintions/post";
 import remarkGfm from "remark-gfm";
@@ -225,8 +217,7 @@ export default makeSource({
 
 ## Computed Heading Links
 
-We can automatically wrap our markdown headers with `<a>` tags for our table of contents.
-Add the following packages using yarn (or another package manager)
+We can automatically wrap our markdown headers with `<a>` tags for our table of contents. Add the following packages using yarn (or another package manager)
 
 ```bash
 yarn add rehype-autolink-headings github-slugger rehype-slug
@@ -234,7 +225,7 @@ yarn add rehype-autolink-headings github-slugger rehype-slug
 
 then, add it to the list of rehype plugins in your `contentlayer.config.js`.
 
-```js showLineNumbers {6,7,15,16,17,18,19,20,21,22,23,24}
+```js
 import { makeSource } from "contentlayer/source-files";
 import { Post } from "./content/defintions/post";
 import remarkGfm from "remark-gfm";
@@ -262,10 +253,9 @@ export default makeSource({
 });
 ```
 
-Finally, you need to go to the `Post` model and parse the headings directly from the
-content.
+Finally, you need to go to the `Post` model and parse the headings directly from the content.
 
-```typescript showLineNumbers {6,10-34}
+```typescript
 import { defineDocumentType } from "contentlayer/source-files";
 import { Tag } from "./tag";
 import { Series } from "./series";
@@ -308,7 +298,7 @@ export const Post = defineDocumentType(() => ({
 We need to generate a slug in order to render a page per post using Next.js. Add another `computedField` to the
 `Post` schema.
 
-```ts showLineNumbers {12-16}
+```ts
 import { defineDocumentType } from "contentlayer/source-files";
 import { Tag } from "./tag";
 import { Series } from "./series";
@@ -328,8 +318,7 @@ export const Post = defineDocumentType(() => ({
 
 # Rendering Content
 
-We can render our posts now using Next.js [Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes). In the `/pages`
-folder, create a new folder `/post` and a file `[slug].tsx`. Adding brackets to the file name treats it as a parameter.
+We can render our posts now using Next.js [Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes). In the `/pages` folder, create a new folder `/post` and a file `[slug].tsx`. Adding brackets to the file name treats it as a parameter.
 
 We can access the json generated by `contentlayer` by importing from `contentlayer/generated`.
 
@@ -357,6 +346,4 @@ export async function getStaticProps() {
 
 # What's Next?
 
-A nice-to-have for any blog is to be able to have visitors "like" your article, and for you to be able to track analytics. Next up, we
-will set up a (free) [PlanetScale](https://planetscale.com) database with [Prisma](https://www.prisma.io) schemas and type-safe client
-generation to work with the database.
+A nice-to-have for any blog is to be able to have visitors "like" your article, and for you to be able to track analytics. Next up, we will set up a (free) [PlanetScale](https://planetscale.com) database with [Prisma](https://www.prisma.io) schemas and type-safe client generation to work with the database.

@@ -1,10 +1,26 @@
-## 2.2.0
+## 3.0.0
+
+### Major Changes
+
+- 0311247: Major site redesign with Garet typography and sidebar layout. Replace Forrest fonts with comprehensive Garet font family, implement sidebar navigation, switch from moment.js to luxon for date handling, remove reading/book tracking functionality, and update color scheme to sea-inspired palette.
+
+### Minor Changes
+
+- 520cc84: New timeline component styling
+- disable Keystatic admin UI in production
+
+### Patch Changes
+
+- 8e0fa36: Add missing props to PostList component
+- 7f9bdb1: - MDX heading color changes from text-black to text-inherit for better theme compatibility
 
 ## 2.3.0
 
 ### Minor Changes
 
 - Added admin panel
+
+## 2.2.0
 
 ### Minor Changes
 

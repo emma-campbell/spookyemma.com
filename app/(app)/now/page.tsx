@@ -1,90 +1,44 @@
-import { LastUpdated } from "@/components/layout/last-updated";
-import { Timeline, type TimelineProps } from "@/components/now/timeline";
+
+import { Timeline, type TimelineItemProps } from "@/components/now/timeline";
+import { getNowEntries } from "@/lib/keystatic";
 import { compareDesc } from "date-fns";
+import { MDXContent } from "@/components/mdx";
 
-const sections: TimelineProps = {
-  items: [
-    {
-      month: 4,
-      year: 2024,
-      children: [
-        <div key="apr-2024-move">
-          <p>Hiking. Packing. Planning. Life is getting crazy.</p>
-          <p>
-            I&apos;ve picked up some part time work as a Project Manager to
-            bring in some extra 💰. It&apos;s a different kind of challenge, and
-            I am definitely enjoying it.
-          </p>
-        </div>,
-      ],
-    },
-    {
-      month: 6,
-      year: 2024,
-      children: [
-        <div key="jun-2024-move">
-          <p>
-            I&apos;m currently smack-dab in the middle of a cross-state move
-            from Virginia to Indiana. At the time of writing this, I am{" "}
-            <i>10 days away</i> from key turn-in. My routine, respectively, is
-            f*cked.
-          </p>
-          <p>
-            I am definitely running behind on replying to emails and doing
-            things that aren&apos;t related to moving. So if you reach out to me
-            through <i>any of the platforms</i>, you&apos;re gonna have to wait
-            a &apos;lil longer than usual.
-          </p>
-        </div>,
-      ],
-    },
-    {
-      month: 10,
-      year: 2024,
-      children: [
-        <div key="oct-2024-react-native">
-          <p>
-            I&apos;ve picked up more part time work, and as a result I am
-            learning React Native 👀
-          </p>
-          <p>I&apos;ve also officially left Twitter, because f*ck you Elon.</p>
-        </div>,
-      ],
-    },
-    {
-      month: 4,
-      year: 2025,
-      children: [
-        <p key="may-2025-appticlabs">
-            I&apos;ve started a side gig with my friends building some
-            micro-sass apps. If you want to check it out, visit{" "}
-            <a className="text-primary underline hover:cursor-pointer" href="https://www.appticlabs.com">appticlabs.com</a>
-        </p>,
-      ],
-    },
-  ],
-};
+export default async function Now() {
+  const nowEntries = await getNowEntries();
 
-export default function Now() {
-  const lastUpdated: Date = new Date(2025, 4, 26, 14, 10);
+  // Transform the entries into timeline format
+  const timelineItems: TimelineItemProps[] = await Promise.all(
+    nowEntries.map(async (entry) => {
+      const content = await entry.entry.content();
+      return {
+        month: entry.entry.month,
+        year: entry.entry.year,
+        children: [
+          <div key={entry.slug} className="space-y-4 text-sm">
+            <MDXContent content={content} />
+          </div>
+        ],
+      };
+    })
+  );
 
   return (
     <section className="flex flex-col space-y-10 text-body">
       <div>
-        <h1 className="font-sans uppercase text-4xl font-medium text-body pb-2">
+        <h1 className="font-sans text-4xl font-medium text-body pb-2">
           What I&apos;m doing now
         </h1>
         <p className="text-md">
-          This page is generally updated on a monthly+ cadence and intended to
-          represent my focus at the given time.
+          This page is updated as I do things. No particular cadence. Just when I
+          feel like it.
         </p>
       </div>
       <Timeline
-        items={sections.items.sort((a, b) =>
+        items={timelineItems.sort((a, b) =>
           compareDesc(new Date(a.year, a.month), new Date(b.year, b.month))
         )}
       />
-      <LastUpdated date={lastUpdated} />
     </section>
   );
 }

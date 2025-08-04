@@ -1,12 +1,14 @@
 ---
 title: Adding Reading Time to an Article
-description: Have you seen the feature on Medium that estimates how much time an article will take to read? Let's learn to replicate it in our Next.js and contentlayer stack.
-published: '2022-12-17'
+description: >-
+  Have you seen the feature on Medium that estimates how much time an article
+  will take to read? Let's learn to replicate it in our Next.js and contentlayer
+  stack.
+published: 2022-12-17
 status: published
 entry: how-to
-tags: ["Next.js", "coding"]
+tags: []
 ---
-
 If you've ever viewed an article on Medium, you'll notice that the preview gives an estimated "read time". This feature is easily to implement using the `reading-time` node package and our existing contentlayer configuration. Begin by installing `reading-time`.
 
 ```sh
@@ -19,7 +21,7 @@ We will add reading time by adding a new computed field to our post model and de
 
 We previously kept our type definitions in `/content/defintions`. Create a new file `reading-time.ts` and then use contentlayer's `defineNestedType` to create the new type.
 
-```typescript showLineNumbers
+```typescript
 import { defineNestedType } from "contentlayer/source-files";
 
 export const ReadingTime = defineNestedType(() => {
@@ -41,7 +43,7 @@ export const ReadingTime = defineNestedType(() => {
 
 Next, open up the post definition file at `/content/definitions/post.ts` and define the new computed field.
 
-```typescript showLineNumbers {17-24}
+```typescript
 import { defineDocumentType } from "contentlayer/source-files";
 import GithubSlugger from "github-slugger";
 import { Tag } from "./tag";

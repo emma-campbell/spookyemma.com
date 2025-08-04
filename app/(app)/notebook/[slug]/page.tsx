@@ -1,13 +1,12 @@
-import { posts } from "@/.velite";
-import { MDXContent } from "@/components/mdx";
 import { PostType } from "@/components/posts/post-type";
-import { getPost } from "@/lib/content";
-import moment from "moment";
+import { getPost, getAllPostSlugs } from "@/lib/keystatic";
+import { MDXContent } from "@/components/mdx";
+import { DateTime } from "luxon";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  return posts
-    .filter((f) => f.status != "draft")
-    .map((f) => ({ slug: f.slug }));
+  const slugs = await getAllPostSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -16,15 +15,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
 
   return {
-    title: post.title,
-    description: post.description,
-    keywords: post.tags ? post.tags.map((t: any) => t.value) : undefined,
+    title: post?.title,
+    description: post?.description,
+    keywords: post?.tags || [],
     authors: {
       name: "Emma Campbell",
-      url: "https://spooky.blog",
+      url: "https://spookyemma.com",
     },
     referrer: "origin",
   };
@@ -36,21 +35,32 @@ type Params = Promise<{
 
 export default async function NotebookEntry({ params }: { params: Params }) {
   const { slug } = await params;
-  const post = getPost(slug);
-  const published = moment.utc(post.published);
+  const post = await getPost(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const published = DateTime.fromISO(post.published || "");
 
   return (
     <>
       <section className={"pb-8"}>
-        <div className={"flex uppercase space-x-2 font-sans text-highlighted"}>
-          <p>{published.format("DD MMMM YYYY")}</p>
+        <div className={"flex uppercase space-x-2 font-serif text-highlighted"}>
+          <p>{published.toLocaleString(DateTime.DATE_MED)}</p>
           <p>•</p>
           <PostType type={post.entry} />
         </div>
-        <h1 className={"font-sans uppercase text-4xl"}>{post.title}</h1>
+        <h1 className={"font-sans uppercase text-4xl"}>
+          {post.title}
+        </h1>
       </section>
       <section className={"flex flex-col space-y-4 text-body pb-16"}>
-        <MDXContent code={post.content} />
+        {post.content ? (
+          <MDXContent
+            content={typeof post.content === 'function' ? await post.content() : post.content}
+          />
+        ) : null}
       </section>
       <section>
         <h4
@@ -61,7 +71,7 @@ export default async function NotebookEntry({ params }: { params: Params }) {
         <div className={"flex flex-col text-body"}>
           <div className={"flex justify-between text-lg"}>
             <p>Published</p>
-            <p>{published.format("MMMM DD, YYYY")}</p>
+            <p>{published.toLocaleString(DateTime.DATE_MED)}</p>
           </div>
           {post.tags ? (
             <div className={"flex justify-between text-lg"}>
