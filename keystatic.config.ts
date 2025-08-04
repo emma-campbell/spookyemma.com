@@ -1,6 +1,8 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
 import { wrapper } from '@keystatic/core/content-components';
 
+export const showAdminUI = process.env.NODE_ENV === "development";
+
 export default config({
   storage: {
     kind: 'local',
