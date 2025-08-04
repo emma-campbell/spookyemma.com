@@ -14,7 +14,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { href: "/", text: "Notebook" },
-  { href: "/chronicling/bio", text: "About" },
+  { href: "/bio", text: "About" },
   { href: "/now", text: "Now" },
 ];
 
@@ -96,20 +96,10 @@ export const Sidebar = () => {
             </UnderlineToBackground>
           </AccessibleLink>
           <AccessibleLink
-            href="https://twitter.com/spookyemma"
-            className="block py-1"
-          >
-            <UnderlineToBackground isExternal>
-              Twitter
-            </UnderlineToBackground>
-          </AccessibleLink>
-          <AccessibleLink
             href="/rss.xml"
             className="block py-1"
           >
-            <UnderlineToBackground>
-              RSS
-            </UnderlineToBackground>
+            RSS
           </AccessibleLink>
         </div>
 
@@ -119,7 +109,7 @@ export const Sidebar = () => {
             © 2022–{DateTime.now().year} Emma Campbell
           </p>
           <AccessibleLink
-            href="/chronicling/changelog"
+            href="/changelog"
             className="text-xs text-muted-ink hover:text-accent transition-colors"
           >
             v{packageJson.version}

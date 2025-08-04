@@ -211,7 +211,7 @@ export default config({
       schema: {
         siteName: fields.text({
           label: 'Site Name',
-          defaultValue: 'SpookyEmma'
+          defaultValue: 'Emma\'s Blog'
         }),
         siteDescription: fields.text({
           label: 'Site Description',

@@ -1,48 +1,49 @@
-// import { Post, allPosts } from "contentlayer/generated";
-import { Post, posts } from "@velite";
 import { compareDesc } from "date-fns";
 import { Feed } from "feed";
 import { DateTime } from "luxon";
+import { getPublishedPosts, getSiteSettings, PostListEntry } from "@/lib/keystatic";
 
-const createFeed = () => {
+const createFeed = async () => {
+  const posts = await getPublishedPosts();
+  const settings = await getSiteSettings();
   const feed = new Feed({
-    title: "Emma's Thoughts",
-    description: "An RSS feed of all posts from spooklore.com",
-    id: "https://spooky.blog",
-    link: "https://spooky.blog",
+    title: settings?.siteName!,
+    description: settings?.siteDescription!,
+    id: process.env.NEXT_PUBLIC_SITE_URL!,
+    link: process.env.NEXT_PUBLIC_SITE_URL!,
     language: "en",
     image:
-      "https://www.spooklore.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fspooklore.e786bb34.png&w=2048&q=75",
+      `${process.env.NEXT_PUBLIC_SITE_URL!}/ogImage.png`,
     favicon: "",
     copyright: `2022 - ${DateTime.now().year}, Emma Campbell`,
     author: {
       name: "Emma Campbell",
-      link: "https://spooky.blog",
+      link: process.env.NEXT_PUBLIC_SITE_URL!,
     },
   });
 
   posts
-    .filter((p: Post) => p.status !== "draft")
-    .sort((a: Post, b: Post) =>
-      compareDesc(new Date(a.published), new Date(b.published)),
+    .filter((p: PostListEntry) => p.entry.status !== "draft")
+    .sort((a: PostListEntry, b: PostListEntry) =>
+      compareDesc(new Date(a.entry.published!), new Date(b.entry.published!)),
     )
-    .forEach((p: Post) => {
-      const url = `https://spooky.blog/notebook/${p.slug}`;
+    .forEach((p: PostListEntry) => {
+      const url = `${process.env.NEXT_PUBLIC_SITE_URL!}/notebook/${p.slug!}`;
       feed.addItem({
         id: p.slug,
         link: url,
-        title: p.title,
-        description: p.description,
+        title: p.entry.title,
+        description: p.entry.description,
         category: [
           {
-            name: p.entry.toString(),
+            name: p.entry.tags.toString(),
           },
         ],
-        date: DateTime.fromISO(p.published).toJSDate(),
+        date: DateTime.fromISO(p.entry.published!).toJSDate(),
         author: [
           {
             name: "Emma Campbell",
-            link: "https://spooky.blog",
+            link: process.env.NEXT_PUBLIC_SITE_URL!,
           },
         ],
       });
@@ -51,8 +52,8 @@ const createFeed = () => {
   return feed.rss2();
 };
 
-export const GET = () => {
-  const feed = createFeed();
+export const GET = async () => {
+  const feed = await createFeed();
   return new Response(feed, {
     status: 200,
     headers: {
