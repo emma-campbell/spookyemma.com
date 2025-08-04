@@ -41,7 +41,7 @@ export default function Colophon() {
         </p>
         <p>
           All content is hosted in Github, and uses{" "}
-          <AccessibleLink href="https://velite.js.org/">Keystatic</AccessibleLink>{" "}
+          <AccessibleLink href="https://keystatic.com/">Keystatic</AccessibleLink>{" "}
           to write, parse and display posts.
         </p>
         <LastUpdated date={updated} />

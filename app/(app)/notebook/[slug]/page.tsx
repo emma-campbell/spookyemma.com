@@ -46,7 +46,7 @@ export default async function NotebookEntry({ params }: { params: Params }) {
   return (
     <>
       <section className={"pb-8"}>
-        <div className={"flex uppercase space-x-2 font-serif text-highlighted"}>
+        <div className={"flex uppercase space-x-2 font-serif text-highlighted items-center"}>
           <p>{published.toLocaleString(DateTime.DATE_MED)}</p>
           <p>•</p>
           <PostType type={post.entry} />

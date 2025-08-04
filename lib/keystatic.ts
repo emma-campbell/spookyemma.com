@@ -7,6 +7,8 @@ export const reader = createReader(process.cwd(), keystaticConfig);
 
 // Define types for our collections
 export type Post = Awaited<ReturnType<typeof reader.collections.posts.read>>;
+export type PostType = NonNullable<Post>['entry'];
+
 export type PostListEntry = ElementType<Awaited<ReturnType<typeof reader.collections.posts.all>>>;
 export type SiteSettings = Awaited<ReturnType<typeof reader.singletons.siteSettings.read>>;
 
