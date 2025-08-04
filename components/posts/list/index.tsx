@@ -41,8 +41,18 @@ async function PostListItems({ posts }: { posts: PostListEntry[] }) {
 
 export default function PostList({
   posts,
+  month,
+  year,
+  showYear,
+  onHeaderRef,
+  sectionId,
 }: {
   posts: PostListEntry[];
+  month?: number;
+  year?: number;
+  showYear?: boolean;
+  onHeaderRef?: (element: HTMLElement | null) => void;
+  sectionId?: string;
 }) {
   return (
     <Suspense>

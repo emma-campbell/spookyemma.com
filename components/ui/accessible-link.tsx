@@ -4,7 +4,6 @@ import { Link as AriaLink } from "react-aria-components";
 import { forwardRef } from "react";
 import { clsx } from "clsx";
 import { UnderlineToBackground } from "./underline-to-background";
-import Link from "next/link";
 
 export interface AccessibleLinkProps {
   href: string;
