@@ -19,8 +19,7 @@ So, without further ado, here is how I went about integrating an RSS feed into m
 
 These aren’t so much pre-requisites as they are just statements about the system that I am building this feature into. There are two system-specific pieces of information that provide important context.
 
-1. This site uses Next.Js. Most of this logic can be extracted and generalized into any static site generator.\
-
+1. This site uses Next.Js. Most of this logic can be extracted and generalized into any static site generator.
 2. My articles are made developer friendly using contentlayer\[^2]. Again, just a personal choice, but any list of your articles/post and their relevant metadata will suffice (whether that comes from a CMS or repository).
 
 # General Framework
@@ -36,47 +35,32 @@ To generate the feed, I am going to use the help of the node package feed\[^3]. 
 
 Now when it comes to serving the file, the Next.Js server route handlers\[^4] are a near perfect use case for this.
 
-If you’re using the \`/app\` directory, create a new folder called \`rss.xml\`, and within it, a file called \`route.ts\`.
+If you’re using the `/app` directory, create a new folder called `rss.xml`, and within it, a file called `route.ts`.
 
 Within this file, we are going to handle any \`GET\` https request to the \`rss.xml\` path on your site. Let’s first define the function that generates the feed.
 
 ```typescript
-import { Feed } from 'feed';
-
+import { Feed } from "feed";
+// ...
 // previous imports
 
 const createFeed = () => {
-
-    const feed = new Feed({
-
-        title: "Emma's Thoughts | spooklore.com",
-
-        description: "An RSS feed of all posts from spooklore.com",
-
-        id: "spooklore.com",
-
-        link: "spooklore.com",
-
-        language: "en",
-
-        image: "https://www.spooklore.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fspooklore.e786bb34.png&w=2048&q=75",
-
-        favicon: "",
-
-        copyright: `2022 - ${moment().format("YYYY")}, Emma Campbell`,
-
-        author: {
-
-             name: "Emma Campbell",
-
-             email: "hello@spooklore.com",
-
-             link: "https://spooklore.com",
-
-        },
-
-     });
-}
+  const feed = new Feed({
+    title: "Emma's Thoughts | spooklore.com",
+    description: "An RSS feed of all posts from spooklore.com",
+    id: "spooklore.com",
+    link: "spooklore.com",
+    language: "en",
+    image: "https://spooklore.com/logo.png",
+    favicon: "",
+    copyright: `2022 - ${moment().format("YYYY")}, Emma Campbell`,
+    author: {
+      name: "Emma Campbell",
+      email: "hello@spooklore.com",
+      link: "https://spooklore.com",
+    },
+  });
+};
 
 ```
 
@@ -89,31 +73,34 @@ import moment from "moment";
 import { compareDesc } from "date-fns";
 
 const createFeed = () => {
-/** create feed object */
-    allPosts
-       .filter((p: Post) => p.status !== "draft")
-       .sort((a: Post, b: Post) =>
-          compareDesc(new Date(a.published), new Date(b.published))
-       )
-       .forEach((p: Post) => {
-          const url = `https://spooklore.com/writing/${p.slug}`;
-          feed.addItem({
-          id: url,
-          link: url,
-          title: p.title,
-          description: p.description,
-          date: moment(p.published).toDate(),
-          author: [
-            {
-              name: "Emma Campbell",
-              email: "hello@spooklore.com",
-              link: "https://spooklore.com"
-            }
-          ]
-       })
-    })
-    return feed.rss2();
-}
+  /** create feed object */
+  allPosts
+    .filter((p: Post) => p.status !== "draft")
+    .sort(
+      (
+        a: Post,
+        b: Post
+      ) => compareDesc(new Date(a.published), new Date(b.published))
+    )
+    .forEach((p: Post) => {
+      const url = `https://spooklore.com/writing/${p.slug}`;
+      feed.addItem({
+        id: url,
+        link: url,
+        title: p.title,
+        description: p.description,
+        date: moment(p.published).toDate(),
+        author: [ 
+          {
+            name: "Emma Campbell",
+            email: "hello@spooklore.com",
+            link: "https://spooklore.com",
+          },
+        ], 
+      }); 
+    });
+  return feed.rss2();
+};
 ```
 
 Finally, handle the get route
@@ -133,13 +120,12 @@ export const GET = () => {
 
 Now, you can link to `/rss.xml` anywhere on your site and have the end user redirected to the feed url to give to their RSS reader.
 
-\
+---
 
+\[^1]: [https://www.spooklore.com/writing/moving](https://www.spooklore.com/writing/moving)
 
-\[^1]: https\://www\.spooklore.com/writing/moving
+\[^2]: [https://contentlayer.dev/](https://contentlayer.dev/)
 
-\[^2]: https\://contentlayer.dev/
+\[^3]: [https://github.com/jpmonette/feed](https://github.com/jpmonette/feed)
 
-\[^3]: https\://github.com/jpmonette/feed
-
-\[^4]: https\://nextjs.org/docs/app/building-your-application/routing/route-handlers
+\[^4]: [https://nextjs.org/docs/app/building-your-application/routing/route-handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
