@@ -55,16 +55,16 @@ export default async function NotebookEntry({ params }: { params: Params }) {
           {post.title}
         </h1>
       </section>
-      <section className={"flex flex-col space-y-4 text-body pb-16"}>
+      <section className={"flex flex-col space-y-4 text-text/80 pb-16"}>
         {post.content ? (
           <MDXContent
             content={typeof post.content === 'function' ? await post.content() : post.content}
           />
         ) : null}
       </section>
-      <section>
+      <section className="text-muted-ink">
         <h4
-          className={"font-sans uppercase text-body text-3xl text-black pb-2"}
+          className={"font-sans uppercase text-body text-3xl text-muted-ink pb-2"}
         >
           Metadata
         </h4>

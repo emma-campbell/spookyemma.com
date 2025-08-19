@@ -2,6 +2,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import React from 'react'
 import { Aside } from './aside'
 import MdxImage from './img'
+import { Quote } from './quote'
 import { AccessibleLink } from '../ui/accessible-link'
 import rehypeShiki from '@shikijs/rehype'
 import remarkGfm from 'remark-gfm'
@@ -22,6 +23,9 @@ export const components = {
     <Aside title={title} styled={styled}>
       {children}
     </Aside>
+  ),
+  Quote: ({ cite, children }: any) => (
+    <Quote cite={cite}>{children}</Quote>
   ),
 
   // Styled HTML elements
@@ -47,9 +51,7 @@ export const components = {
     <li className="">{children}</li>
   ),
   blockquote: ({ children }: any) => (
-    <blockquote className="border-l-4 border-primary bg-primary/10 pl-2 py-2 text-body">
-      {children}
-    </blockquote>
+    <Quote>{children}</Quote>
   ),
   strong: ({ children }: any) => (
     <strong className="font-bold">{children}</strong>

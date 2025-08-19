@@ -1,16 +1,16 @@
 @import 'tailwindcss';
 
 :root {
-  --background:    oklch(96.5% 0.005 240);  /* Pale sea fog */
-  --surface:       oklch(92% 0.007 240);    /* Salt-washed stone */
-  --text:          oklch(28% 0.02 270);     /* Deep tide slate */
-  --accent:        oklch(63% 0.14 165);     /* Salt moss */
-  --highlight:     oklch(85% 0.11 185);     /* Seafoam shell */
-  --muted-ink:     oklch(65% 0.04 250);     /* Weathered steel ink */
-  --info:          oklch(68% 0.07 220);     /* Dusk blue */
-  --success:       oklch(58% 0.11 145);     /* Mossy green */
-  --warning:       oklch(77% 0.19 85);      /* Golden herb */
-  --destructive:   oklch(55% 0.18 25);      /* Dried blood rose */
+  --background:    oklch(27.47% 0.014 244.07);
+  --surface:       oklch(27% 0.004 140);    
+  --text:          oklch(94.99% 0.021 86.05);    /* Nearly pure white */
+  --accent:        oklch(75.36% 0.081 151.45);     /* Very subtle green accent */
+  --highlight:     oklch(63% 0.05 145);     /* Gentle highlight */
+  --muted-ink:     oklch(64.59% 0.021 157.59);     /* Barely green-tinted gray */
+  --info:          oklch(72% 0.05 160);     /* Gentle blue-green */
+  --success:       oklch(68% 0.06 130);     /* Soft green */
+  --warning:       oklch(76% 0.08 75);      /* Muted amber */
+  --destructive:   oklch(70% 0.07 25);      /* Gentle red */
 }
 
 @theme inline {
