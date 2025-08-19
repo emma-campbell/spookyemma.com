@@ -36,7 +36,7 @@ export function PostListItem({
 
 
           {preview.preview && (
-            <div className="text-muted-ink text-md leading-relaxed mb-2 prose prose-sm max-w-none">
+            <div className="text-text/60 text-md leading-relaxed mb-2 prose prose-sm max-w-none">
               <MDXContent
                 content={preview.preview}
               />

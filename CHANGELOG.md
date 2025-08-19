@@ -1,3 +1,14 @@
+
+## 3.1.0
+
+### Minor Changes
+
+- 20d2629: feat: new quote component
+
+### Patch Changes
+
+- 20d2629: change theme back to dark mode
+
 ## 3.0.0
 
 ### Major Changes
