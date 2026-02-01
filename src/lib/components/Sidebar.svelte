@@ -100,7 +100,7 @@
 		<!-- Footer Links -->
 		<div class="space-y-1 text-sm">
 			<a
-				href="https://github.com/spookyemma"
+				href="https://github.com/emma-campbell"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="block py-1"
