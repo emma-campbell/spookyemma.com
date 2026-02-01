@@ -1,3 +1,7 @@
+packages:
+  - '.'
+  - 'spookyemma-sveltekit'
+
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
