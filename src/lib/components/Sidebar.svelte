@@ -3,7 +3,8 @@
 	import UnderlineToBackground from './UnderlineToBackground.svelte';
 	import { DateTime } from 'luxon';
 
-	const version = '1.0.0';
+	declare const __APP_VERSION__: string;
+	const version = __APP_VERSION__;
 
 	type NavItem = {
 		href: string;
