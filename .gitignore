@@ -1,20 +1,14 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
-.yarn/install-state.gz
+node_modules
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
+# SvelteKit
+.svelte-kit
 /build
+
+# env files
+.env
+.env.*
+!.env.example
 
 # misc
 .DS_Store
@@ -22,26 +16,11 @@
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+pnpm-debug.log*
 
-# env files
-.env*.local
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# contentlayer
-.contentlayer/
+# IDE
 .idea/
-
-# velite
-.velite/
+.vscode/
 
 # claude things
 .claude/settings.local.json
