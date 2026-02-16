@@ -1,54 +1,37 @@
 @import 'tailwindcss';
 
-@font-face {
-	font-family: 'Garet';
-	src: url('/fonts/garet-regular-webfont.woff2') format('woff2');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Garet';
-	src: url('/fonts/garet-medium-webfont.woff2') format('woff2');
-	font-weight: 500;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Garet';
-	src: url('/fonts/garet-heavy-webfont.woff2') format('woff2');
-	font-weight: 600;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Garet';
-	src: url('/fonts/garet-bold-webfont.woff2') format('woff2');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-
 :root {
-	--background: oklch(27.47% 0.014 244.07);
-	--surface: oklch(27% 0.004 140);
-	--text: oklch(94.99% 0.021 86.05);
-	--accent: oklch(75.36% 0.081 151.45);
-	--highlight: oklch(63% 0.05 145);
-	--muted-ink: oklch(64.59% 0.021 157.59);
-	--info: oklch(72% 0.05 160);
-	--success: oklch(68% 0.06 130);
-	--warning: oklch(76% 0.08 75);
-	--destructive: oklch(70% 0.07 25);
+	--background: oklch(97% 0.005 90);
+	--surface: oklch(99% 0.002 90);
+	--text: oklch(15% 0.005 90);
+	--accent: oklch(45% 0.02 150);
+	--highlight: oklch(90% 0.008 90);
+	--muted-ink: oklch(55% 0.005 90);
+	--info: oklch(50% 0.02 240);
+	--success: oklch(48% 0.02 150);
+	--warning: oklch(55% 0.04 78);
+	--destructive: oklch(50% 0.05 25);
+}
+
+/* Dark */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: oklch(13% 0.005 90);
+		--surface: oklch(18% 0.004 90);
+		--text: oklch(92% 0.005 90);
+		--accent: oklch(65% 0.02 150);
+		--highlight: oklch(22% 0.006 90);
+		--muted-ink: oklch(50% 0.005 90);
+		--info: oklch(62% 0.025 240);
+		--success: oklch(60% 0.025 150);
+		--warning: oklch(70% 0.05 78);
+		--destructive: oklch(65% 0.06 25);
+	}
 }
 
 @theme inline {
-	--font-sans: 'Garet', system-ui, sans-serif;
-	--font-serif: 'Garet', system-ui, sans-serif;
-	--font-display: 'Garet', system-ui, sans-serif;
+	--font-sans: 'Geist Variable', system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;--font-display: 'Garet', system-ui, sans-serif;
 	--color-background: var(--background);
 	--color-surface: var(--surface);
 	--color-text: var(--text);
@@ -61,13 +44,15 @@
 	--color-destructive: var(--destructive);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	@apply font-sans font-semibold;
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-sans font-semibold;
+	}
 }
 
 .animation-delay-200 {

@@ -68,7 +68,7 @@ export async function renderMarkdown(content: string): Promise<string> {
 				const sizeClass = sizes[token.depth] || sizes[1];
 				// Parse inline tokens
 				const text = this.parser.parseInline(token.tokens);
-				return `<h${token.depth + 1} class="font-sans uppercase text-inherit ${sizeClass}">${text}</h${token.depth + 1}>`;
+				return `<h${token.depth + 1} class="font-sans text-inherit ${sizeClass}">${text}</h${token.depth + 1}>`;
 			},
 			paragraph(token: Tokens.Paragraph) {
 				const text = this.parser.parseInline(token.tokens);

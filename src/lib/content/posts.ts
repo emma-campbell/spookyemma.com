@@ -19,6 +19,7 @@ export function getPost(slug: string): Post | null {
 	try {
 		const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
 		const fileContent = fs.readFileSync(filePath, 'utf-8');
+		const stats = fs.statSync(filePath);
 		const { data, content } = matter(fileContent);
 
 		// TODO: gray-matter converts date strings to Date objects, convert back to ISO string
@@ -35,6 +36,7 @@ export function getPost(slug: string): Post | null {
 			slug,
 			title: data.title || '',
 			published,
+			updated: stats.mtime,
 			status: (data.status as PostStatus) || 'draft',
 			entry: (data.entry as PostEntry) || 'note',
 			tags: data.tags || [],

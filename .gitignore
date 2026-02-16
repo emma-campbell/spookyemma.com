@@ -24,3 +24,5 @@ pnpm-debug.log*
 
 # claude things
 .claude/settings.local.json
+
+content/.obsidian
