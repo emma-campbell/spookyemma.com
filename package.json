@@ -30,6 +30,7 @@
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "luxon": "^3.5.0",
-    "marked": "^17.0.1"
+    "marked": "^17.0.1",
+    "posthog-js": "^1.351.1"
   }
 }
