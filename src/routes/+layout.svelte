@@ -1,12 +1,26 @@
 <script lang="ts">
 	import '../app.css';
+	import posthog from 'posthog-js';
+	import { browser } from '$app/environment';
+	import { PUBLIC_POSTHOG_KEY } from '$env/static/public';
 	import { Sidebar } from '$lib/components';
 
 	interface Props {
 		children: import('svelte').Snippet;
 	}
 
+	export const load = async () => {
+		if (browser && PUBLIC_POSTHOG_KEY) {
+			posthog.init(PUBLIC_POSTHOG_KEY, {
+				api_host: 'https://us.i.posthog.com'
+			});
+		}
+
+		return;
+	};
+
 	let { children }: Props = $props();
+  load();
 </script>
 
 <svelte:head>
