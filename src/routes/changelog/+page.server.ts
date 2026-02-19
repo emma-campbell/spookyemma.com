@@ -1,19 +1,18 @@
-import fs from 'fs';
-import path from 'path';
-import { renderMarkdown } from '$lib/content/markdown';
+import { getChangelog } from '$lib/content';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const changelogPath = path.join(process.cwd(), 'CHANGELOG.md');
-	let changelogHtml = '';
+	const changelog = getChangelog();
+	const lastUpdated = changelog.lastUpdatedAt.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	});
 
-	try {
-		const changelog = fs.readFileSync(changelogPath, 'utf-8');
-		changelogHtml = await renderMarkdown(changelog);
-	} catch (error) {
-		console.error('Error reading changelog:', error);
-		changelogHtml = '<p>No changelog found.</p>';
-	}
-
-	return { changelogHtml };
+	return {
+		title: changelog.title,
+		subtitle: changelog.subtitle,
+		lastUpdated,
+		months: changelog.months
+	};
 };

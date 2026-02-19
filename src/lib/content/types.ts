@@ -33,3 +33,23 @@ export interface Page {
   title: string,
   description?: string;
 }
+
+export type ChangelogTag = 'added' | 'changed' | 'fixed' | 'meta';
+
+export interface ChangelogEntry {
+  date: string;
+  tag: ChangelogTag;
+  text: string;
+}
+
+export interface ChangelogMonth {
+  label: string;
+  entries: ChangelogEntry[];
+}
+
+export interface Changelog {
+  title: string;
+  subtitle: string;
+  lastUpdatedAt: Date;
+  months: ChangelogMonth[];
+}

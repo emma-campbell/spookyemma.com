@@ -1157,6 +1157,89 @@ hr {
 }
 
 /* ═══════════════════════════════════════════════════
+   CHANGELOG
+   ═══════════════════════════════════════════════════ */
+.changelog-header {
+	margin-bottom: var(--space-xl);
+	padding-bottom: var(--space-lg);
+	border-bottom: 1px solid var(--border);
+}
+.changelog-updated {
+	font-size: 0.65rem;
+	color: var(--text-tertiary);
+	margin-top: var(--space-sm);
+	font-variant-numeric: tabular-nums;
+}
+.changelog-month {
+	margin-bottom: var(--space-xl);
+}
+.changelog-month-label {
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--accent);
+	padding-bottom: var(--space-xs);
+	border-bottom: 1px solid var(--border);
+	margin-bottom: var(--space-sm);
+}
+.changelog-entries {
+	list-style: none;
+}
+.changelog-entry {
+	display: flex;
+	align-items: baseline;
+	gap: var(--space-sm);
+	padding: var(--space-2xs) 0;
+	font-size: 0.78rem;
+	border-bottom: 1px solid var(--border-subtle);
+}
+.changelog-entry:last-child { border-bottom: none; }
+.changelog-date {
+	font-size: 0.65rem;
+	color: var(--text-tertiary);
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+	flex-shrink: 0;
+	min-width: 3.8em;
+}
+.changelog-tag {
+	font-size: 0.55rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	padding: 1px var(--space-xs);
+	border-radius: var(--radius-sm);
+	white-space: nowrap;
+	flex-shrink: 0;
+	min-width: 4.5em;
+	text-align: center;
+}
+.changelog-tag.tag-added   { background: oklch(92% 0.03 148); color: oklch(35% 0.08 148); }
+.changelog-tag.tag-changed { background: oklch(92% 0.03 80);  color: oklch(40% 0.08 80);  }
+.changelog-tag.tag-fixed   { background: oklch(92% 0.03 240); color: oklch(40% 0.08 240); }
+.changelog-tag.tag-meta    { background: var(--bg-surface);    color: var(--text-tertiary); }
+
+[data-theme="dark"] .changelog-tag.tag-added   { background: oklch(22% 0.025 148); color: oklch(65% 0.06 148); }
+[data-theme="dark"] .changelog-tag.tag-changed { background: oklch(22% 0.025 80);  color: oklch(70% 0.06 80);  }
+[data-theme="dark"] .changelog-tag.tag-fixed   { background: oklch(22% 0.025 240); color: oklch(65% 0.06 240); }
+[data-theme="dark"] .changelog-tag.tag-meta    { background: var(--bg-surface);     color: var(--text-tertiary); }
+
+.changelog-text {
+	color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+	.changelog-entry {
+		flex-wrap: wrap;
+	}
+	.changelog-date {
+		min-width: auto;
+	}
+}
+
+/* ═══════════════════════════════════════════════════
    SHOWCASE CHROME (for /components page)
    ═══════════════════════════════════════════════════ */
 .lib-section {
