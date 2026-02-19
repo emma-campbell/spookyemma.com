@@ -24,16 +24,16 @@
 
 	const sampleBacklinks = [
 		{
-			slug: 'arboretum',
-			title: 'Arboretum',
-			context: 'Projects, 2024–present',
-			excerpt: '"…the legacy Spring Boot monolith that became the subject of § Haunted Infrastructure…"'
+			slug: 'blog-content-layer',
+			title: 'Building a Blog Content Layer',
+			context: 'Blog, 2024',
+			excerpt: '"…the content layer architecture that became the foundation for this site…"'
 		},
 		{
-			slug: 'tombstone-pattern',
-			title: 'The Tombstone Pattern',
-			context: 'Blog · § Dead Code, 2026-01-20',
-			excerpt: '"…the tombstone approach described in Haunted Infrastructure proved essential during…"'
+			slug: 'blog-reading-time',
+			title: 'Adding Reading Time',
+			context: 'Blog · § Features, 2024',
+			excerpt: '"…the reading time calculation approach proved essential during…"'
 		}
 	];
 
@@ -90,7 +90,7 @@
 		<div class="lib-component">
 			<div class="lib-component-label">H2 + H3 (prose headings)</div>
 			<div class="lib-component-body">
-				<h2 class="h2">Archaeology, Not Demolition <a href="#demo" class="anchor">§</a></h2>
+				<h2 class="h2" id="demo">Archaeology, Not Demolition <a href="#demo" class="anchor">§</a></h2>
 				<h3 class="h3">Git Blame as Séance</h3>
 			</div>
 		</div>
@@ -125,8 +125,8 @@
 			<div class="lib-component-label">Prev / Next</div>
 			<div class="lib-component-body">
 				<PrevNext
-					prev={{ slug: 'on-naming-things', title: 'On Naming Things' }}
-					next={{ slug: 'tombstone-pattern', title: 'The Tombstone Pattern' }}
+					prev={{ slug: 'blog-content-layer', title: 'Building a Blog Content Layer' }}
+					next={{ slug: 'blog-reading-time', title: 'Adding Reading Time' }}
 				/>
 			</div>
 		</div>
@@ -580,8 +580,8 @@
 			<div class="lib-component-label">ArticleFooter</div>
 			<div class="lib-component-body">
 				<ArticleFooter
-					prevPost={{ slug: 'on-naming-things', title: 'On Naming Things' }}
-					nextPost={{ slug: 'tombstone-pattern', title: 'The Tombstone Pattern' }}
+					prevPost={{ slug: 'blog-content-layer', title: 'Building a Blog Content Layer' }}
+					nextPost={{ slug: 'blog-reading-time', title: 'Adding Reading Time' }}
 					backlinks={sampleBacklinks}
 					references={sampleReferences}
 				/>

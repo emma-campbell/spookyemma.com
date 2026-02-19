@@ -37,7 +37,8 @@ const config = {
 				}
 				// Otherwise, fail the build
 				throw new Error(message);
-			}
+			},
+			handleMissingId: 'warn'
 		},
 		alias: {
 			$content: './content'
