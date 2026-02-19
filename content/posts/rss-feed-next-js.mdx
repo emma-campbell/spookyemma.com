@@ -5,7 +5,7 @@ status: published
 entry: how-to
 tags: []
 ---
-If you read my article about my reasons for moving my site\[^1], you know that one of the habits I am trying to create for 2024 is to create more and consume less. One of the actions I’ve taken is subscribing to RSS feeds that I care about, instead of mindlessly scrolling news feeds on twitter, Apple News, etc.
+If you read my article about my [reasons for moving my site](https://www.spooklore.com/writing/moving "In 2024...I'm Moving?"), you know that one of the habits I am trying to create for 2024 is to create more and consume less. One of the actions I’ve taken is subscribing to RSS feeds that I care about, instead of mindlessly scrolling news feeds on twitter, Apple News, etc.
 
 I haven’t missed that habit, and it really has limited the amount of stupid things that I find myself sucked into reading.
 
@@ -20,7 +20,7 @@ So, without further ado, here is how I went about integrating an RSS feed into m
 These aren’t so much pre-requisites as they are just statements about the system that I am building this feature into. There are two system-specific pieces of information that provide important context.
 
 1. This site uses Next.Js. Most of this logic can be extracted and generalized into any static site generator.
-2. My articles are made developer friendly using contentlayer\[^2]. Again, just a personal choice, but any list of your articles/post and their relevant metadata will suffice (whether that comes from a CMS or repository).
+2. My articles are made developer friendly using [contentlayer](https://contentlayer.dev/ "Contentlayer — Content SDK for Developers"). Again, just a personal choice, but any list of your articles/post and their relevant metadata will suffice (whether that comes from a CMS or repository).
 
 # General Framework
 
@@ -31,9 +31,9 @@ Just so everyone is on the same page, all an RSS feed is, is a \`xml\` file that
 
 # Implementation
 
-To generate the feed, I am going to use the help of the node package feed\[^3]. You can take a look at the options to configure with its Github repo.
+To generate the feed, I am going to use the help of the node package [feed](https://github.com/jpmonette/feed "feed — RSS/Atom/JSON Feed Generator for Node.js"). You can take a look at the options to configure with its Github repo.
 
-Now when it comes to serving the file, the Next.Js server route handlers\[^4] are a near perfect use case for this.
+Now when it comes to serving the file, the Next.Js server [route handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers "Route Handlers — Next.js Docs") are a near perfect use case for this.
 
 If you’re using the `/app` directory, create a new folder called `rss.xml`, and within it, a file called `route.ts`.
 
@@ -120,12 +120,3 @@ export const GET = () => {
 
 Now, you can link to `/rss.xml` anywhere on your site and have the end user redirected to the feed url to give to their RSS reader.
 
----
-
-\[^1]: [https://www.spooklore.com/writing/moving](https://www.spooklore.com/writing/moving "In 2024...I'm Moving?")
-
-\[^2]: [https://contentlayer.dev/](https://contentlayer.dev/ "Contentlayer — Content SDK for Developers")
-
-\[^3]: [https://github.com/jpmonette/feed](https://github.com/jpmonette/feed "feed — RSS/Atom/JSON Feed Generator for Node.js")
-
-\[^4]: [https://nextjs.org/docs/app/building-your-application/routing/route-handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers "Route Handlers — Next.js Docs")
