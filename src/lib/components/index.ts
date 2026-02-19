@@ -1,4 +1,5 @@
 export { default as Sidebar } from './Sidebar.svelte';
+export { default as Logo } from './Logo.svelte';
 export { default as UnderlineToBackground } from './UnderlineToBackground.svelte';
 export { default as Timeline } from './Timeline.svelte';
 export { default as PostType } from './PostType.svelte';
@@ -7,5 +8,4 @@ export { default as PostListItem } from './PostListItem.svelte';
 export { default as Aside } from './Aside.svelte';
 export { default as Quote } from './Quote.svelte';
 export { default as MdxContent } from './MdxContent.svelte';
-export { default as Hero } from "./Hero.svelte";
-export { default as Header } from "./Header.svelte";
+export { default as Hero } from './Hero.svelte';

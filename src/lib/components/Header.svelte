@@ -6,15 +6,16 @@
     label?: string;
   }
 
-  const links: Link[] = [{ href: "/about" }, { href: "/now" }];
+  const links: Link[] = [
+    { href: "/about" },
+    { href: "/now" },
+    { label: "/blog", href: "/notebook" },
+  ];
 </script>
 
-<nav class="flex mx-12 justify-between">
-  <a href="/" class="font-bold flex items-center gap-2">
-    <Logo size={24} />
-    SpookyEmma
-  </a>
-  <div class="space-x-2">
+<nav class="flex max-w-4xl mx-auto w-full justify-between">
+  <Logo />
+  <div class="border border-dashed space-x-2 justify-center">
     {#each links as link}
       <a href={link.href}>
         {link.label ?? link.href}

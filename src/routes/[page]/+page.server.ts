@@ -1,28 +1,32 @@
-import { getPage, getPages } from "$lib/content";
-import { renderMarkdown } from '$lib/content/markdown';
+import { getPage, getAllPageSlugs } from '$lib/content';
+import { renderMarkdown, extractHeadings, countWords } from '$lib/content/markdown';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types';
 
 export const entries: EntryGenerator = () => {
-  const slugs = getPages();
-  return slugs.map((slug) => ({ slug }));
+	const slugs = getAllPageSlugs();
+	return slugs.map((page) => ({ page }));
 };
 
 export const load: PageServerLoad = async ({ params }) => {
-  const page = getPage(params.page);
+	const page = getPage(params.page);
 
-  if (!page) {
-    throw error(404, 'Page not found');
-  }
+	if (!page) {
+		throw error(404, 'Page not found');
+	}
 
-  // Render markdown to HTML at build time
-  const contentHtml = await renderMarkdown(page.content);
+	const contentHtml = await renderMarkdown(page.content);
+	const toc = extractHeadings(page.content);
+	const wordCount = countWords(page.content);
+	const readingTime = `~${Math.ceil(wordCount / 200)} min`;
 
-  return {
-    page: {
-      ...page,
-      contentHtml
-    }
-  };
+	return {
+		page: {
+			...page,
+			contentHtml
+		},
+		toc,
+		wordCount,
+		readingTime
+	};
 };
-

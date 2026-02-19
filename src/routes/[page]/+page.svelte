@@ -1,23 +1,36 @@
 <script lang="ts">
-  import { format } from "date-fns";
-  import type { PageData } from "./$types";
+	import {
+		Breadcrumb,
+		ArticleHeader,
+		TableOfContents,
+		Prose
+	} from '$lib/components/article';
+	import type { PageData } from './$types';
 
-  export let data: PageData;
-
-  const formatDate = (date: Date | string) => {
-    return format(new Date(date), "yyyy.MMM.dd");
-  };
+	let { data }: { data: PageData } = $props();
 </script>
 
-<article class="space-y-2">
-  <div>
-    <h1 class="text-3xl font-extrabold">{data.page.title}</h1>
-    <p class="text-sm font-mono text-muted-ink">
-      Updated <span class="uppercase"
-        >{formatDate(data.page.lastUpdatedAt)}</span
-      >
-    </p>
-  </div>
+<svelte:head>
+	<title>{data.page.title} · Emma Campbell</title>
+	{#if data.page.description}
+		<meta name="description" content={data.page.description} />
+	{/if}
+</svelte:head>
 
-  {@html data.page.contentHtml}
+<article>
+	<Breadcrumb segments={[
+		{ label: 'Index', href: '/' },
+		{ label: data.page.title }
+	]} />
+
+	<ArticleHeader
+		title={data.page.title}
+		description={data.page.description}
+		updated={data.page.lastUpdatedAt}
+		wordCount={data.wordCount}
+		readingTime={data.readingTime}
+	/>
+
+	<TableOfContents headings={data.toc} />
+	<Prose html={data.page.contentHtml} />
 </article>
