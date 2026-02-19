@@ -6,6 +6,6 @@
 	let { html }: Props = $props();
 </script>
 
-<div class="prose prose-invert max-w-none">
+<div class="prose">
 	{@html html}
 </div>

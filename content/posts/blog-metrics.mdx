@@ -23,7 +23,7 @@ which is more than enough for our use case! We are also going to use [Prisma](ht
 
 # Setting up the Database
 
-Planetscale's documentation is pretty solid, and they have [a quickstart guide](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide#create-a-database). Follow the instructions for creating a database then [promote the default `main` branch to production](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide#to-promote-a-branch-to-production). Planetscale follows a git-like branching concept, which your development branch intended for applying new schema changes.
+Planetscale's documentation is pretty solid, and they have [a quickstart guide](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide#create-a-database "PlanetScale Quick Start Guide"). Follow the instructions for creating a database then [promote the default `main` branch to production](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide#to-promote-a-branch-to-production). Planetscale follows a git-like branching concept, which your development branch intended for applying new schema changes.
 
 Promoting the branch will protect it from direct schema changes, make it more available, and ensure there are daily scheduled backups.
 
@@ -90,7 +90,7 @@ generator client {
 
 ## Setting Up the Prisma client
 
-I keep many of my helper methods in a directory called `/lib`. There, we are going to create a new file called `prisma.ts`. Our goal with this helper is to follow the [best Next.js practices](https://pris.ly/d/help/next-js-best-practices) according to Prisma.
+I keep many of my helper methods in a directory called `/lib`. There, we are going to create a new file called `prisma.ts`. Our goal with this helper is to follow the [best Next.js practices](https://pris.ly/d/help/next-js-best-practices "Best Practices for Prisma with Next.js") according to Prisma.
 
 ```
 import { PrismaClient } from "@prisma/client";

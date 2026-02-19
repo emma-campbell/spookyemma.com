@@ -38,7 +38,7 @@ Finally, using the command `yarn changeset publish` will publish the changes to 
 
 # Planning our Bot
 
-When doing research on how to create this bot, I came across an [open issue](https://github.com/changesets/changesets/issues/294) in the `@changesets/changesets` repository from **March 11, 2020** with activity as recent as 4 days ago (January 12, 2023 at the time of writing this).
+When doing research on how to create this bot, I came across an [open issue](https://github.com/changesets/changesets/issues/294 "Azure DevOps Support — Changesets Issue #294") in the `@changesets/changesets` repository from **March 11, 2020** with activity as recent as 4 days ago (January 12, 2023 at the time of writing this).
 
 It seemed as if there was a geniune interest in accomplishing this, especially because it was already possible using Github Actions.
 
@@ -85,7 +85,7 @@ brew tap azure/functions && brew install azure-functions-core-tools@4
 
 ### 2. Install the Azure Functions VSCode Extension
 
-Use the install button [here](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) to install the extension, or type "Azure Functions" into the extension search bar in visual studio code and install from there.
+Use the install button [here](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions "Azure Functions — VS Code Marketplace") to install the extension, or type "Azure Functions" into the extension search bar in visual studio code and install from there.
 
 ### 3. Create a New Project Directory
 
@@ -208,7 +208,7 @@ To begin working with `azure-devops-node-api`, you will first need to add it as 
 yarn add azure-devops-node-api dotenv
 ```
 
-The only thing we will need in order to grant it access to your projects is a personal access token, which you can create by following [these instructions](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops\&tabs=Windows#create-a-pat).
+The only thing we will need in order to grant it access to your projects is a personal access token, which you can create by following [these instructions](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops\&tabs=Windows#create-a-pat "Create a Personal Access Token — Azure DevOps Docs").
 
 Once you have your token, create a `.env` file in the root directory of the project with the following
 
@@ -703,7 +703,7 @@ export default class ThreadManager {
 3. Finding previous comments
 4. Posting comments
 
-Because this article is already lengthy and interacting with threads in Azure is well documented, I won't delve into details, but you can view the source code [here](https://github.com/emma-campbell/azure-changeset-bot/blob/main/changeset-check/thread-manager.ts).
+Because this article is already lengthy and interacting with threads in Azure is well documented, I won't delve into details, but you can view the source code [here](https://github.com/emma-campbell/azure-changeset-bot/blob/main/changeset-check/thread-manager.ts "ThreadManager Source — GitHub").
 
 ## Generating The Changelog
 
@@ -743,7 +743,7 @@ yarn add \
  unified@^8.3.2
 ```
 
-You'll want to create a new utility method that gets an entry from the Changelog. This code is lifted directly from the [Changeset Github Action](https://github.com/changesets/action/blob/main/src/utils.ts).
+You'll want to create a new utility method that gets an entry from the Changelog. This code is lifted directly from the [Changeset Github Action](https://github.com/changesets/action/blob/main/src/utils.ts "Changeset GitHub Action — utils.ts Source").
 
 ```typescript
 /**

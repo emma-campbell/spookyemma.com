@@ -1,121 +1,138 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import UnderlineToBackground from './UnderlineToBackground.svelte';
-	import { DateTime } from 'luxon';
+  import { page } from "$app/state";
+  import Logo from "./Logo.svelte";
+  import { theme } from "$lib/theme.svelte";
 
-	declare const __APP_VERSION__: string;
-	const version = __APP_VERSION__;
+  type NavItem = { href: string; label: string };
 
-	type NavItem = {
-		href: string;
-		text: string;
-	};
+  const navItems: NavItem[] = [
+    { href: "/notebook", label: "Notebook" },
+    { href: "/about", label: "About" },
+    { href: "/now", label: "Now" },
+    { href: "/uses", label: "Uses" },
+    { href: "/changelog", label: "Changelog" },
+  ];
 
-	const navItems: NavItem[] = [
-		{ href: '/', text: 'Notebook' },
-		{ href: '/bio', text: 'About' },
-		{ href: '/now', text: 'Now' }
-	];
-
-	let isMobileMenuOpen = $state(false);
-
-	function isActive(href: string, pathname: string): boolean {
-		if (href === '/') {
-			return pathname === '/' || pathname.startsWith('/notebook');
-		}
-		return pathname === href || pathname.startsWith(href);
-	}
+  function isActive(href: string): boolean {
+    const path = page.url.pathname;
+    if (href === "/") return path === "/";
+    return path === href || path.startsWith(href + "/");
+  }
 </script>
 
-<!-- Mobile Menu Button -->
-<button
-	onclick={() => (isMobileMenuOpen = !isMobileMenuOpen)}
-	class="fixed top-4 left-4 z-50 p-2 lg:hidden"
-	aria-label="Toggle menu"
->
-	<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		{#if isMobileMenuOpen}
-			<path
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				stroke-width="2"
-				d="M6 18L18 6M6 6l12 12"
-			/>
-		{:else}
-			<path
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				stroke-width="2"
-				d="M4 6h16M4 12h16M4 18h16"
-			/>
-		{/if}
-	</svg>
-</button>
+<aside class="sidebar">
+  <div class="logo-block">
+    <Logo class="h-12" />
+  </div>
 
-<!-- Overlay for mobile -->
-{#if isMobileMenuOpen}
-	<button
-		class="fixed inset-0 bg-black/50 z-40 lg:hidden"
-		onclick={() => (isMobileMenuOpen = false)}
-		aria-label="Close menu"
-	></button>
-{/if}
+  <hr class="nav-separator" />
 
-<!-- Sidebar -->
-<aside
-	class="
-		fixed inset-y-0 left-0 w-48 bg-background px-6 py-12 overflow-y-auto z-40
-		transform transition-transform duration-300 ease-in-out
-		{isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-		lg:translate-x-0
-	"
->
-	<div class="flex flex-col h-full">
-		<!-- Name -->
-		<div class="mb-12">
-			<h1 class="text-lg font-bold">Emma Campbell</h1>
-			<p class="text-sm text-muted-ink italic">A collection of notes and thoughts</p>
-		</div>
+  <nav class="nav">
+    {#each navItems as item}
+      <a href={item.href} class:active={isActive(item.href)}>{item.label}</a>
+    {/each}
+  </nav>
 
-		<!-- Navigation -->
-		<nav class="flex-grow">
-			<ul class="space-y-1">
-				{#each navItems as item}
-					{@const active = isActive(item.href, $page.url.pathname)}
-					<li>
-						<a
-							href={item.href}
-							onclick={() => (isMobileMenuOpen = false)}
-							class="block py-1 text-sm"
-						>
-							<UnderlineToBackground isActive={active}>
-								{item.text}
-							</UnderlineToBackground>
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</nav>
+  <hr class="nav-separator" />
 
-		<!-- Footer Links -->
-		<div class="space-y-1 text-sm">
-			<a
-				href="https://github.com/emma-campbell"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="block py-1"
-			>
-				<UnderlineToBackground isExternal>GitHub</UnderlineToBackground>
-			</a>
-			<a href="/rss.xml" class="block py-1"> RSS </a>
-		</div>
+  <div class="nav external">
+    <a
+      href="https://github.com/emma-campbell"
+      target="_blank"
+      rel="noopener noreferrer">GitHub</a
+    >
+    <a href="/rss.xml">RSS</a>
+  </div>
 
-		<!-- Copyright -->
-		<div class="mt-8 pt-4 border-t border-muted-ink/20">
-			<p class="text-xs text-muted-ink">© 2022–{DateTime.now().year} Emma Campbell</p>
-			<a href="/changelog" class="text-xs text-muted-ink hover:text-accent transition-colors">
-				v{version}
-			</a>
-		</div>
-	</div>
+  <hr class="nav-separator" />
+
+  <button class="theme-toggle" onclick={() => theme.toggle()}>
+    {theme.current === "dark" ? "Light" : "Dark"}
+  </button>
 </aside>
+
+<style>
+  .sidebar {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .nav-separator {
+    border: none;
+    border-top: 1px solid var(--border-subtle);
+    margin: 0;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .nav a {
+    font-family: "Geist Mono Variable", ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--muted-ink);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition: color 120ms ease;
+    letter-spacing: 0.02em;
+  }
+
+  .nav a:hover {
+    color: var(--text);
+  }
+
+  .nav a.active {
+    color: var(--text);
+  }
+
+  .theme-toggle {
+    font-family: "Geist Mono Variable", ui-monospace, monospace;
+    font-size: 0.7rem;
+    color: var(--muted-ink);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: all 120ms ease;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+
+  .theme-toggle:hover {
+    color: var(--text);
+    border-color: var(--muted-ink);
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-separator {
+      display: none;
+    }
+
+    .nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+    }
+  }
+</style>
