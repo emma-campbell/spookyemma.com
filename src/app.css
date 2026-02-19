@@ -926,6 +926,12 @@
 /* ═══════════════════════════════════════════════════
    17. ORDERED/UNORDERED LIST
    ═══════════════════════════════════════════════════ */
+ul.prose-list {
+	list-style-type: disc;
+}
+ol.prose-list {
+	list-style-type: decimal;
+}
 .prose-list {
 	font-size: 0.82rem;
 	padding-left: 1.5em;
