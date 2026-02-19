@@ -67,14 +67,6 @@
     gap: 0.25rem;
   }
 
-  .site-title {
-    font-family: "Geist Mono Variable", ui-monospace, monospace;
-    font-size: 0.75rem;
-    color: var(--muted-ink);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
   .nav-separator {
     border: none;
     border-top: 1px solid var(--border-subtle);
@@ -131,10 +123,6 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
-    }
-
-    .site-title {
-      display: none;
     }
 
     .nav-separator {
