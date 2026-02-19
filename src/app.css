@@ -251,6 +251,95 @@
 	margin: var(--space-lg) 0 var(--space-sm);
 }
 
+/* Now page */
+.now-header {
+	margin-bottom: var(--space-xl);
+	padding-bottom: var(--space-lg);
+	border-bottom: 1px solid var(--border);
+}
+.now-title {
+	font-size: 1.35rem;
+	font-weight: 700;
+	color: var(--accent);
+	margin-bottom: var(--space-xs);
+}
+.now-subtitle {
+	font-size: 0.78rem;
+	color: var(--text-secondary);
+	font-style: italic;
+}
+.now-updated {
+	font-size: 0.65rem;
+	color: var(--text-tertiary);
+	margin-top: var(--space-sm);
+	font-variant-numeric: tabular-nums;
+}
+.now-what {
+	font-size: 0.68rem;
+	color: var(--text-tertiary);
+	margin-top: var(--space-md);
+	line-height: 1.6;
+}
+.now-what a { color: var(--accent-dim); }
+
+.now-body h2 {
+	font-family: var(--font-mono);
+	font-size: 0.82rem;
+	font-weight: 700;
+	color: var(--accent);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-top: var(--space-xl);
+	margin-bottom: var(--space-md);
+	padding-bottom: var(--space-xs);
+	border-bottom: 1px solid var(--border-subtle);
+}
+.now-body h2:first-child { margin-top: 0; }
+.now-body p {
+	font-size: 0.875rem;
+	line-height: 1.75;
+	margin-bottom: var(--space-md);
+	max-width: 60ch;
+	color: var(--text-secondary);
+}
+.now-body a {
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	text-decoration-color: var(--accent-dim);
+}
+.now-body a:hover { text-decoration-color: var(--accent); }
+.now-body em { font-style: italic; }
+.now-body strong { font-weight: 600; }
+.now-body code {
+	font-size: 0.85em;
+	background: var(--bg-code);
+	padding: 1px var(--space-xs);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border-subtle);
+}
+.now-body hr {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin: var(--space-xl) 0;
+}
+.now-body ul {
+	font-size: 0.82rem;
+	padding-left: 1.5em;
+	margin-bottom: var(--space-md);
+	color: var(--text-secondary);
+	list-style-type: disc;
+}
+.now-body li { padding: var(--space-2xs) 0; }
+.now-body li::marker { color: var(--text-tertiary); }
+.now-body blockquote {
+	border-left: 2px solid var(--accent-dim);
+	padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+	margin: var(--space-md) 0;
+	color: var(--text-secondary);
+	font-style: italic;
+	font-size: 0.82rem;
+}
+
 /* Dropcap */
 .dropcap::first-letter {
 	font-family: var(--font-logo);
@@ -479,6 +568,7 @@
 	line-height: 1.75;
 	max-width: 60ch;
 	position: relative;
+	color: var(--text-secondary);
 }
 .prose p { margin-bottom: var(--space-md); }
 .prose a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--accent-dim); }
