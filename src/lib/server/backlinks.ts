@@ -42,7 +42,7 @@ function buildCache(): Map<string, Backlink[]> {
 		const context = `Blog · ${entry}, ${published}`;
 
 		// Find all internal links to /notebook/<slug> (relative or absolute with any domain)
-		const linkRegex = /\[([^\]]*)\]\((?:https?:\/\/[^/]+)?\/notebook\/([^)]+)\)/g;
+		const linkRegex = /\[([^\]]*)\]\((?:https?:\/\/[^/]+)?\/notebook\/([^\s")]+)(?:\s+"[^"]*")?\)/g;
 		let match;
 
 		while ((match = linkRegex.exec(content)) !== null) {
@@ -78,7 +78,7 @@ export interface Reference {
 }
 
 export function extractReferences(content: string): Reference[] {
-	const linkRegex = /(?<!!)\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g;
+	const linkRegex = /(?<!!)\[([^\]]+)\]\((https?:\/\/[^\s")]+)(?:\s+"([^"]*)")?\)/g;
 	const seen = new Set<string>();
 	const refs: Reference[] = [];
 	let match;
@@ -88,7 +88,7 @@ export function extractReferences(content: string): Reference[] {
 		const url = match[2];
 		if (seen.has(url)) continue;
 		seen.add(url);
-		refs.push({ id: String(i++), title: match[1], url });
+		refs.push({ id: String(i++), title: match[3] || match[1], url });
 	}
 
 	return refs;
