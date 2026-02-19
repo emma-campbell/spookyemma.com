@@ -101,9 +101,15 @@ function preprocessSidenotes(content: string): string {
 	);
 }
 
-export async function renderMarkdown(content: string): Promise<string> {
+export interface RenderOptions {
+	citeLinks?: boolean;
+}
+
+export async function renderMarkdown(content: string, options: RenderOptions = {}): Promise<string> {
 	const highlighter = await getHighlighter();
 	content = preprocessSidenotes(content);
+
+	const citeCounter = { n: 0, seen: new Map<string, number>() };
 
 	const marked = new Marked({
 		async: true,
@@ -142,7 +148,16 @@ export async function renderMarkdown(content: string): Promise<string> {
 				const text = this.parser.parseInline(token.tokens);
 				const isExternal = href.startsWith('http') || href.startsWith('mailto:');
 				if (isExternal) {
-					return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+					let cite = '';
+					if (options.citeLinks && href.startsWith('http')) {
+						let num = citeCounter.seen.get(href);
+						if (num == null) {
+							num = ++citeCounter.n;
+							citeCounter.seen.set(href, num);
+						}
+						cite = `<sup class="cite-ref"><a href="#ref-${num}">${num}</a></sup>`;
+					}
+					return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>${cite}`;
 				}
 				return `<a href="${href}">${text}</a>`;
 			},

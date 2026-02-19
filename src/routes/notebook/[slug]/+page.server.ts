@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		throw error(404, 'Post not found');
 	}
 
-	const contentHtml = await renderMarkdown(post.content);
+	const contentHtml = await renderMarkdown(post.content, { citeLinks: true });
 	const toc = extractHeadings(post.content);
 	const wordCount = countWords(post.content);
 	const readingTime = `~${Math.ceil(wordCount / 200)} min`;
