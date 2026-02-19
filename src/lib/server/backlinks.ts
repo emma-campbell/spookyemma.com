@@ -41,8 +41,8 @@ function buildCache(): Map<string, Backlink[]> {
 		const entry = data.entry || 'note';
 		const context = `Blog · ${entry}, ${published}`;
 
-		// Find all internal links to /notebook/<slug>
-		const linkRegex = /\[([^\]]*)\]\(\/notebook\/([^)]+)\)/g;
+		// Find all internal links to /notebook/<slug> (relative or absolute with any domain)
+		const linkRegex = /\[([^\]]*)\]\((?:https?:\/\/[^/]+)?\/notebook\/([^)]+)\)/g;
 		let match;
 
 		while ((match = linkRegex.exec(content)) !== null) {
