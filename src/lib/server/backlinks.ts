@@ -71,6 +71,29 @@ function buildCache(): Map<string, Backlink[]> {
 	return backlinksMap;
 }
 
+export interface Reference {
+	id: string;
+	title: string;
+	url: string;
+}
+
+export function extractReferences(content: string): Reference[] {
+	const linkRegex = /(?<!!)\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g;
+	const seen = new Set<string>();
+	const refs: Reference[] = [];
+	let match;
+	let i = 1;
+
+	while ((match = linkRegex.exec(content)) !== null) {
+		const url = match[2];
+		if (seen.has(url)) continue;
+		seen.add(url);
+		refs.push({ id: String(i++), title: match[1], url });
+	}
+
+	return refs;
+}
+
 export function getBacklinks(targetSlug: string): Backlink[] {
 	if (!cache) {
 		cache = buildCache();

@@ -1,6 +1,6 @@
 import { getPost, getAllPostSlugs, getPublishedPosts } from '$lib/content';
 import { renderMarkdown, extractHeadings, countWords } from '$lib/content/markdown';
-import { getBacklinks } from '$lib/server/backlinks';
+import { getBacklinks, extractReferences } from '$lib/server/backlinks';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types';
 
@@ -28,6 +28,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	const next = currentIndex > 0 ? published[currentIndex - 1] : null;
 
 	const backlinks = getBacklinks(params.slug);
+	const references = extractReferences(post.content);
 
 	return {
 		post: {
@@ -39,6 +40,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		readingTime,
 		prevPost: prev ? { slug: prev.slug, title: prev.title } : null,
 		nextPost: next ? { slug: next.slug, title: next.title } : null,
-		backlinks
+		backlinks,
+		references
 	};
 };

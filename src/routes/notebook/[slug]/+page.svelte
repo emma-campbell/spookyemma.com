@@ -43,5 +43,6 @@
     prevPost={data.prevPost}
     nextPost={data.nextPost}
     backlinks={data.backlinks}
+    references={data.references}
   />
 </article>
