@@ -1,10 +1,5 @@
 <script lang="ts">
-	import {
-		Breadcrumb,
-		ArticleHeader,
-		TableOfContents,
-		Prose
-	} from '$lib/components/article';
+	import { Breadcrumb } from '$lib/components/article';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -23,14 +18,17 @@
 		{ label: data.page.title }
 	]} />
 
-	<ArticleHeader
-		title={data.page.title}
-		description={data.page.description}
-		updated={data.page.lastUpdatedAt}
-		wordCount={data.wordCount}
-		readingTime={data.readingTime}
-	/>
+	<header class="page-header">
+		<h1 class="page-title">{data.page.title}</h1>
+		{#if data.page.description}
+			<p class="page-subtitle">{data.page.description}</p>
+		{/if}
+		{#if data.lastUpdated}
+			<p class="page-updated">Last updated {data.lastUpdated}</p>
+		{/if}
+	</header>
 
-	<TableOfContents headings={data.toc} />
-	<Prose html={data.page.contentHtml} />
+	<div class="page-body">
+		{@html data.page.contentHtml}
+	</div>
 </article>

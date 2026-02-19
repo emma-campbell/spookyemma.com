@@ -1,5 +1,5 @@
 import { getPage, getAllPageSlugs } from '$lib/content';
-import { renderMarkdown, extractHeadings, countWords } from '$lib/content/markdown';
+import { renderMarkdown } from '$lib/content/markdown';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types';
 
@@ -16,17 +16,17 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	const contentHtml = await renderMarkdown(page.content);
-	const toc = extractHeadings(page.content);
-	const wordCount = countWords(page.content);
-	const readingTime = `~${Math.ceil(wordCount / 200)} min`;
+	const lastUpdated = page.lastUpdatedAt.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	});
 
 	return {
 		page: {
 			...page,
 			contentHtml
 		},
-		toc,
-		wordCount,
-		readingTime
+		lastUpdated
 	};
 };

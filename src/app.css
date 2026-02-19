@@ -340,6 +340,96 @@
 	font-size: 0.82rem;
 }
 
+/* Generic pages (about, uses, meta) */
+.page-header {
+	margin-bottom: var(--space-xl);
+	padding-bottom: var(--space-lg);
+	border-bottom: 1px solid var(--border);
+}
+.page-updated {
+	font-size: 0.65rem;
+	color: var(--text-tertiary);
+	margin-top: var(--space-sm);
+	font-variant-numeric: tabular-nums;
+}
+
+.page-body h1,
+.page-body h2 {
+	font-family: var(--font-mono);
+	font-size: 0.82rem;
+	font-weight: 700;
+	color: var(--accent);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-top: var(--space-xl);
+	margin-bottom: var(--space-md);
+	padding-bottom: var(--space-xs);
+	border-bottom: 1px solid var(--border-subtle);
+}
+.page-body h1:first-child,
+.page-body h2:first-child { margin-top: 0; }
+.page-body h3 {
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: var(--accent-dim);
+	margin-top: var(--space-lg);
+	margin-bottom: var(--space-sm);
+}
+.page-body p {
+	font-size: 0.875rem;
+	line-height: 1.75;
+	margin-bottom: var(--space-md);
+	max-width: 60ch;
+	color: var(--text-secondary);
+}
+.page-body a {
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	text-decoration-color: var(--accent-dim);
+}
+.page-body a:hover { text-decoration-color: var(--accent); }
+.page-body ul {
+	list-style: none;
+	margin-bottom: var(--space-md);
+}
+.page-body li {
+	font-size: 0.82rem;
+	padding: var(--space-xs) 0;
+	border-bottom: 1px solid var(--border-subtle);
+	color: var(--text-secondary);
+}
+.page-body li:last-child { border-bottom: none; }
+.page-body ol {
+	font-size: 0.82rem;
+	padding-left: 1.5em;
+	margin-bottom: var(--space-md);
+	color: var(--text-secondary);
+}
+.page-body ol li { list-style: decimal; }
+.page-body ol li::marker { color: var(--text-tertiary); }
+.page-body em { font-style: italic; }
+.page-body strong { font-weight: 600; }
+.page-body code {
+	font-size: 0.85em;
+	background: var(--bg-code);
+	padding: 1px var(--space-xs);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border-subtle);
+}
+.page-body blockquote {
+	border-left: 2px solid var(--accent-dim);
+	padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+	margin: var(--space-md) 0;
+	color: var(--text-secondary);
+	font-style: italic;
+	font-size: 0.82rem;
+}
+.page-body hr {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin: var(--space-xl) 0;
+}
+
 /* Dropcap */
 .dropcap::first-letter {
 	font-family: var(--font-logo);
