@@ -9,15 +9,16 @@ status: published
 entry: how-to
 tags: []
 ---
-> &#x20;**April 14, 2024**: Please be advised that since writing this, Planetscale has shut down its hobby tier 😭
+
+> **April 14, 2024**: Please be advised that since writing this, Planetscale has shut down its hobby tier 😭
 
 Adding metrics to a post is both a fun coding challenge as well as a nice to have. We are going to utilize a [PlanetScale](https://planetscale.com) database, which has a generous "Hobby" plan. This plan includes
 
-* 5 GB of storage
-* 1 billion row reads per month
-* 10 million row writes per month
-* 1 production branch
-* 1 development branch
+- 5 GB of storage
+- 1 billion row reads per month
+- 10 million row writes per month
+- 1 production branch
+- 1 development branch
 
 which is more than enough for our use case! We are also going to use [Prisma](https://www.prisma.io) to define all of our models.
 
@@ -29,7 +30,7 @@ Promoting the branch will protect it from direct schema changes, make it more av
 
 You will also want to [make a new branch](https://planetscale.com/docs/concepts/branching) for development. Make sure you grab the connection strings to your main branch, and development branch, and store them somewhere safe.
 
-# Installing Prisma
+## Installing Prisma
 
 Once your Planetscale database is up and running, we can go ahead and set up Prisma. Prisma is a type-safe database client, where the one of the main selling points is the "human-readable" schema files. We will start by installing Prisma.
 
@@ -45,14 +46,11 @@ npx prisma init
 
 The above command creates the `/prisma` directory, with a file called `schema.prisma`. This is where we will define our schemas. The command also creates a `.env` file in the project directory.
 
-## Connecting Planetscale to Prism
+## Connecting Planetscale to Prisma
 
 Add the `.env` file to `.gitignore`. You don't want to commit this file to any source control, since it often contains sensitive information.
 
 ```bash
-#
-#
-# ...
 .env
 ```
 
@@ -147,7 +145,7 @@ model Stats {
 
 After making any schema changes, be sure to run `npx prisma db push` to update the database tables and regenerate the client.
 
-### API Route
+## API Route
 
 Now, we can use a [Next.js API Route](https://nextjs.org/docs/api-routes/introduction) in tandem with the global prisma instance we created to query our database for a post's number of views.
 
@@ -182,7 +180,7 @@ import prisma from "@/lib/prisma";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   // Your API method here!
   try {
@@ -210,7 +208,7 @@ import prisma from "@/lib/prisma";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   // Your API method here!
   try {
@@ -253,7 +251,7 @@ import prisma from "@/lib/prisma";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   // Your API method here!
   try {
@@ -303,7 +301,6 @@ Create a new file in the `/lib` directory called `usePostViews.ts`. We have two 
 
 1. Get the number of post views
 2. Update the number of post views\
-
 
 First, we want to define the return typing from the API.
 
@@ -473,7 +470,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const ip = req.headers["x-forwarded-for"] || "0.0.0";
   const slug = req.query.slug?.toString();
@@ -483,7 +480,7 @@ export default async function handler(
       .update(
         // @ts-ignore
         ip + process.env.IP_ADDRESS_SALT,
-        "utf-8"
+        "utf-8",
       )
       .digest("hex");
   } catch (e: any) {
@@ -503,7 +500,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const ip = req.headers["x-forwarded-for"] || "0.0.0";
   const slug = req.query.slug?.toString();
@@ -513,7 +510,7 @@ export default async function handler(
       .update(
         // @ts-ignore
         ip + process.env.IP_ADDRESS_SALT,
-        "utf-8"
+        "utf-8",
       )
       .digest("hex");
 
@@ -535,7 +532,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const ip = req.headers["x-forwarded-for"] || "0.0.0";
   const slug = req.query.slug?.toString();
@@ -545,7 +542,7 @@ export default async function handler(
       .update(
         // @ts-ignore
         ip + process.env.IP_ADDRESS_SALT,
-        "utf-8"
+        "utf-8",
       )
       .digest("hex");
 
@@ -583,7 +580,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const ip = req.headers["x-forwarded-for"] || "0.0.0";
   const slug = req.query.slug?.toString();
@@ -593,7 +590,7 @@ export default async function handler(
       .update(
         // @ts-ignore
         ip + process.env.IP_ADDRESS_SALT,
-        "utf-8"
+        "utf-8",
       )
       .digest("hex");
 
@@ -757,7 +754,7 @@ export default async function handler(
   }
 ```
 
-### Hook
+#### Hook
 
 Similar to the hook for an article's views, we will start by defining the return type for the API call.
 
@@ -881,7 +878,7 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
     {
       dedupingInterval: 60000,
       ...config,
-    }
+    },
   );
 
   const [liked, setLiked] = React.useState(data?.user);
@@ -897,7 +894,7 @@ export const usePostLikes = (slug: string, config?: SWRConfiguration) => {
         total: data.total + 1,
         user: true,
       },
-      false
+      false,
     );
 
     setLiked(true);
@@ -943,7 +940,7 @@ export const Metric = ({ stat }: { stat: number | undefined }) => {
 
 We can use that component inside a reusable `PostMetrics` component that displays both views and likes of a given article.
 
-Before we can do that, we need to introduce the concept of polling into our application. We have data that could (*theroretically*) be changing any given second, we don't want to use our applications resources to constantly be updating this information. We want to **poll** this data in intervals.
+Before we can do that, we need to introduce the concept of polling into our application. We have data that could (_theroretically_) be changing any given second, we don't want to use our applications resources to constantly be updating this information. We want to **poll** this data in intervals.
 
 Create a new file in `/lib` called `usePolling.ts`. In this file, we will define a hook to poll on an interval.
 
@@ -951,10 +948,7 @@ Create a new file in `/lib` called `usePolling.ts`. In this file, we will define
 import React from "react";
 import { useIntersection, useInterval } from "react-use";
 
-export const usePolling = (
-  interval: number = 1000,
-  max: number = 3
-) => {
+export const usePolling = (interval: number = 1000, max: number = 3) => {
   const intersectionRef = React.useRef(null);
   const intersection = useIntersection(intersectionRef, {});
 
@@ -969,7 +963,7 @@ export const usePolling = (
         setPolledCount(polledCount + 1);
       }
     },
-    shouldPoll ? interval : null
+    shouldPoll ? interval : null,
   );
 
   React.useEffect(() => {
@@ -990,7 +984,7 @@ export const usePolling = (
 
 We can then use this hook to determine when we should poll for new data within the article metrics display.
 
-```tax
+```tsx
 import { usePolling } from "@/lib/usePolling";
 import { usePostViews } from "@/lib/usePostViews";
 
@@ -1041,19 +1035,15 @@ export const PostMetrics = ({ slug }: { slug: string }) => {
 };
 ```
 
-## Updating Metrics within the App
+# Updating Metrics within the App
 
 If you look back at the `usePostViews` and `usePostLikes`, we export an `increment` and `decrement` member (respectively).
 
-We can use the `increment` from `usePostViews` to increment the number of views using the `useEffect` hook
+We can use the `increment` from `usePostViews` to increment the number of views using the `useEffect`<Sidenote id="1">
+`useEffect` can be thought of as `componentDidMount`, `componentDidUpdate` and `componentWillUnmount` combined.
 
-\<Aside>
-
-&#x20; 🌟 `useEffect` can be thought of as `componentDidMount`, `componentDidUpdate`,
-
-&#x20; and `componentWillUnmount` combined.
-
-\</Aside>
+</SideNote>
+hook
 
 ```tsx
 import { usePolling } from "@/lib/usePolling";
