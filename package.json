@@ -34,7 +34,7 @@
     "js-yaml": "^4.1.0",
     "luxon": "^3.5.0",
     "marked": "^17.0.1",
-    "posthog-js": "^1.351.1",
+    "posthog-js": "^1.359.1",
     "vite": "^6.0.7",
     "@sveltejs/kit": "^2.16.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
