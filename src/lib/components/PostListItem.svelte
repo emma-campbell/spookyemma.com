@@ -19,15 +19,15 @@
 	const formattedDate = $derived(DateTime.fromISO(post.published).toFormat('MM/dd/yy'));
 </script>
 
-<article class="border-b border-muted-ink/10 pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0">
+<article class="post-item">
 	<!-- Desktop layout - date on the left -->
-	<div class="hidden md:flex space-x-4 items-start">
-		<p class="text-sm flex font-sans font-bold text-highlighted shrink-0 mt-1">
+	<div class="post-desktop">
+		<p class="post-date">
 			{formattedDate}
 		</p>
-		<div class="flex-grow">
-			<a href="/notebook/{post.slug}" class="block group mb-2">
-				<h3 class="text-3xl font-medium text-text group-hover:text-highlighted">
+		<div class="post-body">
+			<a href="/notebook/{post.slug}" class="post-link group">
+				<h3 class="page-title group-hover:text-highlighted">
 					<UnderlineToBackground>
 						{post.title}
 					</UnderlineToBackground>
@@ -35,51 +35,122 @@
 			</a>
 
 			{#if post.previewHtml}
-				<div class="text-text/60 text-md leading-relaxed mb-2 max-w-none [&_p]:mb-2 [&_p:last-child]:mb-0">
+				<div class="post-preview">
 					{@html post.previewHtml}
 				</div>
 			{/if}
 
 			{#if post.hasMore}
-				<a href="/notebook/{post.slug}">
-					<span
-						class="text-sm text-accent uppercase tracking-wide font-medium hover:text-highlighted"
-					>
-						Read more →
-					</span>
+				<a href="/notebook/{post.slug}" class="post-more">
+					Read more →
 				</a>
 			{/if}
 		</div>
 	</div>
 
 	<!-- Mobile layout - date under title -->
-	<div class="md:hidden">
-		<a class="block group mb-2" href="/notebook/{post.slug}">
-			<h3 class="text-3xl font-medium text-text group-hover:text-highlighted">
+	<div class="post-mobile">
+		<a class="post-link group" href="/notebook/{post.slug}">
+			<h3 class="page-title group-hover:text-highlighted">
 				<UnderlineToBackground>
 					{post.title}
 				</UnderlineToBackground>
 			</h3>
 		</a>
 
-		<p class="text-sm font-sans font-bold text-highlighted mb-2">
+		<p class="post-date" style="margin-bottom: var(--space-sm);">
 			{formattedDate}
 		</p>
 
 		{#if post.previewHtml}
-			<div class="text-muted-ink text-md leading-relaxed mb-2 max-w-none [&_p]:mb-2 [&_p:last-child]:mb-0">
+			<div class="post-preview">
 				{@html post.previewHtml}
 			</div>
 		{/if}
 
 		{#if post.hasMore}
-			<a href="/notebook/{post.slug}">
-				<span
-					class="text-sm text-accent uppercase tracking-wide font-medium hover:text-highlighted"
-				>
-					Read more →
-				</span>
+			<a href="/notebook/{post.slug}" class="post-more">
+				Read more →
 			</a>
 		{/if}
 	</div>
 </article>
+
+<style>
+	.post-item {
+		border-bottom: 1px solid var(--border-subtle);
+		padding-bottom: var(--space-md);
+		margin-bottom: var(--space-md);
+	}
+
+	.post-item:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+
+	.post-desktop {
+		display: none;
+	}
+
+	.post-date {
+		font-size: 0.72rem;
+		font-family: var(--font-sans);
+		font-weight: 700;
+		color: var(--accent);
+		flex-shrink: 0;
+		margin-top: 0.25rem;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.post-body {
+		flex-grow: 1;
+	}
+
+	.post-link {
+		display: block;
+		margin-bottom: var(--space-sm);
+		text-decoration: none;
+	}
+
+	.post-preview {
+		color: var(--text-secondary);
+		font-size: 0.82rem;
+		line-height: 1.75;
+		margin-bottom: var(--space-sm);
+	}
+
+	.post-preview :global(p) {
+		margin-bottom: var(--space-sm);
+	}
+
+	.post-preview :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.post-more {
+		font-size: 0.72rem;
+		color: var(--accent);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		font-weight: 600;
+		text-decoration: none;
+		transition: color 120ms ease;
+	}
+
+	.post-more:hover {
+		color: var(--text);
+	}
+
+	@media (min-width: 768px) {
+		.post-desktop {
+			display: flex;
+			gap: var(--space-md);
+			align-items: flex-start;
+		}
+
+		.post-mobile {
+			display: none;
+		}
+	}
+</style>

@@ -10,14 +10,18 @@
 	let { title, styled = false, children }: Props = $props();
 </script>
 
-<div
-	class="relative my-6 rounded-lg border border-background bg-surface p-6 shadow-sm dark:border-blue-800 dark:bg-blue-950/30"
->
-	<div
-		class="text-text/60 dark:text-blue-200"
-		class:text-sm={styled}
-		class:italic={styled}
-	>
+<aside class="callout">
+	{#if title}
+		<div class="callout-label">{title}</div>
+	{/if}
+	<div class:callout-styled={styled}>
 		{@render children()}
 	</div>
-</div>
+</aside>
+
+<style>
+	.callout-styled {
+		font-size: 0.78rem;
+		font-style: italic;
+	}
+</style>

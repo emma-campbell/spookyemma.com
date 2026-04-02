@@ -10,33 +10,107 @@
 	let { items, children }: Props = $props();
 </script>
 
-<ol class="antialiased">
+<ol class="timeline">
 	{#each items as item, index}
 		{@const isFirst = index === 0}
 		{@const date = new Date(item.year, item.month - 1)}
-		<li class="relative group ms-4 pb-8 last:pb-0">
-			<div class="pl-4">
-				<!-- Vertical line -->
-				<div
-					class="absolute left-0 top-3 bottom-0 w-px border-l border-dashed border-gray-300 last:hidden"
-				></div>
+		<li class="timeline-item">
+			<div class="timeline-content">
+				<div class="timeline-line"></div>
 
-				<!-- Dot -->
-				<div class="absolute -start-1.5 top-1.5">
-					<span class="relative block rounded-full w-3 h-3 {isFirst ? 'bg-green-500' : 'bg-gray-400'}">
-						{#if isFirst}
-							<span class="absolute inset-0 rounded-full bg-green-500 animate-ping"></span>
-							<span class="absolute inset-0 rounded-full bg-green-500 animate-ping animation-delay-200"
-							></span>
-						{/if}
-					</span>
+				<div class="timeline-dot" class:timeline-dot--active={isFirst}>
+					{#if isFirst}
+						<span class="timeline-ping"></span>
+						<span class="timeline-ping timeline-ping--delayed"></span>
+					{/if}
 				</div>
 
-				<time class="font-medium">{format(date, 'MMMM y')}</time>
-				<div class="space-y-4 text-sm mt-2">
+				<time class="timeline-date">{format(date, 'MMMM y')}</time>
+				<div class="timeline-body">
 					{@render children({ item })}
 				</div>
 			</div>
 		</li>
 	{/each}
 </ol>
+
+<style>
+	.timeline {
+		list-style: none;
+		padding: 0;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.timeline-item {
+		position: relative;
+		padding-left: 1rem;
+		padding-bottom: var(--space-xl);
+	}
+
+	.timeline-item:last-child {
+		padding-bottom: 0;
+	}
+
+	.timeline-content {
+		padding-left: 1rem;
+	}
+
+	.timeline-line {
+		position: absolute;
+		left: 0;
+		top: 0.75rem;
+		bottom: 0;
+		width: 1px;
+		border-left: 1px dashed var(--border);
+	}
+
+	.timeline-item:last-child .timeline-line {
+		display: none;
+	}
+
+	.timeline-dot {
+		position: absolute;
+		left: -0.375rem;
+		top: 0.375rem;
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 50%;
+		background: var(--text-tertiary);
+	}
+
+	.timeline-dot--active {
+		background: var(--accent);
+	}
+
+	.timeline-ping {
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		background: var(--accent);
+		animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+	}
+
+	.timeline-ping--delayed {
+		animation-delay: 200ms;
+	}
+
+	@keyframes ping {
+		75%, 100% {
+			transform: scale(2);
+			opacity: 0;
+		}
+	}
+
+	.timeline-date {
+		font-weight: 600;
+		font-size: 0.82rem;
+	}
+
+	.timeline-body {
+		margin-top: var(--space-sm);
+		font-size: 0.78rem;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+</style>

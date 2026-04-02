@@ -5,5 +5,7 @@
   let { data }: { data: PageData } = $props();
 </script>
 
-<section></section>
-<PostList posts={data.posts} />
+<section class="max-w-[60ch]"></section>
+<div class="max-w-[60ch]">
+  <PostList posts={data.posts} />
+</div>
