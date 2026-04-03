@@ -2,6 +2,10 @@
 title: Changelog
 subtitle: What's changed on this site.
 entries:
+  # ── April 2026 ──
+  - date: 2026-04-03
+    tag: added
+    text: CV Page
   # ── February 2026 ──
   - date: 2026-02-18
     tag: added

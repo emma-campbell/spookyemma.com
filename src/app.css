@@ -299,7 +299,7 @@
 	font-size: 0.875rem;
 	line-height: 1.75;
 	margin-bottom: var(--space-md);
-	max-width: 60ch;
+	max-width: 80ch;
 	color: var(--text-secondary);
 }
 .now-body a {
@@ -379,7 +379,7 @@
 	font-size: 0.875rem;
 	line-height: 1.75;
 	margin-bottom: var(--space-md);
-	max-width: 60ch;
+	max-width: 80ch;
 	color: var(--text-secondary);
 }
 .page-body a {
@@ -656,7 +656,7 @@
 .prose {
 	font-size: 0.875rem;
 	line-height: 1.75;
-	max-width: 60ch;
+	max-width: 80ch;
 	position: relative;
 	color: var(--text-secondary);
 }
@@ -1330,6 +1330,120 @@ hr {
 }
 
 /* ═══════════════════════════════════════════════════
+   CV
+   ═══════════════════════════════════════════════════ */
+.cv-header {
+	margin-bottom: var(--space-xl);
+	padding-bottom: var(--space-lg);
+	border-bottom: 1px solid var(--border);
+}
+.cv-updated {
+	font-size: 0.65rem;
+	color: var(--text-tertiary);
+	margin-top: var(--space-sm);
+	font-variant-numeric: tabular-nums;
+}
+.cv-section {
+	margin-bottom: var(--space-2xl);
+}
+.cv-section-heading {
+	font-family: var(--font-mono);
+	font-size: 0.68rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--accent);
+	padding-bottom: var(--space-xs);
+	border-bottom: 1px solid var(--border);
+	margin-bottom: var(--space-md);
+}
+.cv-entry {
+	margin-bottom: var(--space-lg);
+	padding-bottom: var(--space-lg);
+	border-bottom: 1px solid var(--border-subtle);
+}
+.cv-entry:last-child {
+	border-bottom: none;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.cv-entry-role {
+	font-size: 0.88rem;
+	font-weight: 600;
+	color: var(--text);
+}
+.cv-entry-org {
+	font-size: 0.75rem;
+	color: var(--text-secondary);
+	margin-top: var(--space-2xs);
+}
+.cv-entry-dates {
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	color: var(--text-tertiary);
+	font-variant-numeric: tabular-nums;
+}
+.cv-entry-body {
+	margin-top: var(--space-sm);
+}
+
+/* CV timeline (experience section) */
+.cv-timeline {
+	list-style: none;
+	padding: 0;
+}
+.cv-timeline-item {
+	position: relative;
+	padding-left: 1rem;
+	padding-bottom: var(--space-xl);
+}
+.cv-timeline-item:last-child {
+	padding-bottom: 0;
+}
+.cv-timeline-content {
+	padding-left: 1rem;
+}
+.cv-timeline-line {
+	position: absolute;
+	left: 0;
+	top: 0.75rem;
+	bottom: 0;
+	width: 1px;
+	border-left: 1px dashed var(--border);
+}
+.cv-timeline-item:last-child .cv-timeline-line {
+	display: none;
+}
+.cv-timeline-dot {
+	position: absolute;
+	left: -0.375rem;
+	top: 0.375rem;
+	width: 0.75rem;
+	height: 0.75rem;
+	border-radius: 50%;
+	background: var(--text-tertiary);
+}
+.cv-timeline-dot--active {
+	background: var(--accent);
+}
+.cv-timeline-ping {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: var(--accent);
+	animation: cv-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.cv-timeline-ping--delayed {
+	animation-delay: 200ms;
+}
+@keyframes cv-ping {
+	75%, 100% {
+		transform: scale(2);
+		opacity: 0;
+	}
+}
+
+/* ═══════════════════════════════════════════════════
    SHOWCASE CHROME (for /components page)
    ═══════════════════════════════════════════════════ */
 .lib-section {
@@ -1347,7 +1461,7 @@ hr {
 	font-size: 0.72rem;
 	color: var(--text-secondary);
 	margin-bottom: var(--space-lg);
-	max-width: 55ch;
+	max-width: 80ch;
 }
 .lib-component {
 	background: var(--bg-surface);

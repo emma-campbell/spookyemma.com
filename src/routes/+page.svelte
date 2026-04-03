@@ -77,7 +77,7 @@
 
 	.intro p {
 		color: var(--muted-ink);
-		max-width: 55ch;
+		max-width: 80ch;
 	}
 
 	.intro p a {

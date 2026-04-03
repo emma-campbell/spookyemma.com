@@ -53,3 +53,25 @@ export interface Changelog {
   lastUpdatedAt: Date;
   months: ChangelogMonth[];
 }
+
+export interface CVEntry {
+  role: string;
+  organization?: string;
+  location?: string;
+  start?: string;
+  end?: string;
+  description?: string;
+}
+
+export interface CVSection {
+  heading: string;
+  order: number;
+  entries: CVEntry[];
+}
+
+export interface CV {
+  title: string;
+  subtitle?: string;
+  lastUpdatedAt: Date;
+  sections: CVSection[];
+}
