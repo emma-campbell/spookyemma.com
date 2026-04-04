@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { BgCanvas } from '$lib/components';
+	import { PageShell } from '$lib/components';
+	import { ENTRY_TYPES, FILTERS } from '$lib/content';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -16,18 +17,7 @@
 		activeFilter = filter;
 	}
 
-	const filters = [
-		{ key: 'all', label: 'all', cls: 'filter-all' },
-		{ key: 'log', label: '◈ log', cls: 'filter-log' },
-		{ key: 'thinking', label: '✦ thinking', cls: 'filter-thinking' },
-		{ key: 'making', label: '⚗ making', cls: 'filter-making' }
-	];
-
-	const typeStats = [
-		{ icon: '◈', label: 'log', color: 'var(--sage)', key: 'log' },
-		{ icon: '✦', label: 'thinking', color: 'var(--amber)', key: 'thinking' },
-		{ icon: '⚗', label: 'making', color: 'var(--lavender)', key: 'making' }
-	];
+	const typeStats = Object.entries(ENTRY_TYPES).map(([key, cfg]) => ({ ...cfg, key }));
 </script>
 
 <svelte:head>
@@ -35,21 +25,7 @@
 	<meta name="description" content="All writing — blog posts, experiments, notes, guides, micro entries." />
 </svelte:head>
 
-<BgCanvas />
-
-<div class="page">
-	<!-- Topbar -->
-	<div class="topbar">
-		<a class="site-title" href="/">Emma Campbell</a>
-		<nav>
-			<a href="/notebook" class="active">notebook</a>
-			<a href="/about">about</a>
-			<a href="/now">now</a>
-			<a href="/uses">uses</a>
-			<a href="/changelog">changelog</a>
-		</nav>
-	</div>
-
+<PageShell>
 	<!-- Header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
@@ -79,7 +55,7 @@
 			<span class="filter-label-text">filter</span>
 		</div>
 		<div class="filter-content">
-			{#each filters as f}
+			{#each FILTERS as f}
 				<button
 					class="filter-btn {f.cls}"
 					class:active={activeFilter === f.key}
@@ -107,7 +83,7 @@
 					{#if entry.tags.length > 0}
 						<div class="entry-tags">
 							{#each entry.tags as tag}
-								<span class="entry-tag badge-{entry.entry === 'log' ? 'sage' : entry.entry === 'making' ? 'lavender' : 'amber'}">{tag}</span>
+								<span class="entry-tag" style:--badge-color={ENTRY_TYPES[entry.entry]?.color}>{tag}</span>
 							{/each}
 						</div>
 					{/if}
@@ -126,33 +102,4 @@
 		</a>
 	{/each}
 
-	<!-- Footer -->
-	<footer class="nb-footer">
-		<span>&copy; 2022&ndash;2026 Emma &middot; CC-BY-SA 4.0</span>
-		<div class="footer-links">
-			<a href="/rss.xml">rss</a>
-			<a href="/changelog">changelog</a>
-			<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer">github</a>
-		</div>
-	</footer>
-</div>
-
-<style>
-	.page { position: relative; z-index: 1; }
-
-	.topbar nav a.active { color: var(--amber); }
-
-	.nb-footer {
-		margin-left: calc(var(--col-label) - 2px);
-		border-left: 2px solid var(--red-line);
-		border-top: 1px solid var(--border);
-		padding: 1.5rem 2rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 0.68rem;
-		color: var(--muted);
-	}
-	.nb-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-	.nb-footer a:hover { color: var(--amber); }
-</style>
+</PageShell>

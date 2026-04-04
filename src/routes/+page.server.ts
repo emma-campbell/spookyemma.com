@@ -1,12 +1,6 @@
-import { getPublishedPosts } from '$lib/content';
+import { getPublishedPosts, ENTRY_TYPES, SECTION_ORDER } from '$lib/content';
 import type { PostEntry } from '$lib/content';
 import type { PageServerLoad } from './$types';
-
-const sectionConfig: Record<PostEntry, { label: string; icon: string; color: string; order: number }> = {
-	making:   { label: 'Making', icon: '⚗', color: 'var(--lavender)', order: 1 },
-	thinking: { label: 'Thinking', icon: '✦', color: 'var(--amber)', order: 2 },
-	log:      { label: 'Log', icon: '◈', color: 'var(--sage)', order: 3 }
-};
 
 export const load: PageServerLoad = async () => {
 	const posts = getPublishedPosts();
@@ -19,24 +13,29 @@ export const load: PageServerLoad = async () => {
 		grouped.set(post.entry, group);
 	}
 
-	// Build sections sorted by config order
-	const sections = Array.from(grouped.entries())
-		.map(([entry, posts]) => ({
-			id: sectionConfig[entry].label.toLowerCase().replace(/\s+/g, '-'),
-			label: sectionConfig[entry].label,
-			icon: sectionConfig[entry].icon,
-			color: sectionConfig[entry].color,
-			order: sectionConfig[entry].order,
-			sectionNum: `§ 0${sectionConfig[entry].order}`,
-			posts: posts.map((p) => ({
-				slug: p.slug,
-				title: p.title,
-				published: p.published,
-				entry: p.entry,
-				tags: p.tags
-			}))
-		}))
-		.sort((a, b) => a.order - b.order);
+	// Build sections using SECTION_ORDER + ENTRY_TYPES
+	const sections = SECTION_ORDER
+		.filter((key) => grouped.has(key))
+		.map((key, i) => {
+			const cfg = ENTRY_TYPES[key];
+			const colorName = cfg.color.replace('var(--', '').replace(')', '');
+			return {
+				id: key,
+				label: cfg.label.charAt(0).toUpperCase() + cfg.label.slice(1),
+				icon: cfg.icon,
+				color: cfg.color,
+				badgeCls: colorName,
+				order: i + 1,
+				sectionNum: `\u00A7 0${i + 1}`,
+				posts: (grouped.get(key) || []).map((p) => ({
+					slug: p.slug,
+					title: p.title,
+					published: p.published,
+					entry: p.entry,
+					tags: p.tags
+				}))
+			};
+		});
 
 	const pages = [
 		{ href: '/about', label: 'About' },

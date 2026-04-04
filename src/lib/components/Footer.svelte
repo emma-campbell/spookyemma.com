@@ -5,7 +5,7 @@
 	const year = format(DateTime.now(), 'y');
 </script>
 
-<footer class="footer">
+<footer class="page-footer">
 	<span>&copy; 2022&ndash;{year} Emma &middot; CC-BY-SA 4.0</span>
 	<div class="footer-links">
 		<a href="/rss.xml">rss</a>

@@ -1383,7 +1383,9 @@ pre code .line.diff.remove { background-color: rgba(212,101,74,0.15); }
 /* ═══════════════════════════════════════════════════
    19. FOOTER
    ═══════════════════════════════════════════════════ */
-.footer {
+.footer,
+.page-footer {
+	margin-left: calc(var(--col-label) - 2px);
 	border-top: 1px solid var(--border);
 	border-left: 2px solid var(--red-line);
 	padding: 1.5rem 2rem;
@@ -1393,9 +1395,21 @@ pre code .line.diff.remove { background-color: rgba(212,101,74,0.15); }
 	font-size: 0.68rem;
 	color: var(--muted);
 }
-.footer a { color: var(--muted); text-decoration: none; transition: color var(--transition); }
-.footer a:hover { color: var(--amber); }
+.footer a, .page-footer a { color: var(--muted); text-decoration: none; transition: color var(--transition); }
+.footer a:hover, .page-footer a:hover { color: var(--amber); }
 .footer-links { display: flex; gap: 1.25rem; }
+
+/* Page wrapper */
+.page { position: relative; z-index: 1; }
+
+/* Accent link (amber underline) */
+.accent-link {
+	color: var(--amber);
+	text-decoration: none;
+	border-bottom: 1px solid rgba(232,168,48,0.4);
+	transition: border-color 0.2s;
+}
+.accent-link:hover { border-bottom-color: var(--amber); }
 
 /* ═══════════════════════════════════════════════════
    20. UNDERLINE-TO-BACKGROUND LINK

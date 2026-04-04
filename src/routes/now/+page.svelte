@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BgCanvas } from '$lib/components';
+	import { PageShell, QuickFacts } from '$lib/components';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -10,21 +10,7 @@
 	<meta name="description" content="What I'm up to, updated whenever something changes." />
 </svelte:head>
 
-<BgCanvas />
-
-<div class="page">
-	<!-- Topbar -->
-	<div class="topbar">
-		<a class="site-title" href="/">Emma Campbell</a>
-		<nav>
-			<a href="/notebook">notebook</a>
-			<a href="/about">about</a>
-			<a href="/now" class="active">now</a>
-			<a href="/uses">uses</a>
-			<a href="/changelog">changelog</a>
-		</nav>
-	</div>
-
+<PageShell>
 	<!-- Page header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
@@ -34,23 +20,14 @@
 		<div class="page-header-content">
 			<p class="hero-eyebrow">∴ living document ∴</p>
 			<h1 class="page-title">what I'm up to <em>now</em></h1>
-			<p class="page-lede">A <a href="https://nownownow.com/about" class="lede-link">/now page</a>. Not a blog post, not a status page. Just what I'm up to, updated whenever something changes.</p>
+			<p class="page-lede">A <a href="https://nownownow.com/about" class="accent-link">/now page</a>. Not a blog post, not a status page. Just what I'm up to, updated whenever something changes.</p>
 		</div>
 		<div class="page-header-aside">
-			<div class="quick-facts">
-				<div class="qf-item">
-					<span class="qf-label">as of</span>
-					<span class="qf-value">{data.lastUpdated ?? ''}</span>
-				</div>
-				<div class="qf-item">
-					<span class="qf-label">location</span>
-					<span class="qf-value">Bloomington, IN</span>
-				</div>
-				<div class="qf-item">
-					<span class="qf-label">working on</span>
-					<span class="qf-value">Arboretum Lifesciences</span>
-				</div>
-			</div>
+			<QuickFacts facts={[
+				{ label: 'as of', value: data.lastUpdated ?? '' },
+				{ label: 'location', value: 'Bloomington, IN' },
+				{ label: 'working on', value: 'Arboretum Lifesciences' }
+			]} />
 		</div>
 	</div>
 
@@ -101,40 +78,4 @@
 			</div>
 		</div>
 	{/if}
-
-	<!-- Footer -->
-	<footer class="now-footer">
-		<span>&copy; 2022&ndash;2026 Emma &middot; CC-BY-SA 4.0</span>
-		<div class="footer-links">
-			<a href="/rss.xml">rss</a>
-			<a href="/changelog">changelog</a>
-			<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer">github</a>
-		</div>
-	</footer>
-</div>
-
-<style>
-	.page { position: relative; z-index: 1; }
-	.topbar nav a.active { color: var(--amber); }
-
-	.lede-link {
-		color: var(--amber);
-		text-decoration: none;
-		border-bottom: 1px solid rgba(232,168,48,0.4);
-	}
-	.lede-link:hover { border-bottom-color: var(--amber); }
-
-	.now-footer {
-		margin-left: calc(var(--col-label) - 2px);
-		border-left: 2px solid var(--red-line);
-		border-top: 1px solid var(--border);
-		padding: 1.5rem 2rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 0.68rem;
-		color: var(--muted);
-	}
-	.now-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-	.now-footer a:hover { color: var(--amber); }
-</style>
+</PageShell>

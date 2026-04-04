@@ -1,13 +1,6 @@
-import { getPublishedPosts } from '$lib/content';
-import type { PostEntry } from '$lib/content';
+import { getPublishedPosts, ENTRY_TYPES } from '$lib/content';
 import { createMDXPreview, renderMarkdown } from '$lib/content/markdown';
 import type { PageServerLoad } from './$types';
-
-const entryConfig: Record<PostEntry, { label: string; icon: string; filterClass: string }> = {
-	log:      { label: 'log',      icon: '◈', filterClass: 'filter-log' },
-	thinking: { label: 'thinking', icon: '✦', filterClass: 'filter-thinking' },
-	making:   { label: 'making',   icon: '⚗', filterClass: 'filter-making' }
-};
 
 export const load: PageServerLoad = async () => {
 	const posts = getPublishedPosts();
@@ -16,7 +9,7 @@ export const load: PageServerLoad = async () => {
 		posts.map(async (post) => {
 			const { preview, hasMore } = createMDXPreview(post.content, 2);
 			const excerptHtml = preview ? await renderMarkdown(preview) : '';
-			const config = entryConfig[post.entry];
+			const config = ENTRY_TYPES[post.entry];
 			const date = new Date(post.published);
 
 			return {
@@ -40,7 +33,7 @@ export const load: PageServerLoad = async () => {
 	// Count by type for the header aside
 	const typeCounts: Record<string, number> = {};
 	for (const post of posts) {
-		const label = entryConfig[post.entry].label;
+		const label = ENTRY_TYPES[post.entry].label;
 		typeCounts[label] = (typeCounts[label] || 0) + 1;
 	}
 

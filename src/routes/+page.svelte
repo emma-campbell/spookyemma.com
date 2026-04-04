@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import { BgCanvas } from '$lib/components';
+	import { PageShell } from '$lib/components';
+	import { ENTRY_TYPES, SECTION_ORDER } from '$lib/content';
 
 	let { data } = $props();
+
+	const tagPills = SECTION_ORDER.map((key) => {
+		const cfg = ENTRY_TYPES[key];
+		const colorName = cfg.color.replace('var(--', '').replace(')', '');
+		return { label: `${cfg.icon} ${cfg.label}`, cls: `tag-${colorName}` };
+	});
 </script>
 
 <svelte:head>
@@ -10,37 +17,23 @@
 	<meta name="description" content="Personal website of Emma Campbell. Software, experiments, notes, and the occult mundane." />
 </svelte:head>
 
-<BgCanvas />
-
-<div class="page">
-	<!-- Topbar -->
-	<div class="topbar">
-		<a class="site-title" href="/">Emma Campbell</a>
-		<nav>
-			<a href="/notebook">notebook</a>
-			<a href="/about">about</a>
-			<a href="/now">now</a>
-			<a href="/uses">uses</a>
-			<a href="/changelog">changelog</a>
-		</nav>
-	</div>
-
+<PageShell>
 	<!-- Hero -->
 	<div class="section-row hero-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--muted)">∴ index ∴</span>
+			<span class="row-label-text" style="color:var(--muted)">&#8756; index &#8756;</span>
 		</div>
 		<div class="row-content" style="padding-top:3.5rem;padding-bottom:3rem;">
-			<p class="hero-eyebrow">personal index · est. 2022</p>
+			<p class="hero-eyebrow">personal index &middot; est. 2022</p>
 			<h1 class="hero-title">the<em>occult<br>mundane</em></h1>
 			<p class="hero-desc">
 				This is the personal website of <a href="/about">Emma</a>.
 				I write about software, self-experiments, and things that haunt me.
 			</p>
 			<div class="tag-row">
-				<span class="tag tag-sage">◈ log</span>
-				<span class="tag tag-amber">✦ thinking</span>
-				<span class="tag tag-lavender">⚗ making</span>
+				{#each tagPills as pill}
+					<span class="tag {pill.cls}">{pill.label}</span>
+				{/each}
 			</div>
 		</div>
 	</div>
@@ -65,7 +58,7 @@
 							<span class="post-icon" style:color={section.color}>{section.icon}</span>
 							<a class="post-link" href="/notebook/{post.slug}">{post.title}</a>
 							{#each post.tags as tag}
-								<span class="post-badge badge-{section.id === 'log' ? 'sage' : section.id === 'making' ? 'lavender' : 'amber'}">{tag}</span>
+								<span class="post-badge badge-{section.badgeCls}">{tag}</span>
 							{/each}
 							<span class="post-meta">{format(new Date(post.published), 'yyyy-MM-dd')}</span>
 						</li>
@@ -74,54 +67,11 @@
 			</div>
 		</div>
 	{/each}
-
-	<!-- Footer -->
-	<div class="footer-row">
-		<div class="row-label"></div>
-		<footer>
-			<span>&copy; 2022&ndash;2026 Emma &middot; CC-BY-SA 4.0</span>
-			<div class="footer-links">
-				<a href="/rss.xml">rss</a>
-				<a href="/changelog">changelog</a>
-				<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer">github</a>
-			</div>
-		</footer>
-	</div>
-</div>
+</PageShell>
 
 <style>
-	.page {
-		position: relative;
-		z-index: 2;
-	}
-
 	.hero-row .row-label {
 		align-items: flex-end;
 		padding-bottom: 3rem;
-	}
-
-	.footer-row {
-		display: flex;
-		border-bottom: 1px solid var(--border);
-	}
-	.footer-row .row-label {
-		border-right: 1px solid var(--border);
-	}
-	.footer-row footer {
-		flex: 1;
-		padding: 1.5rem 2.5rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 0.68rem;
-		color: var(--muted);
-	}
-	.footer-row footer a {
-		color: var(--muted);
-		text-decoration: none;
-		transition: color 0.2s;
-	}
-	.footer-row footer a:hover {
-		color: var(--amber);
 	}
 </style>

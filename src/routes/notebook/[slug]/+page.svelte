@@ -1,17 +1,11 @@
 <script lang="ts">
-	import { BgCanvas } from '$lib/components';
+	import { PageShell } from '$lib/components';
+	import { ENTRY_TYPES } from '$lib/content';
 	import type { PageData } from './$types';
-	import type { PostEntry } from '$lib/content';
 
 	let { data }: { data: PageData } = $props();
 
-	const entryConfig: Record<PostEntry, { label: string; icon: string; color: string }> = {
-		log:      { label: 'log',      icon: '◈', color: 'var(--sage)' },
-		thinking: { label: 'thinking', icon: '✦', color: 'var(--amber)' },
-		making:   { label: 'making',   icon: '⚗', color: 'var(--lavender)' }
-	};
-
-	const config = $derived(entryConfig[data.post.entry]);
+	const config = $derived(ENTRY_TYPES[data.post.entry]);
 </script>
 
 <svelte:head>
@@ -19,21 +13,7 @@
 	<meta name="description" content={data.post.description || data.post.title} />
 </svelte:head>
 
-<BgCanvas />
-
-<div class="page">
-	<!-- Topbar -->
-	<div class="topbar">
-		<a class="site-title" href="/">Emma Campbell</a>
-		<nav>
-			<a href="/notebook">notebook</a>
-			<a href="/about">about</a>
-			<a href="/now">now</a>
-			<a href="/uses">uses</a>
-			<a href="/changelog">changelog</a>
-		</nav>
-	</div>
-
+<PageShell>
 	<div class="article-row">
 		<!-- Sticky label column -->
 		<div class="label-col">
@@ -111,8 +91,4 @@
 			{/if}
 		</div>
 	</div>
-</div>
-
-<style>
-	.page { position: relative; z-index: 2; }
-</style>
+</PageShell>

@@ -15,6 +15,7 @@ export { default as Hero } from './Hero.svelte';
 export { default as BgCanvas } from './BgCanvas.svelte';
 export { default as Topbar } from './Topbar.svelte';
 export { default as Footer } from './Footer.svelte';
+export { default as PageShell } from './PageShell.svelte';
 export { default as SectionRow } from './SectionRow.svelte';
 export { default as PageHeaderRow } from './PageHeaderRow.svelte';
 export { default as ContentHeader } from './ContentHeader.svelte';

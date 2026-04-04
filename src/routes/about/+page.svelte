@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BgCanvas, QuickFacts, StatBlock, InterestsList } from '$lib/components';
+	import { PageShell, QuickFacts, StatBlock, InterestsList } from '$lib/components';
 </script>
 
 <svelte:head>
@@ -7,21 +7,7 @@
 	<meta name="description" content="About Emma Campbell — software engineer, habit experimenter, dog befriender." />
 </svelte:head>
 
-<BgCanvas />
-
-<div class="page">
-	<!-- Topbar -->
-	<div class="topbar">
-		<a class="site-title" href="/">Emma Campbell</a>
-		<nav>
-			<a href="/notebook">notebook</a>
-			<a href="/about" class="active">about</a>
-			<a href="/now">now</a>
-			<a href="/uses">uses</a>
-			<a href="/changelog">changelog</a>
-		</nav>
-	</div>
-
+<PageShell>
 	<!-- Page header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
@@ -152,9 +138,9 @@
 				<p>I'm not very loud online. The best way to find me is through the work — the notebook is the most honest version of me that exists on the internet.</p>
 			</div>
 			<div style="margin-top:1.25rem;display:flex;gap:1.5rem;flex-wrap:wrap;">
-				<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer" class="about-link">github ↗</a>
-				<a href="/rss.xml" class="about-link">rss feed ↗</a>
-				<a href="/notebook" class="about-link">the notebook ↗</a>
+				<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer" class="accent-link">github ↗</a>
+				<a href="/rss.xml" class="accent-link">rss feed ↗</a>
+				<a href="/notebook" class="accent-link">the notebook ↗</a>
 			</div>
 		</div>
 		<div class="row-aside">
@@ -164,42 +150,4 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Footer -->
-	<footer class="about-footer">
-		<span>&copy; 2022&ndash;2026 Emma &middot; CC-BY-SA 4.0</span>
-		<div class="footer-links">
-			<a href="/rss.xml">rss</a>
-			<a href="/changelog">changelog</a>
-			<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer">github</a>
-		</div>
-	</footer>
-</div>
-
-<style>
-	.page { position: relative; z-index: 1; }
-	.topbar nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
-
-	.about-link {
-		font-size: 0.78rem;
-		color: var(--amber);
-		text-decoration: none;
-		border-bottom: 1px solid rgba(232,168,48,0.4);
-		transition: border-color 0.2s;
-	}
-	.about-link:hover { border-bottom-color: var(--amber); }
-
-	.about-footer {
-		margin-left: calc(var(--col-label) - 2px);
-		border-left: 2px solid var(--red-line);
-		border-top: 1px solid var(--border);
-		padding: 1.5rem 2rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 0.68rem;
-		color: var(--muted);
-	}
-	.about-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-	.about-footer a:hover { color: var(--amber); }
-</style>
+</PageShell>

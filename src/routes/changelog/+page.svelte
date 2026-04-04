@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BgCanvas } from '$lib/components';
+	import { PageShell } from '$lib/components';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -30,21 +30,7 @@
 	<meta name="description" content="What's changed on this site — new posts, fixes, redesigns, and version milestones." />
 </svelte:head>
 
-<BgCanvas />
-
-<div class="page">
-	<!-- Topbar -->
-	<div class="topbar">
-		<a class="site-title" href="/">Emma Campbell</a>
-		<nav>
-			<a href="/notebook">notebook</a>
-			<a href="/about">about</a>
-			<a href="/now">now</a>
-			<a href="/uses">uses</a>
-			<a href="/changelog" class="active">changelog</a>
-		</nav>
-	</div>
-
+<PageShell>
 	<!-- Page header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
@@ -96,33 +82,4 @@
 			</div>
 		</div>
 	{/each}
-
-	<!-- Footer -->
-	<footer class="cl-footer">
-		<span>&copy; 2022&ndash;2026 Emma &middot; CC-BY-SA 4.0</span>
-		<div class="footer-links">
-			<a href="/rss.xml">rss</a>
-			<a href="/changelog">changelog</a>
-			<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer">github</a>
-		</div>
-	</footer>
-</div>
-
-<style>
-	.page { position: relative; z-index: 1; }
-	.topbar nav a.active { color: var(--amber); }
-
-	.cl-footer {
-		margin-left: calc(var(--col-label) - 2px);
-		border-left: 2px solid var(--red-line);
-		border-top: 1px solid var(--border);
-		padding: 1.5rem 2rem;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 0.68rem;
-		color: var(--muted);
-	}
-	.cl-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-	.cl-footer a:hover { color: var(--amber); }
-</style>
+</PageShell>
