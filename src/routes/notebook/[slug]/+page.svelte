@@ -61,8 +61,8 @@
 			</div>
 
 			{#if data.references.length > 0}
-				<div class="references">
-					<div class="references-title">references</div>
+				<div class="citations">
+					<p class="citations-title">references</p>
 					<ol>
 						{#each data.references as ref}
 							<li><a href={ref.url}>{ref.title || ref.url}</a></li>
@@ -72,9 +72,9 @@
 			{/if}
 
 			{#if data.prevPost || data.nextPost}
-				<nav class="post-nav-inline">
+				<nav class="post-nav">
 					{#if data.prevPost}
-						<a class="post-nav-link prev" href="/notebook/{data.prevPost.slug}">
+						<a class="post-nav-item prev" href="/notebook/{data.prevPost.slug}">
 							<span class="post-nav-dir">← previous</span>
 							<span class="post-nav-title">{data.prevPost.title}</span>
 						</a>
@@ -82,7 +82,7 @@
 						<span></span>
 					{/if}
 					{#if data.nextPost}
-						<a class="post-nav-link next" href="/notebook/{data.nextPost.slug}">
+						<a class="post-nav-item next" href="/notebook/{data.nextPost.slug}">
 							<span class="post-nav-dir">next →</span>
 							<span class="post-nav-title">{data.nextPost.title}</span>
 						</a>
@@ -147,47 +147,6 @@
 .meta-label { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .meta-value { font-size: 0.78rem; color: var(--amber); }
 
-/* References section */
-.references {
-	margin-top: 3rem; padding-top: 1.5rem;
-	border-top: 1px solid var(--border);
-	max-width: 620px;
-}
-.references-title {
-	font-size: 0.65rem; letter-spacing: 0.12em;
-	text-transform: uppercase; color: var(--muted);
-	margin-bottom: 1rem;
-}
-.references ol { list-style: none; counter-reset: refs; }
-.references li {
-	counter-increment: refs;
-	font-size: 0.75rem; color: var(--muted);
-	padding: 0.4rem 0;
-	border-bottom: 1px solid rgba(196,169,106,0.08);
-	display: flex; gap: 0.75rem; align-items: baseline;
-}
-.references li::before {
-	content: counter(refs);
-	color: var(--amber); font-size: 0.65rem;
-	flex-shrink: 0; min-width: 1rem; text-align: right;
-}
-.references li a { color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(154,142,126,0.3); }
-.references li a:hover { color: var(--parchment); }
-
-/* Post nav (inline in article) */
-.post-nav-inline {
-	display: flex; justify-content: space-between; gap: 1rem;
-	margin-top: 3.5rem; padding-top: 1.5rem;
-	border-top: 1px solid var(--border);
-	max-width: 620px;
-}
-.post-nav-inline .post-nav-link {
-	display: flex; flex-direction: column; gap: 0.3rem;
-	text-decoration: none; max-width: 45%;
-}
-.post-nav-inline .post-nav-link.next { align-items: flex-end; text-align: right; }
-.post-nav-inline .post-nav-link:hover .post-nav-title { color: var(--amber); border-bottom-color: var(--amber); }
-
 /* Tablet: tighten content */
 @media (max-width: 899px) {
 	.content-col { padding: 2.5rem 2rem 4rem 2rem; }
@@ -200,9 +159,8 @@
 	.content-col { padding: 1.5rem 1.25rem 3rem; max-width: none; }
 	.post-title { font-size: clamp(1.4rem, 6vw, 2rem); }
 	.meta-strip { gap: 1rem; margin-bottom: 2rem; padding-bottom: 1rem; }
-	.references { max-width: none; }
-	.post-nav-inline { max-width: none; flex-direction: column; gap: 1rem; }
-	.post-nav-inline .post-nav-link { max-width: none; }
-	.post-nav-inline .post-nav-link.next { align-items: flex-start; text-align: left; }
+	.post-nav { flex-direction: column; gap: 0.75rem; }
+	.post-nav-item { padding: 1rem 1.25rem; }
+	.post-nav-item.next { text-align: left; }
 }
 </style>
