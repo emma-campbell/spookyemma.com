@@ -4,6 +4,36 @@ subtitle: What's changed on this site.
 entries:
   # ── April 2026 ──
   - date: 2026-04-03
+    tag: meta
+    text: "Layout v5 — field notes redesign: ink/parchment theme, Playfair + Courier Prime, 3-column layout with label sidebar"
+  - date: 2026-04-03
+    tag: changed
+    text: "Restructured content into 3 categories: ◈ log, ✦ thinking, ⚗ making (replaces blog/experiments/notes/guides/micro)"
+  - date: 2026-04-03
+    tag: added
+    text: "Responsive layout — tablet (2-col) and mobile (1-col) breakpoints with hamburger nav"
+  - date: 2026-04-03
+    tag: added
+    text: "Animated Perlin noise background with cursor repel effect"
+  - date: 2026-04-03
+    tag: added
+    text: "New pages: about, uses, CV, design showcase — all with 3-column field notes layout"
+  - date: 2026-04-03
+    tag: added
+    text: "Notebook feed page with rich entry cards, date column, type filters, and excerpts"
+  - date: 2026-04-03
+    tag: added
+    text: "20 new components: PageShell, Topbar, Footer, BgCanvas, SectionRow, PageHeaderRow, ContentHeader, QuickFacts, StatBlock, InterestsList, GearList, CvEntry, SkillGroup, ChangelogEntry, MonthStats, PostTypePill, MarginNote, SimpleTimeline, CodeBlock, HrOrnament"
+  - date: 2026-04-03
+    tag: changed
+    text: "Post page redesign — sticky label column with metadata, Playfair title, pull-quote blockquotes"
+  - date: 2026-04-03
+    tag: changed
+    text: "DRY refactor — shared ENTRY_TYPES config, PageShell wrapper, moved ~550 lines of page-specific CSS from app.css into component scopes"
+  - date: 2026-04-03
+    tag: fixed
+    text: "CV timeline dot alignment, changelog date formatting, heading double-underline, prose list bullet markers"
+  - date: 2026-04-03
     tag: added
     text: CV Page
   # ── February 2026 ──
