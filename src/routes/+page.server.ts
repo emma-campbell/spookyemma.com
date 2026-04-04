@@ -3,9 +3,9 @@ import type { PostEntry } from '$lib/content';
 import type { PageServerLoad } from './$types';
 
 const sectionConfig: Record<PostEntry, { label: string; icon: string; color: string; order: number }> = {
-	log:      { label: 'Log', icon: '◈', color: 'var(--sage)', order: 1 },
+	making:   { label: 'Making', icon: '⚗', color: 'var(--lavender)', order: 1 },
 	thinking: { label: 'Thinking', icon: '✦', color: 'var(--amber)', order: 2 },
-	making:   { label: 'Making', icon: '⚗', color: 'var(--lavender)', order: 3 }
+	log:      { label: 'Log', icon: '◈', color: 'var(--sage)', order: 3 }
 };
 
 export const load: PageServerLoad = async () => {
