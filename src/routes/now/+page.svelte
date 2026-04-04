@@ -140,4 +140,10 @@
 	border: 1px solid var(--border); background: var(--ink);
 }
 .now-timeline-item.notable::before { border-color: var(--coral); }
+
+/* Mobile: tighten timeline */
+@media (max-width: 599px) {
+	.now-timeline { padding-left: 1.25rem; }
+	.tl-prose { font-size: 0.78rem; }
+}
 </style>

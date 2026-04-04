@@ -133,4 +133,25 @@
 .month-stat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.65rem; color: var(--muted); }
 .month-stat-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 .month-stat-count { color: var(--parchment); font-variant-numeric: tabular-nums; }
+
+/* Tablet: drop month aside */
+@media (max-width: 899px) {
+	.month-aside { display: none; }
+	.month-content { border-right: none; }
+}
+
+/* Mobile: collapse month label */
+@media (max-width: 599px) {
+	.month-row { flex-direction: column; }
+	.month-label {
+		width: auto; border-right: none;
+		border-bottom: 2px solid var(--red-line);
+		flex-direction: row; gap: 0.5rem;
+		padding: 0.75rem 1.25rem;
+		justify-content: flex-start;
+	}
+	.month-content { padding: 1rem 1.25rem; border-right: none; }
+	.cl-entry-row { grid-template-columns: auto auto 1fr; gap: 0 0.5rem; }
+	.cl-entry-date { font-size: 0.62rem; }
+}
 </style>

@@ -212,4 +212,10 @@
 .edu-focus { font-size: 0.78rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
 .edu-courses { font-size: 0.75rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; }
 .edu-courses strong { display: block; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; font-weight: 400; }
+
+/* Mobile: tighten CV layout */
+@media (max-width: 599px) {
+	.cv-entries { padding-left: 1.25rem; margin-left: 0.75rem; }
+	.skills-grid { gap: 1rem; }
+}
 </style>

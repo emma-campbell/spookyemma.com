@@ -1345,22 +1345,130 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
 /* ═══════════════════════════════════════════════════
    MOBILE
    ═══════════════════════════════════════════════════ */
-@media (max-width: 768px) {
+/* ── Tablet (600–899px): drop right aside, keep label col ── */
+@media (max-width: 899px) {
+	.row-aside { display: none; }
+	.row-content { border-right: none; }
+
+	.page-header-aside {
+		width: auto;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 1rem 2rem;
+		padding: 1rem 2rem;
+		border-top: 1px solid var(--border);
+	}
+	.page-header-row { flex-wrap: wrap; }
+	.page-header-content { border-right: none; }
+
+	.aside { float: none; width: auto; margin: 1rem 0; }
+	.lib-row { grid-template-columns: 1fr; }
+}
+
+/* ── Mobile (<600px): single column, no label col ── */
+@media (max-width: 599px) {
+	/* Topbar loses label offset */
+	.topbar { margin-left: 0; border-left: none; padding: 1rem 1.25rem; }
+
+	/* Kill label column */
+	.section-row { flex-direction: column; }
+	.row-label { display: none; }
+	.row-content {
+		border-right: none;
+		border-top: 2px solid var(--red-line);
+		padding: 1.25rem;
+	}
+
+	/* Page header collapses */
+	.page-header-row { flex-direction: column; }
+	.page-header-label { display: none; }
+	.page-header-content { padding: 1.5rem 1.25rem; border-right: none; }
+	.page-header-aside {
+		width: auto;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.5rem;
+		padding: 1rem 1.25rem;
+		border-top: 1px solid var(--border);
+	}
+
+	/* Footer loses label offset */
+	.page-footer, .footer { margin-left: 0; border-left: none; padding: 1.25rem; }
+
+	/* Prose tightens */
+	.prose { font-size: 0.85rem; }
+
+	/* Meta block collapses */
 	.meta-block { grid-template-columns: 1fr; gap: var(--space-2xs); }
 	.meta-block dt { margin-top: var(--space-xs); }
 	.meta-block dd { padding-left: var(--space-sm); }
+
+	/* Prev/next stacks */
 	.prev-next { flex-direction: column; gap: var(--space-sm); }
 	.prev-next .next { text-align: left; }
-	.lib-row { grid-template-columns: 1fr; }
+
+	/* Citations */
 	.citation-item { flex-direction: column; gap: var(--space-2xs); }
-	.section-row { flex-direction: column; }
-	.row-label { width: auto; border-right: none; border-bottom: 2px solid var(--red-line); justify-content: flex-start; padding: 1rem; }
-	.page-header-row { flex-direction: column; }
-	.page-header-label { width: auto; border-right: none; border-bottom: 2px solid var(--red-line); flex-direction: row; justify-content: flex-start; gap: 1rem; padding: 1rem; }
-	.page-header-content { padding: 1.5rem; }
-	.page-header-aside { width: auto; padding: 1rem 1.5rem; border-top: 1px solid var(--border); }
-	.cl-entry { grid-template-columns: 1fr; gap: 0.25rem; }
-	.aside { float: none; width: auto; margin: 1rem 0; }
+
+	/* Content header tightens */
+	.content-header { margin-bottom: 1rem; }
+	.ch-glyph { width: 22px; height: 22px; font-size: 0.75rem; }
+
+	/* Post list tightens */
+	.post-item { gap: 0.5rem; }
+	.post-meta { font-size: 0.6rem; }
+
+	/* Quick facts compact */
+	.qf-item { padding-left: 0.5rem; }
+
+	/* Hero scales */
+	.hero-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+	.hero-desc { font-size: 0.8rem; }
+
+	/* Tags wrap tighter */
+	.tag { font-size: 0.58rem; padding: 3px 7px; }
+}
+
+/* ── Mobile meta strip (replaces label col at <600px) ── */
+.mobile-meta-strip { display: none; }
+
+@media (max-width: 599px) {
+	.mobile-meta-strip {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.55rem 1.25rem;
+		font-size: 0.65rem;
+		letter-spacing: 0.06em;
+		color: var(--muted);
+		border-bottom: 1px solid var(--border);
+	}
+	.mobile-meta-strip .sep { opacity: 0.4; }
+}
+
+/* ── Field notes toggle (replaces right margin at <600px) ── */
+.field-notes-toggle { display: none; }
+
+@media (max-width: 599px) {
+	.field-notes-toggle {
+		display: block;
+		border-top: 1px solid var(--border);
+		padding: 0.75rem 1.25rem 1rem;
+		font-size: 0.68rem;
+	}
+	.field-notes-toggle summary {
+		color: var(--muted);
+		cursor: pointer;
+		list-style: none;
+		letter-spacing: 0.06em;
+		margin-bottom: 0.75rem;
+	}
+	.field-notes-toggle summary::-webkit-details-marker { display: none; }
+	.field-notes-toggle .annotation {
+		border-left: 1px solid var(--border);
+		padding-left: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
 }
 
 /* ═══════════════════════════════════════════════════

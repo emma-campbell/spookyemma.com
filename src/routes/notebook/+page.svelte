@@ -244,4 +244,28 @@
 /* Notebook header aside stats */
 .nb-type-stats { display: flex; flex-direction: column; gap: 0.55rem; }
 .nb-type-row { display: flex; justify-content: space-between; font-size: 0.68rem; }
+
+/* Tablet: drop aside */
+@media (max-width: 899px) {
+	.entry-aside { display: none; }
+	.filter-aside { display: none; }
+	.filter-content { border-right: none; }
+}
+
+/* Mobile: collapse date col, full-width entries */
+@media (max-width: 599px) {
+	.filter-row { position: static; }
+	.filter-label-col { display: none; }
+	.filter-content { padding: 0.75rem 1.25rem; border-right: none; }
+	.filter-btn { font-size: 0.6rem; padding: 3px 8px; }
+
+	.feed-entry { flex-direction: column; }
+	.entry-date-col { display: none; }
+	.entry-aside { display: none; }
+	.entry-body { width: 100%; }
+	.entry-meta { padding: 1.25rem 1.25rem 0.5rem; }
+	.entry-title { padding: 0 1.25rem 0.5rem; font-size: 1rem; }
+	.entry-excerpt { padding: 0 1.25rem 1rem; font-size: 0.82rem; }
+	.entry-footer { padding: 0.75rem 1.25rem 1.25rem; }
+}
 </style>
