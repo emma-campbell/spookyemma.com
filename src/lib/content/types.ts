@@ -1,5 +1,5 @@
 export type PostStatus = 'draft' | 'published';
-export type PostEntry = 'note' | 'essay' | 'how-to' | 'micro' | 'experiment';
+export type PostEntry = 'log' | 'thinking' | 'making';
 
 export interface Post {
   slug: string;

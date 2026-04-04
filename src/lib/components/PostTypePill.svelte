@@ -1,16 +1,14 @@
 <script lang="ts">
 	interface Props {
-		type: 'blog' | 'experiment' | 'note' | 'guide' | 'micro';
+		type: 'log' | 'thinking' | 'making';
 	}
 
 	let { type }: Props = $props();
 
 	const config: Record<string, { glyph: string; color: string }> = {
-		blog:       { glyph: '✦', color: 'var(--amber)' },
-		experiment: { glyph: '⚗', color: 'var(--coral)' },
-		note:       { glyph: '◈', color: 'var(--sage)' },
-		guide:      { glyph: '⌘', color: 'var(--lavender)' },
-		micro:      { glyph: '○', color: 'var(--muted)' }
+		log:      { glyph: '◈', color: 'var(--sage)' },
+		thinking: { glyph: '✦', color: 'var(--amber)' },
+		making:   { glyph: '⚗', color: 'var(--lavender)' }
 	};
 
 	const c = $derived(config[type]);

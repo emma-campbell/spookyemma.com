@@ -18,19 +18,15 @@
 
 	const filters = [
 		{ key: 'all', label: 'all', cls: 'filter-all' },
-		{ key: 'essay', label: '✦ blog', cls: 'filter-blog' },
-		{ key: 'experiment', label: '⚗ experiments', cls: 'filter-exp' },
-		{ key: 'note', label: '◈ notes', cls: 'filter-notes' },
-		{ key: 'how-to', label: '⌘ guides', cls: 'filter-guides' },
-		{ key: 'micro', label: '○ micro', cls: 'filter-micro' }
+		{ key: 'log', label: '◈ log', cls: 'filter-log' },
+		{ key: 'thinking', label: '✦ thinking', cls: 'filter-thinking' },
+		{ key: 'making', label: '⚗ making', cls: 'filter-making' }
 	];
 
 	const typeStats = [
-		{ icon: '✦', label: 'blog', color: 'var(--amber)', key: 'blog' },
-		{ icon: '⚗', label: 'experiments', color: 'var(--coral)', key: 'experiment' },
-		{ icon: '◈', label: 'notes', color: 'var(--sage)', key: 'note' },
-		{ icon: '⌘', label: 'guides', color: 'var(--lavender)', key: 'guide' },
-		{ icon: '○', label: 'micro', color: 'var(--muted)', key: 'micro' }
+		{ icon: '◈', label: 'log', color: 'var(--sage)', key: 'log' },
+		{ icon: '✦', label: 'thinking', color: 'var(--amber)', key: 'thinking' },
+		{ icon: '⚗', label: 'making', color: 'var(--lavender)', key: 'making' }
 	];
 </script>
 
@@ -111,7 +107,7 @@
 					{#if entry.tags.length > 0}
 						<div class="entry-tags">
 							{#each entry.tags as tag}
-								<span class="entry-tag badge-{entry.entry === 'note' ? 'sage' : entry.entry === 'how-to' ? 'lavender' : entry.entry === 'experiment' ? 'coral' : 'amber'}">{tag}</span>
+								<span class="entry-tag badge-{entry.entry === 'log' ? 'sage' : entry.entry === 'making' ? 'lavender' : 'amber'}">{tag}</span>
 							{/each}
 						</div>
 					{/if}

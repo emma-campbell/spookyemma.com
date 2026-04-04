@@ -6,11 +6,9 @@
 	let { data }: { data: PageData } = $props();
 
 	const entryConfig: Record<PostEntry, { label: string; icon: string; color: string }> = {
-		essay:      { label: 'blog',       icon: '✦', color: 'var(--amber)' },
-		experiment: { label: 'experiment', icon: '⚗', color: 'var(--coral)' },
-		note:       { label: 'note',       icon: '◈', color: 'var(--sage)' },
-		'how-to':   { label: 'guide',      icon: '⌘', color: 'var(--lavender)' },
-		micro:      { label: 'micro',      icon: '○', color: 'var(--muted)' }
+		log:      { label: 'log',      icon: '◈', color: 'var(--sage)' },
+		thinking: { label: 'thinking', icon: '✦', color: 'var(--amber)' },
+		making:   { label: 'making',   icon: '⚗', color: 'var(--lavender)' }
 	};
 
 	const config = $derived(entryConfig[data.post.entry]);

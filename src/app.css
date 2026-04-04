@@ -1740,18 +1740,14 @@ pre code .line.diff.remove { background-color: rgba(212,101,74,0.15); }
 	transition: background 0.15s, color 0.15s;
 }
 .filter-btn:hover { background: rgba(255,255,255,0.05); }
-.filter-all    { color: var(--parchment); border-color: var(--border); }
+.filter-all      { color: var(--parchment); border-color: var(--border); }
 .filter-all.active { color: var(--amber); border-color: var(--amber); background: rgba(232,168,48,0.08); }
-.filter-blog   { color: var(--amber); }
-.filter-blog.active   { background: rgba(232,168,48,0.08); }
-.filter-exp    { color: var(--coral); }
-.filter-exp.active    { background: rgba(212,101,74,0.08); }
-.filter-notes  { color: var(--sage); }
-.filter-notes.active  { background: rgba(122,158,126,0.08); }
-.filter-guides { color: var(--lavender); }
-.filter-guides.active { background: rgba(155,142,196,0.08); }
-.filter-micro  { color: var(--muted); }
-.filter-micro.active  { background: rgba(154,142,126,0.08); }
+.filter-log      { color: var(--sage); }
+.filter-log.active      { background: rgba(122,158,126,0.08); }
+.filter-thinking { color: var(--amber); }
+.filter-thinking.active { background: rgba(232,168,48,0.08); }
+.filter-making   { color: var(--lavender); }
+.filter-making.active   { background: rgba(155,142,196,0.08); }
 .filter-aside {
 	width: 220px; flex-shrink: 0; padding: 0.9rem 1.5rem;
 	display: flex; align-items: center;
@@ -1846,11 +1842,9 @@ pre code .line.diff.remove { background-color: rgba(212,101,74,0.15); }
 .feed-entry:hover .entry-read-link { color: var(--amber); }
 
 /* Type color variants */
-.type-essay      .entry-glyph, .type-essay      .entry-type-label { color: var(--amber); }
-.type-experiment .entry-glyph, .type-experiment .entry-type-label { color: var(--coral); }
-.type-note       .entry-glyph, .type-note       .entry-type-label { color: var(--sage); }
-.type-how-to     .entry-glyph, .type-how-to     .entry-type-label { color: var(--lavender); }
-.type-micro      .entry-glyph, .type-micro      .entry-type-label { color: var(--muted); }
+.type-log      .entry-glyph, .type-log      .entry-type-label { color: var(--sage); }
+.type-thinking .entry-glyph, .type-thinking .entry-type-label { color: var(--amber); }
+.type-making   .entry-glyph, .type-making   .entry-type-label { color: var(--lavender); }
 
 .entry-aside {
 	width: 220px; flex-shrink: 0;

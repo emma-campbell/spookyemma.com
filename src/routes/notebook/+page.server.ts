@@ -4,11 +4,9 @@ import { createMDXPreview, renderMarkdown } from '$lib/content/markdown';
 import type { PageServerLoad } from './$types';
 
 const entryConfig: Record<PostEntry, { label: string; icon: string; filterClass: string }> = {
-	essay:      { label: 'blog',        icon: '✦', filterClass: 'filter-blog' },
-	experiment: { label: 'experiment',  icon: '⚗', filterClass: 'filter-exp' },
-	note:       { label: 'note',        icon: '◈', filterClass: 'filter-notes' },
-	'how-to':   { label: 'guide',       icon: '⌘', filterClass: 'filter-guides' },
-	micro:      { label: 'micro',       icon: '○', filterClass: 'filter-micro' }
+	log:      { label: 'log',      icon: '◈', filterClass: 'filter-log' },
+	thinking: { label: 'thinking', icon: '✦', filterClass: 'filter-thinking' },
+	making:   { label: 'making',   icon: '⚗', filterClass: 'filter-making' }
 };
 
 export const load: PageServerLoad = async () => {

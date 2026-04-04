@@ -38,10 +38,9 @@
 				I write about software, self-experiments, and things that haunt me.
 			</p>
 			<div class="tag-row">
-				<span class="tag tag-amber">✦ software</span>
-				<span class="tag tag-coral">⚗ experiments</span>
-				<span class="tag tag-sage">◈ notes</span>
-				<span class="tag tag-lavender">⌘ guides</span>
+				<span class="tag tag-sage">◈ log</span>
+				<span class="tag tag-amber">✦ thinking</span>
+				<span class="tag tag-lavender">⚗ making</span>
 			</div>
 		</div>
 	</div>
@@ -66,7 +65,7 @@
 							<span class="post-icon" style:color={section.color}>{section.icon}</span>
 							<a class="post-link" href="/notebook/{post.slug}">{post.title}</a>
 							{#each post.tags as tag}
-								<span class="post-badge badge-{section.id === 'blog' ? 'amber' : section.id === 'experiments' ? 'coral' : section.id === 'notes' ? 'sage' : section.id === 'guides' ? 'lavender' : 'amber'}">{tag}</span>
+								<span class="post-badge badge-{section.id === 'log' ? 'sage' : section.id === 'making' ? 'lavender' : 'amber'}">{tag}</span>
 							{/each}
 							<span class="post-meta">{format(new Date(post.published), 'yyyy-MM-dd')}</span>
 						</li>

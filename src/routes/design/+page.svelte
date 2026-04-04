@@ -100,11 +100,9 @@
 		<p class="lib-section-title">05 · post type pill</p>
 		<div class="lib-row full">
 			<div class="lib-preview" style="display:flex;gap:0.5rem;flex-wrap:wrap">
-				<PostTypePill type="blog" />
-				<PostTypePill type="experiment" />
-				<PostTypePill type="note" />
-				<PostTypePill type="guide" />
-				<PostTypePill type="micro" />
+				<PostTypePill type="log" />
+				<PostTypePill type="thinking" />
+				<PostTypePill type="making" />
 			</div>
 		</div>
 	</div>
