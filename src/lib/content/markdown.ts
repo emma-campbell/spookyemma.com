@@ -191,7 +191,7 @@ export async function renderMarkdown(content: string, options: RenderOptions = {
 					return `<div class="callout ${type}"><div class="callout-label">${icons[type]}</div>${body}</div>`;
 				}
 
-				return `<blockquote class="blockquote">${inner}</blockquote>`;
+				return `<div class="pull-quote">${inner}</div>`;
 			},
 			code(token: Tokens.Code) {
 				const language = token.lang || 'text';

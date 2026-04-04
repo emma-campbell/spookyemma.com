@@ -1,247 +1,128 @@
 <script lang="ts">
 	import { format } from 'date-fns';
+	import { BgCanvas } from '$lib/components';
 
 	let { data } = $props();
 </script>
 
-<div class="intro">
-	<p>
-		This is the personal website of <a href="/about">Emma</a>.
-		I write about software, the occult mundane, self-experiments, and things that haunt me.
-		Content is organized below by topic; for recent additions see the
-		<a href="/changelog">changelog</a>.
-	</p>
-</div>
+<svelte:head>
+	<title>Emma Campbell</title>
+	<meta name="description" content="Personal website of Emma Campbell. Software, experiments, notes, and the occult mundane." />
+</svelte:head>
 
-<div class="toc">
-	{#each data.sections as section, i}
-		<a href="#{section.id}">{section.label}</a>
-		{#if i < data.sections.length - 1}
-			<span class="toc-sep">&middot;</span>
-		{/if}
-	{/each}
-	<span class="toc-sep">&middot;</span>
-	<a href="#pages">Pages</a>
-</div>
+<BgCanvas />
 
-{#each data.sections as section}
-	<details class="section" id={section.id} open>
-		<summary class="section-header">
-			<h2>{section.label}</h2>
-			<span class="section-count">{section.posts.length}</span>
-			<span class="section-toggle"></span>
-		</summary>
-		<div class="section-body">
-			<ul class="link-list">
-				{#each section.posts as post}
-					<li>
-						<span class="link-icon">{section.icon}</span>
-						<a href="/notebook/{post.slug}">{post.title}</a>
-						{#if post.tags.length > 0}
-							{#each post.tags as tag}
-								<span class="tag">{tag}</span>
-							{/each}
-						{/if}
-						<span class="link-date">{format(new Date(post.published), 'yyyy-MM-dd')}</span>
-					</li>
-				{/each}
-			</ul>
-		</div>
-	</details>
-{/each}
-
-<details class="section" id="pages" open>
-	<summary class="section-header">
-		<h2>Pages</h2>
-		<span class="section-count">{data.pages.length}</span>
-		<span class="section-toggle"></span>
-	</summary>
-	<div class="section-body">
-		<ul class="link-list">
-			{#each data.pages as pg}
-				<li>
-					<span class="link-icon">○</span>
-					<a href={pg.href}>{pg.label}</a>
-				</li>
-			{/each}
-		</ul>
+<div class="page">
+	<!-- Topbar -->
+	<div class="topbar">
+		<a class="site-title" href="/">Emma Campbell</a>
+		<nav>
+			<a href="/notebook">notebook</a>
+			<a href="/about">about</a>
+			<a href="/now">now</a>
+			<a href="/uses">uses</a>
+			<a href="/changelog">changelog</a>
+		</nav>
 	</div>
-</details>
+
+	<!-- Hero -->
+	<div class="section-row hero-row">
+		<div class="row-label">
+			<span class="row-label-text" style="color:var(--muted)">∴ index ∴</span>
+		</div>
+		<div class="row-content" style="padding-top:3.5rem;padding-bottom:3rem;">
+			<p class="hero-eyebrow">personal index · est. 2022</p>
+			<h1 class="hero-title">the<em>occult<br>mundane</em></h1>
+			<p class="hero-desc">
+				This is the personal website of <a href="/about">Emma</a>.
+				I write about software, self-experiments, and things that haunt me.
+			</p>
+			<div class="tag-row">
+				<span class="tag tag-amber">✦ software</span>
+				<span class="tag tag-coral">⚗ experiments</span>
+				<span class="tag tag-sage">◈ notes</span>
+				<span class="tag tag-lavender">⌘ guides</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Sections -->
+	{#each data.sections as section}
+		<div class="section-row">
+			<div class="row-label">
+				<span class="row-label-text" style:color={section.color}>
+					{section.label.toLowerCase()}<span class="row-label-num">{section.sectionNum}</span>
+				</span>
+			</div>
+			<div class="row-content">
+				<div class="content-header">
+					<span class="ch-glyph" style:color={section.color}>{section.icon}</span>
+					<span class="ch-title">{section.label}</span>
+					<span class="ch-count">{section.posts.length} {section.posts.length === 1 ? 'entry' : 'entries'}</span>
+				</div>
+				<ul class="post-list">
+					{#each section.posts as post}
+						<li class="post-item">
+							<span class="post-icon" style:color={section.color}>{section.icon}</span>
+							<a class="post-link" href="/notebook/{post.slug}">{post.title}</a>
+							{#each post.tags as tag}
+								<span class="post-badge badge-{section.id === 'blog' ? 'amber' : section.id === 'experiments' ? 'coral' : section.id === 'notes' ? 'sage' : section.id === 'guides' ? 'lavender' : 'amber'}">{tag}</span>
+							{/each}
+							<span class="post-meta">{format(new Date(post.published), 'yyyy-MM-dd')}</span>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		</div>
+	{/each}
+
+	<!-- Footer -->
+	<div class="footer-row">
+		<div class="row-label"></div>
+		<footer>
+			<span>&copy; 2022&ndash;2026 Emma &middot; CC-BY-SA 4.0</span>
+			<div class="footer-links">
+				<a href="/rss.xml">rss</a>
+				<a href="/changelog">changelog</a>
+				<a href="https://github.com/emma-campbell" target="_blank" rel="noopener noreferrer">github</a>
+			</div>
+		</footer>
+	</div>
+</div>
 
 <style>
-	.intro {
-		margin-bottom: 3rem;
-		padding-bottom: 2rem;
+	.page {
+		position: relative;
+		z-index: 2;
+	}
+
+	.hero-row .row-label {
+		align-items: flex-end;
+		padding-bottom: 3rem;
+	}
+
+	.footer-row {
+		display: flex;
 		border-bottom: 1px solid var(--border);
 	}
-
-	.intro p {
-		color: var(--muted-ink);
-		max-width: 80ch;
+	.footer-row .row-label {
+		border-right: 1px solid var(--border);
 	}
-
-	.intro p a {
-		color: var(--text);
-		text-decoration: underline;
-		text-decoration-color: var(--border);
-		text-underline-offset: 3px;
-		transition: text-decoration-color 120ms ease;
-	}
-
-	.intro p a:hover {
-		text-decoration-color: var(--text);
-	}
-
-	.toc {
+	.footer-row footer {
+		flex: 1;
+		padding: 1.5rem 2.5rem;
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.25rem 1rem;
-		margin-bottom: 3rem;
-		padding-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border);
-		font-size: 0.75rem;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.68rem;
+		color: var(--muted);
 	}
-
-	.toc a {
-		color: var(--muted-ink);
+	.footer-row footer a {
+		color: var(--muted);
 		text-decoration: none;
-		transition: color 120ms ease;
+		transition: color 0.2s;
 	}
-
-	.toc a:hover {
-		color: var(--text);
-	}
-
-	.toc-sep {
-		color: var(--border);
-		user-select: none;
-	}
-
-	.section {
-		margin-bottom: 3rem;
-	}
-
-	.section-header {
-		display: flex;
-		align-items: baseline;
-		gap: 0.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 0.25rem;
-		border-bottom: 1px solid var(--border-subtle);
-		cursor: pointer;
-		list-style: none;
-		user-select: none;
-	}
-
-	.section-header::-webkit-details-marker {
-		display: none;
-	}
-
-	.section-header h2 {
-		font-family: 'Geist Mono Variable', ui-monospace, monospace;
-		font-size: 0.8rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: var(--text);
-	}
-
-	.section-count {
-		font-size: 0.65rem;
-		color: var(--muted-ink);
-		font-weight: 400;
-	}
-
-	.section-toggle {
-		margin-left: auto;
-		font-size: 0.65rem;
-		color: var(--muted-ink);
-	}
-
-	details[open] .section-toggle::after {
-		content: '▾';
-	}
-
-	details:not([open]) .section-toggle::after {
-		content: '▸';
-	}
-
-	.section-body {
-		animation: fadeIn 200ms ease;
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(-4px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.link-list {
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		padding: 0;
-	}
-
-	.link-list li {
-		display: flex;
-		align-items: baseline;
-		gap: 0.5rem;
-		padding: 3px 0;
-	}
-
-	.link-list a {
-		color: var(--link);
-		text-decoration: none;
-		transition: color 120ms ease;
-		font-size: 0.8125rem;
-	}
-
-	.link-list a:hover {
-		color: var(--link-hover);
-	}
-
-	.link-list a:visited {
-		color: var(--link-visited);
-	}
-
-	.link-icon {
-		font-size: 0.6rem;
-		color: var(--muted-ink);
-		opacity: 0.5;
-		flex-shrink: 0;
-		width: 1.2em;
-		text-align: center;
-	}
-
-	.link-date {
-		font-size: 0.65rem;
-		color: var(--muted-ink);
-		opacity: 0.6;
-		margin-left: auto;
-		flex-shrink: 0;
-		font-variant-numeric: tabular-nums;
-	}
-
-	.tag {
-		display: inline-block;
-		font-size: 0.6rem;
-		color: var(--tag-text);
-		background: var(--tag-bg);
-		padding: 1px 6px;
-		border-radius: 2px;
-		letter-spacing: 0.03em;
-	}
-
-	@media (max-width: 768px) {
-		.link-date {
-			display: none;
-		}
+	.footer-row footer a:hover {
+		color: var(--amber);
 	}
 </style>

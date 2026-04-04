@@ -2,12 +2,12 @@ import { getPublishedPosts } from '$lib/content';
 import type { PostEntry } from '$lib/content';
 import type { PageServerLoad } from './$types';
 
-const sectionConfig: Record<PostEntry, { label: string; icon: string; order: number }> = {
-	essay: { label: 'Blog', icon: '✦', order: 1 },
-	experiment: { label: 'Experiments', icon: '⚗', order: 2 },
-	note: { label: 'Notes', icon: '◈', order: 3 },
-	'how-to': { label: 'Guides', icon: '⌘', order: 4 },
-	micro: { label: 'Micro', icon: '○', order: 5 }
+const sectionConfig: Record<PostEntry, { label: string; icon: string; color: string; order: number }> = {
+	essay: { label: 'Blog', icon: '✦', color: 'var(--amber)', order: 1 },
+	experiment: { label: 'Experiments', icon: '⚗', color: 'var(--coral)', order: 2 },
+	note: { label: 'Notes', icon: '◈', color: 'var(--sage)', order: 3 },
+	'how-to': { label: 'Guides', icon: '⌘', color: 'var(--lavender)', order: 4 },
+	micro: { label: 'Micro', icon: '○', color: 'var(--muted)', order: 5 }
 };
 
 export const load: PageServerLoad = async () => {
@@ -27,7 +27,9 @@ export const load: PageServerLoad = async () => {
 			id: sectionConfig[entry].label.toLowerCase().replace(/\s+/g, '-'),
 			label: sectionConfig[entry].label,
 			icon: sectionConfig[entry].icon,
+			color: sectionConfig[entry].color,
 			order: sectionConfig[entry].order,
+			sectionNum: `§ 0${sectionConfig[entry].order}`,
 			posts: posts.map((p) => ({
 				slug: p.slug,
 				title: p.title,

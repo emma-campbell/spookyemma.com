@@ -15,9 +15,11 @@ export { default as Prose } from './Prose.svelte';
 export { default as Citations } from './Citations.svelte';
 export { default as ArticleFooter } from './ArticleFooter.svelte';
 
-// Interactive (for future mdsvex use)
+// Interactive
 export { default as Sidenote } from './Sidenote.svelte';
 export { default as Cite } from './Cite.svelte';
 export { default as Callout } from './Callout.svelte';
 export { default as Dropcap } from './Dropcap.svelte';
 export { default as Embed } from './Embed.svelte';
+export { default as HrOrnament } from './HrOrnament.svelte';
+export { default as CodeBlock } from './CodeBlock.svelte';

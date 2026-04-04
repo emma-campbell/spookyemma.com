@@ -9,8 +9,8 @@
 	let { id, children }: Props = $props();
 </script>
 
-<sup class="sidenote-ref"><a href="#sn-{id}">{id}</a></sup>
+<a class="sidenote-ref" href="#sn-{id}">{id}</a>
 <aside class="sidenote" id="sn-{id}">
-	<span class="sidenote-number">{id}.</span>
+	<span class="sidenote-num">{id}.</span>
 	{@render children()}
 </aside>
