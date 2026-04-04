@@ -79,3 +79,65 @@
 		</div>
 	{/if}
 </PageShell>
+
+<style>
+/* Date stamp with line */
+.entry-date-stamp {
+	font-size: 0.62rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--amber);
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+.entry-date-stamp::after {
+	content: '';
+	flex: 1;
+	height: 1px;
+	background: var(--border);
+	max-width: 60px;
+}
+.entry-date-stamp.current::before {
+	content: '◉';
+	color: var(--amber);
+	font-size: 0.55rem;
+}
+
+/* Now archive timeline */
+.tl-date {
+	font-size: 0.6rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--muted);
+	margin-bottom: 0.5rem;
+}
+.tl-date.notable { color: var(--coral); }
+
+.tl-prose {
+	font-size: 0.82rem;
+	line-height: 1.75;
+	color: var(--parchment);
+}
+.tl-prose :global(p) { margin-bottom: 0.6rem; }
+.tl-prose :global(p:last-child) { margin-bottom: 0; }
+.tl-prose :global(a) {
+	color: var(--amber);
+	text-decoration: none;
+	border-bottom: 1px solid rgba(232,168,48,0.35);
+}
+.tl-prose :global(em) { color: var(--muted); font-style: italic; }
+
+/* Now timeline */
+.now-timeline { list-style: none; position: relative; padding-left: 1.5rem; }
+.now-timeline::before { content: ''; position: absolute; left: 3px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+.now-timeline-item { position: relative; padding: 0 0 2rem 0; }
+.now-timeline-item:last-child { padding-bottom: 0; }
+.now-timeline-item::before {
+	content: ''; position: absolute; left: -1.5rem; top: 5px;
+	width: 7px; height: 7px; border-radius: 50%;
+	border: 1px solid var(--border); background: var(--ink);
+}
+.now-timeline-item.notable::before { border-color: var(--coral); }
+</style>

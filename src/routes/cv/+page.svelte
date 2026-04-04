@@ -176,3 +176,40 @@
 		</div>
 	</div>
 </PageShell>
+
+<style>
+.cv-entries { position: relative; padding-left: 1.75rem; margin-left: 1rem; }
+.cv-entries::before { content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem; width: 1px; background: var(--border); }
+
+.cv-download {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: 0.65rem;
+	letter-spacing: 0.1em;
+	color: var(--muted);
+	border: 1px solid var(--border);
+	padding: 5px 10px;
+	border-radius: 2px;
+	transition: color var(--transition), border-color var(--transition);
+	cursor: pointer;
+	background: none;
+	font-family: var(--font-mono);
+}
+.cv-download:hover { color: var(--amber); border-color: var(--amber); }
+
+.edu-entry { padding-bottom: 1rem; }
+.edu-degree {
+	font-family: var(--font-display);
+	font-style: italic;
+	font-weight: 700;
+	font-size: 1rem;
+	color: var(--parchment);
+	margin-bottom: 0.25rem;
+}
+.edu-org-line { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.9rem; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+.edu-org { color: var(--amber); }
+.edu-focus { font-size: 0.78rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+.edu-courses { font-size: 0.75rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; }
+.edu-courses strong { display: block; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; font-weight: 400; }
+</style>

@@ -92,3 +92,99 @@
 		</div>
 	</div>
 </PageShell>
+
+<style>
+/* Article layout */
+.article-row { display: flex; min-height: calc(100vh - 60px); }
+
+/* Sticky label column */
+.label-col {
+	width: var(--col-label); flex-shrink: 0;
+	border-right: 2px solid var(--red-line);
+	position: sticky; top: 0; height: fit-content;
+	align-self: flex-start;
+	display: flex; flex-direction: column;
+	align-items: flex-end;
+	padding: 2.5rem 1rem 2rem 0.5rem;
+	gap: 2rem;
+}
+.label-section { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; }
+.label-tag { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: lowercase; color: var(--muted); text-align: right; }
+.label-val { font-size: 0.68rem; color: var(--parchment); text-align: right; line-height: 1.4; }
+.label-divider { width: 24px; height: 1px; background: var(--border); align-self: flex-end; }
+.label-type {
+	font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+	color: var(--amber); text-align: right;
+	writing-mode: vertical-rl; transform: rotate(180deg);
+	margin-top: auto; padding-bottom: 1rem;
+}
+
+/* Article content column */
+.content-col {
+	flex: 1;
+	padding: 3rem 3rem 5rem 2.5rem;
+	max-width: calc(620px + 6rem);
+}
+
+/* Post title */
+.post-title {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+	line-height: 1.1;
+	color: var(--parchment);
+	margin-bottom: 2rem;
+	max-width: 620px;
+}
+
+/* Meta strip */
+.meta-strip {
+	display: flex; gap: 2rem; flex-wrap: wrap;
+	margin-bottom: 3rem; padding-bottom: 1.5rem;
+	border-bottom: 1px solid var(--border);
+}
+.meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.meta-label { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.meta-value { font-size: 0.78rem; color: var(--amber); }
+
+/* References section */
+.references {
+	margin-top: 3rem; padding-top: 1.5rem;
+	border-top: 1px solid var(--border);
+	max-width: 620px;
+}
+.references-title {
+	font-size: 0.65rem; letter-spacing: 0.12em;
+	text-transform: uppercase; color: var(--muted);
+	margin-bottom: 1rem;
+}
+.references ol { list-style: none; counter-reset: refs; }
+.references li {
+	counter-increment: refs;
+	font-size: 0.75rem; color: var(--muted);
+	padding: 0.4rem 0;
+	border-bottom: 1px solid rgba(196,169,106,0.08);
+	display: flex; gap: 0.75rem; align-items: baseline;
+}
+.references li::before {
+	content: counter(refs);
+	color: var(--amber); font-size: 0.65rem;
+	flex-shrink: 0; min-width: 1rem; text-align: right;
+}
+.references li a { color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(154,142,126,0.3); }
+.references li a:hover { color: var(--parchment); }
+
+/* Post nav (inline in article) */
+.post-nav-inline {
+	display: flex; justify-content: space-between; gap: 1rem;
+	margin-top: 3.5rem; padding-top: 1.5rem;
+	border-top: 1px solid var(--border);
+	max-width: 620px;
+}
+.post-nav-inline .post-nav-link {
+	display: flex; flex-direction: column; gap: 0.3rem;
+	text-decoration: none; max-width: 45%;
+}
+.post-nav-inline .post-nav-link.next { align-items: flex-end; text-align: right; }
+.post-nav-inline .post-nav-link:hover .post-nav-title { color: var(--amber); border-bottom-color: var(--amber); }
+</style>
