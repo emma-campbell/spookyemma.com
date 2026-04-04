@@ -1312,11 +1312,11 @@ pre code .line.diff.remove { background-color: rgba(212,101,74,0.15); }
 /* ═══════════════════════════════════════════════════
    PATH LIST (about page timeline)
    ═══════════════════════════════════════════════════ */
-.path-list { list-style: none; position: relative; padding-left: 1.25rem; }
-.path-list::before { content: ''; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
-.path-item { position: relative; padding: 0 0 1.25rem 1rem; font-size: 0.8rem; }
+.path-list { list-style: none; position: relative; padding-left: 1.5rem; }
+.path-list::before { content: ''; position: absolute; left: 3px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+.path-item { position: relative; padding: 0 0 1.25rem 0; font-size: 0.8rem; }
 .path-item::before {
-	content: ''; position: absolute; left: -1rem; top: 5px;
+	content: ''; position: absolute; left: calc(-1.5rem); top: 5px;
 	width: 7px; height: 7px; border-radius: 50%;
 	border: 1px solid var(--amber); background: var(--ink);
 }
