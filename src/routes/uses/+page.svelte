@@ -66,7 +66,7 @@
                     {
                         name: "Apple Magic Trackpad",
                         note: "Gestures are non-negotiable. Can't go back to a mouse for Mac work.",
-                        category: "input",
+                        category: "peripheral",
                     },
                     {
                         name: "CalDigit TS3",
@@ -116,7 +116,7 @@
                     {
                         name: "Logitech Superlight Pro",
                         note: "Extremely light. Good for gaming, also used on the Mac side when I need precision.",
-                        category: "mouse",
+                        category: "peripheral",
                     },
                 ]}
             />
@@ -142,7 +142,7 @@
                 glyph="⇄"
                 glyphColor="var(--coral)"
                 title="Shared"
-                count="2 items"
+                count="3 items"
             />
             <GearList
                 items={[
@@ -150,13 +150,19 @@
                         name: "Zoom 75",
                         href: "https://www.zsa.io/zoom75",
                         note: "With Zooted keycaps. Sits between both machines via the CalDigit. The keyboard that ended the keyboard search.",
-                        category: "keyboard",
+                        category: "peripheral",
                         tag: { label: "shared", type: "shared" },
                     },
                     {
                         name: "Ryugashima Island Mousepad",
                         note: "By the Mousepad Company. Large enough for both the Magic Trackpad and Superlight to coexist.",
-                        category: "mousepad",
+                        category: "peripheral",
+                        tag: { label: "shared", type: "shared" },
+                    },
+                    {
+                        name: "UGREEN 8K Displayport KVM Switch",
+                        note: "Switch between the two workstations with the press of a button. No fiddling about with cables.",
+                        category: "peripheral",
                         tag: { label: "shared", type: "shared" },
                     },
                 ]}
@@ -183,7 +189,7 @@
                 glyph="◈"
                 glyphColor="var(--sage)"
                 title="Software"
-                count="4 items"
+                count="6 items"
             />
             <GearList
                 items={[
@@ -192,14 +198,12 @@
                         href: "https://obsidian.md",
                         note: "Notes, writing, thinking out loud. Local-first. The connective tissue of everything else.",
                         category: "notes / PKM",
-                        tag: { label: "✦ daily", type: "fav" },
                     },
                     {
                         name: "Todoist",
                         href: "https://todoist.com",
                         note: "Task management. Simple enough to actually use, powerful enough when you need it.",
                         category: "tasks",
-                        tag: { label: "✦ daily", type: "fav" },
                     },
                     {
                         name: "Fantastical",
@@ -208,11 +212,22 @@
                         category: "calendar",
                     },
                     {
+                        name: "lazyvim",
+                        href: "https://lazyvim.github.io",
+                        note: "Neovim plus lazyvim is my go to for quickly looking at files and making changes.",
+                        category: "notes / PKM",
+                    },
+                    {
                         name: "Granola",
                         href: "https://granola.so",
-                        note: "AI meeting notes. Quietly takes notes during calls without being weird about it.",
+                        note: "AI meeting notes. Quietly takes notes during calls without being weird about it, and let's my ADHD self focus more on the discussion than the notes.",
                         category: "meetings",
-                        tag: { label: "new", type: "new" },
+                    },
+                    {
+                        name: "Superwhisper",
+                        href: "https://superwhisper.ai",
+                        note: "There is nothing more useful than being able to just spitball your thoughts and watch them transform into text (especially in the age of AI assisted coding).",
+                        category: "transcription",
                     },
                 ]}
             />
@@ -223,10 +238,80 @@
                 Obsidian + Todoist + Fantastical have been stable for 2+ years. That's
                 a long time in productivity app years.
             </div>
-            <div class="annotation">
-                <strong>on granola</strong>
-                Recent addition. Still deciding if it earns a permanent spot.
-            </div>
+        </div>
+    </div>
+    <div class="section-row">
+        <div class="row-label">
+            <span class="row-label-text" style="color:var(--amber)"
+                >homelab<span class="row-label-num">§ 05</span></span
+            >
+        </div>
+        <div class="row-content">
+            <ContentHeader
+                glyph="◈"
+                glyphColor="var(--amber)"
+                title="Homelab"
+                count="4 items"
+            />
+            <GearList
+                items={[
+                    {
+                        name: "Paperless",
+                        href: "https://docs.paperless-ngx.com",
+                        note: "I would never find anything (ever) without paperless. Highly recommend.",
+                        category: "documents",
+                    },
+                    {
+                        name: "Authentik",
+                        href: "https://goauthentik.io/docs",
+                        note: "Identity management. Not much to say about it, but I use it and it works.",
+                        category: "identity",
+                    },
+                    {
+                        name: "calibre-web-automated",
+                        href: "https://github.com/crocodilestick/Calibre-Web-Automated",
+                        note: "In an effort to de-amazon I started buying from other ebook stores and using Calibre to manage my ebook library. This provides a convenient way to access and manage my ebooks, as well as an ODPS server for downloading directly in KOReader.",
+                        category: "identity",
+                    },
+                    {
+                        name: "Tailscale",
+                        href: "https://tailscale.com",
+                        note: "A VPN/wiremesh that works. I use it for remote access to my home network and for secure access to my services.",
+                        category: "vpn",
+                    },
+                ]}
+            />
+        </div>
+    </div>
+    <div class="section-row">
+        <div class="row-label">
+            <span class="row-label-text" style="color:var(--lavender)"
+                >devices<span class="row-label-num">§ 06</span></span
+            >
+        </div>
+        <div class="row-content">
+            <ContentHeader
+                glyph="◈"
+                glyphColor="var(--lavender)"
+                title="Devices"
+                count="2 items"
+            />
+            <GearList
+                items={[
+                    {
+                        name: "Supernote Nomad",
+                        href: "https://supernote.com/pages/supernote-nomad",
+                        note: "I adore this thing. Infinite paper. Barely have to charge. Upcoming plugins system. If you've been considering this, get it.",
+                        category: "note-taking",
+                    },
+                    {
+                        name: "Boox Palma 2",
+                        href: "https://boox.me/palma-2",
+                        note: "This has been my go-to eReader -- especially with the Wekind case. The size is just perfect.",
+                        category: "e-reader",
+                    },
+                ]}
+            />
         </div>
     </div>
 </PageShell>
