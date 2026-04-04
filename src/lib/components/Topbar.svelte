@@ -8,13 +8,15 @@
 		{ href: '/uses', label: 'uses' },
 		{ href: '/changelog', label: 'changelog' }
 	];
+
+	const pathname = $derived(page?.url?.pathname ?? '/');
 </script>
 
 <header class="topbar">
 	<a class="site-title" href="/">Emma Campbell</a>
 	<nav>
 		{#each links as link}
-			<a href={link.href} class:active={page.url.pathname.startsWith(link.href)}>{link.label}</a>
+			<a href={link.href} class:active={pathname.startsWith(link.href)}>{link.label}</a>
 		{/each}
 	</nav>
 </header>
