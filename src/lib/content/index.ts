@@ -1,4 +1,5 @@
 export * from './types';
+export * from './entryTypes';
 export * from './posts';
 export * from './now';
 export * from './settings';

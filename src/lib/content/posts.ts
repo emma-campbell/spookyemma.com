@@ -38,7 +38,7 @@ export function getPost(slug: string): Post | null {
 			published,
 			updated: stats.mtime,
 			status: (data.status as PostStatus) || 'draft',
-			entry: (data.entry as PostEntry) || 'note',
+			entry: (data.entry as PostEntry) || 'log',
 			tags: data.tags || [],
 			description: data.description,
 			content

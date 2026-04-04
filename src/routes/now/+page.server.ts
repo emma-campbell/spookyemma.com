@@ -18,9 +18,10 @@ export const load: PageServerLoad = async () => {
 		}))
 	);
 
-	const lastUpdated = entries.length > 0
-		? `${MONTH_NAMES[entries[0].month - 1]} ${entries[0].year}`
-		: null;
+	const featured = entriesWithHtml.length > 0 ? entriesWithHtml[0] : null;
+	const archive = entriesWithHtml.slice(1);
 
-	return { entries: entriesWithHtml, lastUpdated };
+	const lastUpdated = featured?.label ?? null;
+
+	return { featured, archive, lastUpdated };
 };
