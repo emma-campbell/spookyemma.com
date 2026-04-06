@@ -33,7 +33,7 @@
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "luxon": "^3.5.0",
-    "marked": "^17.0.1",
+    "marked": "^17.0.6",
     "posthog-js": "^1.359.1",
     "vite": "^6.0.7",
     "@sveltejs/kit": "^2.53.3",
