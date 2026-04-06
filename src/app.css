@@ -1038,7 +1038,7 @@ ol.prose-list { list-style-type: decimal; }
 	tab-size: 2;
 }
 .code-block.has-filename pre { border-radius: 0 0 3px 3px; border-top: none; }
-.code-block pre .line { display: block; min-height: 1.65em; }
+.code-block pre .line { min-height: 1.2em; }
 .code-block pre .line.highlighted {
 	background: rgba(232,168,48,0.08);
 	margin: 0 -1.5rem;
@@ -1072,7 +1072,7 @@ pre.shiki {
 	padding: var(--space-lg) !important;
 	margin: 0 !important;
 }
-pre.shiki code { background-color: transparent !important; padding: 0 !important; }
+pre.shiki code { background-color: transparent !important; padding: 0 !important; display: flex; flex-direction: column; }
 pre code .line.highlighted {
 	background-color: rgba(232,168,48,0.08);
 	border-left: 2px solid var(--amber);
