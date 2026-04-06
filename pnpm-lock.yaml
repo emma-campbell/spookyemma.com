@@ -67,8 +67,8 @@ importers:
         specifier: ^3.9.1
         version: 3.22.0
       svelte-check:
-        specifier: ^4.1.4
-        version: 4.3.6(picomatch@4.0.4)(svelte@5.55.1)(typescript@5.9.3)
+        specifier: ^4.4.6
+        version: 4.4.6(picomatch@4.0.4)(svelte@5.55.1)(typescript@5.9.3)
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.18
@@ -1104,8 +1104,8 @@ packages:
     resolution: {integrity: sha512-uCC2VHvQRYu+lMh4My/sFNmF2klFymLX1wHJeXnbEJERpV/ZsVuonzerjfrGpIGF7LBVa1O7i9kjiWvJiFck8g==}
     engines: {node: '>=0.10.0'}
 
-  svelte-check@4.3.6:
-    resolution: {integrity: sha512-uBkz96ElE3G4pt9E1Tw0xvBfIUQkeH794kDQZdAUk795UVMr+NJZpuFSS62vcmO/DuSalK83LyOwhgWq8YGU1Q==}
+  svelte-check@4.4.6:
+    resolution: {integrity: sha512-kP1zG81EWaFe9ZyTv4ZXv44Csi6Pkdpb7S3oj6m+K2ec/IcDg/a8LsFsnVLqm2nxtkSwsd5xPj/qFkTBgXHXjg==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
     peerDependencies:
@@ -2133,7 +2133,7 @@ snapshots:
 
   strip-bom-string@1.0.0: {}
 
-  svelte-check@4.3.6(picomatch@4.0.4)(svelte@5.55.1)(typescript@5.9.3):
+  svelte-check@4.4.6(picomatch@4.0.4)(svelte@5.55.1)(typescript@5.9.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       chokidar: 4.0.3
