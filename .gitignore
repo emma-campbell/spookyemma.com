@@ -26,3 +26,9 @@ pnpm-debug.log*
 .claude/settings.local.json
 
 content/.obsidian
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

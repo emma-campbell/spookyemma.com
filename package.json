@@ -8,11 +8,19 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:update-snapshots": "playwright test --update-snapshots"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/geist-mono": "^5.2.7",
+    "@playwright/test": "^1.59.1",
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.53.3",
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
