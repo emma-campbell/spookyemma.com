@@ -1,5 +1,16 @@
 import { defineConfig, devices } from '@playwright/test';
 
+/**
+ * Tests that depend on browser rendering and should run cross-browser.
+ * Everything else only runs on Chromium to avoid redundant CI time.
+ */
+const crossBrowserTests = [
+	'visual.spec.ts',
+	'navigation.spec.ts',
+	'responsive.spec.ts',
+	'pages.spec.ts'
+];
+
 export default defineConfig({
 	testDir: './tests',
 	fullyParallel: true,
@@ -24,19 +35,23 @@ export default defineConfig({
 		},
 		{
 			name: 'firefox',
-			use: { ...devices['Desktop Firefox'] }
+			use: { ...devices['Desktop Firefox'] },
+			testMatch: crossBrowserTests
 		},
 		{
 			name: 'webkit',
-			use: { ...devices['Desktop Safari'] }
+			use: { ...devices['Desktop Safari'] },
+			testMatch: crossBrowserTests
 		},
 		{
 			name: 'mobile-chrome',
-			use: { ...devices['Pixel 5'] }
+			use: { ...devices['Pixel 5'] },
+			testMatch: crossBrowserTests
 		},
 		{
 			name: 'mobile-safari',
-			use: { ...devices['iPhone 12'] }
+			use: { ...devices['iPhone 12'] },
+			testMatch: crossBrowserTests
 		}
 	],
 
