@@ -20,6 +20,12 @@ export default defineConfig({
 	reporter: [['html', { open: 'never' }], ['list']],
 	timeout: 60000,
 
+	expect: {
+		toHaveScreenshot: {
+			stylePath: './tests/screenshot.css'
+		}
+	},
+
 	use: {
 		baseURL: 'http://localhost:4173',
 		trace: 'on-first-retry',
