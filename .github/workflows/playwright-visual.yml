@@ -1,13 +1,12 @@
-name: Playwright Tests
+name: Playwright Visual Regression
 
 on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
+  schedule:
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
 
 jobs:
-  test:
+  visual:
     timeout-minutes: 30
     runs-on: ubuntu-latest
 
@@ -27,14 +26,12 @@ jobs:
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: pnpm test
-        env:
-          SKIP_VISUAL_TESTS: '1'
+      - name: Run visual regression tests
+        run: pnpm exec playwright test tests/visual.spec.ts
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: playwright-report
+          name: playwright-visual-report
           path: playwright-report/
           retention-days: 30
