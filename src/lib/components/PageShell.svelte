@@ -13,8 +13,12 @@
 
 <BgCanvas />
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <div class="page">
 	<Topbar />
-	{@render children()}
+	<main id="main">
+		{@render children()}
+	</main>
 	<Footer />
 </div>

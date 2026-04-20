@@ -71,9 +71,9 @@
 				<SectionRow label="blog" sectionNum="§ 01" labelColor="var(--amber)">
 					<ContentHeader glyph="✦" glyphColor="var(--amber)" title="Blog" count="5 entries" />
 					<ul class="post-list">
-						<li class="post-item"><span class="post-icon icon-amber">✦</span><a class="post-link" href="#">Your AI Code Companion is Your Worst Practices on Steroids</a><span class="post-meta">2025-08-19</span></li>
-						<li class="post-item"><span class="post-icon icon-sage">◈</span><a class="post-link" href="#">2026 Volume 3</a><span class="post-badge badge-sage">rewind</span><span class="post-meta">2026-04-02</span></li>
-						<li class="post-item"><span class="post-icon icon-lavender">⌘</span><a class="post-link" href="#">Hosting a RSS Feed on your Next.Js Blog</a><span class="post-badge badge-lavender">guide</span><span class="post-meta">2024-02-26</span></li>
+						<li class="post-item"><span class="post-icon icon-amber">✦</span><!-- svelte-ignore a11y_invalid_attribute --><a class="post-link" href="#">Your AI Code Companion is Your Worst Practices on Steroids</a><span class="post-meta">2025-08-19</span></li>
+						<li class="post-item"><span class="post-icon icon-sage">◈</span><!-- svelte-ignore a11y_invalid_attribute --><a class="post-link" href="#">2026 Volume 3</a><span class="post-badge badge-sage">rewind</span><span class="post-meta">2026-04-02</span></li>
+						<li class="post-item"><span class="post-icon icon-lavender">⌘</span><!-- svelte-ignore a11y_invalid_attribute --><a class="post-link" href="#">Hosting a RSS Feed on your Next.Js Blog</a><span class="post-badge badge-lavender">guide</span><span class="post-meta">2024-02-26</span></li>
 					</ul>
 				</SectionRow>
 			</div>
@@ -241,14 +241,14 @@
 				<div class="citations">
 					<p class="citations-title">references</p>
 					<ol>
-						<li><a href="#">Spoon Theory: What It Is and How I Use It — Washington Post</a></li>
-						<li><a href="#">Decision Fatigue — Wikipedia</a></li>
-						<li><a href="#">The Beginner Template — Barbell Medicine</a></li>
+						<li><!-- svelte-ignore a11y_invalid_attribute --><a href="#">Spoon Theory: What It Is and How I Use It — Washington Post</a></li>
+						<li><!-- svelte-ignore a11y_invalid_attribute --><a href="#">Decision Fatigue — Wikipedia</a></li>
+						<li><!-- svelte-ignore a11y_invalid_attribute --><a href="#">The Beginner Template — Barbell Medicine</a></li>
 					</ol>
 				</div>
 				<div class="cited-by">
 					<p class="cited-by-title">cited by</p>
-					<div class="cited-by-item">◈ <a href="#">2024 Volume 4</a> · note, 2024-05-02</div>
+					<div class="cited-by-item">◈ <!-- svelte-ignore a11y_invalid_attribute --><a href="#">2024 Volume 4</a> · note, 2024-05-02</div>
 				</div>
 			</div>
 		</div>
@@ -554,7 +554,7 @@
 			<div class="lib-preview">
 				<div class="prose">
 					<h2>General Framework <span style="font-size:0.65rem;color:var(--muted);opacity:0.6;">§</span></h2>
-					<p>When I first downloaded Cursor, the most useful part was the tab completions. Since then, tools like <a href="#">Claude Code</a> have completely changed the way I go about development.</p>
+					<p>When I first downloaded Cursor, the most useful part was the tab completions. Since then, tools like <!-- svelte-ignore a11y_invalid_attribute --><a href="#">Claude Code</a> have completely changed the way I go about development.</p>
 					<h3>Implementation detail</h3>
 					<p>Open your terminal and run <code>npx prisma init</code> to scaffold the config. The key insight: <strong>unless specifically asked, your coding agent isn't going to contradict you.</strong></p>
 					<ul>

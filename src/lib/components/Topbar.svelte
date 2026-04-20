@@ -36,8 +36,12 @@
 
 {#if menuOpen}
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="mobile-overlay" onclick={closeMenu} onkeydown={(e) => e.key === 'Escape' && closeMenu()}>
-		<nav class="mobile-nav" onclick={(e) => e.stopPropagation()}>
+	<div
+		class="mobile-overlay"
+		onclick={(e) => { if (e.target === e.currentTarget) closeMenu(); }}
+		onkeydown={(e) => e.key === 'Escape' && closeMenu()}
+	>
+		<nav class="mobile-nav" aria-label="Site navigation">
 			{#each links as link}
 				<a href={link.href} class:active={pathname.startsWith(link.href)} onclick={closeMenu}>{link.label}</a>
 			{/each}
