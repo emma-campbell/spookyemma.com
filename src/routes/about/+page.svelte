@@ -182,7 +182,7 @@
                         fav: true,
                     },
                     {
-                        text: "NWSL2Columbus",
+                        text: "[NWSL2Columbus](https://nwsltocbus.com)",
                         fav: true,
                     },
                     {
@@ -197,7 +197,6 @@
                     { text: "Habit experiments · ADHD self-research" },
                     { text: "Video games" },
                     { text: "PC building — first build: February 2026" },
-                    { text: "Photography (currently: brainrotting)" },
                     { text: "Whatever the 7,000th hobby is this week" },
                 ]}
             />

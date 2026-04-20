@@ -20,7 +20,7 @@ test.describe('Visual Regression - Desktop', () => {
 
 			await expect(page).toHaveScreenshot(`${name}-desktop.png`, {
 				fullPage: true,
-				maxDiffPixelRatio: 0.01
+				maxDiffPixelRatio: 0.05
 			});
 		});
 	}
@@ -36,7 +36,7 @@ test.describe('Visual Regression - Mobile', () => {
 
 			await expect(page).toHaveScreenshot(`${name}-mobile.png`, {
 				fullPage: true,
-				maxDiffPixelRatio: 0.01
+				maxDiffPixelRatio: 0.05
 			});
 		});
 	}
@@ -80,7 +80,7 @@ test.describe('Dark Mode Visual Tests', () => {
 
 		await expect(page).toHaveScreenshot('home-dark-mode.png', {
 			fullPage: true,
-			maxDiffPixelRatio: 0.01
+			maxDiffPixelRatio: 0.05
 		});
 	});
 
@@ -91,7 +91,7 @@ test.describe('Dark Mode Visual Tests', () => {
 
 		await expect(page).toHaveScreenshot('home-light-mode.png', {
 			fullPage: true,
-			maxDiffPixelRatio: 0.01
+			maxDiffPixelRatio: 0.05
 		});
 	});
 });

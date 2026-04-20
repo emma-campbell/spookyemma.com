@@ -1129,6 +1129,8 @@ pre code .line.diff.remove { background-color: rgba(212,101,74,0.15); }
 }
 .interests-list li::before { content: '○'; color: var(--muted); font-size: 0.6rem; flex-shrink: 0; }
 .interests-list li.fav::before { content: '✦'; color: var(--amber); }
+.interests-list a { color: var(--amber); border-bottom: 1px solid rgba(232,168,48,0.4); transition: border-color var(--transition); }
+.interests-list a:hover { border-bottom-color: var(--amber); }
 
 /* ═══════════════════════════════════════════════════
    17. CHANGELOG
