@@ -30,7 +30,7 @@
     "@types/node": "^25.5.2",
     "mdsvex": "^0.12.7",
     "shiki": "^4.0.2",
-    "svelte": "^5.55.1",
+    "svelte": "^5.55.4",
     "svelte-check": "^4.4.6",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.8.2",
@@ -47,7 +47,7 @@
     "luxon": "^3.5.0",
     "marked": "^18.0.2",
     "posthog-js": "^1.369.2",
-    "svelte": "^5.55.1",
+    "svelte": "^5.55.4",
     "vite": "^8.0.9"
   }
 }
