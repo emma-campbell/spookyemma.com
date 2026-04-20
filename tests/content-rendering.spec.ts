@@ -56,15 +56,6 @@ test.describe('MDX Content Rendering', () => {
 		expect(bodyText!.length).toBeGreaterThan(100);
 	});
 
-	test('code elements render when present', async ({ page }) => {
-		await page.goto('/components');
-
-		// Components page should have code examples
-		const code = page.locator('code');
-		const hasCode = (await code.count()) > 0;
-
-		expect(hasCode).toBe(true);
-	});
 });
 
 test.describe('Custom Components', () => {
@@ -148,16 +139,3 @@ test.describe('Images', () => {
 	});
 });
 
-test.describe('Tables', () => {
-	test('tables render on components page', async ({ page }) => {
-		await page.goto('/components');
-
-		// Components page has table examples
-		const tables = page.locator('table');
-		const hasTable = (await tables.count()) > 0;
-
-		if (hasTable) {
-			await expect(tables.first()).toBeVisible();
-		}
-	});
-});

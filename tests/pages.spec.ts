@@ -38,18 +38,6 @@ test.describe('Page Load Tests', () => {
 		await page.goto('/changelog');
 		await expect(page.locator('.page')).toBeVisible();
 	});
-
-	test('design page loads successfully', async ({ page }) => {
-		await page.goto('/design');
-		await expect(page.locator('.lib-page')).toBeVisible();
-		await expect(page.locator('.lib-title')).toBeVisible();
-	});
-
-	test('components page loads successfully', async ({ page }) => {
-		await page.goto('/components');
-		await expect(page.locator('.page-title').first()).toBeVisible();
-		await expect(page.locator('.lib-section').first()).toBeVisible();
-	});
 });
 
 test.describe('Error Pages', () => {

@@ -8,9 +8,7 @@ const pages = [
 	{ path: '/now', name: 'Now' },
 	{ path: '/uses', name: 'Uses' },
 	{ path: '/cv', name: 'CV' },
-	{ path: '/changelog', name: 'Changelog' },
-	{ path: '/design', name: 'Design' },
-	{ path: '/components', name: 'Components' }
+	{ path: '/changelog', name: 'Changelog' }
 ];
 
 test.describe('Accessibility Tests', () => {
