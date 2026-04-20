@@ -72,6 +72,33 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════ */
+:focus-visible {
+	outline: 2px solid var(--amber);
+	outline-offset: 2px;
+	border-radius: var(--radius-sm);
+}
+
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: auto;
+	background: var(--amber);
+	color: var(--ink);
+	padding: 0.5rem 0.75rem;
+	font-family: var(--font-display);
+	font-size: 0.9rem;
+	z-index: 1000;
+	text-decoration: none;
+}
+.skip-link:focus-visible {
+	left: 0.5rem;
+	top: 0.5rem;
+	outline-offset: 0;
+}
+
+/* ═══════════════════════════════════════════════════
    1. TYPOGRAPHY
    ═══════════════════════════════════════════════════ */
 
@@ -1270,7 +1297,7 @@ pre code .line.diff.remove { background-color: rgba(212,101,74,0.15); }
 .page-body hr { border: none; border-top: 1px solid var(--border); margin: var(--space-xl) 0; }
 
 /* ═══════════════════════════════════════════════════
-   SHOWCASE CHROME (for /design + /components pages)
+   SHOWCASE CHROME (for /design page, dev-only)
    ═══════════════════════════════════════════════════ */
 .lib-page { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 6rem; position: relative; z-index: 1; }
 .lib-title { font-family: var(--font-display); font-style: italic; font-size: 2rem; color: var(--amber); margin-bottom: 0.3rem; }
