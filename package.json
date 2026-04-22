@@ -49,5 +49,10 @@
     "posthog-js": "^1.369.2",
     "svelte": "^5.55.4",
     "vite": "^8.0.9"
+  },
+  "pnpm": {
+    "overrides": {
+      "protobufjs": "^7.5.5"
+    }
   }
 }
