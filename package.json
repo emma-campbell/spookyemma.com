@@ -34,7 +34,7 @@
     "svelte-check": "^4.4.6",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3",
-    "vite": "^8.0.9"
+    "vite": "^8.0.10"
   },
   "dependencies": {
     "@sveltejs/adapter-static": "^3.0.8",
@@ -48,7 +48,7 @@
     "marked": "^18.0.2",
     "posthog-js": "^1.369.2",
     "svelte": "^5.55.4",
-    "vite": "^8.0.9"
+    "vite": "^8.0.10"
   },
   "pnpm": {
     "overrides": {
