@@ -20,7 +20,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
     "@fontsource-variable/geist": "^5.2.8",
-    "@fontsource-variable/geist-mono": "^5.2.7",
+    "@fontsource-variable/geist-mono": "^5.2.8",
     "@playwright/test": "^1.59.1",
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.59.0",
