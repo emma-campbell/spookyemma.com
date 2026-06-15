@@ -6,3 +6,4 @@ export * from './settings';
 export * from './pages';
 export * from './changelog';
 export * from './cv';
+export * from './photos';
