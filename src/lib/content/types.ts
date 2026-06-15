@@ -75,3 +75,37 @@ export interface CV {
   lastUpdatedAt: Date;
   sections: CVSection[];
 }
+
+export interface PhotoCollection {
+  id: string;
+  label: string;
+  icon?: string;
+  /** Number of photos tagged with this collection. Derived, not authored. */
+  count: number;
+}
+
+export interface Photo {
+  src: string;
+  alt: string;
+  caption: string;
+  collection: string;
+  place: string;
+  /** Authored as `YYYY-MM`; `dateLabel` holds the display form (e.g. "Mar 2026"). */
+  date: string;
+  dateLabel: string;
+}
+
+export interface PhotoAnnotation {
+  title: string;
+  body: string;
+}
+
+export interface PhotosContent {
+  title: string;
+  eyebrow: string;
+  lede: string;
+  lastUpdatedAt: Date;
+  collections: PhotoCollection[];
+  photos: Photo[];
+  annotations: PhotoAnnotation[];
+}

@@ -3,6 +3,7 @@
 
 	const links = [
 		{ href: '/notebook', label: 'notebook' },
+		{ href: '/photos', label: 'photos' },
 		{ href: '/about', label: 'about' },
 		{ href: '/now', label: 'now' },
 		{ href: '/uses', label: 'uses' },
