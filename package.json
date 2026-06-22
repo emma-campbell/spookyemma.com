@@ -43,7 +43,7 @@
     "date-fns": "^4.4.0",
     "feed": "^5.2.1",
     "gray-matter": "^4.0.3",
-    "js-yaml": "^4.2.0",
+    "js-yaml": "^5.0.0",
     "luxon": "^3.5.0",
     "marked": "^18.0.5",
     "posthog-js": "^1.391.2",
