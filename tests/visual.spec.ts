@@ -1,9 +1,16 @@
 import { test, expect } from '@playwright/test';
 
+/*
+ * Content-driven regions (post lists, feeds, counters) are hidden during
+ * capture via screenshot.css, so adding a post does not invalidate baselines.
+ * The post-detail entry is pinned to the oldest post so real article
+ * rendering stays visually covered without churning as new posts land.
+ */
 const pages = [
 	{ path: '/', name: 'home' },
 	{ path: '/about', name: 'about' },
 	{ path: '/notebook', name: 'notebook' },
+	{ path: '/notebook/blog-next-js', name: 'post-detail' },
 	{ path: '/now', name: 'now' },
 	{ path: '/uses', name: 'uses' },
 	{ path: '/cv', name: 'cv' },

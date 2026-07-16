@@ -1,1 +1,29 @@
 #bg-canvas { display: none !important; }
+
+/*
+ * Content-driven regions are excluded from visual snapshots so that adding a
+ * post (or a changelog entry) never invalidates baselines. Visual tests verify
+ * layout, chrome, typography, and theming; content correctness is covered by
+ * the DOM-based specs (blog-posts, content-rendering, notebook-filtering).
+ */
+
+/* Volatile counters and timestamps (keep layout space, hide the value) */
+.ch-count,
+.phl-val,
+.filter-count,
+.nb-type-stats,
+.month-stat-count,
+.footer-year { visibility: hidden !important; }
+
+/* Home: per-section post lists */
+.post-list { display: none !important; }
+
+/* Notebook: the entry feed */
+.feed-entry { display: none !important; }
+
+/* Changelog: month-by-month entry rows */
+.month-row { display: none !important; }
+
+/* Now: featured-entry date stamp and the archive timeline */
+.entry-date-stamp,
+.now-timeline { display: none !important; }
