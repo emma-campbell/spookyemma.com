@@ -6,7 +6,7 @@
 </script>
 
 <footer class="page-footer">
-	<span>&copy; 2022&ndash;{year} Emma &middot; CC-BY-SA 4.0</span>
+	<span>&copy; 2022&ndash;<span class="footer-year">{year}</span> Emma &middot; CC-BY-SA 4.0</span>
 	<div class="footer-links">
 		<a href="/rss.xml">rss</a>
 		<a href="/changelog">changelog</a>
