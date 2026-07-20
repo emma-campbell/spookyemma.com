@@ -18,7 +18,7 @@
     "test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.61.0-jammy sh -c 'npm install -g pnpm@10.28.2 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.3",
+    "@axe-core/playwright": "^4.12.1",
     "@fontsource-variable/geist": "^5.2.9",
     "@fontsource-variable/geist-mono": "^5.2.8",
     "@playwright/test": "^1.61.0",
