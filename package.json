@@ -45,7 +45,7 @@
     "gray-matter": "^4.0.3",
     "js-yaml": "^5.2.2",
     "luxon": "^3.5.0",
-    "marked": "^18.0.5",
+    "marked": "^18.0.7",
     "posthog-js": "^1.391.2",
     "svelte": "^5.56.6",
     "vite": "^8.1.3"
