@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 import type { Photo, PhotoAnnotation, PhotoCollection, PhotosContent } from './types';
 
 const PHOTOS_PATH = path.join(process.cwd(), 'content', 'photos.md');

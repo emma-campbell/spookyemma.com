@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 import type { Changelog, ChangelogEntry, ChangelogMonth, ChangelogTag } from './types';
 
 const CHANGELOG_PATH = path.join(process.cwd(), 'content', 'changelog.md');
@@ -21,15 +21,11 @@ export function getChangelog(): Changelog {
 	const { data } = matter(fileContent);
 
 	const rawEntries: ChangelogEntry[] = (data.entries || []).map(
-		(e: { date: string | Date; tag: string; text: string }) => {
-			let date = '';
-			if (e.date instanceof Date) {
-				date = e.date.toISOString().split('T')[0];
-			} else {
-				date = String(e.date);
-			}
-			return { date, tag: e.tag as ChangelogTag, text: e.text };
-		}
+		(e: { date: string; tag: string; text: string }) => ({
+			date: String(e.date),
+			tag: e.tag as ChangelogTag,
+			text: e.text
+		})
 	);
 
 	const monthMap = new Map<string, ChangelogEntry[]>();

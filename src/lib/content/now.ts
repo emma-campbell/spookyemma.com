@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 import type { NowEntry } from './types';
 
 const NOW_DIR = path.join(process.cwd(), 'content', 'now');

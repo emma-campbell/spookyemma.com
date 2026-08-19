@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 
 export interface Backlink {
 	slug: string;
@@ -31,12 +31,7 @@ function buildCache(): Map<string, Backlink[]> {
 		if (data.status === 'draft') continue;
 
 		const title = data.title || slug;
-		let published = '';
-		if (data.published instanceof Date) {
-			published = data.published.toISOString().split('T')[0];
-		} else if (typeof data.published === 'string') {
-			published = data.published;
-		}
+		const published = typeof data.published === 'string' ? data.published : '';
 
 		const entry = data.entry || 'note';
 		const context = `Blog · ${entry}, ${published}`;
