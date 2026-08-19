@@ -1,4 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+
+// 'networkidle' can stall on analytics beacons; load + fonts is what
+// actually needs to settle before a stable screenshot.
+async function waitForRender(page: Page) {
+	await page.waitForLoadState('load');
+	await page.evaluate(() => document.fonts.ready);
+}
 
 /*
  * Content-driven regions (post lists, feeds, counters) are hidden during
@@ -23,7 +30,7 @@ test.describe('Visual Regression - Desktop', () => {
 	for (const { path, name } of pages) {
 		test(`${name} page matches snapshot`, async ({ page }) => {
 			await page.goto(path);
-			await page.waitForLoadState('networkidle');
+			await waitForRender(page);
 
 			await expect(page).toHaveScreenshot(`${name}-desktop.png`, {
 				fullPage: true,
@@ -39,7 +46,7 @@ test.describe('Visual Regression - Mobile', () => {
 	for (const { path, name } of pages) {
 		test(`${name} page matches snapshot on mobile`, async ({ page }) => {
 			await page.goto(path);
-			await page.waitForLoadState('networkidle');
+			await waitForRender(page);
 
 			await expect(page).toHaveScreenshot(`${name}-mobile.png`, {
 				fullPage: true,
@@ -83,7 +90,7 @@ test.describe('Dark Mode Visual Tests', () => {
 	test('respects prefers-color-scheme: dark', async ({ page }) => {
 		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/');
-		await page.waitForLoadState('networkidle');
+		await waitForRender(page);
 
 		await expect(page).toHaveScreenshot('home-dark-mode.png', {
 			fullPage: true,
@@ -94,7 +101,7 @@ test.describe('Dark Mode Visual Tests', () => {
 	test('respects prefers-color-scheme: light', async ({ page }) => {
 		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/');
-		await page.waitForLoadState('networkidle');
+		await waitForRender(page);
 
 		await expect(page).toHaveScreenshot('home-light-mode.png', {
 			fullPage: true,

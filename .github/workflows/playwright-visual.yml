@@ -6,9 +6,25 @@ on:
   workflow_dispatch:
 
 jobs:
+  playwright-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: version
+        run: echo "version=$(grep -o '@playwright/test@[0-9.]*' pnpm-lock.yaml | head -1 | cut -d@ -f3)" >> "$GITHUB_OUTPUT"
+
   visual:
+    needs: playwright-version
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    # Same jammy environment the baselines are generated in
+    # (test:update-snapshots:linux), so font rendering matches.
+    container:
+      image: mcr.microsoft.com/playwright:v${{ needs.playwright-version.outputs.version }}-jammy
+      options: --user 1001
 
     steps:
       - uses: actions/checkout@v4
@@ -23,11 +39,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps
-
-      - name: Run visual regression tests
-        run: pnpm exec playwright test tests/visual.spec.ts
+      - name: Run visual regression and external link tests
+        run: pnpm exec playwright test tests/visual.spec.ts tests/external-links.spec.ts
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
