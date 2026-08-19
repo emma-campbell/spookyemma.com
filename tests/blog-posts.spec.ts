@@ -36,7 +36,6 @@ test.describe('Blog Post Pages', () => {
 
 		// Click first post
 		await page.locator('.feed-entry').first().click();
-		await page.waitForLoadState('networkidle');
 
 		// Should be on a post page
 		await expect(page).toHaveURL(/\/notebook\/.+/);

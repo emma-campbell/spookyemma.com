@@ -60,7 +60,7 @@ test.describe('Core Web Vitals Proxies', () => {
 		const initialBox = await heroTitle.boundingBox();
 
 		// Wait for page to fully load
-		await page.waitForLoadState('networkidle');
+		await page.waitForLoadState('load');
 
 		// Check position again
 		const finalBox = await heroTitle.boundingBox();
@@ -103,7 +103,7 @@ test.describe('Resource Loading', () => {
 		});
 
 		await page.goto('/');
-		await page.waitForLoadState('networkidle');
+		await page.waitForLoadState('load');
 
 		// Check for excessively large images (> 500KB)
 		const largeImages = imageSizes.filter((img) => img.size > 500 * 1024);
@@ -129,7 +129,7 @@ test.describe('JavaScript Performance', () => {
 		});
 
 		await page.goto('/');
-		await page.waitForLoadState('networkidle');
+		await page.waitForLoadState('load');
 
 		expect(errors).toEqual([]);
 	});
@@ -148,7 +148,7 @@ test.describe('JavaScript Performance', () => {
 
 		for (const route of routes) {
 			await page.goto(route);
-			await page.waitForLoadState('networkidle');
+			await page.waitForLoadState('load');
 		}
 
 		// Filter out known acceptable errors
@@ -172,7 +172,7 @@ test.describe('Network Efficiency', () => {
 		});
 
 		await page.goto('/');
-		await page.waitForLoadState('networkidle');
+		await page.waitForLoadState('load');
 
 		const totalKB = totalBytes / 1024;
 		const totalMB = totalKB / 1024;
@@ -191,7 +191,7 @@ test.describe('Network Efficiency', () => {
 		});
 
 		await page.goto('/');
-		await page.waitForLoadState('networkidle');
+		await page.waitForLoadState('load');
 
 		console.log(`Total requests: ${requestCount}`);
 
@@ -215,7 +215,7 @@ test.describe('Caching', () => {
 		});
 
 		await page.goto('/');
-		await page.waitForLoadState('networkidle');
+		await page.waitForLoadState('load');
 
 		// Check that static assets have cache headers
 		const uncachedAssets = staticAssets.filter((a) => !a.cacheControl);

@@ -13,11 +13,14 @@ const crossBrowserTests = [
 
 export default defineConfig({
 	testDir: './tests',
-	testIgnore: process.env.SKIP_VISUAL_TESTS ? ['**/visual.spec.ts'] : undefined,
+	testIgnore: [
+		...(process.env.SKIP_VISUAL_TESTS ? ['**/visual.spec.ts'] : []),
+		...(process.env.SKIP_NETWORK_TESTS ? ['**/external-links.spec.ts'] : [])
+	],
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 1 : 4,
+	workers: 4,
 	reporter: [['html', { open: 'never' }], ['list']],
 	timeout: 60000,
 
@@ -50,15 +53,17 @@ export default defineConfig({
 			use: { ...devices['Desktop Safari'] },
 			testMatch: crossBrowserTests
 		},
+		// Mobile projects share engines with the desktop chromium/webkit projects,
+		// so they only add value for pixel-level snapshots. Keep them off the PR path.
 		{
 			name: 'mobile-chrome',
 			use: { ...devices['Pixel 5'] },
-			testMatch: crossBrowserTests
+			testMatch: ['visual.spec.ts']
 		},
 		{
 			name: 'mobile-safari',
 			use: { ...devices['iPhone 12'] },
-			testMatch: crossBrowserTests
+			testMatch: ['visual.spec.ts']
 		}
 	],
 
