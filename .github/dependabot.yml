@@ -23,3 +23,19 @@ updates:
         update-types:
           - "minor"
           - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 14
+    groups:
+      # Same grouping as npm: non-breaking bumps share one PR, majors stay separate.
+      non-major-actions:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
