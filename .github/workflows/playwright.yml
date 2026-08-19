@@ -6,10 +6,33 @@ on:
   push:
     branches: [main]
 
+# Superseded PR runs waste the same minutes twice; pushes to main never cancel.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
+  playwright-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: version
+        run: echo "version=$(grep -o '@playwright/test@[0-9.]*' pnpm-lock.yaml | head -1 | cut -d@ -f3)" >> "$GITHUB_OUTPUT"
+
   test:
+    needs: playwright-version
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    # Browsers ship preinstalled in the image, so no download from
+    # Playwright's CDN. jammy matches the snapshot-update container
+    # (see test:update-snapshots:linux). --user 1001 is the documented
+    # setup for running this image on GitHub Actions.
+    container:
+      image: mcr.microsoft.com/playwright:v${{ needs.playwright-version.outputs.version }}-jammy
+      options: --user 1001
 
     steps:
       - uses: actions/checkout@v4
@@ -24,13 +47,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps
-
       - name: Run Playwright tests
         run: pnpm test
         env:
           SKIP_VISUAL_TESTS: '1'
+          SKIP_NETWORK_TESTS: '1'
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
