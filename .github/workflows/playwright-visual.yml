@@ -6,9 +6,25 @@ on:
   workflow_dispatch:
 
 jobs:
+  playwright-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: version
+        run: echo "version=$(grep -o '@playwright/test@[0-9.]*' pnpm-lock.yaml | head -1 | cut -d@ -f3)" >> "$GITHUB_OUTPUT"
+
   visual:
+    needs: playwright-version
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    # Same jammy environment the baselines are generated in
+    # (test:update-snapshots:linux), so font rendering matches.
+    container:
+      image: mcr.microsoft.com/playwright:v${{ needs.playwright-version.outputs.version }}-jammy
+      options: --user 1001
 
     steps:
       - uses: actions/checkout@v4
@@ -22,25 +38,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Get Playwright version
-        id: playwright-version
-        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
-
-      - name: Cache Playwright browsers
-        id: playwright-cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-browsers-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
-
-      - name: Install Playwright browsers
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm exec playwright install --with-deps
-
-      - name: Install Playwright OS dependencies
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: pnpm exec playwright install-deps
 
       - name: Run visual regression and external link tests
         run: pnpm exec playwright test tests/visual.spec.ts tests/external-links.spec.ts
