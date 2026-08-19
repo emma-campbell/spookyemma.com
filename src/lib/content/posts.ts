@@ -22,15 +22,7 @@ export function getPost(slug: string): Post | null {
 		const stats = fs.statSync(filePath);
 		const { data, content } = matter(fileContent);
 
-		// TODO: gray-matter converts date strings to Date objects, convert back to ISO string
-    // while I don't hate the idea of just having them be dates, I'm too lazy to go find all
-    // the references and fix them at the moment.
-		let published = '';
-		if (data.published instanceof Date) {
-			published = data.published.toISOString().split('T')[0];
-		} else if (typeof data.published === 'string') {
-			published = data.published;
-		}
+		const published = typeof data.published === 'string' ? data.published : '';
 
 		return {
 			slug,
