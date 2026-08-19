@@ -1,7 +1,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 import type { Page } from './types';
 
 const PAGES_DIR = path.join(process.cwd(), 'content', 'pages');

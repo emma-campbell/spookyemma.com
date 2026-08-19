@@ -37,12 +37,12 @@
     "vite": "^8.2.1"
   },
   "dependencies": {
+    "@11ty/gray-matter": "^3.0.0",
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.70.2",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "date-fns": "^4.4.0",
     "feed": "^6.0.0",
-    "gray-matter": "^4.0.3",
     "js-yaml": "^5.2.2",
     "luxon": "^3.5.0",
     "marked": "^18.0.9",
@@ -53,8 +53,7 @@
   "pnpm": {
     "overrides": {
       "protobufjs": "^7.5.6",
-      "cookie@<0.7.0": "^0.7.0",
-      "js-yaml@3": "^3.15.1"
+      "cookie@<0.7.0": "^0.7.0"
     }
   }
 }

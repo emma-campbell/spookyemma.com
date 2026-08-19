@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 import type { Changelog, ChangelogEntry, ChangelogMonth, ChangelogTag } from './types';
 
 const CHANGELOG_PATH = path.join(process.cwd(), 'content', 'changelog.md');

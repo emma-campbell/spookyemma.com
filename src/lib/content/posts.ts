@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from '@11ty/gray-matter';
 import type { Post, PostEntry, PostStatus } from './types';
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts');
