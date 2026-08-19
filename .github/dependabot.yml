@@ -12,10 +12,7 @@ updates:
     # Wait before opening a PR for a freshly published version, so compromised
     # releases have time to be yanked before they reach us.
     cooldown:
-      default-days: 7
-      semver-major-days: 14
-      semver-minor-days: 7
-      semver-patch-days: 7
+      default-days: 14
     groups:
       # Everything non-breaking lands in a single PR. Majors are left ungrouped
       # so each one still gets its own PR to review.
