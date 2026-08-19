@@ -52,7 +52,8 @@
   },
   "pnpm": {
     "overrides": {
-      "protobufjs": "^7.5.6"
+      "protobufjs": "^7.5.6",
+      "cookie@<0.7.0": "^0.7.0"
     }
   }
 }
