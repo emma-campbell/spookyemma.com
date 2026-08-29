@@ -10,8 +10,8 @@
 
 	const collMap = $derived(new Map(data.collections.map((c) => [c.id, c])));
 
-	// Mirrors the .mosaic column counts below: 2 columns under 1100px, 3 above.
-	const GRID_SIZES = '(max-width: 1100px) 45vw, 30vw';
+	// Mirrors the .mosaic column counts below: 2 on mobile, 3 under 1100px, 4 under 1400px, 5 above.
+	const GRID_SIZES = '(max-width: 599px) 50vw, (max-width: 1100px) 33vw, (max-width: 1400px) 25vw, 20vw';
 
 	const visiblePhotos = $derived(
 		active === 'all' ? data.photos : data.photos.filter((p) => p.collection === active)
@@ -261,12 +261,17 @@
 		border-right: 1px solid var(--border);
 	}
 	.mosaic {
-		column-count: 3;
+		column-count: 5;
 		column-gap: 14px;
+	}
+	@media (max-width: 1400px) {
+		.mosaic {
+			column-count: 4;
+		}
 	}
 	@media (max-width: 1100px) {
 		.mosaic {
-			column-count: 2;
+			column-count: 3;
 		}
 	}
 	.mosaic-empty {

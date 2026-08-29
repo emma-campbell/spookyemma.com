@@ -31,11 +31,12 @@ function loadManifest(): Record<string, ImageInfo> {
 	if (manifest) return manifest;
 	try {
 		manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf-8'));
+		return manifest!;
 	} catch {
-		// Missing manifest degrades to plain <img>; nothing breaks, images are just heavier.
-		manifest = {};
+		// Missing manifest degrades to plain <img>; nothing breaks, images are just
+		// heavier. Not cached, so a dev server picks the file up once it appears.
+		return {};
 	}
-	return manifest!;
 }
 
 /** Look up a site-relative image URL such as `/images/posts/foo/bar.jpeg`. */
