@@ -4,8 +4,8 @@
   "type": "module",
   "packageManager": "pnpm@10.28.2",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
+    "dev": "node scripts/build-images.mjs && vite dev",
+    "build": "node scripts/build-images.mjs && vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -15,7 +15,11 @@
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
     "test:update-snapshots": "playwright test --update-snapshots",
-    "test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.61.0-jammy sh -c 'npm install -g pnpm@10.28.2 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'"
+    "test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.61.0-jammy sh -c 'npm install -g pnpm@10.28.2 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'",
+    "images:build": "node scripts/build-images.mjs",
+    "images:normalize": "node scripts/normalize-images.mjs",
+    "images:check": "node scripts/check-images.mjs",
+    "prepare": "simple-git-hooks"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
@@ -28,8 +32,11 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^26.1.1",
+    "lint-staged": "^17.4.1",
     "mdsvex": "^0.12.8",
+    "sharp": "^0.35.4",
     "shiki": "^4.3.1",
+    "simple-git-hooks": "^2.14.0",
     "svelte": "^5.56.9",
     "svelte-check": "^4.7.6",
     "tailwindcss": "^4.3.3",
@@ -54,6 +61,15 @@
     "overrides": {
       "protobufjs": "^7.5.6",
       "cookie@<0.7.0": "^0.7.0"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "simple-git-hooks"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
+  },
+  "lint-staged": {
+    "static/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}": "node scripts/normalize-images.mjs"
   }
 }

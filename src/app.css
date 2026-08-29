@@ -686,7 +686,7 @@ body {
 .prose ol li::before { content: counter(prose-ol) '.'; position: absolute; left: -1.5rem; color: var(--amber); font-variant-numeric: tabular-nums; }
 
 /* Prose images */
-.prose img { max-width: min(100%, 620px); border: 1px solid var(--border); border-radius: 3px; margin: 1rem 0 0.5rem; display: block; }
+.prose img { max-width: min(100%, 620px); height: auto; border: 1px solid var(--border); border-radius: 3px; margin: 1rem 0 0.5rem; display: block; }
 .prose figcaption { font-size: 0.72rem; color: var(--muted); text-align: center; margin-bottom: 1.5rem; font-style: italic; }
 
 /* Prose hr */
@@ -749,8 +749,10 @@ ol.prose-list { list-style-type: decimal; }
 
 /* Figure */
 .figure { margin: 1.75rem 0; }
+.figure picture { display: block; }
 .figure img, .figure .img-placeholder {
 	width: 100%;
+	height: auto;
 	display: block;
 	border-radius: 3px;
 	border: 1px solid rgba(196,169,106,0.2);

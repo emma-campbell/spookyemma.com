@@ -10,6 +10,9 @@
 
 	const collMap = $derived(new Map(data.collections.map((c) => [c.id, c])));
 
+	// Mirrors the .mosaic column counts below: 2 columns under 1100px, 3 above.
+	const GRID_SIZES = '(max-width: 1100px) 45vw, 30vw';
+
 	const visiblePhotos = $derived(
 		active === 'all' ? data.photos : data.photos.filter((p) => p.collection === active)
 	);
@@ -90,7 +93,19 @@
 					{#each visiblePhotos as photo (photo.src)}
 						<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 						<button class="photo" onclick={() => openLightbox(photo)} aria-label="View {photo.caption}">
-							<img src={photo.src} alt={photo.alt} loading="lazy" />
+							<picture>
+								{#if photo.srcset}
+									<source type="image/webp" srcset={photo.srcset} sizes={GRID_SIZES} />
+								{/if}
+								<img
+									src={photo.src}
+									alt={photo.alt}
+									width={photo.width}
+									height={photo.height}
+									loading="lazy"
+									decoding="async"
+								/>
+							</picture>
 							<span class="photo-overlay">
 								<span class="photo-caption">{photo.caption}</span>
 								<span class="photo-meta">
@@ -128,7 +143,12 @@
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div class="lightbox open" onclick={closeLightbox}>
 		<span class="lightbox-close" aria-hidden="true">✕</span>
-		<img src={lightboxPhoto.src} alt={lightboxPhoto.alt} />
+		<picture>
+			{#if lightboxPhoto.srcset}
+				<source type="image/webp" srcset={lightboxPhoto.srcset} sizes="90vw" />
+			{/if}
+			<img src={lightboxPhoto.src} alt={lightboxPhoto.alt} decoding="async" />
+		</picture>
 		<div class="lightbox-caption">
 			{lightboxPhoto.caption}
 			<small>{lightboxPhoto.place} · {lightboxPhoto.dateLabel}</small>
@@ -263,8 +283,12 @@
 		color: inherit;
 		text-align: left;
 	}
+	.photo picture {
+		display: block;
+	}
 	.photo img {
 		width: 100%;
+		height: auto;
 		display: block;
 		transition: transform 0.4s ease, filter 0.4s ease;
 		filter: saturate(0.92) brightness(0.96);
