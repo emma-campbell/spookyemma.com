@@ -2,6 +2,7 @@
 import { createHash } from 'node:crypto';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
+import exifReader from 'exif-reader';
 
 export const STATIC_DIR = path.resolve('static');
 /** Committed alongside the variants; read by the markdown renderer and the photos page. */
@@ -123,4 +124,36 @@ export async function mapLimit(items, limit, fn) {
 	}
 	await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
 	return results;
+}
+
+/**
+ * Pull the shooting details worth showing under a photo out of an EXIF block,
+ * before the pipeline strips it. Returns undefined for images without a camera
+ * model (screenshots, graphics, already-normalized files).
+ */
+export function extractExif(exif) {
+	if (!exif) return undefined;
+	let parsed;
+	try {
+		parsed = exifReader(exif);
+	} catch {
+		return undefined;
+	}
+	const image = parsed.Image ?? {};
+	const photo = parsed.Photo ?? {};
+	if (!image.Model) return undefined;
+	const round = (n, places) => (typeof n === 'number' ? Number(n.toFixed(places)) : undefined);
+	const out = {
+		make: image.Make?.trim(),
+		model: image.Model?.trim(),
+		lens: photo.LensModel?.trim(),
+		fNumber: round(photo.FNumber, 2),
+		exposureTime: round(photo.ExposureTime, 6),
+		iso: photo.ISOSpeedRatings ?? photo.PhotographicSensitivity,
+		focalLength: round(photo.FocalLength, 2),
+		focalLength35: photo.FocalLengthIn35mmFilm,
+		takenAt: photo.DateTimeOriginal instanceof Date ? photo.DateTimeOriginal.toISOString() : undefined
+	};
+	for (const k of Object.keys(out)) if (out[k] === undefined || out[k] === '') delete out[k];
+	return out;
 }

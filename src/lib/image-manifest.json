@@ -13,7 +13,18 @@
 				"w": 583,
 				"src": "/andrea-583w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max front camera 2.69mm f/1.9",
+			"fNumber": 1.9,
+			"exposureTime": 0.004975,
+			"iso": 25,
+			"focalLength": 2.69,
+			"focalLength35": 23,
+			"takenAt": "2023-07-06T11:13:54.000Z"
+		}
 	},
 	"/computer.png": {
 		"width": 578,
@@ -85,7 +96,18 @@
 				"w": 1280,
 				"src": "/images/posts/april-2024-rewind/adventure-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.001969,
+			"iso": 80,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-04-28T15:29:56.000Z"
+		}
 	},
 	"/images/posts/april-2024-rewind/eclipse.jpeg": {
 		"width": 1499,
@@ -101,7 +123,18 @@
 				"w": 1280,
 				"src": "/images/posts/april-2024-rewind/eclipse-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max front camera 2.69mm f/1.9",
+			"fNumber": 1.9,
+			"exposureTime": 0.007246,
+			"iso": 20,
+			"focalLength": 2.69,
+			"focalLength35": 30,
+			"takenAt": "2024-04-08T15:04:16.000Z"
+		}
 	},
 	"/images/posts/april-2024-rewind/footy.jpeg": {
 		"width": 2000,
@@ -117,7 +150,18 @@
 				"w": 1280,
 				"src": "/images/posts/april-2024-rewind/footy-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.008264,
+			"iso": 100,
+			"focalLength": 6.86,
+			"focalLength35": 29,
+			"takenAt": "2024-04-09T20:28:57.000Z"
+		}
 	},
 	"/images/posts/azure-changeset-bot/pr_created.png": {
 		"width": 1024,
@@ -189,7 +233,18 @@
 				"w": 1500,
 				"src": "/images/posts/feb-2026-rewind/bookstore-1500w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 16 Pro",
+			"lens": "iPhone 16 Pro back triple camera 6.765mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.016667,
+			"iso": 500,
+			"focalLength": 6.76,
+			"focalLength35": 24,
+			"takenAt": "2026-02-14T12:27:54.000Z"
+		}
 	},
 	"/images/posts/feb-2026-rewind/connection.jpg": {
 		"width": 2000,
@@ -213,7 +268,18 @@
 				"w": 1600,
 				"src": "/images/posts/feb-2026-rewind/connection-1600w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 16 Pro",
+			"lens": "iPhone 16 Pro back triple camera 6.765mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.016667,
+			"iso": 320,
+			"focalLength": 6.76,
+			"focalLength35": 24,
+			"takenAt": "2026-02-14T13:25:51.000Z"
+		}
 	},
 	"/images/posts/february-2024-rewind/talus.jpeg": {
 		"width": 2000,
@@ -237,7 +303,18 @@
 				"w": 1600,
 				"src": "/images/posts/february-2024-rewind/talus-1600w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 12 Pro Max",
+			"lens": "iPhone 12 Pro Max back triple camera 5.1mm f/1.6",
+			"fNumber": 1.6,
+			"exposureTime": 0.016667,
+			"iso": 100,
+			"focalLength": 5.1,
+			"focalLength35": 26,
+			"takenAt": "2022-04-11T15:18:09.000Z"
+		}
 	},
 	"/images/posts/january-2024-rewind/canvas_bag.jpeg": {
 		"width": 768,
@@ -249,7 +326,18 @@
 				"w": 640,
 				"src": "/images/posts/january-2024-rewind/canvas_bag-640w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.016667,
+			"iso": 500,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-01-27T13:06:20.000Z"
+		}
 	},
 	"/images/posts/june-2024-rewind/aquarium.jpeg": {
 		"width": 1499,
@@ -265,7 +353,18 @@
 				"w": 1280,
 				"src": "/images/posts/june-2024-rewind/aquarium-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.052632,
+			"iso": 1600,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-06-22T12:46:39.000Z"
+		}
 	},
 	"/images/posts/june-2024-rewind/hiking.jpeg": {
 		"width": 1499,
@@ -281,7 +380,18 @@
 				"w": 1280,
 				"src": "/images/posts/june-2024-rewind/hiking-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.000757,
+			"iso": 80,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-06-15T09:24:14.000Z"
+		}
 	},
 	"/images/posts/june-2024-rewind/moose_ri.jpeg": {
 		"width": 1499,
@@ -297,7 +407,18 @@
 				"w": 1280,
 				"src": "/images/posts/june-2024-rewind/moose_ri-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back dual wide camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.000151,
+			"iso": 100,
+			"focalLength": 6.86,
+			"focalLength35": 48,
+			"takenAt": "2024-06-04T15:45:06.000Z"
+		}
 	},
 	"/images/posts/june-2024-rewind/pride.jpeg": {
 		"width": 1499,
@@ -313,7 +434,18 @@
 				"w": 1280,
 				"src": "/images/posts/june-2024-rewind/pride-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back dual wide camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.00295,
+			"iso": 80,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-06-08T15:30:48.000Z"
+		}
 	},
 	"/images/posts/june-2024-rewind/soccer.jpeg": {
 		"width": 2000,
@@ -329,7 +461,18 @@
 				"w": 1280,
 				"src": "/images/posts/june-2024-rewind/soccer-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.008333,
+			"iso": 100,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-06-29T21:45:23.000Z"
+		}
 	},
 	"/images/posts/mar-2026-rewind/IMG_3689.jpeg": {
 		"width": 1499,
@@ -345,7 +488,18 @@
 				"w": 1280,
 				"src": "/images/posts/mar-2026-rewind/IMG_3689-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 16 Pro",
+			"lens": "iPhone 16 Pro back triple camera 6.765mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.0033,
+			"iso": 100,
+			"focalLength": 6.76,
+			"focalLength35": 24,
+			"takenAt": "2026-03-21T09:21:17.000Z"
+		}
 	},
 	"/images/posts/mar-2026-rewind/IMG_3744.jpeg": {
 		"width": 2000,
@@ -361,7 +515,18 @@
 				"w": 1280,
 				"src": "/images/posts/mar-2026-rewind/IMG_3744-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 16 Pro",
+			"lens": "iPhone 16 Pro back triple camera 6.765mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.002299,
+			"iso": 80,
+			"focalLength": 6.76,
+			"focalLength35": 24,
+			"takenAt": "2026-03-29T18:10:57.000Z"
+		}
 	},
 	"/images/posts/march-2024-rewind/andrea_iu_sweater.jpeg": {
 		"width": 768,
@@ -373,7 +538,18 @@
 				"w": 640,
 				"src": "/images/posts/march-2024-rewind/andrea_iu_sweater-640w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.008264,
+			"iso": 125,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-03-05T13:47:53.000Z"
+		}
 	},
 	"/images/posts/march-2024-rewind/moose_monuments.jpeg": {
 		"width": 1586,
@@ -397,7 +573,18 @@
 				"w": 1586,
 				"src": "/images/posts/march-2024-rewind/moose_monuments-1586w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back dual wide camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.000434,
+			"iso": 100,
+			"focalLength": 6.86,
+			"focalLength35": 48,
+			"takenAt": "2024-03-22T12:20:50.000Z"
+		}
 	},
 	"/images/posts/march-2024-rewind/moose_training.jpeg": {
 		"width": 768,
@@ -409,7 +596,18 @@
 				"w": 640,
 				"src": "/images/posts/march-2024-rewind/moose_training-640w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.016667,
+			"iso": 250,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-03-11T20:11:20.000Z"
+		}
 	},
 	"/images/posts/may-2024-rewind/hiking_w_moose.jpeg": {
 		"width": 1499,
@@ -425,7 +623,18 @@
 				"w": 1280,
 				"src": "/images/posts/may-2024-rewind/hiking_w_moose-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.008264,
+			"iso": 100,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-05-24T13:07:23.000Z"
+		}
 	},
 	"/images/posts/may-2024-rewind/tifo.jpeg": {
 		"width": 1499,
@@ -441,7 +650,18 @@
 				"w": 1280,
 				"src": "/images/posts/may-2024-rewind/tifo-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 9mm f/2.8",
+			"fNumber": 2.8,
+			"exposureTime": 0.010101,
+			"iso": 64,
+			"focalLength": 9,
+			"focalLength35": 149,
+			"takenAt": "2024-05-11T19:51:25.000Z"
+		}
 	},
 	"/images/posts/may-2024-rewind/womens_sports.jpeg": {
 		"width": 1499,
@@ -457,7 +677,18 @@
 				"w": 1280,
 				"src": "/images/posts/may-2024-rewind/womens_sports-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.016667,
+			"iso": 640,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-05-18T18:16:30.000Z"
+		}
 	},
 	"/images/posts/october-2024-rewind/last-of-us.jpeg": {
 		"width": 768,
@@ -469,7 +700,18 @@
 				"w": 640,
 				"src": "/images/posts/october-2024-rewind/last-of-us-640w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 16 Pro",
+			"lens": "iPhone 16 Pro back triple camera 6.765mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.066667,
+			"iso": 1600,
+			"focalLength": 6.76,
+			"focalLength35": 32,
+			"takenAt": "2024-10-25T21:18:36.000Z"
+		}
 	},
 	"/images/posts/october-2024-rewind/save-the-crew.jpeg": {
 		"width": 768,
@@ -481,7 +723,18 @@
 				"w": 640,
 				"src": "/images/posts/october-2024-rewind/save-the-crew-640w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 16 Pro",
+			"lens": "iPhone 16 Pro back triple camera 15.66mm f/2.8",
+			"fNumber": 2.8,
+			"exposureTime": 0.025,
+			"iso": 800,
+			"focalLength": 15.66,
+			"focalLength35": 199,
+			"takenAt": "2024-10-12T19:37:02.000Z"
+		}
 	},
 	"/images/posts/reflections-indiana/IMG_1175.jpeg": {
 		"width": 1499,
@@ -497,7 +750,18 @@
 				"w": 1280,
 				"src": "/images/posts/reflections-indiana/IMG_1175-1280w.jpg"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 16 Pro",
+			"lens": "iPhone 16 Pro back triple camera 6.765mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.003378,
+			"iso": 100,
+			"focalLength": 6.76,
+			"focalLength35": 24,
+			"takenAt": "2025-03-30T10:26:55.000Z"
+		}
 	},
 	"/images/posts/the-habit-experiment/dopower-chart.png": {
 		"width": 924,
@@ -573,7 +837,18 @@
 				"w": 1600,
 				"src": "/moose-1600w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "Apple",
+			"model": "iPhone 14 Pro Max",
+			"lens": "iPhone 14 Pro Max back triple camera 6.86mm f/1.78",
+			"fNumber": 1.78,
+			"exposureTime": 0.001656,
+			"iso": 80,
+			"focalLength": 6.86,
+			"focalLength35": 24,
+			"takenAt": "2024-03-16T08:39:04.000Z"
+		}
 	},
 	"/photos/09E310CB-D129-4549-88AA-A36B6B631511_1_105_c.jpeg": {
 		"width": 724,
@@ -589,7 +864,18 @@
 				"w": 724,
 				"src": "/photos/09E310CB-D129-4549-88AA-A36B6B631511_1_105_c-724w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 5.6,
+			"exposureTime": 0.001563,
+			"iso": 25600,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-13T12:01:37.000Z"
+		}
 	},
 	"/photos/94314820-17BD-405D-93ED-2C303A5C642C_1_105_c.jpeg": {
 		"width": 724,
@@ -605,7 +891,18 @@
 				"w": 724,
 				"src": "/photos/94314820-17BD-405D-93ED-2C303A5C642C_1_105_c-724w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.625,
+			"iso": 100,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-13T12:04:25.000Z"
+		}
 	},
 	"/photos/D4A419A6-D93B-451E-8681-77CB96A7E774_1_105_c.jpeg": {
 		"width": 724,
@@ -621,7 +918,18 @@
 				"w": 724,
 				"src": "/photos/D4A419A6-D93B-451E-8681-77CB96A7E774_1_105_c-724w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 2.8,
+			"exposureTime": 0.071429,
+			"iso": 100,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-13T12:05:51.000Z"
+		}
 	},
 	"/photos/DSCF0388.jpg": {
 		"width": 2000,
@@ -645,7 +953,18 @@
 				"w": 1600,
 				"src": "/photos/DSCF0388-1600w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.01,
+			"iso": 1250,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-28T16:00:44.000Z"
+		}
 	},
 	"/photos/DSCF0439.jpg": {
 		"width": 2000,
@@ -669,7 +988,18 @@
 				"w": 1600,
 				"src": "/photos/DSCF0439-1600w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.001818,
+			"iso": 1250,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-29T12:23:37.000Z"
+		}
 	},
 	"/photos/DSCF0541.jpg": {
 		"width": 1334,
@@ -693,7 +1023,18 @@
 				"w": 1334,
 				"src": "/photos/DSCF0541-1334w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.005882,
+			"iso": 640,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-29T14:05:04.000Z"
+		}
 	},
 	"/photos/DSCF0578.jpg": {
 		"width": 2000,
@@ -717,7 +1058,18 @@
 				"w": 1600,
 				"src": "/photos/DSCF0578-1600w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.022222,
+			"iso": 640,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-29T16:27:42.000Z"
+		}
 	},
 	"/photos/DSCF0682.jpg": {
 		"width": 1333,
@@ -741,7 +1093,18 @@
 				"w": 1333,
 				"src": "/photos/DSCF0682-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 16,
+			"exposureTime": 0.004,
+			"iso": 3200,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-06-30T13:38:10.000Z"
+		}
 	},
 	"/photos/DSCF1223.jpg": {
 		"width": 1333,
@@ -765,7 +1128,18 @@
 				"w": 1333,
 				"src": "/photos/DSCF1223-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 5,
+			"exposureTime": 0.00025,
+			"iso": 500,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-07-03T12:47:12.000Z"
+		}
 	},
 	"/photos/DSCF1282.jpg": {
 		"width": 1333,
@@ -789,7 +1163,18 @@
 				"w": 1333,
 				"src": "/photos/DSCF1282-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 8,
+			"exposureTime": 0.00125,
+			"iso": 640,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-07-03T13:31:11.000Z"
+		}
 	},
 	"/photos/DSCF1311.jpg": {
 		"width": 2000,
@@ -813,7 +1198,18 @@
 				"w": 1600,
 				"src": "/photos/DSCF1311-1600w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 8,
+			"exposureTime": 0.033333,
+			"iso": 12800,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-07-03T19:20:34.000Z"
+		}
 	},
 	"/photos/DSCF1453.jpg": {
 		"width": 1333,
@@ -837,7 +1233,18 @@
 				"w": 1333,
 				"src": "/photos/DSCF1453-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 10,
+			"exposureTime": 0.001563,
+			"iso": 4000,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-08-01T11:22:36.000Z"
+		}
 	},
 	"/photos/DSCF1468.jpg": {
 		"width": 1333,
@@ -861,7 +1268,18 @@
 				"w": 1333,
 				"src": "/photos/DSCF1468-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 10,
+			"exposureTime": 0.001563,
+			"iso": 2500,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-08-01T11:44:56.000Z"
+		}
 	},
 	"/photos/DSCF1542.jpg": {
 		"width": 1333,
@@ -885,7 +1303,18 @@
 				"w": 1333,
 				"src": "/photos/DSCF1542-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.001471,
+			"iso": 1000,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-08-06T20:33:00.000Z"
+		}
 	},
 	"/photos/DSCF1558.jpg": {
 		"width": 1333,
@@ -909,7 +1338,18 @@
 				"w": 1333,
 				"src": "/photos/DSCF1558-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.0125,
+			"iso": 1250,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-08-06T20:42:23.000Z"
+		}
 	},
 	"/photos/DSCF1581.jpg": {
 		"width": 1333,
@@ -933,6 +1373,17 @@
 				"w": 1333,
 				"src": "/photos/DSCF1581-1333w.webp"
 			}
-		]
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF16-50mmF2.8-4.8 R LM WR",
+			"fNumber": 5,
+			"exposureTime": 0.006667,
+			"iso": 640,
+			"focalLength": 50,
+			"focalLength35": 75,
+			"takenAt": "2026-08-29T16:52:03.000Z"
+		}
 	}
 }

@@ -160,6 +160,13 @@
 		<div class="lightbox-caption">
 			{lightboxPhoto.caption}
 			<small>{lightboxPhoto.place} · {lightboxPhoto.dateLabel}</small>
+			{#if lightboxPhoto.exif?.length}
+				<small class="lightbox-exif">
+					{#each lightboxPhoto.exif as part, i}
+						{#if i > 0}<span class="exif-sep" aria-hidden="true">·</span>{/if}<span>{part}</span>
+					{/each}
+				</small>
+			{/if}
 		</div>
 	</div>
 {/if}
@@ -396,6 +403,14 @@
 		color: var(--muted);
 		margin-top: 0.3rem;
 		letter-spacing: 0.06em;
+	}
+	.lightbox-exif {
+		color: rgba(196, 169, 106, 0.7);
+		margin-top: 0.2rem;
+	}
+	.exif-sep {
+		margin: 0 0.45em;
+		opacity: 0.5;
 	}
 	.lightbox-close {
 		position: absolute;

@@ -11,6 +11,9 @@ entries:
     text: "Photos are shuffled instead of sorted newest-first — the order changes with each deploy"
   - date: 2026-08-29
     tag: added
+    text: "Shooting details under photos in the lightbox — camera, focal length, aperture, shutter, ISO — captured from EXIF before it's stripped"
+  - date: 2026-08-29
+    tag: added
     text: "Responsive images — srcset/sizes tiers, intrinsic width/height (no layout shift), eager first image per post, lazy for the rest"
   - date: 2026-08-29
     tag: changed

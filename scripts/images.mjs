@@ -37,6 +37,7 @@ import {
 	SDR_WIDTHS,
 	STATIC_DIR,
 	WEBP_QUALITY,
+	extractExif,
 	fmtBytes,
 	hasGainMap,
 	hasGps,
@@ -59,6 +60,9 @@ async function normalize(file) {
 	const input = await readFile(file);
 	const meta = await sharp(input).metadata();
 	const hdr = hasGainMap(input);
+	// Shooting details are captured here, before the EXIF is stripped, and live
+	// on in the manifest (the photos page shows them in the lightbox).
+	const exif = extractExif(meta.exif);
 	const tooLarge = Math.max(meta.width, meta.height) > MAX_EDGE;
 	const heavy = input.length > MAX_BYTES;
 	// ImageIO leaves a ~200-byte EXIF stub (pixel dims, colour space) on HDR output;
@@ -67,7 +71,7 @@ async function normalize(file) {
 		? hasGps(meta.exif) || (meta.exif?.length ?? 0) > 512 || Boolean(meta.xmp)
 		: Boolean(meta.exif || meta.icc || meta.xmp || meta.iptc);
 
-	if (!hasMetadata && !tooLarge && !heavy) return { hdr, before: input.length, rewrote: false };
+	if (!hasMetadata && !tooLarge && !heavy) return { hdr, exif, before: input.length, rewrote: false };
 
 	let output;
 	if (hdr) {
@@ -91,7 +95,7 @@ async function normalize(file) {
 		output = await pipeline.toBuffer();
 		// A re-encode purely for weight that didn't get lighter isn't worth the quality loss.
 		if (!hasMetadata && !tooLarge && output.length >= input.length) {
-			return { hdr, before: input.length, rewrote: false };
+			return { hdr, exif, before: input.length, rewrote: false };
 		}
 	}
 
@@ -100,12 +104,12 @@ async function normalize(file) {
 		.filter(Boolean)
 		.join(', ');
 	console.log(`normalized ${rel(file)}  ${fmtBytes(input.length)} -> ${fmtBytes(output.length)}  (${why})`);
-	return { hdr, before: input.length, after: output.length, rewrote: true };
+	return { hdr, exif, before: input.length, after: output.length, rewrote: true };
 }
 
 // ----------------------------------------------------------------- variants
 
-async function buildVariants(file, previous) {
+async function buildVariants(file, previous, exif) {
 	const buf = await readFile(file);
 	const hdr = hasGainMap(buf);
 	const hash = `${hashBuffer(buf)}-${CONFIG_KEY}`;
@@ -122,6 +126,9 @@ async function buildVariants(file, previous) {
 
 	const variants = widths.map((w) => ({ w, src: toUrl(variantPath(file, w, ext)) }));
 	const entry = { width, height, hash, type: hdr ? 'image/jpeg' : 'image/webp', variants };
+	// Once normalized the file has no camera EXIF left, so keep what an earlier run recorded.
+	const shooting = exif ?? previous?.exif;
+	if (shooting) entry.exif = shooting;
 	const cached =
 		previous?.hash === hash && variants.every((v) => existsSync(path.join(STATIC_DIR, v.src)));
 	if (cached) return { entry, generated: 0, files: [] };
@@ -162,7 +169,7 @@ try {
 // HDR work shells out to a single-threaded tool; keep concurrency modest.
 const results = await mapLimit(files, 4, async (file) => {
 	const norm = await normalize(file);
-	const built = await buildVariants(file, manifest[toUrl(file)]);
+	const built = await buildVariants(file, manifest[toUrl(file)], norm.exif);
 	return { file, norm, ...built };
 });
 
