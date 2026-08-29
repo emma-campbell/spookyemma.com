@@ -6,10 +6,7 @@ import { formatExif, getImageInfo, srcset } from './images';
 
 const PHOTOS_PATH = path.join(process.cwd(), 'content', 'photos.md');
 
-const MONTHS = [
-	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-	'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-];
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /** Turn an authored `YYYY-MM` (or `YYYY-MM-DD`) into "Mon YYYY". Falls back to the raw value. */
 function formatDateLabel(raw: string): string {
@@ -33,26 +30,25 @@ export function getPhotos(): PhotosContent {
 	const stats = fs.statSync(PHOTOS_PATH);
 	const { data } = matter(fileContent);
 
-	const photos: Photo[] = (data.photos ?? [])
-		.map((p: Record<string, unknown>): Photo => {
-			const date = String(p.date ?? '');
-			const src = String(p.src ?? '');
-			const image = getImageInfo(src);
-			return {
-				src,
-				alt: String(p.alt ?? p.caption ?? ''),
-				width: image?.width,
-				height: image?.height,
-				srcset: image ? srcset(image) : undefined,
-				srcsetType: image?.type,
-				exif: image?.exif ? formatExif(image.exif) : undefined,
-				caption: String(p.caption ?? ''),
-				collection: String(p.collection ?? ''),
-				place: String(p.place ?? ''),
-				date,
-				dateLabel: formatDateLabel(date)
-			};
-		});
+	const photos: Photo[] = (data.photos ?? []).map((p: Record<string, unknown>): Photo => {
+		const date = String(p.date ?? '');
+		const src = String(p.src ?? '');
+		const image = getImageInfo(src);
+		return {
+			src,
+			alt: String(p.alt ?? p.caption ?? ''),
+			width: image?.width,
+			height: image?.height,
+			srcset: image ? srcset(image) : undefined,
+			srcsetType: image?.type,
+			exif: image?.exif ? formatExif(image.exif) : undefined,
+			caption: String(p.caption ?? ''),
+			collection: String(p.collection ?? ''),
+			place: String(p.place ?? ''),
+			date,
+			dateLabel: formatDateLabel(date)
+		};
+	});
 	// Shuffled rather than date-sorted, so the grid doesn't read as a timeline.
 	// This runs at prerender, so the order is fixed per build and changes each deploy.
 	shuffle(photos);

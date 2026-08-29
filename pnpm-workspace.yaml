@@ -1,3 +1,17 @@
 onlyBuiltDependencies:
   - core-js
   - protobufjs
+ignoredBuiltDependencies:
+  - simple-git-hooks
+overrides:
+  protobufjs: ^7.5.6
+  cookie@<0.7.0: ^0.7.0
+  vite@*: "catalog:"
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@0.3.0
+  vite-plus: 0.3.0
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"

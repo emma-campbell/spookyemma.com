@@ -5,7 +5,8 @@ status: published
 entry: making
 tags: []
 ---
-In my time at [Hugo Health](https://hugo.health), when I am not working on data operations and scaling, I have been helping to facilitate a major refactor of our systems. A *huge* part of this is the way that we manage our packages.
+
+In my time at [Hugo Health](https://hugo.health), when I am not working on data operations and scaling, I have been helping to facilitate a major refactor of our systems. A _huge_ part of this is the way that we manage our packages.
 
 Admittedly, the way we used to do things was a bit of a mess. Most everyone there would probably agree with that sentiment. So, we decided to change things up. We had a few things we wanted to accomplish with these changes.
 
@@ -32,9 +33,9 @@ After making your changes, run the command `yarn changeset`, and enter what kind
   major
 ```
 
-Generally, I like to run this command for every "feature" included in the PR (though, we \*generally\*  don't include more than one feature per pull request as a general practice). When you're completely done with your changes, just before opening the pull request, run `yarn changeset version`. This command will automatically update the version of the package, and generate the corresponding changelog. It will bump the package to the \*minimum\* version required within all included changeset files.
+Generally, I like to run this command for every "feature" included in the PR (though, we \*generally\* don't include more than one feature per pull request as a general practice). When you're completely done with your changes, just before opening the pull request, run `yarn changeset version`. This command will automatically update the version of the package, and generate the corresponding changelog. It will bump the package to the \*minimum\* version required within all included changeset files.
 
-Finally, using the command `yarn changeset publish` will publish the changes to  the registry.
+Finally, using the command `yarn changeset publish` will publish the changes to the registry.
 
 # Planning our Bot
 
@@ -61,7 +62,7 @@ Changeset also allows an empty changeset for changes that aren't meant to be "re
 To accomplish the above, we need our bot to check for two things.
 
 1. Does the pull request contain any changesets? If it does, leave a **closed** comment on the PR confirming that it does, then move on to the next step.
-2. If the changeset requires a version bump (i.e. the changeset is *not* empty), run `changeset version`, and push those changes to the PR.
+2. If the changeset requires a version bump (i.e. the changeset is _not_ empty), run `changeset version`, and push those changes to the PR.
 
 We can use the `azure-devops-node-api`, and a combinations of the packages from the `@changesets/changeset` monorepo to accomplish both of these tasks.
 
@@ -75,7 +76,7 @@ I'll run over the instructions for getting started. I am using MacOS, but the on
 
 On MacOS, the only prerequisites here are having Homebrew and Visual Studio Code installed on your machine.
 
-### 1.  Install Azure Functions Core Tools
+### 1. Install Azure Functions Core Tools
 
 Using homebrew, we will start by installing the core tools.
 
@@ -173,12 +174,12 @@ Then do the same in `.vscode/settings.json`.
 
 ```json
 {
- "azureFunctions.deploySubpath": ".",
- "azureFunctions.postDeployTask": "yarn install (functions)",
- "azureFunctions.projectLanguage": "TypeScript",
- "azureFunctions.projectRuntime": "~4",
- "debug.internalConsoleOptions": "neverOpen",
- "azureFunctions.preDeployTask": "yarn prune (functions)"
+  "azureFunctions.deploySubpath": ".",
+  "azureFunctions.postDeployTask": "yarn install (functions)",
+  "azureFunctions.projectLanguage": "TypeScript",
+  "azureFunctions.projectRuntime": "~4",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.preDeployTask": "yarn prune (functions)"
 }
 ```
 
@@ -208,7 +209,7 @@ To begin working with `azure-devops-node-api`, you will first need to add it as 
 yarn add azure-devops-node-api dotenv
 ```
 
-The only thing we will need in order to grant it access to your projects is a personal access token, which you can create by following [these instructions](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops\&tabs=Windows#create-a-pat "Create a Personal Access Token — Azure DevOps Docs").
+The only thing we will need in order to grant it access to your projects is a personal access token, which you can create by following [these instructions](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows#create-a-pat "Create a Personal Access Token — Azure DevOps Docs").
 
 Once you have your token, create a `.env` file in the root directory of the project with the following
 
@@ -232,12 +233,12 @@ We will start by defining a method that will get our environment variables for u
 
 ```typescript
 function getEnv(name: string): string {
- const val = process.env[name];
- if (!val) {
-  console.error(`${name} env var not set`);
-  process.exit(1);
- }
- return val;
+  const val = process.env[name];
+  if (!val) {
+    console.error(`${name} env var not set`);
+    process.exit(1);
+  }
+  return val;
 }
 ```
 
@@ -246,31 +247,31 @@ Basically, this will prevent our code from running if it can't find the environm
 Next, we will define a method called `getApi`. This will return the webApi from `azure-devops-node-api`.
 
 ```typescript
-import * as az from 'azure-devops-node-api';
-import * as lc from 'azure-devops-node-api/interfaces/LocationsInterfaces';
+import * as az from "azure-devops-node-api";
+import * as lc from "azure-devops-node-api/interfaces/LocationsInterfaces";
 
 function getEnv(name: string): string {
- const val = process.env[name];
- if (!val) {
-  console.error(`${name} env var not set`);
-  process.exit(1);
- }
- return val;
+  const val = process.env[name];
+  if (!val) {
+    console.error(`${name} env var not set`);
+    process.exit(1);
+  }
+  return val;
 }
 
 export async function getApi(baseUrl: string): Promise<az.WebApi> {
- return new Promise<az.WebApi>(async (resolve, reject) => {
-  try {
-   const token = getEnv("AZURE_PAT");
-   const authHandler = az.getPersonalAccessTokenHandler(token);
-   const api: az.WebApi = new az.WebApi(baseUrl, authHandler);
-   const connectionData: lc.ConnectionData = await vsts.connect();
+  return new Promise<az.WebApi>(async (resolve, reject) => {
+    try {
+      const token = getEnv("AZURE_PAT");
+      const authHandler = az.getPersonalAccessTokenHandler(token);
+      const api: az.WebApi = new az.WebApi(baseUrl, authHandler);
+      const connectionData: lc.ConnectionData = await vsts.connect();
 
-   resolve(api);
-  } catch (e) {
-   reject(e);
-  }
- })
+      resolve(api);
+    } catch (e) {
+      reject(e);
+    }
+  });
 }
 ```
 
@@ -284,36 +285,36 @@ This code does a few things.
 Finally, we will just wrap a handler around this method so that we can either pass in a baseUrl or use one from the environment.
 
 ```typescript
-import * as az from 'azure-devops-node-api';
-import * as lc from 'azure-devops-node-api/interfaces/LocationsInterfaces';
+import * as az from "azure-devops-node-api";
+import * as lc from "azure-devops-node-api/interfaces/LocationsInterfaces";
 
 function getEnv(name: string): string {
- const val = process.env[name];
- if (!val) {
-  console.error(`${name} env var not set`);
-  process.exit(1);
- }
- return val;
+  const val = process.env[name];
+  if (!val) {
+    console.error(`${name} env var not set`);
+    process.exit(1);
+  }
+  return val;
 }
 
 export async function getApi(baseUrl: string): Promise<az.WebApi> {
- return new Promise<az.WebApi>(async (resolve, reject) => {
-  try {
-   const token = getEnv("AZURE_PAT");
-   const authHandler = az.getPersonalAccessTokenHandler(token);
-   const api: az.WebApi = new az.WebApi(baseUrl, authHandler);
-   const connectionData: lc.ConnectionData = await vsts.connect();
+  return new Promise<az.WebApi>(async (resolve, reject) => {
+    try {
+      const token = getEnv("AZURE_PAT");
+      const authHandler = az.getPersonalAccessTokenHandler(token);
+      const api: az.WebApi = new az.WebApi(baseUrl, authHandler);
+      const connectionData: lc.ConnectionData = await vsts.connect();
 
-   resolve(api);
-  } catch (e) {
-   reject(e);
-  }
- })
+      resolve(api);
+    } catch (e) {
+      reject(e);
+    }
+  });
 }
 
 export async function getWebApi(baseUrl?: string): Promise<az.WebApi> {
- baseUrl = baseUrl || getEnv("API_URL");
- return await getApi(baseUrl);
+  baseUrl = baseUrl || getEnv("API_URL");
+  return await getApi(baseUrl);
 }
 ```
 
@@ -322,20 +323,23 @@ export async function getWebApi(baseUrl?: string): Promise<az.WebApi> {
 The next part of this tasks is to setup the trigger for the function. If you open up `index.ts` in the function folder, you will see the following
 
 ```typescript
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
- context.log('HTTP trigger function processed a request.');
+const httpTrigger: AzureFunction = async function (
+  context: Context,
+  req: HttpRequest
+): Promise<void> {
+  context.log("HTTP trigger function processed a request.");
 
- const name = (req.query.name || (req.body && req.body.name));
- const responseMessage = name
-  ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-  : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+  const name = req.query.name || (req.body && req.body.name);
+  const responseMessage = name
+    ? "Hello, " + name + ". This HTTP triggered function executed successfully."
+    : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
 
- context.res = {
-  // status: 200, /* Defaults to 200 */
-  body: responseMessage
- };
+  context.res = {
+    // status: 200, /* Defaults to 200 */
+    body: responseMessage
+  };
 };
 
 export default httpTrigger;
@@ -345,25 +349,25 @@ This method defines the trigger that will be hit once a PR is created or modifie
 
 ```json
 {
- "resource": {
-  "pullRequestId": "<ID>",
-  "repository": {
-   "id": "<REPO_ID>",
-   "project": {
-    "id": "<PROJECT_ID>",
-   }
-  },
-  "organization": {
-   "id": "<ORG_ID>"
+  "resource": {
+    "pullRequestId": "<ID>",
+    "repository": {
+      "id": "<REPO_ID>",
+      "project": {
+        "id": "<PROJECT_ID>"
+      }
+    },
+    "organization": {
+      "id": "<ORG_ID>"
+    }
   }
- }
 }
 ```
 
 This information gives us everything we need to know in order to modify the PR and check for changesets. We will start out with parsing the relevant information from the request body and initializing the connection to Azure's WebApi.
 
 ```typescript
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { WebApi } from "azure-devops-node-api";
 
 import * as dotenv from "dotenv";
@@ -372,15 +376,16 @@ import * as utils from "../utils"; // or wherever you put your utility functions
 // read in our environment variables
 dotenv.config();
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
- const organization = req.body.resource.organization.id;
- const repository = req.body.resource.repository.id;
- const project = req.body.resource.repository.project.id;
- const pullRequestId = req.body.resource.pullRequestId;
+const httpTrigger: AzureFunction = async function (
+  context: Context,
+  req: HttpRequest
+): Promise<void> {
+  const organization = req.body.resource.organization.id;
+  const repository = req.body.resource.repository.id;
+  const project = req.body.resource.repository.project.id;
+  const pullRequestId = req.body.resource.pullRequestId;
 
- const webApi: WebApi = await utils.getWebApi(
-  `https://dev.azure.com/${organization}`
- );
+  const webApi: WebApi = await utils.getWebApi(`https://dev.azure.com/${organization}`);
 };
 
 export default httpTrigger;
@@ -389,7 +394,7 @@ export default httpTrigger;
 Then, get the `GitApi` and all of the relevant PR information.
 
 ```typescript
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { WebApi } from "azure-devops-node-api";
 import { IGitApi, GitPullRequest } from "azure-devops-node-api/interfaces/GitInterfaces";
 
@@ -399,29 +404,30 @@ import * as utils from "../utils"; // or wherever you put your utility functions
 // read in our environment variables
 dotenv.config();
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
- const organization = req.body.resource.organization.id;
- const repository = req.body.resource.repository.id;
- const project = req.body.resource.repository.project.id;
- const pullRequestId = req.body.resource.pullRequestId;
+const httpTrigger: AzureFunction = async function (
+  context: Context,
+  req: HttpRequest
+): Promise<void> {
+  const organization = req.body.resource.organization.id;
+  const repository = req.body.resource.repository.id;
+  const project = req.body.resource.repository.project.id;
+  const pullRequestId = req.body.resource.pullRequestId;
 
- const webApi: WebApi = await utils.getWebApi(
-  `https://dev.azure.com/${organization}`
- );
+  const webApi: WebApi = await utils.getWebApi(`https://dev.azure.com/${organization}`);
 
- const gitApi: IGitApi = await webApi.getGitApi();
+  const gitApi: IGitApi = await webApi.getGitApi();
 
- const pullRequest: GitPullRequest = await gitApi.getPullRequest(
-  repository,
-  pullRequestId,
-  project,
-  undefined,
-  undefined,
-  undefined,
-  true
- );
+  const pullRequest: GitPullRequest = await gitApi.getPullRequest(
+    repository,
+    pullRequestId,
+    project,
+    undefined,
+    undefined,
+    undefined,
+    true
+  );
 
- // TODO: Use the Bot to Perform the Checks
+  // TODO: Use the Bot to Perform the Checks
 };
 
 export default httpTrigger;
@@ -436,13 +442,13 @@ import { IGitApi } from "azure-devops-node-api/GitApi";
 import { GitPullRequest } from "azure-devops-node-api/interfaces/GitInterfaces";
 
 export default class ChangeBot {
- private api: IGitApi;
- private pr: GitPullRequest;
+  private api: IGitApi;
+  private pr: GitPullRequest;
 
- constructor(api: IGitApi, pr: GitPullRequest) {
-  this.api = api;
-  this.pr = pr;
- }
+  constructor(api: IGitApi, pr: GitPullRequest) {
+    this.api = api;
+    this.pr = pr;
+  }
 }
 ```
 
@@ -453,29 +459,29 @@ import { IGitApi } from "azure-devops-node-api/GitApi";
 import { GitPullRequest } from "azure-devops-node-api/interfaces/GitInterfaces";
 
 export type ChangebotResult = {
- passed: boolean;
- threads: number[];
-}
+  passed: boolean;
+  threads: number[];
+};
 
 export default class ChangeBot {
- private api: IGitApi;
- private pr: GitPullRequest;
+  private api: IGitApi;
+  private pr: GitPullRequest;
 
- constructor(api: IGitApi, pr: GitPullRequest) {
-  this.api = api;
-  this.pr = pr;
- }
+  constructor(api: IGitApi, pr: GitPullRequest) {
+    this.api = api;
+    this.pr = pr;
+  }
 
- /**
-  * Performs two tasks:
-  * 1. Check that there is at least 1 changeset file
-  * 2. Generates the changelog if the changeset is not empty
-  * @returns `{ passed: true, threads: [...]}`
-  */
- public async check(): Promise<ChangebotResult> {
-  // Step 1 -- Are there Changesets?
-  // Step 2 -- Create a new Changelog
- }
+  /**
+   * Performs two tasks:
+   * 1. Check that there is at least 1 changeset file
+   * 2. Generates the changelog if the changeset is not empty
+   * @returns `{ passed: true, threads: [...]}`
+   */
+  public async check(): Promise<ChangebotResult> {
+    // Step 1 -- Are there Changesets?
+    // Step 2 -- Create a new Changelog
+  }
 }
 ```
 
@@ -492,51 +498,50 @@ import { IGitApi } from "azure-devops-node-api/GitApi";
 import { GitPullRequest } from "azure-devops-node-api/interfaces/GitInterfaces";
 
 type Result = {
- passed: boolean;
- threadId?: number;
-}
+  passed: boolean;
+  threadId?: number;
+};
 
 export type ChangebotResult = {
- passed: boolean;
- threads: number[];
-}
+  passed: boolean;
+  threads: number[];
+};
 
 export default class ChangeBot {
- private api: IGitApi;
- private pr: GitPullRequest;
+  private api: IGitApi;
+  private pr: GitPullRequest;
 
- constructor(api: IGitApi, pr: GitPullRequest) {
-  this.api = api;
-  this.pr = pr;
- }
+  constructor(api: IGitApi, pr: GitPullRequest) {
+    this.api = api;
+    this.pr = pr;
+  }
 
- /**
-  * Performs two tasks:
-  * 1. Check that there is at least 1 changeset file
-  * 2. Generates the changelog if the changeset is not empty
-  * @returns `{ passed: true, threads: [...]}`
-  */
- public async check(): Promise<ChangebotResult> {
-  // Step 1 -- Are there Changesets?
-  const hasChangeset = await this.hasChangeset();
-  // Step 2 -- Create a new Changelog
- }
+  /**
+   * Performs two tasks:
+   * 1. Check that there is at least 1 changeset file
+   * 2. Generates the changelog if the changeset is not empty
+   * @returns `{ passed: true, threads: [...]}`
+   */
+  public async check(): Promise<ChangebotResult> {
+    // Step 1 -- Are there Changesets?
+    const hasChangeset = await this.hasChangeset();
+    // Step 2 -- Create a new Changelog
+  }
 
- /**
-  * Checks the repository associated with the Pull Request
-  * for changesets.
-  *
-  * @returns `{ passed: true, threadId: <id>}` if passed, passed: false otherwise.
-  */
- private async hasChangeset(): Promise<Result> {
- }
+  /**
+   * Checks the repository associated with the Pull Request
+   * for changesets.
+   *
+   * @returns `{ passed: true, threadId: <id>}` if passed, passed: false otherwise.
+   */
+  private async hasChangeset(): Promise<Result> {}
 }
 ```
 
 Generally, we will want to do the following within this method.
 
 1. Retrieve an updated list of changed files from the PR.
-2. Filter those files for *unique* changeset files
+2. Filter those files for _unique_ changeset files
 3. Create the comment on the PR that displays the check status.
 
 We can update the list of changed files using the GitApi by doing the following
@@ -559,10 +564,7 @@ and updating the git interface imports to
 
 ```typescript
 import { IGitApi } from "azure-devops-node-api/GitApi";
-import {
- GitChange,
- GitPullRequest
-} from "azure-devops-node-api/interfaces/GitInterfaces";
+import { GitChange, GitPullRequest } from "azure-devops-node-api/interfaces/GitInterfaces";
 ```
 
 We can then use this to get a list of all changed files and search it for changesets.
@@ -671,9 +673,9 @@ You will also need to update the imports in `changebot.ts` to the following:
 ```typescript
 import { IGitApi } from "azure-devops-node-api/GitApi";
 import {
- CommentThreadStatus,
- GitChange,
- GitPullRequest
+  CommentThreadStatus,
+  GitChange,
+  GitPullRequest
 } from "azure-devops-node-api/interfaces/GitInterfaces";
 ```
 
@@ -686,13 +688,13 @@ import { IGitApi } from "azure-devops-node-api/GitApi";
 import { GitPullRequest } from "azure-devops-node-api/interfaces/GitInterfaces";
 
 export default class ThreadManager {
- private api: IGitApi;
- private pr: GitPullRequest;
+  private api: IGitApi;
+  private pr: GitPullRequest;
 
- constructor(api: IGitApi, pr: GitPullRequest) {
-  this.api = api;
-  this.pr = pr;
- }
+  constructor(api: IGitApi, pr: GitPullRequest) {
+    this.api = api;
+    this.pr = pr;
+  }
 }
 ```
 
@@ -711,19 +713,18 @@ Create a new method in `ChangeBot` called `generateChangelog`.
 
 ```typescript
 export default class Changebot {
- // ...
- // .
- // .
+  // ...
+  // .
+  // .
 
- /**
-  * Generate a changelog entry for the given changes.
-  */
- private async generateChangelog(): Promise<Result> {
- }
+  /**
+   * Generate a changelog entry for the given changes.
+   */
+  private async generateChangelog(): Promise<Result> {}
 }
 ```
 
-This code gets *mildly* complex because we need to interface with git. To accomplish this, I wrote another manager class called `GitManager`. Again, for sake of time (and because we care more about programmatically generating changelogs/checking for changesets) you can [check that file out in the repo](https://github.com/emma-campbell/azure-changeset-bot/blob/main/changeset-check/git-manager.ts).
+This code gets _mildly_ complex because we need to interface with git. To accomplish this, I wrote another manager class called `GitManager`. Again, for sake of time (and because we care more about programmatically generating changelogs/checking for changesets) you can [check that file out in the repo](https://github.com/emma-campbell/azure-changeset-bot/blob/main/changeset-check/git-manager.ts).
 
 First, start out by adding the dependencies for interfacing with changesets.
 
@@ -750,10 +751,10 @@ You'll want to create a new utility method that gets an entry from the Changelog
  * Semantic "Bump" Versions
  */
 export const ChangesetBumpLevels = {
- dep: 0,
- patch: 1,
- minor: 2,
- major: 3,
+  dep: 0,
+  patch: 1,
+  minor: 2,
+  major: 3
 } as const;
 
 /**
@@ -764,62 +765,58 @@ export const ChangesetBumpLevels = {
  * @returns changelog entry for the given version
  */
 export async function getChangelogEntry(changelog: string, version: string) {
- let ast = unified().use(remarkParse).parse(changelog);
- let highestLevel: number = ChangesetBumpLevels.dep;
- // @ts-ignore
- let nodes = ast.children as Array<any>;
- let headingStartInfo:
-  | {
-   index: number;
-   depth: number;
-     }
-  | undefined;
- let endIndex: number | undefined;
- for (let i = 0; i < nodes.length; i++) {
-  let node = nodes[i];
-  if (node.type === "heading") {
-   let stringified: string = mdastToString(node);
-   let match = stringified.toLowerCase().match(/(major|minor|patch)/);
-   if (match !== null) {
-    let level =
-     ChangesetBumpLevels[match[0] as "major" | "minor" | "patch"];
-    highestLevel = Math.max(level, highestLevel);
-   }
-   if (headingStartInfo === undefined && stringified === version) {
-    headingStartInfo = {
-     index: i,
-     depth: node.depth,
-    };
-    continue;
-   }
-   if (
-    endIndex === undefined &&
-    headingStartInfo !== undefined &&
-    headingStartInfo.depth === node.depth
-   ) {
-    endIndex = i;
-    break;
-   }
-  }
- }
- if (headingStartInfo) {
+  let ast = unified().use(remarkParse).parse(changelog);
+  let highestLevel: number = ChangesetBumpLevels.dep;
   // @ts-ignore
-  ast.children = (ast.children as any).slice(
-   headingStartInfo.index + 1,
-   endIndex
-  );
- }
- return {
-  content: unified().use(remarkStringify).stringify(ast),
-  highestLevel: highestLevel,
- };
+  let nodes = ast.children as Array<any>;
+  let headingStartInfo:
+    | {
+        index: number;
+        depth: number;
+      }
+    | undefined;
+  let endIndex: number | undefined;
+  for (let i = 0; i < nodes.length; i++) {
+    let node = nodes[i];
+    if (node.type === "heading") {
+      let stringified: string = mdastToString(node);
+      let match = stringified.toLowerCase().match(/(major|minor|patch)/);
+      if (match !== null) {
+        let level = ChangesetBumpLevels[match[0] as "major" | "minor" | "patch"];
+        highestLevel = Math.max(level, highestLevel);
+      }
+      if (headingStartInfo === undefined && stringified === version) {
+        headingStartInfo = {
+          index: i,
+          depth: node.depth
+        };
+        continue;
+      }
+      if (
+        endIndex === undefined &&
+        headingStartInfo !== undefined &&
+        headingStartInfo.depth === node.depth
+      ) {
+        endIndex = i;
+        break;
+      }
+    }
+  }
+  if (headingStartInfo) {
+    // @ts-ignore
+    ast.children = (ast.children as any).slice(headingStartInfo.index + 1, endIndex);
+  }
+  return {
+    content: unified().use(remarkStringify).stringify(ast),
+    highestLevel: highestLevel
+  };
 }
 ```
 
 Using this code, we can do the following in our changelog generation method:
 
 ```typescript
-import { CommitResult, PushResult } from 'simple-git';
+import { CommitResult, PushResult } from "simple-git";
 import getChangesets from "@changesets/read";
 import getReleasePlan from "@changesets/get-release-plan";
 import { getPackages } from "@manypkg/get-packages";
@@ -832,39 +829,34 @@ import { promisify } from "util";
 const exec = promisify(child_process.exec);
 
 export default class Changebot {
- // ...
- // .
- // .
+  // ...
+  // .
+  // .
 
- /**
-  * Generate a changelog entry for the given changes.
-  */
- private async generateChangelog(): Promise<Result> {
-  const files = ["CHANGELOG.md", "package.json"];
+  /**
+   * Generate a changelog entry for the given changes.
+   */
+  private async generateChangelog(): Promise<Result> {
+    const files = ["CHANGELOG.md", "package.json"];
 
-  await this.git.checkout();
-  const changesets = await getChangesets(this.git.dir);
-  const releasePlan = await getReleasePlan(this.git.dir, "main");
-  const packages = await getPackages(this.get.dir);
-  const config = await read(this.git.dir, packages);
+    await this.git.checkout();
+    const changesets = await getChangesets(this.git.dir);
+    const releasePlan = await getReleasePlan(this.git.dir, "main");
+    const packages = await getPackages(this.get.dir);
+    const config = await read(this.git.dir, packages);
 
-  await applyReleasePlan(releasePlan, packages, config);
+    await applyReleasePlan(releasePlan, packages, config);
 
-  files.push(...changesets.map((c) => `.changeset/${c.id}.md`));
-  await this.git.add(files);
+    files.push(...changesets.map((c) => `.changeset/${c.id}.md`));
+    await this.git.add(files);
 
-  const commit: CommitResult = await this.git.commit(
-   "chore(changelog): generate changelog"
-  );
-  const push: PushResult = await this.git.push();
+    const commit: CommitResult = await this.git.commit("chore(changelog): generate changelog");
+    const push: PushResult = await this.git.push();
 
-  const pkg = require(join(this.git.dir, "package.json"));
-  const changelog = await fs.readFile(
-   join(this.git.dir, "CHANGELOG.md"),
-   "utf-8"
-  );
-  const contents = await getChangelogEntry(changelog, pkg.version);
- }
+    const pkg = require(join(this.git.dir, "package.json"));
+    const changelog = await fs.readFile(join(this.git.dir, "CHANGELOG.md"), "utf-8");
+    const contents = await getChangelogEntry(changelog, pkg.version);
+  }
 }
 ```
 
@@ -876,40 +868,40 @@ Go back the the `changebot.ts` file,
 
 ```typescript
 export default class Changebot {
- // ...
- // .
- // .
+  // ...
+  // .
+  // .
 
- /**
-  * Performs two tasks:
-  * 1. Check that there is at least 1 changeset file
-  * 2. Generates the changelog if the changeset is not empty
-  * @returns `{ passed: true, threads: [...]}`
-  */
- public async check(): Promise<ChangebotResult> {
-  // Step 1 -- Are there Changesets?
-  const hasChangeset = await this.hasChangeset();
-  // Step 2 -- Create a new Changelog (if Step 1 passes)
-  if (hasChangeset.passed) {
-   await this.git.initialize(this.pr);
-   const createdChangelog = await this.generateChangelog();
-   return {
-    passed: hasChangeset.passed && createdChangelog.passed,
-    threads: [hasChangeset.threadId, createdChangelog.threadId]
-   }
+  /**
+   * Performs two tasks:
+   * 1. Check that there is at least 1 changeset file
+   * 2. Generates the changelog if the changeset is not empty
+   * @returns `{ passed: true, threads: [...]}`
+   */
+  public async check(): Promise<ChangebotResult> {
+    // Step 1 -- Are there Changesets?
+    const hasChangeset = await this.hasChangeset();
+    // Step 2 -- Create a new Changelog (if Step 1 passes)
+    if (hasChangeset.passed) {
+      await this.git.initialize(this.pr);
+      const createdChangelog = await this.generateChangelog();
+      return {
+        passed: hasChangeset.passed && createdChangelog.passed,
+        threads: [hasChangeset.threadId, createdChangelog.threadId]
+      };
+    }
+    return {
+      passed: hasChangeset.passed,
+      threads: [hasChangeset.threadId]
+    };
   }
-  return {
-   passed: hasChangeset.passed,
-   threads: [hasChangeset.threadId]
-  }
- }
 }
 ```
 
 Head back to the index file, and create a new `ChangeBot` instance to be able to run the check.
 
 ```typescript
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { WebApi } from "azure-devops-node-api";
 import { IGitApi, GitPullRequest } from "azure-devops-node-api/interfaces/GitInterfaces";
 
@@ -919,35 +911,36 @@ import * as utils from "../utils"; // or wherever you put your utility functions
 // read in our environment variables
 dotenv.config();
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
- const organization = req.body.resource.organization.id;
- const repository = req.body.resource.repository.id;
- const project = req.body.resource.repository.project.id;
- const pullRequestId = req.body.resource.pullRequestId;
+const httpTrigger: AzureFunction = async function (
+  context: Context,
+  req: HttpRequest
+): Promise<void> {
+  const organization = req.body.resource.organization.id;
+  const repository = req.body.resource.repository.id;
+  const project = req.body.resource.repository.project.id;
+  const pullRequestId = req.body.resource.pullRequestId;
 
- const webApi: WebApi = await utils.getWebApi(
-  `https://dev.azure.com/${organization}`
- );
+  const webApi: WebApi = await utils.getWebApi(`https://dev.azure.com/${organization}`);
 
- const gitApi: IGitApi = await webApi.getGitApi();
+  const gitApi: IGitApi = await webApi.getGitApi();
 
- const pullRequest: GitPullRequest = await gitApi.getPullRequest(
-  repository,
-  pullRequestId,
-  project,
-  undefined,
-  undefined,
-  undefined,
-  true
- );
+  const pullRequest: GitPullRequest = await gitApi.getPullRequest(
+    repository,
+    pullRequestId,
+    project,
+    undefined,
+    undefined,
+    undefined,
+    true
+  );
 
- const bot = new ChangeBot(gitApi, pullRequest, utils.getEnv('AZURE_PAT'));;
- const res = await bot.check();
+  const bot = new ChangeBot(gitApi, pullRequest, utils.getEnv("AZURE_PAT"));
+  const res = await bot.check();
 
- context.res = {
-  status: res.passed,
-  body: res.threads
- }
+  context.res = {
+    status: res.passed,
+    body: res.threads
+  };
 };
 
 export default httpTrigger;

@@ -55,7 +55,6 @@ test.describe('MDX Content Rendering', () => {
 		const bodyText = await page.locator('body').textContent();
 		expect(bodyText!.length).toBeGreaterThan(100);
 	});
-
 });
 
 test.describe('Custom Components', () => {
@@ -138,4 +137,3 @@ test.describe('Images', () => {
 		}
 	});
 });
-

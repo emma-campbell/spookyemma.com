@@ -16,11 +16,9 @@ export const load: PageServerLoad = async () => {
 			entries: await Promise.all(
 				section.entries.map(async (entry) => ({
 					...entry,
-					descriptionHtml: entry.description
-						? await renderMarkdown(entry.description)
-						: undefined,
+					descriptionHtml: entry.description ? await renderMarkdown(entry.description) : undefined
 				}))
-			),
+			)
 		}))
 	);
 
@@ -28,6 +26,6 @@ export const load: PageServerLoad = async () => {
 		title: cv.title,
 		subtitle: cv.subtitle,
 		lastUpdated,
-		sections,
+		sections
 	};
 };

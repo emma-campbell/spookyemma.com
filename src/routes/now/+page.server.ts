@@ -3,8 +3,18 @@ import { renderMarkdown } from '$lib/content/markdown';
 import type { PageServerLoad } from './$types';
 
 const MONTH_NAMES = [
-	'January', 'February', 'March', 'April', 'May', 'June',
-	'July', 'August', 'September', 'October', 'November', 'December'
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December'
 ];
 
 export const load: PageServerLoad = async () => {

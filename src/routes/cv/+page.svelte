@@ -17,14 +17,27 @@
 		<div class="page-header-content">
 			<p class="page-eyebrow">∴ curriculum vitae ∴</p>
 			<h1 class="page-title">Emma <em>Campbell</em></h1>
-			<p class="page-lede">Software engineer and maker of things. This is likely more up to date than LinkedIn or anything else you might find out there.</p>
+			<p class="page-lede">
+				Software engineer and maker of things. This is likely more up to date than LinkedIn or
+				anything else you might find out there.
+			</p>
 		</div>
 		<div class="page-header-aside">
-			<QuickFacts facts={[
-				{ label: 'location', value: 'Bloomington, IN · Remote' },
-				{ label: 'github', value: '<a href="https://github.com/emma-campbell" style="color:var(--amber)">emma-campbell ↗</a>' },
-				{ label: 'site', value: '<a href="https://spookyemma.com" style="color:var(--amber)">spookyemma.com ↗</a>' }
-			]} />
+			<QuickFacts
+				facts={[
+					{ label: 'location', value: 'Bloomington, IN · Remote' },
+					{
+						label: 'github',
+						value:
+							'<a href="https://github.com/emma-campbell" style="color:var(--amber)">emma-campbell ↗</a>'
+					},
+					{
+						label: 'site',
+						value:
+							'<a href="https://spookyemma.com" style="color:var(--amber)">spookyemma.com ↗</a>'
+					}
+				]}
+			/>
 			<button class="cv-download" onclick={() => window.print()}>⎙ print / save pdf</button>
 		</div>
 	</div>
@@ -32,7 +45,9 @@
 	<!-- Experience -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--amber)">experience<span class="row-label-num">§ 01</span></span>
+			<span class="row-label-text" style="color:var(--amber)"
+				>experience<span class="row-label-num">§ 01</span></span
+			>
 		</div>
 		<div class="row-content">
 			<div class="cv-entries">
@@ -40,7 +55,7 @@
 					role="Software Engineer"
 					org="Arboretum Lifesciences"
 					location="Remote"
-					dates='Mar 2025 — <span class="current">Present</span>'
+					dates="Mar 2025 — <span class='current'>Present</span>"
 					current={true}
 					bullets={[
 						'Designed and implemented a FHIR-to-OMOP clinical data transformation pipeline deployed as a Databricks Asset Bundle (DAB) across distributed customer environments <span class="cv-tech">Python</span><span class="cv-tech">Databricks</span><span class="cv-tech">Terraform</span><span class="cv-tech">Azure</span>',
@@ -99,7 +114,9 @@
 	<!-- Education -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--sage)">education<span class="row-label-num">§ 02</span></span>
+			<span class="row-label-text" style="color:var(--sage)"
+				>education<span class="row-label-num">§ 02</span></span
+			>
 		</div>
 		<div class="row-content">
 			<div class="edu-entry">
@@ -114,18 +131,23 @@
 				<div class="edu-focus">Focus in human-computer interaction</div>
 				<div class="edu-courses">
 					<strong>coursework</strong>
-					Data Structures and Algorithms · Computer Organization · Intro to Human-Computer Interaction · Mobile App Development · Intro to Artificial Intelligence · Computer Models and Limitations · Advanced Web Development · Statistical Computing using R · Social Implications of Computer · Computation and Formal Systems
+					Data Structures and Algorithms · Computer Organization · Intro to Human-Computer Interaction
+					· Mobile App Development · Intro to Artificial Intelligence · Computer Models and Limitations
+					· Advanced Web Development · Statistical Computing using R · Social Implications of Computer
+					· Computation and Formal Systems
 				</div>
 				<div class="edu-courses">
 					<strong>extracurriculars</strong>
-					Player/Coach — Varsity Soccer · Director of Communications — Grassroots Soccer · Member — Girls Who Code · Volunteer — Quillen Robotics Lab
+					Player/Coach — Varsity Soccer · Director of Communications — Grassroots Soccer · Member — Girls
+					Who Code · Volunteer — Quillen Robotics Lab
 				</div>
 			</div>
 		</div>
 		<div class="row-aside">
 			<div class="annotation">
 				<strong>HCI focus</strong>
-				The human-computer interaction thread runs through everything — from the healthcare patient data work to the embedded widget at Hugo.
+				The human-computer interaction thread runs through everything — from the healthcare patient data
+				work to the embedded widget at Hugo.
 			</div>
 		</div>
 	</div>
@@ -133,39 +155,50 @@
 	<!-- Skills -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--lavender)">skills<span class="row-label-num">§ 03</span></span>
+			<span class="row-label-text" style="color:var(--lavender)"
+				>skills<span class="row-label-num">§ 03</span></span
+			>
 		</div>
 		<div class="row-content">
 			<div class="skills-grid">
-				<SkillGroup label="languages & frameworks" skills={[
-					{ name: 'TypeScript', highlight: true },
-					{ name: 'Python', highlight: true },
-					{ name: 'Java Spring Boot', highlight: true },
-					{ name: 'ExpressJS' },
-					{ name: 'FastAPI' },
-					{ name: 'Svelte', highlight: true },
-					{ name: 'React' },
-					{ name: 'SQL' },
-					{ name: 'Databricks' }
-				]} />
-				<SkillGroup label="infrastructure & cloud" skills={[
-					{ name: 'Azure', highlight: true },
-					{ name: 'AWS' },
-					{ name: 'Terraform / OpenTofu', highlight: true },
-					{ name: 'Docker' },
-					{ name: 'Databricks Asset Bundles', highlight: true },
-					{ name: 'GitHub Actions' },
-					{ name: 'Digital Ocean' }
-				]} />
-				<SkillGroup label="healthcare data & systems" skills={[
-					{ name: 'HL7® FHIR', highlight: true },
-					{ name: 'OMOP', highlight: true },
-					{ name: 'Smart on FHIR (OAuth 2.0)' },
-					{ name: 'Epic', highlight: true },
-					{ name: 'Cerner' },
-					{ name: 'NexGen' },
-					{ name: 'eClinicalWorks' }
-				]} />
+				<SkillGroup
+					label="languages & frameworks"
+					skills={[
+						{ name: 'TypeScript', highlight: true },
+						{ name: 'Python', highlight: true },
+						{ name: 'Java Spring Boot', highlight: true },
+						{ name: 'ExpressJS' },
+						{ name: 'FastAPI' },
+						{ name: 'Svelte', highlight: true },
+						{ name: 'React' },
+						{ name: 'SQL' },
+						{ name: 'Databricks' }
+					]}
+				/>
+				<SkillGroup
+					label="infrastructure & cloud"
+					skills={[
+						{ name: 'Azure', highlight: true },
+						{ name: 'AWS' },
+						{ name: 'Terraform / OpenTofu', highlight: true },
+						{ name: 'Docker' },
+						{ name: 'Databricks Asset Bundles', highlight: true },
+						{ name: 'GitHub Actions' },
+						{ name: 'Digital Ocean' }
+					]}
+				/>
+				<SkillGroup
+					label="healthcare data & systems"
+					skills={[
+						{ name: 'HL7® FHIR', highlight: true },
+						{ name: 'OMOP', highlight: true },
+						{ name: 'Smart on FHIR (OAuth 2.0)' },
+						{ name: 'Epic', highlight: true },
+						{ name: 'Cerner' },
+						{ name: 'NexGen' },
+						{ name: 'eClinicalWorks' }
+					]}
+				/>
 			</div>
 		</div>
 		<div class="row-aside">
@@ -178,44 +211,96 @@
 </PageShell>
 
 <style>
-.cv-entries { position: relative; padding-left: 1.75rem; margin-left: 1rem; }
-.cv-entries::before { content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0.4rem; width: 1px; background: var(--border); }
+	.cv-entries {
+		position: relative;
+		padding-left: 1.75rem;
+		margin-left: 1rem;
+	}
+	.cv-entries::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.4rem;
+		bottom: 0.4rem;
+		width: 1px;
+		background: var(--border);
+	}
 
-.cv-download {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.4rem;
-	font-size: 0.65rem;
-	letter-spacing: 0.1em;
-	color: var(--muted);
-	border: 1px solid var(--border);
-	padding: 5px 10px;
-	border-radius: 2px;
-	transition: color var(--transition), border-color var(--transition);
-	cursor: pointer;
-	background: none;
-	font-family: var(--font-mono);
-}
-.cv-download:hover { color: var(--amber); border-color: var(--amber); }
+	.cv-download {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.65rem;
+		letter-spacing: 0.1em;
+		color: var(--muted);
+		border: 1px solid var(--border);
+		padding: 5px 10px;
+		border-radius: 2px;
+		transition:
+			color var(--transition),
+			border-color var(--transition);
+		cursor: pointer;
+		background: none;
+		font-family: var(--font-mono);
+	}
+	.cv-download:hover {
+		color: var(--amber);
+		border-color: var(--amber);
+	}
 
-.edu-entry { padding-bottom: 1rem; }
-.edu-degree {
-	font-family: var(--font-display);
-	font-style: italic;
-	font-weight: 700;
-	font-size: 1rem;
-	color: var(--parchment);
-	margin-bottom: 0.25rem;
-}
-.edu-org-line { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.9rem; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
-.edu-org { color: var(--amber); }
-.edu-focus { font-size: 0.78rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
-.edu-courses { font-size: 0.75rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; }
-.edu-courses strong { display: block; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; font-weight: 400; }
+	.edu-entry {
+		padding-bottom: 1rem;
+	}
+	.edu-degree {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-weight: 700;
+		font-size: 1rem;
+		color: var(--parchment);
+		margin-bottom: 0.25rem;
+	}
+	.edu-org-line {
+		font-size: 0.72rem;
+		color: var(--muted);
+		margin-bottom: 0.9rem;
+		display: flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+	.edu-org {
+		color: var(--amber);
+	}
+	.edu-focus {
+		font-size: 0.78rem;
+		color: var(--muted);
+		font-style: italic;
+		margin-bottom: 1rem;
+	}
+	.edu-courses {
+		font-size: 0.75rem;
+		color: var(--muted);
+		line-height: 1.7;
+		margin-bottom: 0.75rem;
+	}
+	.edu-courses strong {
+		display: block;
+		font-size: 0.58rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--amber);
+		margin-bottom: 0.3rem;
+		font-weight: 400;
+	}
 
-/* Mobile: tighten CV layout */
-@media (max-width: 599px) {
-	.cv-entries { padding-left: 1.25rem; margin-left: 0.75rem; }
-	.skills-grid { gap: 1rem; }
-}
+	/* Mobile: tighten CV layout */
+	@media (max-width: 599px) {
+		.cv-entries {
+			padding-left: 1.25rem;
+			margin-left: 0.75rem;
+		}
+		.skills-grid {
+			gap: 1rem;
+		}
+	}
 </style>

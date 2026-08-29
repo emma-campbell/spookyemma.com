@@ -13,7 +13,17 @@
 		readingTime?: string;
 	}
 
-	let { title, description, published, updated, status, entry, tags, wordCount, readingTime }: Props = $props();
+	let {
+		title,
+		description,
+		published,
+		updated,
+		status,
+		entry,
+		tags,
+		wordCount,
+		readingTime
+	}: Props = $props();
 </script>
 
 <header>
@@ -22,13 +32,6 @@
 		<p class="page-subtitle" style="margin-top: var(--space-sm);">{description}</p>
 	{/if}
 	<div style="margin-top: var(--space-md);">
-		<MetaBlock
-			{published}
-			{updated}
-			{status}
-			{tags}
-			{wordCount}
-			{readingTime}
-		/>
+		<MetaBlock {published} {updated} {status} {tags} {wordCount} {readingTime} />
 	</div>
 </header>

@@ -22,9 +22,10 @@ test.describe('External Link Validation', () => {
 
 			// If opening in new tab, should have security attributes
 			if (target === '_blank') {
-				expect(rel, `External link ${href} with target="_blank" should have rel="noopener"`).toMatch(
-					/noopener|noreferrer/
-				);
+				expect(
+					rel,
+					`External link ${href} with target="_blank" should have rel="noopener"`
+				).toMatch(/noopener|noreferrer/);
 			}
 		}
 	});

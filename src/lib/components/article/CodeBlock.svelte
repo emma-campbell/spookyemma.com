@@ -26,7 +26,8 @@
 		class="code-copy"
 		onclick={handleCopy}
 		aria-label={copied ? 'Code copied to clipboard' : 'Copy code to clipboard'}
-	>{copied ? 'copied' : 'copy'}</button>
+		>{copied ? 'copied' : 'copy'}</button
+	>
 	{#if filename}
 		<div class="code-filename">
 			{filename}

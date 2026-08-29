@@ -1,75 +1,70 @@
 {
-  "name": "@spooky/blog-sveltekit",
-  "version": "3.2.0",
-  "type": "module",
-  "packageManager": "pnpm@10.28.2",
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "playwright test",
-    "test:ui": "playwright test --ui",
-    "test:headed": "playwright test --headed",
-    "test:debug": "playwright test --debug",
-    "test:report": "playwright show-report",
-    "test:update-snapshots": "playwright test --update-snapshots",
-    "test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.61.0-jammy sh -c 'npm install -g pnpm@10.28.2 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'",
-    "images:check": "node scripts/check-images.mjs",
-    "prepare": "simple-git-hooks",
-    "images": "node scripts/images.mjs"
-  },
-  "devDependencies": {
-    "@axe-core/playwright": "^4.12.1",
-    "@fontsource-variable/geist": "^5.3.0",
-    "@fontsource-variable/geist-mono": "^5.3.0",
-    "@playwright/test": "^1.62.1",
-    "@sveltejs/adapter-static": "^3.0.8",
-    "@sveltejs/kit": "^2.70.2",
-    "@sveltejs/vite-plugin-svelte": "^7.3.0",
-    "@tailwindcss/vite": "^4.3.3",
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^26.1.1",
-    "exif-reader": "^2.0.3",
-    "lint-staged": "^17.4.1",
-    "mdsvex": "^0.12.8",
-    "sharp": "^0.35.4",
-    "shiki": "^4.3.1",
-    "simple-git-hooks": "^2.14.0",
-    "svelte": "^5.56.9",
-    "svelte-check": "^4.7.6",
-    "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3",
-    "vite": "^8.2.1"
-  },
-  "dependencies": {
-    "@11ty/gray-matter": "^3.0.0",
-    "@sveltejs/adapter-static": "^3.0.8",
-    "@sveltejs/kit": "^2.70.2",
-    "@sveltejs/vite-plugin-svelte": "^7.3.0",
-    "date-fns": "^4.4.0",
-    "feed": "^6.0.0",
-    "js-yaml": "^5.2.2",
-    "luxon": "^3.5.0",
-    "marked": "^18.0.9",
-    "posthog-js": "^1.417.1",
-    "svelte": "^5.56.9",
-    "vite": "^8.2.1"
-  },
-  "pnpm": {
-    "overrides": {
-      "protobufjs": "^7.5.6",
-      "cookie@<0.7.0": "^0.7.0"
-    },
-    "ignoredBuiltDependencies": [
-      "simple-git-hooks"
-    ]
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged"
-  },
-  "lint-staged": {
-    "static/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}": "node scripts/images.mjs --stage"
-  }
+	"name": "@spooky/blog-sveltekit",
+	"version": "3.2.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vp dev",
+		"build": "vp build",
+		"preview": "vp preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test": "playwright test",
+		"test:ui": "playwright test --ui",
+		"test:headed": "playwright test --headed",
+		"test:debug": "playwright test --debug",
+		"test:report": "playwright show-report",
+		"test:update-snapshots": "playwright test --update-snapshots",
+		"test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.61.0-jammy sh -c 'npm install -g pnpm@10.28.2 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'",
+		"images:check": "node scripts/check-images.mjs",
+		"prepare": "simple-git-hooks",
+		"images": "node scripts/images.mjs",
+		"fmt": "vp fmt",
+		"fmt:check": "vp fmt --check"
+	},
+	"dependencies": {
+		"@11ty/gray-matter": "^3.0.0",
+		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/kit": "^2.70.2",
+		"@sveltejs/vite-plugin-svelte": "^7.3.0",
+		"date-fns": "^4.4.0",
+		"feed": "^6.0.0",
+		"js-yaml": "^5.2.2",
+		"luxon": "^3.5.0",
+		"marked": "^18.0.9",
+		"posthog-js": "^1.417.1",
+		"svelte": "^5.56.9",
+		"vite": "catalog:"
+	},
+	"devDependencies": {
+		"@axe-core/playwright": "^4.12.1",
+		"@fontsource-variable/geist": "^5.3.0",
+		"@fontsource-variable/geist-mono": "^5.3.0",
+		"@playwright/test": "^1.62.1",
+		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/kit": "^2.70.2",
+		"@sveltejs/vite-plugin-svelte": "^7.3.0",
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/js-yaml": "^4.0.9",
+		"@types/node": "^26.1.1",
+		"exif-reader": "^2.0.3",
+		"lint-staged": "^17.4.1",
+		"mdsvex": "^0.12.8",
+		"sharp": "^0.35.4",
+		"shiki": "^4.3.1",
+		"simple-git-hooks": "^2.14.0",
+		"svelte": "^5.56.9",
+		"svelte-check": "^4.7.6",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^6.0.3",
+		"vite": "catalog:",
+		"vite-plus": "catalog:"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "pnpm exec lint-staged"
+	},
+	"lint-staged": {
+		"static/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}": "node scripts/images.mjs --stage",
+		"*": "vp fmt"
+	},
+	"packageManager": "pnpm@10.28.2"
 }

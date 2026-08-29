@@ -8,6 +8,7 @@ status: published
 entry: making
 tags: []
 ---
+
 Almost every developer dreams of creating a stylish and functional blog for sharing their journeys about learning in tech. I want to quickly talk through my design choices for the beginning stages of building my own blog.
 
 # Content Management
@@ -45,13 +46,17 @@ Fonts are interesting, because they can say just as much as colors can when it c
 
 ## Layout
 
-
 Selecting a layout for a website, especially something content-heavy like a blog, is another important stylistic decision to improve readability. The key here is to rely heavily on **whitespace**.
+
 <Sidenote id="1">
-**Whitespace** is the space within invidiual design elements, including the space between typography glyphs (readable characters). Despite its name, white
-space doesn't need to be white. It can be any color, texture, pattern, or even a background image.
+  **Whitespace** is the space within invidiual design elements, including the space between
+  typography glyphs (readable characters). Despite its name, white space doesn't need to be white.
+  It can be any color, texture, pattern, or even a background image.
 </Sidenote>
-Why? Eye strain and fatigue is a very real experience to the viewers of a website. When designing, you want to keep the users of your site engaged, and on your site for as long as possible. Minimizing fatigue is an easy way to do this. I drew much of my layout from [delba.dev](https://delba.dev/), who is a developer experience engineer at Vercel.
+Why? Eye strain and fatigue is a very real experience to the viewers of a website. When designing,
+you want to keep the users of your site engaged, and on your site for as long as possible.
+Minimizing fatigue is an easy way to do this. I drew much of my layout from
+[delba.dev](https://delba.dev/), who is a developer experience engineer at Vercel.
 
 The layout she chose was excellent for content-driven sites, especially those that utilize link-headings and aside annotations.
 
@@ -63,13 +68,11 @@ Now, let's get into the code. We will start by spinning up a [Next.js](https://n
 
 There are a couple of ways to do this, which you can find [here](https://nextjs.org/docs/getting-started "Getting Started — Next.js Docs").
 
-
 ```bash
 yarn create next-app
 ```
 
 Follow the prompts to generate the following directory structure (I added eslint and typescript support).\
-
 
 ```bash
 ├── README.md
@@ -103,11 +106,11 @@ Edit the `tailwind.config.js` file and add the directories where you will have y
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./ui/**/*.{js,ts,jsx,tsx}"],
-   theme: {
-     extend: {},
-   },
-   plugins: [],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./ui/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {}
+  },
+  plugins: []
 };
 ```
 
@@ -123,6 +126,6 @@ Coming up, we need to integrate [contentlayer](https://www.contentlayer.dev) wit
 
 Software Engineering and Web Development wouldn't be where it is today without the collaboration and community that exists between engineers. I wouldn't be able to create what I have without the following influences.
 
-* [https://delba.dev](https://delba.dev "Delba de Oliveira — Personal Site")
-* [https://anishde.dev](https://anishde.dev "Anish De — Personal Site")
-* [https://leerob.io](https://leerob.io "Lee Robinson — Personal Site")&#x20;
+- [https://delba.dev](https://delba.dev "Delba de Oliveira — Personal Site")
+- [https://anishde.dev](https://anishde.dev "Anish De — Personal Site")
+- [https://leerob.io](https://leerob.io "Lee Robinson — Personal Site")&#x20;

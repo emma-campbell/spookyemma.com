@@ -5,6 +5,7 @@ status: published
 entry: making
 tags: []
 ---
+
 If you read my article about my [reasons for moving my site](https://www.spooklore.com/writing/moving "In 2024...I'm Moving?"), you know that one of the habits I am trying to create for 2024 is to create more and consume less. One of the actions I’ve taken is subscribing to RSS feeds that I care about, instead of mindlessly scrolling news feeds on twitter, Apple News, etc.
 
 I haven’t missed that habit, and it really has limited the amount of stupid things that I find myself sucked into reading.
@@ -57,11 +58,10 @@ const createFeed = () => {
     author: {
       name: "Emma Campbell",
       email: "hello@spooklore.com",
-      link: "https://spooklore.com",
-    },
+      link: "https://spooklore.com"
+    }
   });
 };
-
 ```
 
 Above, we have created a feed object. All that’s left is to add all of the posts. Because we are set up using contentlayer, we can import the `allPosts` object, filter and sort however we’d like, and then add each to the feed.
@@ -76,12 +76,7 @@ const createFeed = () => {
   /** create feed object */
   allPosts
     .filter((p: Post) => p.status !== "draft")
-    .sort(
-      (
-        a: Post,
-        b: Post
-      ) => compareDesc(new Date(a.published), new Date(b.published))
-    )
+    .sort((a: Post, b: Post) => compareDesc(new Date(a.published), new Date(b.published)))
     .forEach((p: Post) => {
       const url = `https://spooklore.com/writing/${p.slug}`;
       feed.addItem({
@@ -90,14 +85,14 @@ const createFeed = () => {
         title: p.title,
         description: p.description,
         date: moment(p.published).toDate(),
-        author: [ 
+        author: [
           {
             name: "Emma Campbell",
             email: "hello@spooklore.com",
-            link: "https://spooklore.com",
-          },
-        ], 
-      }); 
+            link: "https://spooklore.com"
+          }
+        ]
+      });
     });
   return feed.rss2();
 };
@@ -108,15 +103,14 @@ Finally, handle the get route
 ```typescript
 // previous code
 export const GET = () => {
-    const feed = createFeed();
-    return new Response(feed, {
-       status: 200,
-       headers: {
-          "Content-Type": "application/xml"
-       }
-    });
-}
+  const feed = createFeed();
+  return new Response(feed, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/xml"
+    }
+  });
+};
 ```
 
 Now, you can link to `/rss.xml` anywhere on your site and have the end user redirected to the feed url to give to their RSS reader.
-

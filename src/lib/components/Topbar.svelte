@@ -39,12 +39,16 @@
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
 		class="mobile-overlay"
-		onclick={(e) => { if (e.target === e.currentTarget) closeMenu(); }}
+		onclick={(e) => {
+			if (e.target === e.currentTarget) closeMenu();
+		}}
 		onkeydown={(e) => e.key === 'Escape' && closeMenu()}
 	>
 		<nav class="mobile-nav" aria-label="Site navigation">
 			{#each links as link}
-				<a href={link.href} class:active={pathname.startsWith(link.href)} onclick={closeMenu}>{link.label}</a>
+				<a href={link.href} class:active={pathname.startsWith(link.href)} onclick={closeMenu}
+					>{link.label}</a
+				>
 			{/each}
 		</nav>
 	</div>
@@ -61,7 +65,9 @@
 		padding: 0.25rem;
 		transition: color 0.2s;
 	}
-	.hamburger:hover { color: var(--amber); }
+	.hamburger:hover {
+		color: var(--amber);
+	}
 
 	.mobile-overlay {
 		display: none;
@@ -87,15 +93,26 @@
 		text-decoration: none;
 		transition: color 0.2s;
 	}
-	.mobile-nav a:hover, .mobile-nav a.active { color: var(--amber); }
+	.mobile-nav a:hover,
+	.mobile-nav a.active {
+		color: var(--amber);
+	}
 
 	@media (max-width: 599px) {
-		.topbar-nav-desktop { display: none; }
-		.hamburger { display: block; }
-		.mobile-overlay { display: flex; }
+		.topbar-nav-desktop {
+			display: none;
+		}
+		.hamburger {
+			display: block;
+		}
+		.mobile-overlay {
+			display: flex;
+		}
 	}
 
 	@media (min-width: 600px) {
-		.mobile-overlay { display: none !important; }
+		.mobile-overlay {
+			display: none !important;
+		}
 	}
 </style>

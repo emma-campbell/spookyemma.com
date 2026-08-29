@@ -26,10 +26,7 @@ test.describe('External Link Validation', () => {
 				});
 
 				// Accept redirects (3xx) as valid
-				expect(
-					response.status(),
-					`External link ${href} should be reachable`
-				).toBeLessThan(500);
+				expect(response.status(), `External link ${href} should be reachable`).toBeLessThan(500);
 			} catch {
 				// Network errors may occur for some external sites
 				console.log(`Note: Could not reach ${href}`);

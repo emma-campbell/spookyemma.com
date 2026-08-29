@@ -29,10 +29,7 @@
 	onmouseleave={() => (isHovered = false)}
 	role="presentation"
 >
-	<span
-		class="absolute inset-x-0 bottom-0 bg-accent origin-left"
-		style="height: {$height}%"
-	></span>
+	<span class="absolute inset-x-0 bottom-0 bg-accent origin-left" style="height: {$height}%"></span>
 	<span class="relative z-10 inline-flex items-center gap-1">
 		<span
 			class="inline-block transition-colors duration-200"

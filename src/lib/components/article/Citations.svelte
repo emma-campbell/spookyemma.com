@@ -53,9 +53,13 @@
 						<span class="citation-body">
 							{#if ref.author}<span class="citation-author">{ref.author}</span>{/if}
 							{#if ref.url}
-								<a href={ref.url} target="_blank" rel="noopener noreferrer" class="citation-title">{ref.title}</a>
+								<a href={ref.url} target="_blank" rel="noopener noreferrer" class="citation-title"
+									>{ref.title}</a
+								>
 							{:else}
-								<span class="citation-title" style="font-weight:600; color: var(--text);">{ref.title}</span>
+								<span class="citation-title" style="font-weight:600; color: var(--text);"
+									>{ref.title}</span
+								>
 							{/if}
 							{#if ref.context}
 								<span class="citation-context">{ref.context}</span>

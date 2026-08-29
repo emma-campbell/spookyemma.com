@@ -152,9 +152,7 @@ test.describe('JavaScript Performance', () => {
 		}
 
 		// Filter out known acceptable errors
-		const criticalErrors = errors.filter(
-			(e) => !e.includes('favicon') && !e.includes('analytics')
-		);
+		const criticalErrors = errors.filter((e) => !e.includes('favicon') && !e.includes('analytics'));
 
 		expect(criticalErrors).toEqual([]);
 	});
@@ -232,8 +230,7 @@ test.describe('Caching', () => {
 test.describe('Mobile Performance', () => {
 	test.use({
 		viewport: { width: 375, height: 667 },
-		userAgent:
-			'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15'
+		userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15'
 	});
 
 	test('mobile page loads efficiently', async ({ page }) => {

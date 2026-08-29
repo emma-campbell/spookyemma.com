@@ -56,7 +56,9 @@ export function slugify(text: string): string {
 		.trim();
 }
 
-export function extractHeadings(markdown: string): Array<{ depth: number; text: string; id: string }> {
+export function extractHeadings(
+	markdown: string
+): Array<{ depth: number; text: string; id: string }> {
 	const headings: Array<{ depth: number; text: string; id: string }> = [];
 	const lines = markdown.split('\n');
 
@@ -64,7 +66,10 @@ export function extractHeadings(markdown: string): Array<{ depth: number; text: 
 		const match = line.match(/^(#{1,3})\s+(.+)$/);
 		if (match) {
 			const depth = match[1].length;
-			const text = match[2].replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*(.+?)\*/g, '$1').replace(/`(.+?)`/g, '$1');
+			const text = match[2]
+				.replace(/\*\*(.+?)\*\*/g, '$1')
+				.replace(/\*(.+?)\*/g, '$1')
+				.replace(/`(.+?)`/g, '$1');
 			headings.push({ depth, text, id: slugify(text) });
 		}
 	}
@@ -106,7 +111,10 @@ export interface RenderOptions {
 	citeLinks?: boolean;
 }
 
-export async function renderMarkdown(content: string, options: RenderOptions = {}): Promise<string> {
+export async function renderMarkdown(
+	content: string,
+	options: RenderOptions = {}
+): Promise<string> {
 	const highlighter = await getHighlighter();
 	content = preprocessSidenotes(content);
 
@@ -223,10 +231,12 @@ export async function renderMarkdown(content: string, options: RenderOptions = {
 				const rowsHtml = token.rows
 					.map(
 						(row) =>
-							`<tr>${row.map((cell) => {
-								const text = this.parser.parseInline(cell.tokens);
-								return `<td>${text}</td>`;
-							}).join('')}</tr>`
+							`<tr>${row
+								.map((cell) => {
+									const text = this.parser.parseInline(cell.tokens);
+									return `<td>${text}</td>`;
+								})
+								.join('')}</tr>`
 					)
 					.join('');
 				return `<div class="table-wrapper"><table><thead><tr>${headerHtml}</tr></thead><tbody>${rowsHtml}</tbody></table></div>`;

@@ -36,15 +36,19 @@ const problems = (
 		const buf = await readFile(file);
 		const meta = await sharp(buf).metadata();
 		const reasons = [];
-		if (Math.max(meta.width, meta.height) > MAX_EDGE) reasons.push(`${meta.width}x${meta.height} exceeds ${MAX_EDGE}px`);
-		if (buf.length > MAX_BYTES) reasons.push(`${fmtBytes(buf.length)} exceeds ${fmtBytes(MAX_BYTES)}`);
+		if (Math.max(meta.width, meta.height) > MAX_EDGE)
+			reasons.push(`${meta.width}x${meta.height} exceeds ${MAX_EDGE}px`);
+		if (buf.length > MAX_BYTES)
+			reasons.push(`${fmtBytes(buf.length)} exceeds ${fmtBytes(MAX_BYTES)}`);
 		if (hasGps(meta.exif)) reasons.push('carries GPS coordinates');
 		const entry = manifest[toUrl(file)];
 		if (!entry) reasons.push('missing from manifest');
-		else if (entry.hash !== `${hashBuffer(buf)}-${CONFIG_KEY}`) reasons.push('manifest entry is stale');
+		else if (entry.hash !== `${hashBuffer(buf)}-${CONFIG_KEY}`)
+			reasons.push('manifest entry is stale');
 		else {
 			const missing = entry.variants.filter((v) => !existsSync(path.join(STATIC_DIR, v.src)));
-			if (missing.length) reasons.push(`missing variants: ${missing.map((v) => v.w + 'w').join(', ')}`);
+			if (missing.length)
+				reasons.push(`missing variants: ${missing.map((v) => v.w + 'w').join(', ')}`);
 		}
 		return reasons.length ? `${rel(file)}: ${reasons.join('; ')}` : null;
 	})
@@ -56,7 +60,9 @@ for (const url of Object.keys(manifest)) {
 }
 
 if (problems.length) {
-	console.error(`${problems.length} image problem(s) — run \`pnpm images\` on a Mac and commit the result:\n`);
+	console.error(
+		`${problems.length} image problem(s) — run \`pnpm images\` on a Mac and commit the result:\n`
+	);
 	for (const p of problems) console.error(`  ${p}`);
 	process.exit(1);
 }
