@@ -20,6 +20,14 @@ function formatDateLabel(raw: string): string {
 	return monthName ? `${monthName} ${year}` : raw;
 }
 
+/** In-place Fisher–Yates. */
+function shuffle<T>(items: T[]): void {
+	for (let i = items.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[items[i], items[j]] = [items[j], items[i]];
+	}
+}
+
 export function getPhotos(): PhotosContent {
 	const fileContent = fs.readFileSync(PHOTOS_PATH, 'utf-8');
 	const stats = fs.statSync(PHOTOS_PATH);
@@ -43,9 +51,10 @@ export function getPhotos(): PhotosContent {
 				date,
 				dateLabel: formatDateLabel(date)
 			};
-		})
-		// Newest first; undated photos sort to the end.
-		.sort((a: Photo, b: Photo) => (b.date || '').localeCompare(a.date || ''));
+		});
+	// Shuffled rather than date-sorted, so the grid doesn't read as a timeline.
+	// This runs at prerender, so the order is fixed per build and changes each deploy.
+	shuffle(photos);
 
 	const counts = new Map<string, number>();
 	for (const photo of photos) {

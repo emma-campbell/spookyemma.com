@@ -4,6 +4,12 @@ subtitle: What's changed on this site.
 entries:
   # ── August 2026 ──
   - date: 2026-08-29
+    tag: changed
+    text: "Photo grid is 5 columns on wide screens (4 and 3 on smaller ones) for smaller previews"
+  - date: 2026-08-29
+    tag: changed
+    text: "Photos are shuffled instead of sorted newest-first — the order changes with each deploy"
+  - date: 2026-08-29
     tag: added
     text: "Responsive images — srcset/sizes tiers, intrinsic width/height (no layout shift), eager first image per post, lazy for the rest"
   - date: 2026-08-29
