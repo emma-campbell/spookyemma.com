@@ -33,7 +33,3 @@ content/.obsidian
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-
-# Generated responsive image variants + manifest (scripts/build-images.mjs)
-static/**/*-[0-9]*w.webp
-src/lib/generated/

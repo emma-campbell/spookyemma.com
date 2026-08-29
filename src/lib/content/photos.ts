@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from '@11ty/gray-matter';
 import type { Photo, PhotoAnnotation, PhotoCollection, PhotosContent } from './types';
-import { getImageInfo, webpSrcset } from './images';
+import { getImageInfo, srcset } from './images';
 
 const PHOTOS_PATH = path.join(process.cwd(), 'content', 'photos.md');
 
@@ -35,7 +35,8 @@ export function getPhotos(): PhotosContent {
 				alt: String(p.alt ?? p.caption ?? ''),
 				width: image?.width,
 				height: image?.height,
-				srcset: image ? webpSrcset(image) : undefined,
+				srcset: image ? srcset(image) : undefined,
+				srcsetType: image?.type,
 				caption: String(p.caption ?? ''),
 				collection: String(p.collection ?? ''),
 				place: String(p.place ?? ''),

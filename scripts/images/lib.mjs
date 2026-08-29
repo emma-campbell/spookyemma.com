@@ -1,28 +1,40 @@
-// Shared helpers for the image scripts. Keep this dependency-free apart from sharp.
+// Shared helpers and limits for the image scripts. Dependency-free apart from sharp.
 import { createHash } from 'node:crypto';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 
 export const STATIC_DIR = path.resolve('static');
-export const MANIFEST_PATH = path.resolve('src/lib/generated/image-manifest.json');
+/** Committed alongside the variants; read by the markdown renderer and the photos page. */
+export const MANIFEST_PATH = path.resolve('src/lib/image-manifest.json');
 
 /** Long-edge cap for committed originals. Nothing on the site renders wider than this. */
 export const MAX_EDGE = 2000;
-/** Ceiling for a committed original. A 2000px q82 mozjpeg photo lands at 300-800 KB. */
-export const MAX_BYTES = 2 * 1024 * 1024;
-/** Widths generated for the WebP srcset. */
-export const WIDTHS = [480, 800, 1200, 1600];
-/** WebP quality. 75 is visually transparent at these sizes; 80 costs ~15% more bytes for nothing. */
+/** Ceiling for a committed original. HDR JPEGs (ImageIO encoder) run ~3-4 MB at 2000px. */
+export const MAX_BYTES = 4 * 1024 * 1024;
+
+/** SDR sources: WebP variants at these widths. */
+export const SDR_WIDTHS = [480, 800, 1200, 1600];
 export const WEBP_QUALITY = 75;
-/** Folded into each manifest hash so changing widths/quality regenerates everything. */
-export const CONFIG_KEY = `q${WEBP_QUALITY}-${WIDTHS.join('.')}`;
+
+/**
+ * HDR sources (iPhone photos with a gain map): JPEG variants that keep the gain
+ * map, written by scripts/images/hdr-resize.swift. Fewer tiers because each one
+ * is ~2x the bytes of the WebP equivalent — 640w serves 1x desktop, 1280w serves
+ * 2x desktop and 3x phones, the 2000px source covers the rest.
+ */
+export const HDR_WIDTHS = [640, 1280];
+export const HDR_SOURCE_QUALITY = 0.78;
+export const HDR_VARIANT_QUALITY = 0.68;
+
+/** Folded into each manifest hash so changing tiers/quality regenerates everything. */
+export const CONFIG_KEY = `v2-webp${WEBP_QUALITY}-${SDR_WIDTHS.join('.')}-hdr${HDR_VARIANT_QUALITY}-${HDR_WIDTHS.join('.')}`;
 
 const RASTER = new Set(['.jpg', '.jpeg', '.png']);
-/** Generated variants look like `name-800w.webp`; they are gitignored. */
-export const GENERATED = /-\d+w\.webp$/;
+/** Generated variants look like `name-800w.webp` / `name-1280w.jpg`. */
+export const GENERATED = /-\d+w\.(webp|jpg)$/;
 
 export function isRaster(file) {
-	return RASTER.has(path.extname(file).toLowerCase());
+	return RASTER.has(path.extname(file).toLowerCase()) && !GENERATED.test(file);
 }
 
 export async function walk(dir) {
@@ -49,15 +61,45 @@ export function toUrl(file) {
 	return '/' + path.relative(STATIC_DIR, file).split(path.sep).join('/');
 }
 
-export function variantPath(file, width) {
+export function variantPath(file, width, ext) {
 	const { dir, name } = path.parse(file);
-	return path.join(dir, `${name}-${width}w.webp`);
+	return path.join(dir, `${name}-${width}w.${ext}`);
 }
 
 /** Pixel dimensions with EXIF orientation applied, so portrait phone photos report as portrait. */
 export function orientedSize(meta) {
 	const swap = (meta.orientation ?? 1) >= 5;
 	return swap ? { width: meta.height, height: meta.width } : { width: meta.width, height: meta.height };
+}
+
+/** Apple (HDRGainMap), ISO 21496-1 as written by ImageIO (HDRToneMap), or Adobe/Android (hdrgm). */
+export function hasGainMap(buf) {
+	return /HDRGainMap|HDRToneMap|hdrgm:Version/.test(buf.toString('latin1'));
+}
+
+/**
+ * True if the EXIF block carries a GPS IFD (tag 0x8825). Walks IFD0 of the TIFF
+ * structure sharp hands back, tolerating an "Exif\0\0" prefix.
+ */
+export function hasGps(exif) {
+	if (!exif || exif.length < 16) return false;
+	let base = 0;
+	if (exif.toString('latin1', 0, 4) === 'Exif') base = 6;
+	const order = exif.toString('latin1', base, base + 2);
+	if (order !== 'II' && order !== 'MM') return false;
+	const le = order === 'II';
+	const u16 = (o) => (le ? exif.readUInt16LE(o) : exif.readUInt16BE(o));
+	const u32 = (o) => (le ? exif.readUInt32LE(o) : exif.readUInt32BE(o));
+	try {
+		let ifd = base + u32(base + 4);
+		const count = u16(ifd);
+		for (let i = 0; i < count; i++) {
+			if (u16(ifd + 2 + i * 12) === 0x8825) return true;
+		}
+	} catch {
+		return false;
+	}
+	return false;
 }
 
 export function fmtBytes(n) {

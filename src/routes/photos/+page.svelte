@@ -94,11 +94,13 @@
 						<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 						<button class="photo" onclick={() => openLightbox(photo)} aria-label="View {photo.caption}">
 							<picture>
-								{#if photo.srcset}
+								{#if photo.srcset && photo.srcsetType === 'image/webp'}
 									<source type="image/webp" srcset={photo.srcset} sizes={GRID_SIZES} />
 								{/if}
 								<img
 									src={photo.src}
+									srcset={photo.srcsetType === 'image/jpeg' ? photo.srcset : undefined}
+									sizes={photo.srcsetType === 'image/jpeg' ? GRID_SIZES : undefined}
 									alt={photo.alt}
 									width={photo.width}
 									height={photo.height}
@@ -144,10 +146,16 @@
 	<div class="lightbox open" onclick={closeLightbox}>
 		<span class="lightbox-close" aria-hidden="true">✕</span>
 		<picture>
-			{#if lightboxPhoto.srcset}
+			{#if lightboxPhoto.srcset && lightboxPhoto.srcsetType === 'image/webp'}
 				<source type="image/webp" srcset={lightboxPhoto.srcset} sizes="90vw" />
 			{/if}
-			<img src={lightboxPhoto.src} alt={lightboxPhoto.alt} decoding="async" />
+			<img
+				src={lightboxPhoto.src}
+				srcset={lightboxPhoto.srcsetType === 'image/jpeg' ? lightboxPhoto.srcset : undefined}
+				sizes={lightboxPhoto.srcsetType === 'image/jpeg' ? '90vw' : undefined}
+				alt={lightboxPhoto.alt}
+				decoding="async"
+			/>
 		</picture>
 		<div class="lightbox-caption">
 			{lightboxPhoto.caption}

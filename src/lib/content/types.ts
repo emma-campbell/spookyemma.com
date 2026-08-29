@@ -90,8 +90,9 @@ export interface Photo {
   /** Intrinsic pixel size of `src`, from the image manifest. Absent if the manifest lacks it. */
   width?: number;
   height?: number;
-  /** WebP `srcset` for a <picture> source. Absent if the manifest lacks it. */
+  /** Responsive `srcset` and the MIME type of its entries. Absent if the manifest lacks it. */
   srcset?: string;
+  srcsetType?: 'image/webp' | 'image/jpeg';
   caption: string;
   collection: string;
   place: string;

@@ -11,7 +11,12 @@ lede: >-
 collections:
   - id: madison
     label: madison
-    icon: ⊙
+  - id: bloomington
+    label: bloomington
+  - id: buenos-aires
+    label: buenos aires
+  - id: rhode-island
+    label: rhode island
 
 # ── Photos ───────────────────────────────────────────────────
 # `src` lives under static/photos/. `date` is YYYY-MM (newest sorts first).
@@ -34,6 +39,84 @@ photos:
     collection: madison
     place: Madison, WI
     date: 2026-06
+
+  - src: /photos/DSCF0388.jpg
+    alt: pride always
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF0439.jpg
+    alt: la bombonera
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF0541.jpg
+    alt: so many dogs in messi kits
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF0578.jpg
+    alt: colors of the port
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF0682.jpg
+    alt: from the city roof
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF1223.jpg
+    alt: garfield
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF1282.jpg
+    alt: texture hunting
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF1311.jpg
+    alt: puerto madero
+    collection: buenos-aires
+    place: Buenos Aires, AR
+    date: 2026-06
+
+  - src: /photos/DSCF1581.jpg
+    alt: the resident green frog
+    collection: bloomington
+    place: Bloomington, IN
+    date: 2026-08
+
+  - src: /photos/DSCF1468.jpg
+    alt: troll 1
+    collection: rhode-island
+    place: Charlestown, RI
+    date: 2026-07
+
+  - src: /photos/DSCF1453.jpg
+    alt: troll 2
+    collection: rhode-island
+    place: Charlestown, RI
+    date: 2026-07
+
+  - src: /photos/DSCF1558.jpg
+    alt: the dock at dusk
+    collection: rhode-island
+    place: Charlestown, RI
+    date: 2026-07
+
+  - src: /photos/DSCF1542.jpg
+    alt: sunset on ninigret
+    collection: rhode-island
+    place: Charlestown, RI
+    date: 2026-07
 
 # ── Side annotations ─────────────────────────────────────────
 annotations:

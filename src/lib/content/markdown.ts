@@ -1,6 +1,6 @@
 import { createHighlighter, type Highlighter } from 'shiki';
 import { Marked, type Tokens } from 'marked';
-import { getImageInfo, webpSrcset, PROSE_SIZES } from './images';
+import { getImageInfo, srcset, PROSE_SIZES } from './images';
 
 let highlighterPromise: Promise<Highlighter> | null = null;
 
@@ -249,10 +249,15 @@ export async function renderMarkdown(content: string, options: RenderOptions = {
 					return `<figure class="figure"><img src="${href}" alt="${alt}"${title} ${loading} decoding="async" />${captionHtml}</figure>`;
 				}
 				// Intrinsic width/height reserve the box before the bytes arrive (no layout
-				// shift); the WebP srcset lets the browser pick the smallest fitting variant,
-				// with the original JPEG/PNG as the fallback src.
-				const img = `<img src="${href}" alt="${alt}"${title} width="${info.width}" height="${info.height}" ${loading} decoding="async" />`;
-				return `<figure class="figure"><picture><source type="image/webp" srcset="${webpSrcset(info)}" sizes="${PROSE_SIZES}" />${img}</picture>${captionHtml}</figure>`;
+				// shift); the srcset lets the browser pick the smallest fitting variant, with
+				// the original as the fallback src. WebP variants need a <source> so browsers
+				// can fall through by type; JPEG variants (HDR sources) go straight on the img.
+				const size = `width="${info.width}" height="${info.height}"`;
+				if (info.type === 'image/jpeg') {
+					return `<figure class="figure"><img src="${href}" srcset="${srcset(info)}" sizes="${PROSE_SIZES}" alt="${alt}"${title} ${size} ${loading} decoding="async" />${captionHtml}</figure>`;
+				}
+				const img = `<img src="${href}" alt="${alt}"${title} ${size} ${loading} decoding="async" />`;
+				return `<figure class="figure"><picture><source type="${info.type}" srcset="${srcset(info)}" sizes="${PROSE_SIZES}" />${img}</picture>${captionHtml}</figure>`;
 			},
 			del(token: Tokens.Del) {
 				const text = this.parser.parseInline(token.tokens);

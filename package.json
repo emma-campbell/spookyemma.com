@@ -4,8 +4,8 @@
   "type": "module",
   "packageManager": "pnpm@10.28.2",
   "scripts": {
-    "dev": "node scripts/build-images.mjs && vite dev",
-    "build": "node scripts/build-images.mjs && vite build",
+    "dev": "vite dev",
+    "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -16,10 +16,9 @@
     "test:report": "playwright show-report",
     "test:update-snapshots": "playwright test --update-snapshots",
     "test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.61.0-jammy sh -c 'npm install -g pnpm@10.28.2 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'",
-    "images:build": "node scripts/build-images.mjs",
-    "images:normalize": "node scripts/normalize-images.mjs",
     "images:check": "node scripts/check-images.mjs",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "images": "node scripts/images.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
@@ -70,6 +69,6 @@
     "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
-    "static/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}": "node scripts/normalize-images.mjs"
+    "static/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}": "node scripts/images.mjs --stage"
   }
 }

@@ -1,14 +1,14 @@
 name: Image Guard
 
-# Committed originals must stay within scripts/images/lib.mjs limits and carry no
-# EXIF (phone photos embed GPS). The pre-commit hook enforces this locally; this
-# catches anything that got around it.
+# Committed originals must stay within scripts/images/lib.mjs limits, carry no
+# GPS, and have their variants + manifest entry committed. The pre-commit hook
+# does this locally (macOS); this catches anything that got around it.
 on:
   pull_request:
-    paths: ['static/**', 'scripts/**']
+    paths: ['static/**', 'scripts/**', 'src/lib/image-manifest.json']
   push:
     branches: [main]
-    paths: ['static/**', 'scripts/**']
+    paths: ['static/**', 'scripts/**', 'src/lib/image-manifest.json']
 
 jobs:
   check:
