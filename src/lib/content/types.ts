@@ -87,6 +87,12 @@ export interface PhotoCollection {
 export interface Photo {
   src: string;
   alt: string;
+  /** Intrinsic pixel size of `src`, from the image manifest. Absent if the manifest lacks it. */
+  width?: number;
+  height?: number;
+  /** Responsive `srcset` and the MIME type of its entries. Absent if the manifest lacks it. */
+  srcset?: string;
+  srcsetType?: 'image/webp' | 'image/jpeg';
   caption: string;
   collection: string;
   place: string;

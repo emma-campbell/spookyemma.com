@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from '@11ty/gray-matter';
 import type { Photo, PhotoAnnotation, PhotoCollection, PhotosContent } from './types';
+import { getImageInfo, srcset } from './images';
 
 const PHOTOS_PATH = path.join(process.cwd(), 'content', 'photos.md');
 
@@ -27,9 +28,15 @@ export function getPhotos(): PhotosContent {
 	const photos: Photo[] = (data.photos ?? [])
 		.map((p: Record<string, unknown>): Photo => {
 			const date = String(p.date ?? '');
+			const src = String(p.src ?? '');
+			const image = getImageInfo(src);
 			return {
-				src: String(p.src ?? ''),
+				src,
 				alt: String(p.alt ?? p.caption ?? ''),
+				width: image?.width,
+				height: image?.height,
+				srcset: image ? srcset(image) : undefined,
+				srcsetType: image?.type,
 				caption: String(p.caption ?? ''),
 				collection: String(p.collection ?? ''),
 				place: String(p.place ?? ''),

@@ -1,0 +1,29 @@
+name: Image Guard
+
+# Committed originals must stay within scripts/images/lib.mjs limits, carry no
+# GPS, and have their variants + manifest entry committed. The pre-commit hook
+# does this locally (macOS); this catches anything that got around it.
+on:
+  pull_request:
+    paths: ['static/**', 'scripts/**', 'src/lib/image-manifest.json']
+  push:
+    branches: [main]
+    paths: ['static/**', 'scripts/**', 'src/lib/image-manifest.json']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: node scripts/check-images.mjs

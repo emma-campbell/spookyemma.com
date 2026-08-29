@@ -2,6 +2,22 @@
 title: Changelog
 subtitle: What's changed on this site.
 entries:
+  # ── August 2026 ──
+  - date: 2026-08-29
+    tag: added
+    text: "Responsive images — srcset/sizes tiers, intrinsic width/height (no layout shift), eager first image per post, lazy for the rest"
+  - date: 2026-08-29
+    tag: changed
+    text: "Photos keep their HDR gain maps through resizing, so iPhone shots still render in HDR on capable displays; SDR sources get WebP"
+  - date: 2026-08-29
+    tag: fixed
+    text: "Stripped GPS and camera EXIF from every photo and capped originals at 2000px — static/ went from 76 MB to 50 MB"
+  - date: 2026-08-29
+    tag: meta
+    text: "Image pipeline: pre-commit normalizer plus a CI guard for oversized or geotagged images"
+  - date: 2026-08-29
+    tag: added
+    text: "13 new photos from the Fuji"
   # ── April 2026 ──
   - date: 2026-04-03
     tag: meta

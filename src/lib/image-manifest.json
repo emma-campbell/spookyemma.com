@@ -1,0 +1,938 @@
+{
+	"/andrea.jpeg": {
+		"width": 583,
+		"height": 583,
+		"hash": "08f52dee8e-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/andrea-480w.webp"
+			},
+			{
+				"w": 583,
+				"src": "/andrea-583w.webp"
+			}
+		]
+	},
+	"/computer.png": {
+		"width": 578,
+		"height": 578,
+		"hash": "90d695588e-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/computer-480w.webp"
+			},
+			{
+				"w": 578,
+				"src": "/computer-578w.webp"
+			}
+		]
+	},
+	"/crew.jpeg": {
+		"width": 674,
+		"height": 674,
+		"hash": "16210acb25-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/crew-480w.webp"
+			},
+			{
+				"w": 674,
+				"src": "/crew-674w.webp"
+			}
+		]
+	},
+	"/headshot.jpeg": {
+		"width": 2000,
+		"height": 2000,
+		"hash": "f4dd7f2594-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/headshot-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/headshot-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/headshot-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/headshot-1600w.webp"
+			}
+		]
+	},
+	"/images/posts/april-2024-rewind/adventure.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "cde582faac-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/april-2024-rewind/adventure-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/april-2024-rewind/adventure-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/april-2024-rewind/eclipse.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "2cbf83e416-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/april-2024-rewind/eclipse-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/april-2024-rewind/eclipse-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/april-2024-rewind/footy.jpeg": {
+		"width": 2000,
+		"height": 1500,
+		"hash": "829060b841-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/april-2024-rewind/footy-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/april-2024-rewind/footy-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/azure-changeset-bot/pr_created.png": {
+		"width": 1024,
+		"height": 768,
+		"hash": "e80191c459-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/azure-changeset-bot/pr_created-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/images/posts/azure-changeset-bot/pr_created-800w.webp"
+			},
+			{
+				"w": 1024,
+				"src": "/images/posts/azure-changeset-bot/pr_created-1024w.webp"
+			}
+		]
+	},
+	"/images/posts/azure-changeset-bot/vscode_command_prompt.png": {
+		"width": 599,
+		"height": 354,
+		"hash": "695ff71942-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/azure-changeset-bot/vscode_command_prompt-480w.webp"
+			},
+			{
+				"w": 599,
+				"src": "/images/posts/azure-changeset-bot/vscode_command_prompt-599w.webp"
+			}
+		]
+	},
+	"/images/posts/azure-changeset-bot/workspace.png": {
+		"width": 240,
+		"height": 39,
+		"hash": "5b47333cd1-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 240,
+				"src": "/images/posts/azure-changeset-bot/workspace-240w.webp"
+			}
+		]
+	},
+	"/images/posts/feb-2026-rewind/bookstore.jpg": {
+		"width": 1500,
+		"height": 2000,
+		"hash": "e09f282f58-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/feb-2026-rewind/bookstore-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/images/posts/feb-2026-rewind/bookstore-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/images/posts/feb-2026-rewind/bookstore-1200w.webp"
+			},
+			{
+				"w": 1500,
+				"src": "/images/posts/feb-2026-rewind/bookstore-1500w.webp"
+			}
+		]
+	},
+	"/images/posts/feb-2026-rewind/connection.jpg": {
+		"width": 2000,
+		"height": 1500,
+		"hash": "bd34322ade-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/feb-2026-rewind/connection-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/images/posts/feb-2026-rewind/connection-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/images/posts/feb-2026-rewind/connection-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/images/posts/feb-2026-rewind/connection-1600w.webp"
+			}
+		]
+	},
+	"/images/posts/february-2024-rewind/talus.jpeg": {
+		"width": 2000,
+		"height": 2000,
+		"hash": "55c97331d0-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/february-2024-rewind/talus-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/images/posts/february-2024-rewind/talus-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/images/posts/february-2024-rewind/talus-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/images/posts/february-2024-rewind/talus-1600w.webp"
+			}
+		]
+	},
+	"/images/posts/january-2024-rewind/canvas_bag.jpeg": {
+		"width": 768,
+		"height": 1024,
+		"hash": "2222d8c496-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/january-2024-rewind/canvas_bag-640w.jpg"
+			}
+		]
+	},
+	"/images/posts/june-2024-rewind/aquarium.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "160fa80ad1-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/june-2024-rewind/aquarium-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/june-2024-rewind/aquarium-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/june-2024-rewind/hiking.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "473fc1551a-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/june-2024-rewind/hiking-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/june-2024-rewind/hiking-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/june-2024-rewind/moose_ri.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "ba20f0e920-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/june-2024-rewind/moose_ri-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/june-2024-rewind/moose_ri-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/june-2024-rewind/pride.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "28a676dd20-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/june-2024-rewind/pride-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/june-2024-rewind/pride-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/june-2024-rewind/soccer.jpeg": {
+		"width": 2000,
+		"height": 1500,
+		"hash": "9d1eb22b8b-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/june-2024-rewind/soccer-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/june-2024-rewind/soccer-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/mar-2026-rewind/IMG_3689.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "48d760b634-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/mar-2026-rewind/IMG_3689-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/mar-2026-rewind/IMG_3689-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/mar-2026-rewind/IMG_3744.jpeg": {
+		"width": 2000,
+		"height": 1500,
+		"hash": "6c8a8416cc-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/mar-2026-rewind/IMG_3744-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/mar-2026-rewind/IMG_3744-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/march-2024-rewind/andrea_iu_sweater.jpeg": {
+		"width": 768,
+		"height": 1024,
+		"hash": "f147f87801-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/march-2024-rewind/andrea_iu_sweater-640w.jpg"
+			}
+		]
+	},
+	"/images/posts/march-2024-rewind/moose_monuments.jpeg": {
+		"width": 1586,
+		"height": 1982,
+		"hash": "e10edf9d32-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/march-2024-rewind/moose_monuments-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/images/posts/march-2024-rewind/moose_monuments-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/images/posts/march-2024-rewind/moose_monuments-1200w.webp"
+			},
+			{
+				"w": 1586,
+				"src": "/images/posts/march-2024-rewind/moose_monuments-1586w.webp"
+			}
+		]
+	},
+	"/images/posts/march-2024-rewind/moose_training.jpeg": {
+		"width": 768,
+		"height": 1024,
+		"hash": "872b1ba1d8-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/march-2024-rewind/moose_training-640w.jpg"
+			}
+		]
+	},
+	"/images/posts/may-2024-rewind/hiking_w_moose.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "e2d5bede4f-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/may-2024-rewind/hiking_w_moose-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/may-2024-rewind/hiking_w_moose-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/may-2024-rewind/tifo.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "f236f88a2d-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/may-2024-rewind/tifo-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/may-2024-rewind/tifo-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/may-2024-rewind/womens_sports.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "b523ad1c01-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/may-2024-rewind/womens_sports-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/may-2024-rewind/womens_sports-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/october-2024-rewind/last-of-us.jpeg": {
+		"width": 768,
+		"height": 1024,
+		"hash": "42f499f1a4-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/october-2024-rewind/last-of-us-640w.jpg"
+			}
+		]
+	},
+	"/images/posts/october-2024-rewind/save-the-crew.jpeg": {
+		"width": 768,
+		"height": 1024,
+		"hash": "7671096566-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/october-2024-rewind/save-the-crew-640w.jpg"
+			}
+		]
+	},
+	"/images/posts/reflections-indiana/IMG_1175.jpeg": {
+		"width": 1499,
+		"height": 2000,
+		"hash": "ba0843e48d-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/jpeg",
+		"variants": [
+			{
+				"w": 640,
+				"src": "/images/posts/reflections-indiana/IMG_1175-640w.jpg"
+			},
+			{
+				"w": 1280,
+				"src": "/images/posts/reflections-indiana/IMG_1175-1280w.jpg"
+			}
+		]
+	},
+	"/images/posts/the-habit-experiment/dopower-chart.png": {
+		"width": 924,
+		"height": 749,
+		"hash": "6bfe1edcd7-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/the-habit-experiment/dopower-chart-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/images/posts/the-habit-experiment/dopower-chart-800w.webp"
+			},
+			{
+				"w": 924,
+				"src": "/images/posts/the-habit-experiment/dopower-chart-924w.webp"
+			}
+		]
+	},
+	"/images/posts/the-habit-experiment/shortcut.jpeg": {
+		"width": 923,
+		"height": 2000,
+		"hash": "9d48b985b0-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/images/posts/the-habit-experiment/shortcut-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/images/posts/the-habit-experiment/shortcut-800w.webp"
+			},
+			{
+				"w": 923,
+				"src": "/images/posts/the-habit-experiment/shortcut-923w.webp"
+			}
+		]
+	},
+	"/images/seo/seoDefaults/ogImage.png": {
+		"width": 368,
+		"height": 368,
+		"hash": "127890d9f0-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 368,
+				"src": "/images/seo/seoDefaults/ogImage-368w.webp"
+			}
+		]
+	},
+	"/moose.jpg": {
+		"width": 1926,
+		"height": 1926,
+		"hash": "7a1df19fa6-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/moose-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/moose-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/moose-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/moose-1600w.webp"
+			}
+		]
+	},
+	"/photos/09E310CB-D129-4549-88AA-A36B6B631511_1_105_c.jpeg": {
+		"width": 724,
+		"height": 1086,
+		"hash": "daa60e513a-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/09E310CB-D129-4549-88AA-A36B6B631511_1_105_c-480w.webp"
+			},
+			{
+				"w": 724,
+				"src": "/photos/09E310CB-D129-4549-88AA-A36B6B631511_1_105_c-724w.webp"
+			}
+		]
+	},
+	"/photos/94314820-17BD-405D-93ED-2C303A5C642C_1_105_c.jpeg": {
+		"width": 724,
+		"height": 1086,
+		"hash": "636e543b94-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/94314820-17BD-405D-93ED-2C303A5C642C_1_105_c-480w.webp"
+			},
+			{
+				"w": 724,
+				"src": "/photos/94314820-17BD-405D-93ED-2C303A5C642C_1_105_c-724w.webp"
+			}
+		]
+	},
+	"/photos/D4A419A6-D93B-451E-8681-77CB96A7E774_1_105_c.jpeg": {
+		"width": 724,
+		"height": 1086,
+		"hash": "f1c6cf8a0d-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/D4A419A6-D93B-451E-8681-77CB96A7E774_1_105_c-480w.webp"
+			},
+			{
+				"w": 724,
+				"src": "/photos/D4A419A6-D93B-451E-8681-77CB96A7E774_1_105_c-724w.webp"
+			}
+		]
+	},
+	"/photos/DSCF0388.jpg": {
+		"width": 2000,
+		"height": 1334,
+		"hash": "3b5f81dc5d-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF0388-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF0388-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF0388-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/photos/DSCF0388-1600w.webp"
+			}
+		]
+	},
+	"/photos/DSCF0439.jpg": {
+		"width": 2000,
+		"height": 1333,
+		"hash": "a86c72ff49-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF0439-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF0439-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF0439-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/photos/DSCF0439-1600w.webp"
+			}
+		]
+	},
+	"/photos/DSCF0541.jpg": {
+		"width": 1334,
+		"height": 2000,
+		"hash": "d1e2caefee-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF0541-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF0541-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF0541-1200w.webp"
+			},
+			{
+				"w": 1334,
+				"src": "/photos/DSCF0541-1334w.webp"
+			}
+		]
+	},
+	"/photos/DSCF0578.jpg": {
+		"width": 2000,
+		"height": 1333,
+		"hash": "c4bdbc90bd-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF0578-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF0578-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF0578-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/photos/DSCF0578-1600w.webp"
+			}
+		]
+	},
+	"/photos/DSCF0682.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "1abdd911c5-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF0682-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF0682-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF0682-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF0682-1333w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1223.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "21b9e1e483-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1223-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1223-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1223-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF1223-1333w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1282.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "43978e69e2-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1282-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1282-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1282-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF1282-1333w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1311.jpg": {
+		"width": 2000,
+		"height": 1333,
+		"hash": "425d7a7618-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1311-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1311-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1311-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/photos/DSCF1311-1600w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1453.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "12acfa6597-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1453-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1453-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1453-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF1453-1333w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1468.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "0958e41011-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1468-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1468-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1468-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF1468-1333w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1542.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "a168a55921-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1542-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1542-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1542-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF1542-1333w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1558.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "a85de104ba-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1558-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1558-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1558-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF1558-1333w.webp"
+			}
+		]
+	},
+	"/photos/DSCF1581.jpg": {
+		"width": 1333,
+		"height": 2000,
+		"hash": "a446cb3b4f-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1581-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1581-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1581-1200w.webp"
+			},
+			{
+				"w": 1333,
+				"src": "/photos/DSCF1581-1333w.webp"
+			}
+		]
+	}
+}
