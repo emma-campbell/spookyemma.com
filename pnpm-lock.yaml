@@ -70,6 +70,9 @@ importers:
       '@types/node':
         specifier: ^26.1.1
         version: 26.1.1
+      exif-reader:
+        specifier: ^2.0.3
+        version: 2.0.3
       lint-staged:
         specifier: ^17.4.1
         version: 17.4.1
@@ -699,6 +702,9 @@ packages:
     peerDependenciesMeta:
       '@typescript-eslint/types':
         optional: true
+
+  exif-reader@2.0.3:
+    resolution: {integrity: sha512-zFbQvguwT9JkqyYhR7pjE1Yn8SagwaGLNRU0Oh14xFa1paSf5Gzxn4gxgk0XhnudI0UIqU+HgnBX93+nva592A==}
 
   extend-shallow@2.0.1:
     resolution: {integrity: sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug==}
@@ -1710,6 +1716,8 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.5
     optionalDependencies:
       '@typescript-eslint/types': 8.58.0
+
+  exif-reader@2.0.3: {}
 
   extend-shallow@2.0.1:
     dependencies:

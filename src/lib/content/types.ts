@@ -93,6 +93,8 @@ export interface Photo {
   /** Responsive `srcset` and the MIME type of its entries. Absent if the manifest lacks it. */
   srcset?: string;
   srcsetType?: 'image/webp' | 'image/jpeg';
+  /** Shooting details for the lightbox, e.g. ["Fujifilm X-T50", "23mm", "f/11", …]. */
+  exif?: string[];
   caption: string;
   collection: string;
   place: string;
