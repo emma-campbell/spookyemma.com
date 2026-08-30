@@ -7,9 +7,9 @@ export interface EntryTypeConfig {
 }
 
 export const ENTRY_TYPES: Record<PostEntry, EntryTypeConfig> = {
-	log:      { label: 'log',      icon: '◈', color: 'var(--sage)' },
+	log: { label: 'log', icon: '◈', color: 'var(--sage)' },
 	thinking: { label: 'thinking', icon: '✦', color: 'var(--amber)' },
-	making:   { label: 'making',   icon: '⚗', color: 'var(--lavender)' }
+	making: { label: 'making', icon: '⚗', color: 'var(--lavender)' }
 };
 
 /** Home page section order */

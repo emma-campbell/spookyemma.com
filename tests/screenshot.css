@@ -1,4 +1,6 @@
-#bg-canvas { display: none !important; }
+#bg-canvas {
+	display: none !important;
+}
 
 /*
  * Content-driven regions are excluded from visual snapshots so that adding a
@@ -13,17 +15,27 @@
 .filter-count,
 .nb-type-stats,
 .month-stat-count,
-.footer-year { visibility: hidden !important; }
+.footer-year {
+	visibility: hidden !important;
+}
 
 /* Home: per-section post lists */
-.post-list { display: none !important; }
+.post-list {
+	display: none !important;
+}
 
 /* Notebook: the entry feed */
-.feed-entry { display: none !important; }
+.feed-entry {
+	display: none !important;
+}
 
 /* Changelog: month-by-month entry rows */
-.month-row { display: none !important; }
+.month-row {
+	display: none !important;
+}
 
 /* Now: featured-entry date stamp and the archive timeline */
 .entry-date-stamp,
-.now-timeline { display: none !important; }
+.now-timeline {
+	display: none !important;
+}

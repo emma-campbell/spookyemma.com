@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Marked } from "marked";
+	import { Marked } from 'marked';
 
 	interface Interest {
 		text: string;
@@ -15,7 +15,7 @@
 	const renderer = {
 		link({ href, text }: { href: string; text: string }) {
 			return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-		},
+		}
 	};
 
 	const md = new Marked({ renderer });

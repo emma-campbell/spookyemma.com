@@ -1,31 +1,31 @@
 <script lang="ts">
-    import "../app.css";
-    import posthog from "posthog-js";
-    import { browser } from "$app/environment";
-    import { env } from "$env/dynamic/public";
+	import '../app.css';
+	import posthog from 'posthog-js';
+	import { browser } from '$app/environment';
+	import { env } from '$env/dynamic/public';
 
-    interface Props {
-        children: import("svelte").Snippet;
-    }
+	interface Props {
+		children: import('svelte').Snippet;
+	}
 
-    export const load = async () => {
-        if (browser && env.PUBLIC_POSTHOG_KEY) {
-            posthog.init(env.PUBLIC_POSTHOG_KEY, {
-                api_host: "https://n.spookyemma.com",
-                ui_host: "https://us.posthog.com",
-            });
-        }
+	export const load = async () => {
+		if (browser && env.PUBLIC_POSTHOG_KEY) {
+			posthog.init(env.PUBLIC_POSTHOG_KEY, {
+				api_host: 'https://n.spookyemma.com',
+				ui_host: 'https://us.posthog.com'
+			});
+		}
 
-        return;
-    };
+		return;
+	};
 
-    let { children }: Props = $props();
-    load();
+	let { children }: Props = $props();
+	load();
 </script>
 
 <svelte:head>
-    <title>Emma Campbell</title>
-    <meta name="description" content="Emma's Digital Presence" />
+	<title>Emma Campbell</title>
+	<meta name="description" content="Emma's Digital Presence" />
 </svelte:head>
 
 {@render children()}

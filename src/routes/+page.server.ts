@@ -14,28 +14,26 @@ export const load: PageServerLoad = async () => {
 	}
 
 	// Build sections using SECTION_ORDER + ENTRY_TYPES
-	const sections = SECTION_ORDER
-		.filter((key) => grouped.has(key))
-		.map((key, i) => {
-			const cfg = ENTRY_TYPES[key];
-			const colorName = cfg.color.replace('var(--', '').replace(')', '');
-			return {
-				id: key,
-				label: cfg.label.charAt(0).toUpperCase() + cfg.label.slice(1),
-				icon: cfg.icon,
-				color: cfg.color,
-				badgeCls: colorName,
-				order: i + 1,
-				sectionNum: `\u00A7 0${i + 1}`,
-				posts: (grouped.get(key) || []).map((p) => ({
-					slug: p.slug,
-					title: p.title,
-					published: p.published,
-					entry: p.entry,
-					tags: p.tags
-				}))
-			};
-		});
+	const sections = SECTION_ORDER.filter((key) => grouped.has(key)).map((key, i) => {
+		const cfg = ENTRY_TYPES[key];
+		const colorName = cfg.color.replace('var(--', '').replace(')', '');
+		return {
+			id: key,
+			label: cfg.label.charAt(0).toUpperCase() + cfg.label.slice(1),
+			icon: cfg.icon,
+			color: cfg.color,
+			badgeCls: colorName,
+			order: i + 1,
+			sectionNum: `\u00A7 0${i + 1}`,
+			posts: (grouped.get(key) || []).map((p) => ({
+				slug: p.slug,
+				title: p.title,
+				published: p.published,
+				entry: p.entry,
+				tags: p.tags
+			}))
+		};
+	});
 
 	const pages = [
 		{ href: '/about', label: 'About' },

@@ -41,9 +41,7 @@
 			{/if}
 
 			{#if post.hasMore}
-				<a href="/notebook/{post.slug}" class="post-more">
-					Read more →
-				</a>
+				<a href="/notebook/{post.slug}" class="post-more"> Read more → </a>
 			{/if}
 		</div>
 	</div>
@@ -69,9 +67,7 @@
 		{/if}
 
 		{#if post.hasMore}
-			<a href="/notebook/{post.slug}" class="post-more">
-				Read more →
-			</a>
+			<a href="/notebook/{post.slug}" class="post-more"> Read more → </a>
 		{/if}
 	</div>
 </article>

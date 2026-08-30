@@ -70,7 +70,9 @@ export function variantPath(file, width, ext) {
 /** Pixel dimensions with EXIF orientation applied, so portrait phone photos report as portrait. */
 export function orientedSize(meta) {
 	const swap = (meta.orientation ?? 1) >= 5;
-	return swap ? { width: meta.height, height: meta.width } : { width: meta.width, height: meta.height };
+	return swap
+		? { width: meta.height, height: meta.width }
+		: { width: meta.width, height: meta.height };
 }
 
 /** Apple (HDRGainMap), ISO 21496-1 as written by ImageIO (HDRToneMap), or Adobe/Android (hdrgm). */
@@ -152,7 +154,8 @@ export function extractExif(exif) {
 		iso: photo.ISOSpeedRatings ?? photo.PhotographicSensitivity,
 		focalLength: round(photo.FocalLength, 2),
 		focalLength35: photo.FocalLengthIn35mmFilm,
-		takenAt: photo.DateTimeOriginal instanceof Date ? photo.DateTimeOriginal.toISOString() : undefined
+		takenAt:
+			photo.DateTimeOriginal instanceof Date ? photo.DateTimeOriginal.toISOString() : undefined
 	};
 	for (const k of Object.keys(out)) if (out[k] === undefined || out[k] === '') delete out[k];
 	return out;

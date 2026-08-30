@@ -2,8 +2,18 @@ import { getChangelog } from '$lib/content';
 import type { PageServerLoad } from './$types';
 
 const SHORT_MONTHS = [
-	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-	'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+	'Jan',
+	'Feb',
+	'Mar',
+	'Apr',
+	'May',
+	'Jun',
+	'Jul',
+	'Aug',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dec'
 ];
 
 function formatShortDate(dateStr: string): string {

@@ -9,6 +9,7 @@ status: published
 entry: making
 tags: []
 ---
+
 If you've ever viewed an article on Medium, you'll notice that the preview gives an estimated "read time". This feature is easily to implement using the `reading-time` node package and our existing contentlayer configuration. Begin by installing `reading-time`.
 
 ```sh
@@ -69,9 +70,9 @@ export const Post = defineDocumentType(() => ({
           minutes: Math.floor(time.minutes),
           words: time.words
         };
-      },
-    },
-  },
+      }
+    }
+  }
 }));
 ```
 
@@ -80,8 +81,5 @@ Now, we contentlayer generates the typesafe JSON, each post will have a new fiel
 You can then display in a component however you like, accessing those members as follows:
 
 ```tsx
-<ReadingTime
- minutes={post.readingTime?.minutes}
- words={post.readingTime?.words}
-/>
+<ReadingTime minutes={post.readingTime?.minutes} words={post.readingTime?.words} />
 ```

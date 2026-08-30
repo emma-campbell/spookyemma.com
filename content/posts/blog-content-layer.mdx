@@ -5,6 +5,7 @@ status: published
 entry: making
 tags: []
 ---
+
 Previously, we talked through the choices behind the tech stack used to build my developer blog. The step towards building a functional blog is wiring up [contentlayer](https://www.contentlayer.dev/docs/getting-started), an SDK for transforming unstructured content into type-safe json data structures. Contentlayer is a breeze to use, but in case you're stuck, here is how I set it up.
 
 # Installation
@@ -29,7 +30,7 @@ import { withContentLayer } from "next-contentlayer";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: true
 };
 
 module.exports = withContentlayer(nextConfig);
@@ -45,12 +46,7 @@ module.exports = withContentlayer(nextConfig);
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.tsx",
-    "**/*.ts",
-    ".contentlayer/generated"
-  ]
+  "include": ["next-env.d.ts", "**/*.tsx", "**/*.ts", ".contentlayer/generated"]
 }
 ```
 
@@ -79,9 +75,9 @@ export const Post = defineDocumentType(() => ({
     status: {
       type: "enum",
       options: ["draft", "published"],
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 }));
 ```
 
@@ -99,14 +95,14 @@ export const Tag = defineNestedType(() => ({
     title: {
       type: "enum",
       required: true,
-      options: tagNames,
+      options: tagNames
     },
     slug: {
       type: "enum",
       required: true,
-      options: tagSlugs,
-    },
-  },
+      options: tagSlugs
+    }
+  }
 }));
 ```
 
@@ -118,13 +114,13 @@ export const Series = defineNestedType(() => ({
   fields: {
     title: {
       type: "string",
-      required: true,
+      required: true
     },
     order: {
       type: "number",
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 }));
 ```
 
@@ -145,19 +141,19 @@ export const Post = defineDocumentType(() => ({
     status: {
       type: "enum",
       options: ["draft", "published"],
-      required: true,
+      required: true
     },
     series: {
       type: "nested",
       required: false,
-      of: Series,
+      of: Series
     },
     tags: {
       type: "list",
       required: false,
-      of: Tag,
-    },
-  },
+      of: Tag
+    }
+  }
 }));
 ```
 
@@ -180,8 +176,8 @@ export default makeSource({
       return options;
     },
     remarkPlugins: [],
-    rehypePlugins: [],
-  },
+    rehypePlugins: []
+  }
 });
 ```
 
@@ -210,8 +206,8 @@ export default makeSource({
   mdx: {
     // ...
     remarkPlugins: [[remarkGfm]],
-    rehypePlugins: [],
-  },
+    rehypePlugins: []
+  }
 });
 ```
 
@@ -244,12 +240,12 @@ export default makeSource({
         {
           behavior: "wrap",
           properties: {
-            className: ["<insert class names here>"],
-          },
-        },
-      ],
-    ],
-  },
+            className: ["<insert class names here>"]
+          }
+        }
+      ]
+    ]
+  }
 });
 ```
 
@@ -272,8 +268,7 @@ export const Post = defineDocumentType(() => ({
         // https://stackoverflow.com/a/70802303
         const regex = /\n\n(?<flag>#{1,6})\s+(?<content>.+)/g;
 
-        const headings =
-          Array.from(doc.body.raw.matchAll(regex)).map(
+        const headings = Array.from(doc.body.raw.matchAll(regex)).map(
           // @ts-ignore
           ({ groups }) => {
             const flag = groups?.flag;
@@ -281,15 +276,15 @@ export const Post = defineDocumentType(() => ({
             return {
               heading: flag?.length,
               text: content,
-              slug: content ? slugger.slug(content) : undefined,
+              slug: content ? slugger.slug(content) : undefined
             };
           }
         );
 
         return headings;
-      },
-    },
-  },
+      }
+    }
+  }
 }));
 ```
 
@@ -310,9 +305,9 @@ export const Post = defineDocumentType(() => ({
     // ...
     slug: {
       type: "string",
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
-    },
-  },
+      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, "")
+    }
+  }
 }));
 ```
 

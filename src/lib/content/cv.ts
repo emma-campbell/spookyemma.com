@@ -20,8 +20,8 @@ export function getCV(): CV {
 				location: e.location,
 				start: e.start ? String(e.start) : undefined,
 				end: e.end ? String(e.end) : undefined,
-				description: e.description,
-			})),
+				description: e.description
+			}))
 		}))
 		.sort((a: CVSection, b: CVSection) => a.order - b.order);
 
@@ -29,6 +29,6 @@ export function getCV(): CV {
 		title: data.title || 'CV',
 		subtitle: data.subtitle,
 		lastUpdatedAt: stats.mtime,
-		sections,
+		sections
 	};
 }

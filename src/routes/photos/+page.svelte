@@ -11,7 +11,8 @@
 	const collMap = $derived(new Map(data.collections.map((c) => [c.id, c])));
 
 	// Mirrors the .mosaic column counts below: 2 on mobile, 3 under 1100px, 4 under 1400px, 5 above.
-	const GRID_SIZES = '(max-width: 599px) 50vw, (max-width: 1100px) 33vw, (max-width: 1400px) 25vw, 20vw';
+	const GRID_SIZES =
+		'(max-width: 599px) 50vw, (max-width: 1100px) 33vw, (max-width: 1400px) 25vw, 20vw';
 
 	const visiblePhotos = $derived(
 		active === 'all' ? data.photos : data.photos.filter((p) => p.collection === active)
@@ -31,7 +32,10 @@
 
 <svelte:head>
 	<title>Photos · Emma Campbell</title>
-	<meta name="description" content="A visual field journal — the dog, trails, and whatever caught the light." />
+	<meta
+		name="description"
+		content="A visual field journal — the dog, trails, and whatever caught the light."
+	/>
 </svelte:head>
 
 <svelte:window onkeydown={onKeydown} />
@@ -52,7 +56,10 @@
 			<div class="coll-stats">
 				{#each data.collections as coll}
 					<div class="stat-line">
-						<span class="stat-key">{#if coll.icon}{coll.icon} {/if}{coll.label}</span>
+						<span class="stat-key"
+							>{#if coll.icon}{coll.icon}
+							{/if}{coll.label}</span
+						>
 						<span class="stat-val">{coll.count}</span>
 					</div>
 				{/each}
@@ -73,7 +80,8 @@
 					class:active={active === coll.id}
 					onclick={() => (active = coll.id)}
 				>
-					{#if coll.icon}{coll.icon} {/if}{coll.label}
+					{#if coll.icon}{coll.icon}
+					{/if}{coll.label}
 				</button>
 			{/each}
 		</div>
@@ -92,7 +100,11 @@
 				<div class="mosaic">
 					{#each visiblePhotos as photo (photo.src)}
 						<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-						<button class="photo" onclick={() => openLightbox(photo)} aria-label="View {photo.caption}">
+						<button
+							class="photo"
+							onclick={() => openLightbox(photo)}
+							aria-label="View {photo.caption}"
+						>
 							<picture>
 								{#if photo.srcset && photo.srcsetType === 'image/webp'}
 									<source type="image/webp" srcset={photo.srcset} sizes={GRID_SIZES} />
@@ -113,8 +125,8 @@
 								<span class="photo-meta">
 									{#if collMap.get(photo.collection)}
 										<span class="photo-collection-tag">
-											{#if collMap.get(photo.collection)?.icon}{collMap.get(photo.collection)
-													?.icon} {/if}{collMap.get(photo.collection)?.label}
+											{#if collMap.get(photo.collection)?.icon}{collMap.get(photo.collection)?.icon}
+											{/if}{collMap.get(photo.collection)?.label}
 										</span>
 										·
 									{/if}
@@ -310,7 +322,9 @@
 		width: 100%;
 		height: auto;
 		display: block;
-		transition: transform 0.4s ease, filter 0.4s ease;
+		transition:
+			transform 0.4s ease,
+			filter 0.4s ease;
 		filter: saturate(0.92) brightness(0.96);
 	}
 	.photo:hover img {

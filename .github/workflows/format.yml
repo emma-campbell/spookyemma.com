@@ -1,0 +1,27 @@
+name: Format
+
+# Everything oxfmt understands (TS, Svelte, CSS, Markdown/MDX, JSON, YAML) must
+# be formatted per the `fmt` block in vite.config.ts. The pre-commit hook does
+# this locally; this catches anything that got around it.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm fmt:check

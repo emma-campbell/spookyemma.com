@@ -5,13 +5,14 @@ status: published
 entry: making
 tags: []
 ---
+
 Everyone and their mothers always makes a goal to read more books at the start of every given year. Last year, I read more than I hoped, but on the previous version of my site had a tracker that was pretty tedious to use.
 
 I want to display my book reading superiority so that everyone can see (a not-so-humble brag, if you will).
 
 In the past I’ve used Goodreads to track all of my books. However, Goodreads deprecated their developer program a while back so if you don’t have an existing token you’re shit out of luck.
 
-In my search for the perfect book tracker, I stumbled upon [Literal](https://literal.club/). It’s like Goodreads, but their UI is from this century *and* they have an open GraphQL API. It’s like they knew I wanted to show off.
+In my search for the perfect book tracker, I stumbled upon [Literal](https://literal.club/). It’s like Goodreads, but their UI is from this century _and_ they have an open GraphQL API. It’s like they knew I wanted to show off.
 
 So after signing up, I imported my Goodreads library (looks like they’re one of the lucky ones with a live developer token 🤨) and got to work displaying my current read and favorites shelf on my site.
 
@@ -30,7 +31,7 @@ import {
   ApolloNextAppProvider,
   NextSSRApolloClient,
   NextSSRInMemoryCache,
-  SSRMultipartLink,
+  SSRMultipartLink
 } from "@apollo/experimental-nextjs-app-support/ssr";
 
 export const getClient = () => {
@@ -40,16 +41,16 @@ export const getClient = () => {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : "",
-      },
+        authorization: token ? `Bearer ${token}` : ""
+      }
     };
   });
 
   const link = new HttpLink({
     uri: "https://literal.club/graphql/",
     fetchOptions: {
-      cache: "no-store",
-    },
+      cache: "no-store"
+    }
   });
 
   return new NextSSRApolloClient({
@@ -58,23 +59,17 @@ export const getClient = () => {
       typeof window === "undefined"
         ? ApolloLink.from([
             new SSRMultipartLink({
-              stripDefer: true,
+              stripDefer: true
             }),
             authLink,
-            link,
+            link
           ])
-        : ApolloLink.from([authLink, link]),
+        : ApolloLink.from([authLink, link])
   });
 };
 
-export function LiteralContext({
-  children,
-}: React.PropsWithChildren) {
-  return (
-    <ApolloNextAppProvider makeClient={getClient}>
-      {children}
-    </ApolloNextAppProvider>
-  );
+export function LiteralContext({ children }: React.PropsWithChildren) {
+  return <ApolloNextAppProvider makeClient={getClient}>{children}</ApolloNextAppProvider>;
 }
 ```
 
@@ -218,7 +213,7 @@ export default function ReadingPreview {
 
 ## Server Side
 
-On the Server Side of things, I decided to just use asynchronous fetch (partially because I am *not* a frontend person, and I had trouble trying to use the Apollo client server side lol).
+On the Server Side of things, I decided to just use asynchronous fetch (partially because I am _not_ a frontend person, and I had trouble trying to use the Apollo client server side lol).
 
 Because the Literal API has you retrieve read dates by a different query, I used this method to retrieve all read books, and combine the object with the read dates.
 
@@ -239,13 +234,13 @@ async function getBooks() {
           limit: 100,
           offset: 0,
           readingStatus: "FINISHED",
-          profileId: process.env.NEXT_PUBLIC_LITERAL_PROFILE_ID,
-        },
+          profileId: process.env.NEXT_PUBLIC_LITERAL_PROFILE_ID
+        }
       }),
       headers: {
         "Content-Type": "application/json",
-        authorization: process.env.LITERAL_TOKEN ?? "",
-      },
+        authorization: process.env.LITERAL_TOKEN ?? ""
+      }
     }).then((res) => res.json())) as any
   ).data;
 
@@ -264,13 +259,13 @@ async function getBooks() {
           }`,
           variables: {
             bookId: book.id,
-            profileId: process.env.NEXT_PUBLIC_LITERAL_PROFILE_ID,
-          },
+            profileId: process.env.NEXT_PUBLIC_LITERAL_PROFILE_ID
+          }
         }),
         headers: {
           "Content-Type": "application/json",
-          authorization: process.env.LITERAL_TOKEN ?? "",
-        },
+          authorization: process.env.LITERAL_TOKEN ?? ""
+        }
       }).then((res) => res.json())) as any
     ).data;
 
@@ -279,7 +274,7 @@ async function getBooks() {
     const b = {
       ...book,
       started: date?.started,
-      finished: date?.finished,
+      finished: date?.finished
     };
 
     if (b.finished != null) {

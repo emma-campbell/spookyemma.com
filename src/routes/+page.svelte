@@ -14,7 +14,10 @@
 
 <svelte:head>
 	<title>Emma Campbell</title>
-	<meta name="description" content="Personal website of Emma Campbell. Software, experiments, notes, and the occult mundane." />
+	<meta
+		name="description"
+		content="Personal website of Emma Campbell. Software, experiments, notes, and the occult mundane."
+	/>
 </svelte:head>
 
 <PageShell>
@@ -25,10 +28,10 @@
 		</div>
 		<div class="row-content" style="padding-top:3.5rem;padding-bottom:3rem;">
 			<p class="hero-eyebrow">personal index &middot; est. 2022</p>
-			<h1 class="hero-title">the<em>occult<br>mundane</em></h1>
+			<h1 class="hero-title">the<em>occult<br />mundane</em></h1>
 			<p class="hero-desc">
-				This is the personal website of <a href="/about">Emma</a>.
-				I write about software, self-experiments, and things that haunt me.
+				This is the personal website of <a href="/about">Emma</a>. I write about software,
+				self-experiments, and things that haunt me.
 			</p>
 			<div class="tag-row">
 				{#each tagPills as pill}
@@ -50,7 +53,9 @@
 				<div class="content-header">
 					<span class="ch-glyph" style:color={section.color}>{section.icon}</span>
 					<span class="ch-title">{section.label}</span>
-					<span class="ch-count">{section.posts.length} {section.posts.length === 1 ? 'entry' : 'entries'}</span>
+					<span class="ch-count"
+						>{section.posts.length} {section.posts.length === 1 ? 'entry' : 'entries'}</span
+					>
 				</div>
 				<ul class="post-list">
 					{#each section.posts as post}

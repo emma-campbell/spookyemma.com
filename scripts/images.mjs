@@ -71,7 +71,8 @@ async function normalize(file) {
 		? hasGps(meta.exif) || (meta.exif?.length ?? 0) > 512 || Boolean(meta.xmp)
 		: Boolean(meta.exif || meta.icc || meta.xmp || meta.iptc);
 
-	if (!hasMetadata && !tooLarge && !heavy) return { hdr, exif, before: input.length, rewrote: false };
+	if (!hasMetadata && !tooLarge && !heavy)
+		return { hdr, exif, before: input.length, rewrote: false };
 
 	let output;
 	if (hdr) {
@@ -100,10 +101,16 @@ async function normalize(file) {
 	}
 
 	await writeFile(file, output);
-	const why = [tooLarge && `${meta.width}x${meta.height}`, hasMetadata && 'metadata', hdr && 'HDR kept']
+	const why = [
+		tooLarge && `${meta.width}x${meta.height}`,
+		hasMetadata && 'metadata',
+		hdr && 'HDR kept'
+	]
 		.filter(Boolean)
 		.join(', ');
-	console.log(`normalized ${rel(file)}  ${fmtBytes(input.length)} -> ${fmtBytes(output.length)}  (${why})`);
+	console.log(
+		`normalized ${rel(file)}  ${fmtBytes(input.length)} -> ${fmtBytes(output.length)}  (${why})`
+	);
 	return { hdr, exif, before: input.length, after: output.length, rewrote: true };
 }
 
@@ -180,7 +187,9 @@ let removed = 0;
 if (all) {
 	const live = new Set(files.map(toUrl));
 	for (const url of Object.keys(manifest)) if (!live.has(url)) delete manifest[url];
-	const liveVariants = new Set(Object.values(manifest).flatMap((m) => m.variants.map((v) => v.src)));
+	const liveVariants = new Set(
+		Object.values(manifest).flatMap((m) => m.variants.map((v) => v.src))
+	);
 	for (const f of await walk(STATIC_DIR)) {
 		if (GENERATED.test(f) && !liveVariants.has(toUrl(f))) {
 			await unlink(f);
