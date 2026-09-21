@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { DateTime } from 'luxon';
-	import { format } from 'date-fns';
-
-	const year = format(DateTime.now(), 'y');
+	const year = new Date().getFullYear();
 </script>
 
 <footer class="page-footer">

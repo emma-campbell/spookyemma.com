@@ -122,10 +122,6 @@
 		color: var(--muted);
 		margin-bottom: 0.5rem;
 	}
-	.tl-date.notable {
-		color: var(--coral);
-	}
-
 	.tl-prose {
 		font-size: 0.82rem;
 		line-height: 1.75;
@@ -180,10 +176,6 @@
 		border: 1px solid var(--border);
 		background: var(--ink);
 	}
-	.now-timeline-item.notable::before {
-		border-color: var(--coral);
-	}
-
 	/* Mobile: tighten timeline */
 	@media (max-width: 599px) {
 		.now-timeline {
