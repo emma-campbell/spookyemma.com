@@ -93,7 +93,7 @@
 		font-variant-numeric: tabular-nums;
 		letter-spacing: 0.04em;
 	}
-	.cv-dates .current {
+	.cv-dates :global(.current) {
 		color: var(--sage);
 	}
 
@@ -118,7 +118,7 @@
 		color: var(--amber);
 	}
 
-	.cv-tech {
+	.cv-bullets :global(.cv-tech) {
 		display: inline-block;
 		font-size: 0.62rem;
 		letter-spacing: 0.06em;

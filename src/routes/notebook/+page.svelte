@@ -313,19 +313,6 @@
 		max-width: 620px;
 	}
 
-	.entry-image {
-		display: block;
-		padding: 0 2.5rem 0;
-	}
-	.entry-image img {
-		max-width: 100%;
-		display: block;
-		max-height: 340px;
-		object-fit: cover;
-		border: 1px solid rgba(196, 169, 106, 0.15);
-		border-radius: 3px;
-	}
-
 	.entry-footer {
 		padding: 1rem 2.5rem 2rem;
 		display: flex;
