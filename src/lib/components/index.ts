@@ -3,7 +3,6 @@ export { default as Logo } from './Logo.svelte';
 export { default as UnderlineToBackground } from './UnderlineToBackground.svelte';
 export { default as Timeline } from './Timeline.svelte';
 export { default as SimpleTimeline } from './SimpleTimeline.svelte';
-export { default as PostType } from './PostType.svelte';
 export { default as PostList } from './PostList.svelte';
 export { default as PostListItem } from './PostListItem.svelte';
 export { default as Aside } from './Aside.svelte';

@@ -65,7 +65,7 @@
 			}
 		}
 
-		function frame() {
+		const frame = () => {
 			ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
 			for (let i = 0; i < dots.length; i++) {
@@ -96,7 +96,7 @@
 			}
 
 			animId = requestAnimationFrame(frame);
-		}
+		};
 
 		function onMouseMove(e: MouseEvent) {
 			mouseX = e.clientX;
