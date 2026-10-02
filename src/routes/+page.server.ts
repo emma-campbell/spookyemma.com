@@ -1,5 +1,5 @@
-import { getPublishedPosts, ENTRY_TYPES, SECTION_ORDER } from '$lib/content';
-import type { PostEntry } from '$lib/content';
+import { getPublishedPosts, ENTRY_TYPES, SECTION_ORDER } from '#lib/content/index.js';
+import type { PostEntry } from '#lib/content/index.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

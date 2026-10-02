@@ -1,5 +1,5 @@
-import { getCV } from '$lib/content';
-import { renderMarkdown } from '$lib/content/markdown';
+import { getCV } from '#lib/content/index.js';
+import { renderMarkdown } from '#lib/content/markdown.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

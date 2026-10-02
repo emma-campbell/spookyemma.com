@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { PageShell } from '$lib/components';
+	import { PageShell } from '#lib/components/index.js';
 	import type { PageData } from './$types';
-	import type { Photo } from '$lib/content';
+	import type { Photo } from '#lib/content/index.js';
 
 	let { data }: { data: PageData } = $props();
 

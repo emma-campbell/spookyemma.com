@@ -1,4 +1,4 @@
-import { getChangelog } from '$lib/content';
+import { getChangelog } from '#lib/content/index.js';
 import type { PageServerLoad } from './$types';
 
 const SHORT_MONTHS = [

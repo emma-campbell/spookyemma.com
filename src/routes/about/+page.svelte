@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageShell, QuickFacts, StatBlock, InterestsList } from '$lib/components';
+	import { PageShell, QuickFacts, StatBlock, InterestsList } from '#lib/components/index.js';
 </script>
 
 <svelte:head>

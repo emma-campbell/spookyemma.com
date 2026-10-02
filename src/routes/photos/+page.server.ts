@@ -1,4 +1,4 @@
-import { getPhotos } from '$lib/content';
+import { getPhotos } from '#lib/content/index.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

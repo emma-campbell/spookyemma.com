@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageShell, QuickFacts } from '$lib/components';
+	import { PageShell, QuickFacts } from '#lib/components/index.js';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();

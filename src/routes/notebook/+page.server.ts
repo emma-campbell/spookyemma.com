@@ -1,5 +1,5 @@
-import { getPublishedPosts, ENTRY_TYPES } from '$lib/content';
-import { createMDXPreview, renderMarkdown } from '$lib/content/markdown';
+import { getPublishedPosts, ENTRY_TYPES } from '#lib/content/index.js';
+import { createMDXPreview, renderMarkdown } from '#lib/content/markdown.js';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

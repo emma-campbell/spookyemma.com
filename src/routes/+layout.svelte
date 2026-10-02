@@ -1,16 +1,16 @@
 <script lang="ts">
 	import '../app.css';
 	import posthog from 'posthog-js';
-	import { browser } from '$app/environment';
-	import { env } from '$env/dynamic/public';
+	import { browser } from '$app/env';
+	import { PUBLIC_POSTHOG_KEY } from '$app/env/public';
 
 	interface Props {
 		children: import('svelte').Snippet;
 	}
 
 	export const load = async () => {
-		if (browser && env.PUBLIC_POSTHOG_KEY) {
-			posthog.init(env.PUBLIC_POSTHOG_KEY, {
+		if (browser && PUBLIC_POSTHOG_KEY) {
+			posthog.init(PUBLIC_POSTHOG_KEY, {
 				api_host: 'https://n.spookyemma.com',
 				ui_host: 'https://us.posthog.com'
 			});

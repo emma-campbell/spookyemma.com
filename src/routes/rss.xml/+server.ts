@@ -1,4 +1,4 @@
-import { getPublishedPosts, getSiteSettings } from '$lib/content';
+import { getPublishedPosts, getSiteSettings } from '#lib/content/index.js';
 import { Feed } from 'feed';
 import type { RequestHandler } from './$types';
 
