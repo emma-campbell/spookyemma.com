@@ -3,7 +3,9 @@
 	"version": "3.2.0",
 	"type": "module",
 	"imports": {
-		"#lib": "./src/lib/index.js",
+		"#components": "./src/lib/components/index.ts",
+		"#components/article": "./src/lib/components/article/index.ts",
+		"#content": "./src/lib/content/index.ts",
 		"#lib/*": "./src/lib/*"
 	},
 	"scripts": {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { PostEntry } from '#lib/content/types.js';
-	import { ENTRY_TYPES } from '#lib/content/entryTypes.js';
+	import type { PostEntry } from '#lib/content/types.ts';
+	import { ENTRY_TYPES } from '#lib/content/entryTypes.ts';
 
 	interface Props {
 		type: PostEntry;

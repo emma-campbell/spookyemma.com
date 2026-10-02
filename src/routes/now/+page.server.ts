@@ -1,5 +1,5 @@
-import { getNowEntries } from '#lib/content/index.js';
-import { renderMarkdown } from '#lib/content/markdown.js';
+import { getNowEntries } from '#content';
+import { renderMarkdown } from '#lib/content/markdown.ts';
 import type { PageServerLoad } from './$types';
 
 const MONTH_NAMES = [

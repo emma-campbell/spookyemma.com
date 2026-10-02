@@ -1,6 +1,6 @@
-import { getPost, getAllPostSlugs, getPublishedPosts } from '#lib/content/index.js';
-import { renderMarkdown, extractHeadings, countWords } from '#lib/content/markdown.js';
-import { getBacklinks, extractReferences } from '#lib/server/backlinks.js';
+import { getPost, getAllPostSlugs, getPublishedPosts } from '#content';
+import { renderMarkdown, extractHeadings, countWords } from '#lib/content/markdown.ts';
+import { getBacklinks, extractReferences } from '#lib/server/backlinks.ts';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types';
 

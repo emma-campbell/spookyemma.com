@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { format } from 'date-fns';
-	import { PageShell } from '#lib/components/index.js';
-	import { ENTRY_TYPES, SECTION_ORDER } from '#lib/content/entryTypes.js';
+	import { PageShell } from '#components';
+	import { ENTRY_TYPES, SECTION_ORDER } from '#lib/content/entryTypes.ts';
 
 	let { data } = $props();
 
