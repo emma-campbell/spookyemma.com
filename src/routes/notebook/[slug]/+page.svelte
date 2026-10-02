@@ -67,7 +67,7 @@
 					<p class="citations-title">references</p>
 					<ol>
 						{#each data.references as ref}
-							<li><a href={ref.url}>{ref.title || ref.url}</a></li>
+							<li id="ref-{ref.id}"><a href={ref.url}>{ref.title || ref.url}</a></li>
 						{/each}
 					</ol>
 				</div>
