@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageShell, QuickFacts, CvEntry, SkillGroup } from '$lib/components';
+	import { PageShell, QuickFacts, CvEntry, SkillGroup } from '#components';
 </script>
 
 <svelte:head>

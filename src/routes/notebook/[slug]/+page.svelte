@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageShell } from '$lib/components';
-	import { ENTRY_TYPES } from '$lib/content/entryTypes';
+	import { PageShell } from '#components';
+	import { ENTRY_TYPES } from '#lib/content/entryTypes.ts';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();

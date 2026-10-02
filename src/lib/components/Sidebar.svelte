@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Logo from './Logo.svelte';
-	import { theme } from '$lib/theme.svelte';
+	import { theme } from '#lib/theme.svelte.ts';
 
 	type NavItem = { href: string; label: string };
 

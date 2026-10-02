@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageShell, GearList, ContentHeader, QuickFacts } from '$lib/components';
+	import { PageShell, GearList, ContentHeader, QuickFacts } from '#components';
 </script>
 
 <svelte:head>

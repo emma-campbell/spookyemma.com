@@ -20,7 +20,7 @@
 		SkillGroup,
 		Quote,
 		Aside
-	} from '$lib/components';
+	} from '#components';
 	import {
 		Callout,
 		Sidenote,
@@ -36,7 +36,7 @@
 		Embed,
 		TagList,
 		Citations
-	} from '$lib/components/article';
+	} from '#components/article';
 </script>
 
 <svelte:head>

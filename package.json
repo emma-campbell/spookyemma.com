@@ -2,6 +2,12 @@
 	"name": "@spooky/blog-sveltekit",
 	"version": "3.2.0",
 	"type": "module",
+	"imports": {
+		"#components": "./src/lib/components/index.ts",
+		"#components/article": "./src/lib/components/article/index.ts",
+		"#content": "./src/lib/content/index.ts",
+		"#lib/*": "./src/lib/*"
+	},
 	"scripts": {
 		"dev": "vp dev",
 		"build": "vp build",
@@ -23,8 +29,8 @@
 	},
 	"dependencies": {
 		"@11ty/gray-matter": "^3.0.0",
-		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.70.3",
+		"@sveltejs/adapter-static": "^4.0.0",
+		"@sveltejs/kit": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
 		"date-fns": "^4.4.0",
 		"feed": "^6.0.0",
@@ -32,7 +38,7 @@
 		"luxon": "^3.5.0",
 		"marked": "^18.0.11",
 		"posthog-js": "^1.427.2",
-		"svelte": "^5.57.0",
+		"svelte": "^5.57.1",
 		"vite": "catalog:"
 	},
 	"devDependencies": {
@@ -40,8 +46,8 @@
 		"@fontsource-variable/geist": "^5.3.0",
 		"@fontsource-variable/geist-mono": "^5.3.0",
 		"@playwright/test": "^1.63.0",
-		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.70.3",
+		"@sveltejs/adapter-static": "^4.0.0",
+		"@sveltejs/kit": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
 		"@tailwindcss/vite": "^4.3.3",
 		"@types/js-yaml": "^4.0.9",
@@ -53,7 +59,7 @@
 		"sharp": "^0.35.4",
 		"shiki": "^4.4.3",
 		"simple-git-hooks": "^2.14.0",
-		"svelte": "^5.57.0",
+		"svelte": "^5.57.1",
 		"svelte-check": "^4.7.6",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^6.0.3",
