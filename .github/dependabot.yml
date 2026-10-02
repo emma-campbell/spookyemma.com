@@ -13,6 +13,13 @@ updates:
     # releases have time to be yanked before they reach us.
     cooldown:
       default-days: 14
+    # vite-plus and the `vite` alias to vite-plus-core must move in lockstep,
+    # and Dependabot only bumps one of them. Upgrade both by hand in the
+    # pnpm-workspace.yaml catalog instead.
+    ignore:
+      - dependency-name: "vite-plus"
+      - dependency-name: "@voidzero-dev/vite-plus-core"
+      - dependency-name: "vite"
     groups:
       # Everything non-breaking lands in a single PR. Majors are left ungrouped
       # so each one still gets its own PR to review.
