@@ -71,7 +71,7 @@
 	},
 	"lint-staged": {
 		"static/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}": "node scripts/images.mjs --stage",
-		"*": "vp fmt"
+		"*": "vp fmt --no-error-on-unmatched-pattern"
 	},
 	"packageManager": "pnpm@10.28.2"
 }
