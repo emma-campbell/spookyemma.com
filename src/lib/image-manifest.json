@@ -1433,5 +1433,40 @@
 			"focalLength35": 75,
 			"takenAt": "2026-08-29T16:52:03.000Z"
 		}
+	},
+	"/photos/DSCF1612-2.jpg": {
+		"width": 2000,
+		"height": 1334,
+		"hash": "c80db33710-v2-webp75-480.800.1200.1600-hdr0.68-640.1280",
+		"type": "image/webp",
+		"variants": [
+			{
+				"w": 480,
+				"src": "/photos/DSCF1612-2-480w.webp"
+			},
+			{
+				"w": 800,
+				"src": "/photos/DSCF1612-2-800w.webp"
+			},
+			{
+				"w": 1200,
+				"src": "/photos/DSCF1612-2-1200w.webp"
+			},
+			{
+				"w": 1600,
+				"src": "/photos/DSCF1612-2-1600w.webp"
+			}
+		],
+		"exif": {
+			"make": "FUJIFILM",
+			"model": "X-T50",
+			"lens": "XF23mmF2.8 R WR",
+			"fNumber": 11,
+			"exposureTime": 0.000417,
+			"iso": 8000,
+			"focalLength": 23,
+			"focalLength35": 35,
+			"takenAt": "2026-09-26T14:23:36.000Z"
+		}
 	}
 }
