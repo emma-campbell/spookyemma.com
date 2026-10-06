@@ -118,6 +118,12 @@ photos:
     place: Charlestown, RI
     date: 2026-07
 
+  - src: /photos/DSCF1612-2.jpg
+    alt: a nice saturday at oliver winery
+    collection: bloomington
+    place: Bloomington, IN
+    date: 2026-09
+
 # ── Side annotations ─────────────────────────────────────────
 annotations:
   - title: the kit
