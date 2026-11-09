@@ -373,6 +373,18 @@ h4 {
 	display: flex;
 	gap: 1.75rem;
 }
+/* Tablet: six links, the wordmark and the switch share 768px */
+@media (max-width: 1023px) {
+	.topbar {
+		gap: 1.25rem;
+	}
+	.topbar-end {
+		gap: 1.25rem;
+	}
+	.topbar nav {
+		gap: 1.1rem;
+	}
+}
 .topbar nav a {
 	font-size: 1rem;
 	font-weight: 500;
