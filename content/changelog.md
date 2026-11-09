@@ -2,6 +2,43 @@
 title: Changelog
 subtitle: What's changed on this site.
 entries:
+  # ── November 2026 ──
+  - date: 2026-11-09
+    tag: meta
+    text: "Layout v6, glow-in-the-dark redesign: a periwinkle wall by day, the night ceiling with the lights off, Bricolage Grotesque and Figtree"
+  - date: 2026-11-09
+    tag: added
+    text: "Light switch in the top bar toggles the theme. Turning the lights off charges up the stickers until they glow"
+  - date: 2026-11-09
+    tag: added
+    text: "Glow-in-the-dark stickers (moon, ghost, stars, a planet) on the home page, posts, About, and the notebook"
+  - date: 2026-11-09
+    tag: changed
+    text: "Body text is Figtree at 17px with about 75 characters per line, replacing 14px Courier Prime"
+  - date: 2026-11-09
+    tag: changed
+    text: "Home page shows two lists, Lately and Worth reading, instead of one section per entry type"
+  - date: 2026-11-09
+    tag: changed
+    text: "Code blocks use Tokyo Night on a dark plate, with the dimmest colors lifted so they pass contrast checks"
+  - date: 2026-11-09
+    tag: changed
+    text: "Entry types show as colored words instead of glyphs, and the cursor-reactive dot background is gone"
+  - date: 2026-11-09
+    tag: changed
+    text: "Fonts are self-hosted instead of loaded from Google Fonts"
+  - date: 2026-11-09
+    tag: changed
+    text: "Trimmed filler copy on About, Now, Uses, CV, Photos, and the notebook"
+  - date: 2026-11-09
+    tag: fixed
+    text: "Dates no longer show a day early (a timezone shift when formatting)"
+  - date: 2026-11-09
+    tag: fixed
+    text: "Italics in four older posts were escaped and showed literal underscores and asterisks"
+  - date: 2026-11-09
+    tag: fixed
+    text: "Notebook previews no longer render a pull quote bigger than the entry title"
   # ── August 2026 ──
   - date: 2026-08-29
     tag: changed
