@@ -10,4 +10,4 @@
 	const c = $derived(ENTRY_TYPES[type]);
 </script>
 
-<span class="post-type" style:color={c.color}>{c.icon} {c.label}</span>
+<span class="post-type" style:color={c.color}>{c.label}</span>

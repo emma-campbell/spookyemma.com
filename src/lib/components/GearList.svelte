@@ -2,7 +2,7 @@
 	interface GearItem {
 		name: string;
 		href?: string;
-		note: string;
+		note?: string;
 		category: string;
 		tag?: { label: string; type: 'new' | 'fav' | 'built' | 'shared' };
 	}
@@ -27,7 +27,9 @@
 					<span class="gear-tag tag-{item.tag.type}">{item.tag.label}</span>
 				{/if}
 			</span>
-			<span class="gear-note">{item.note}</span>
+			{#if item.note}
+				<span class="gear-note">{item.note}</span>
+			{/if}
 			<span class="gear-category">{item.category}</span>
 		</li>
 	{/each}
@@ -44,74 +46,80 @@
 		grid-template-columns: 1fr auto;
 		grid-template-rows: auto auto;
 		gap: 0 1.5rem;
-		padding: 0.85rem 0;
-		border-bottom: 1px solid rgba(196, 169, 106, 0.1);
-		transition:
-			background 0.15s,
-			padding 0.1s;
-	}
-	.gear-item:first-child {
-		border-top: 1px solid rgba(196, 169, 106, 0.1);
-	}
-	.gear-item:hover {
-		background: rgba(232, 168, 48, 0.04);
-		padding-left: 0.5rem;
-		margin-left: -0.5rem;
+		padding: 0.9rem 0;
+		border-bottom: 1px solid var(--line);
 	}
 	.gear-name {
-		font-size: 0.85rem;
-		color: var(--parchment);
+		font-size: 1.05rem;
+		font-weight: 500;
+		color: var(--fg);
 		line-height: 1.4;
 		grid-column: 1;
 		grid-row: 1;
 		display: flex;
 		align-items: baseline;
+		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
 	.gear-name a {
-		color: var(--amber);
-		border-bottom: 1px solid rgba(232, 168, 48, 0.35);
+		color: var(--fg);
+		text-decoration: underline;
+		text-decoration-color: var(--accent-soft);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.18em;
+		transition: text-decoration-color var(--transition);
+	}
+	.gear-name a:hover {
+		text-decoration-color: var(--accent);
 	}
 	.gear-note {
-		font-size: 0.72rem;
-		color: var(--muted);
+		font-size: 0.95rem;
+		color: var(--fg-muted);
 		grid-column: 1;
 		grid-row: 2;
 		line-height: 1.5;
-		margin-top: 0.2rem;
+		margin-top: 0.15rem;
 	}
 	.gear-category {
 		grid-column: 2;
 		grid-row: 1 / 3;
-		font-size: 0.62rem;
-		color: var(--muted);
-		letter-spacing: 0.06em;
+		font-size: 0.88rem;
+		color: var(--fg-muted);
 		align-self: center;
 		text-align: right;
 		white-space: nowrap;
 	}
 	.gear-tag {
-		font-size: 0.58rem;
-		letter-spacing: 0.08em;
-		padding: 2px 6px;
-		border-radius: 2px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		padding: 0 9px;
+		border: 1.5px solid currentColor;
+		border-radius: 999px;
 		flex-shrink: 0;
 		align-self: center;
 	}
 	.tag-new {
-		background: rgba(122, 158, 126, 0.15);
-		color: var(--sage);
+		color: var(--type-log);
 	}
 	.tag-fav {
-		background: rgba(232, 168, 48, 0.12);
-		color: var(--amber);
+		color: var(--type-thinking);
 	}
 	.tag-built {
-		background: rgba(155, 142, 196, 0.15);
-		color: var(--lavender);
+		color: var(--type-making);
 	}
 	.tag-shared {
-		background: rgba(212, 101, 74, 0.12);
-		color: var(--coral);
+		color: var(--type-danger);
+	}
+
+	@media (max-width: 639px) {
+		.gear-item {
+			grid-template-columns: 1fr;
+		}
+		.gear-category {
+			grid-column: 1;
+			grid-row: 3;
+			text-align: left;
+			margin-top: 0.15rem;
+		}
 	}
 </style>

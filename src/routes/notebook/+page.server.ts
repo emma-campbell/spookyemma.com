@@ -2,6 +2,21 @@ import { getPublishedPosts, ENTRY_TYPES } from '#content';
 import { createMDXPreview, renderMarkdown } from '#lib/content/markdown.ts';
 import type { PageServerLoad } from './$types';
 
+const SHORT_MONTHS = [
+	'Jan',
+	'Feb',
+	'Mar',
+	'Apr',
+	'May',
+	'Jun',
+	'Jul',
+	'Aug',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dec'
+];
+
 export const load: PageServerLoad = async () => {
 	const posts = getPublishedPosts();
 
@@ -10,7 +25,8 @@ export const load: PageServerLoad = async () => {
 			const { preview, hasMore } = createMDXPreview(post.content, 2);
 			const excerptHtml = preview ? await renderMarkdown(preview) : '';
 			const config = ENTRY_TYPES[post.entry];
-			const date = new Date(post.published);
+			// Dates are stored as YYYY-MM-DD; read the parts directly so no timezone shifts the day
+			const [year, month, day] = post.published.slice(0, 10).split('-');
 
 			return {
 				slug: post.slug,
@@ -22,10 +38,9 @@ export const load: PageServerLoad = async () => {
 				excerptHtml,
 				hasMore,
 				typeLabel: config.label,
-				typeIcon: config.icon,
-				day: String(date.getDate()).padStart(2, '0'),
-				month: date.toLocaleDateString('en-US', { month: 'short' }),
-				year: String(date.getFullYear())
+				day,
+				month: SHORT_MONTHS[Number(month) - 1],
+				year
 			};
 		})
 	);

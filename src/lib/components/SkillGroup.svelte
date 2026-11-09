@@ -23,10 +23,9 @@
 
 <style>
 	.skill-group-label {
-		font-size: 0.58rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--amber);
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: var(--fg);
 		margin-bottom: 0.5rem;
 		display: block;
 	}
@@ -36,23 +35,15 @@
 		gap: 0.4rem;
 	}
 	.skill-tag {
-		font-size: 0.72rem;
-		color: var(--parchment);
-		background: rgba(255, 255, 255, 0.04);
-		border: 1px solid var(--border);
-		padding: 3px 8px;
-		border-radius: 2px;
-		transition:
-			color 0.15s,
-			border-color 0.15s;
-	}
-	.skill-tag:hover {
-		color: var(--amber);
-		border-color: rgba(232, 168, 48, 0.4);
+		font-size: 0.9rem;
+		color: var(--fg-muted);
+		border: 1px solid var(--line-strong);
+		padding: 1px 11px;
+		border-radius: 999px;
 	}
 	.skill-tag.highlight {
-		border-color: rgba(232, 168, 48, 0.3);
-		color: var(--amber);
-		background: rgba(232, 168, 48, 0.06);
+		color: var(--fg);
+		font-weight: 600;
+		background: var(--bg-raised);
 	}
 </style>

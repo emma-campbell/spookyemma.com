@@ -20,6 +20,6 @@
 	{:else if placeholder}
 		{placeholder}
 	{:else}
-		[ embed placeholder ]
+		Embed
 	{/if}
 </div>

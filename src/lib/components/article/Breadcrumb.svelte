@@ -19,7 +19,15 @@
 		{#if segment.href}
 			<a href={segment.href}>{segment.label}</a>
 		{:else}
-			<span>{segment.label}</span>
+			<strong class="crumb-current" aria-current="page">{segment.label}</strong>
 		{/if}
 	{/each}
 </nav>
+
+<style>
+	/* The current page reads at full muted ink, not faded like the separators */
+	.crumb-current {
+		font-weight: 500;
+		color: var(--fg-muted);
+	}
+</style>

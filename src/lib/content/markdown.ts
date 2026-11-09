@@ -7,7 +7,7 @@ let highlighterPromise: Promise<Highlighter> | null = null;
 async function getHighlighter(): Promise<Highlighter> {
 	if (!highlighterPromise) {
 		highlighterPromise = createHighlighter({
-			themes: ['everforest-dark'],
+			themes: ['tokyo-night'],
 			langs: [
 				'javascript',
 				'typescript',
@@ -42,7 +42,7 @@ export async function highlightCode(code: string, lang: string): Promise<string>
 
 	return highlighter.codeToHtml(code, {
 		lang,
-		theme: 'everforest-dark'
+		theme: 'tokyo-night'
 	});
 }
 
@@ -211,7 +211,7 @@ export async function renderMarkdown(
 					const effectiveLang = supportedLangs.includes(language as any) ? language : 'text';
 					const highlighted = highlighter.codeToHtml(code, {
 						lang: effectiveLang,
-						theme: 'everforest-dark'
+						theme: 'tokyo-night'
 					});
 					return `<div class="code-block">${highlighted}</div>`;
 				} catch {

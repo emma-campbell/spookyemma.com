@@ -2,14 +2,13 @@ import type { PostEntry } from './types';
 
 export interface EntryTypeConfig {
 	label: string;
-	icon: string;
 	color: string;
 }
 
 export const ENTRY_TYPES: Record<PostEntry, EntryTypeConfig> = {
-	log: { label: 'log', icon: '◈', color: 'var(--sage)' },
-	thinking: { label: 'thinking', icon: '✦', color: 'var(--amber)' },
-	making: { label: 'making', icon: '⚗', color: 'var(--lavender)' }
+	log: { label: 'log', color: 'var(--type-log)' },
+	thinking: { label: 'thinking', color: 'var(--type-thinking)' },
+	making: { label: 'making', color: 'var(--type-making)' }
 };
 
 /** Home page section order */
@@ -20,7 +19,7 @@ export const FILTERS = [
 	{ key: 'all' as const, label: 'all', cls: 'filter-all' },
 	...SECTION_ORDER.map((key) => ({
 		key,
-		label: `${ENTRY_TYPES[key].icon} ${ENTRY_TYPES[key].label}`,
+		label: ENTRY_TYPES[key].label,
 		cls: `filter-${key}`
 	}))
 ];

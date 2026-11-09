@@ -3,24 +3,18 @@
 
 	interface Props {
 		label?: string;
-		sectionNum?: string;
 		labelColor?: string;
 		children: Snippet;
 		aside?: Snippet;
 	}
 
-	let { label, sectionNum, labelColor, children, aside }: Props = $props();
+	let { label, labelColor, children, aside }: Props = $props();
 </script>
 
 <div class="section-row">
 	{#if label}
 		<div class="row-label">
-			<span class="row-label-text" style:color={labelColor}>
-				{label}
-				{#if sectionNum}
-					<span class="row-label-num">{sectionNum}</span>
-				{/if}
-			</span>
+			<span class="row-label-text" style:color={labelColor}>{label}</span>
 		</div>
 	{/if}
 	<div class="row-content">

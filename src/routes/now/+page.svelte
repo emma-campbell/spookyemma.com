@@ -18,17 +18,15 @@
 			<span class="phl-val">{data.lastUpdated ?? ''}</span>
 		</div>
 		<div class="page-header-content">
-			<p class="hero-eyebrow">∴ living document ∴</p>
-			<h1 class="page-title">what I'm up to <em>now</em></h1>
+			<h1 class="page-title">What I'm up to now</h1>
 			<p class="page-lede">
-				A <a href="https://nownownow.com/about" class="accent-link">/now page</a>. Not a blog post,
-				not a status page. Just what I'm up to, updated whenever something changes.
+				A <a href="https://nownownow.com/about">/now page</a>: what I'm up to, updated whenever
+				something changes.
 			</p>
 		</div>
 		<div class="page-header-aside">
 			<QuickFacts
 				facts={[
-					{ label: 'as of', value: data.lastUpdated ?? '' },
 					{ label: 'location', value: 'Bloomington, IN' },
 					{ label: 'working on', value: 'Arboretum Lifesciences' }
 				]}
@@ -36,131 +34,71 @@
 		</div>
 	</div>
 
-	<!-- Featured: most recent entry -->
+	<!-- Latest entry -->
 	{#if data.featured}
 		<div class="section-row">
 			<div class="row-label">
-				<span class="row-label-text" style="color:var(--amber)"
-					>now<span class="row-label-num">most recent</span></span
-				>
+				<span class="row-label-text">Latest</span>
 			</div>
 			<div class="row-content">
-				<div class="entry-date-stamp current">{data.featured.label}</div>
+				<h2 class="entry-date">{data.featured.label}</h2>
 				<div class="prose">
 					{@html data.featured.contentHtml}
-				</div>
-			</div>
-			<div class="row-aside">
-				<div class="annotation">
-					<strong>focus</strong>
-					The most recent update on what's happening.
 				</div>
 			</div>
 		</div>
 	{/if}
 
-	<!-- Archive: older entries as timeline -->
+	<!-- Older entries -->
 	{#if data.archive.length > 0}
 		<div class="section-row">
 			<div class="row-label">
-				<span class="row-label-text" style="color:var(--muted)"
-					>archive<span class="row-label-num">§ prior</span></span
-				>
+				<span class="row-label-text">Earlier</span>
 			</div>
 			<div class="row-content">
 				<ul class="now-timeline">
 					{#each data.archive as entry}
 						<li class="now-timeline-item">
-							<div class="tl-date">{entry.label}</div>
-							<div class="tl-prose">
+							<h3 class="tl-date">{entry.label}</h3>
+							<div class="prose tl-prose">
 								{@html entry.contentHtml}
 							</div>
 						</li>
 					{/each}
 				</ul>
 			</div>
-			<div class="row-aside">
-				<div class="annotation">
-					<strong>how this works</strong>
-					Newest entry is featured above. Everything else lives here in reverse chronological order.
-				</div>
-			</div>
 		</div>
 	{/if}
 </PageShell>
 
 <style>
-	/* Date stamp with line */
-	.entry-date-stamp {
-		font-size: 0.62rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--amber);
+	.entry-date {
+		font-family: var(--font-display);
+		font-weight: 750;
+		font-size: 1.6rem;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+		color: var(--fg);
 		margin-bottom: 1rem;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-	}
-	.entry-date-stamp::after {
-		content: '';
-		flex: 1;
-		height: 1px;
-		background: var(--border);
-		max-width: 60px;
-	}
-	.entry-date-stamp.current::before {
-		content: '◉';
-		color: var(--amber);
-		font-size: 0.55rem;
 	}
 
-	/* Now archive timeline */
-	.tl-date {
-		font-size: 0.6rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--muted);
-		margin-bottom: 0.5rem;
-	}
-	.tl-prose {
-		font-size: 0.82rem;
-		line-height: 1.75;
-		color: var(--parchment);
-	}
-	.tl-prose :global(p) {
-		margin-bottom: 0.6rem;
-	}
-	.tl-prose :global(p:last-child) {
-		margin-bottom: 0;
-	}
-	.tl-prose :global(a) {
-		color: var(--amber);
-		text-decoration: none;
-		border-bottom: 1px solid rgba(232, 168, 48, 0.35);
-	}
-	.tl-prose :global(em) {
-		color: var(--muted);
-		font-style: italic;
-	}
-
-	/* Now timeline */
+	/* Older entries: a dashed line with an open dot per month */
 	.now-timeline {
 		list-style: none;
 		position: relative;
-		padding-left: 1.5rem;
+		padding-left: 1.75rem;
 	}
 	.now-timeline::before {
 		content: '';
 		position: absolute;
-		left: 3px;
-		top: 6px;
-		bottom: 6px;
-		width: 1px;
-		background: var(--border);
+		left: 5px;
+		top: 0.6rem;
+		bottom: 0.6rem;
+		border-left: 1.5px dashed var(--line-strong);
 	}
 	.now-timeline-item {
 		position: relative;
-		padding: 0 0 2rem 0;
+		padding-bottom: 2.25rem;
 	}
 	.now-timeline-item:last-child {
 		padding-bottom: 0;
@@ -168,21 +106,27 @@
 	.now-timeline-item::before {
 		content: '';
 		position: absolute;
-		left: -1.5rem;
-		top: 5px;
-		width: 7px;
-		height: 7px;
+		left: -1.75rem;
+		top: 0.45rem;
+		width: 11px;
+		height: 11px;
 		border-radius: 50%;
-		border: 1px solid var(--border);
-		background: var(--ink);
+		border: 2px solid var(--fg-muted);
+		background: var(--bg);
 	}
-	/* Mobile: tighten timeline */
-	@media (max-width: 599px) {
-		.now-timeline {
-			padding-left: 1.25rem;
-		}
-		.tl-prose {
-			font-size: 0.78rem;
-		}
+	.tl-date {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1.15rem;
+		line-height: 1.3;
+		color: var(--fg);
+		margin-bottom: 0.4rem;
+	}
+	.tl-prose :global(p) {
+		margin-bottom: 0.75rem;
+	}
+	/* Now entries are mostly a line and a gif; keep images from swamping them */
+	.row-content :global(.prose img) {
+		max-width: min(100%, 480px);
 	}
 </style>

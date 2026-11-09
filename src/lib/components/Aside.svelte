@@ -21,7 +21,7 @@
 
 <style>
 	.callout-styled {
-		font-size: 0.78rem;
+		font-size: 0.98rem;
 		font-style: italic;
 	}
 </style>

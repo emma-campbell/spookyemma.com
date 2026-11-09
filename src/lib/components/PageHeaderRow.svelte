@@ -2,7 +2,6 @@
 	import type { Snippet } from 'svelte';
 
 	interface Props {
-		eyebrow?: string;
 		title: string;
 		titleEmphasis?: string;
 		lede?: string;
@@ -11,7 +10,7 @@
 		aside?: Snippet;
 	}
 
-	let { eyebrow, title, titleEmphasis, lede, labelKey, labelValue, aside }: Props = $props();
+	let { title, titleEmphasis, lede, labelKey, labelValue, aside }: Props = $props();
 </script>
 
 <div class="page-header-row">
@@ -24,9 +23,6 @@
 		{/if}
 	</div>
 	<div class="page-header-content">
-		{#if eyebrow}
-			<p class="hero-eyebrow">{eyebrow}</p>
-		{/if}
 		<h1 class="page-title">
 			{title}
 			{#if titleEmphasis}

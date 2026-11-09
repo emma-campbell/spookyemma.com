@@ -25,7 +25,7 @@
 {#if (backlinks && backlinks.length > 0) || (references && references.length > 0)}
 	{#if backlinks && backlinks.length > 0}
 		<section class="citations">
-			<h3>Cited by</h3>
+			<h2 class="citations-title">Cited by</h2>
 			<ol class="citation-list">
 				{#each backlinks as bl, i}
 					<li class="citation-item">
@@ -45,7 +45,7 @@
 
 	{#if references && references.length > 0}
 		<section class="citations">
-			<h3>References</h3>
+			<h2 class="citations-title">References</h2>
 			<ol class="citation-list">
 				{#each references as ref}
 					<li class="citation-item" id="ref-{ref.id}">
@@ -57,9 +57,7 @@
 									>{ref.title}</a
 								>
 							{:else}
-								<span class="citation-title" style="font-weight:600; color: var(--text);"
-									>{ref.title}</span
-								>
+								<span class="citation-title">{ref.title}</span>
 							{/if}
 							{#if ref.context}
 								<span class="citation-context">{ref.context}</span>

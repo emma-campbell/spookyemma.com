@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageShell, GearList, ContentHeader, QuickFacts } from '#components';
+	import { PageShell, GearList, QuickFacts } from '#components';
 </script>
 
 <svelte:head>
@@ -15,8 +15,7 @@
 			<span class="phl-val">2026-04-03</span>
 		</div>
 		<div class="page-header-content">
-			<p class="hero-eyebrow">∴ gear + software inventory ∴</p>
-			<h1 class="page-title">what I <em>use</em></h1>
+			<h1 class="page-title">What I use</h1>
 			<p class="page-lede">
 				The hardware and software I use daily. Inspired by <a
 					href="https://uses.tech"
@@ -39,63 +38,50 @@
 	<!-- Workstation -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--amber)"
-				>workstation<span class="row-label-num">§ 01</span></span
-			>
+			<h2 class="row-label-text">Workstation</h2>
 		</div>
 		<div class="row-content">
-			<ContentHeader glyph="⌥" glyphColor="var(--amber)" title="Workstation" count="3 items" />
 			<GearList
 				items={[
 					{
 						name: 'M4 MacBook Pro (64 GB)',
-						note: 'The only machine that matters for work. 64GB handles everything without complaint.',
+						note: '',
 						category: 'laptop',
-						tag: { label: '✦ daily driver', type: 'fav' }
+						tag: { label: 'daily driver', type: 'fav' }
 					},
 					{
 						name: 'Apple Magic Trackpad',
-						note: "Gestures are non-negotiable. Can't go back to a mouse for Mac work.",
+						note: "Can't go back to a mouse for Mac work.",
 						category: 'peripheral'
 					},
 					{
 						name: 'CalDigit TS3',
-						note: 'Thunderbolt dock. One cable to rule them all.',
+						note: 'Thunderbolt dock.',
 						category: 'dock'
 					}
 				]}
 			/>
-		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>on the M4</strong>
-				64GB RAM is the sweet spot — enough to run a full dev environment, Docker, and a dozen browser
-				tabs without sweating.
-			</div>
 		</div>
 	</div>
 
 	<!-- Playstation -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--lavender)"
-				>playstation<span class="row-label-num">§ 02</span></span
-			>
+			<h2 class="row-label-text">Playstation</h2>
 		</div>
 		<div class="row-content">
-			<ContentHeader glyph="⎈" glyphColor="var(--lavender)" title="Playstation" count="3 items" />
 			<GearList
 				items={[
 					{
 						name: 'Custom Built PC',
-						note: 'Built February 2026 — a milestone. Gaming and anything that benefits from a big screen.',
+						note: 'Built February 2026. Gaming and anything that benefits from a big screen.',
 						category: 'desktop',
-						tag: { label: '✦ first build', type: 'built' }
+						tag: { label: 'first build', type: 'built' }
 					},
 					{
 						name: 'Omarchy',
 						href: 'https://omarchy.com',
-						note: 'Linux configuration for the custom PC. Makes the whole thing feel intentional.',
+						note: 'Linux configuration for the custom PC.',
 						category: 'os / config'
 					},
 					{
@@ -106,30 +92,20 @@
 				]}
 			/>
 		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>the build</strong>
-				First PC build after years of Mac-only. A whole different kind of project — half engineering,
-				half ritual.
-			</div>
-		</div>
 	</div>
 
 	<!-- Shared -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--coral)"
-				>shared<span class="row-label-num">§ 03</span></span
-			>
+			<h2 class="row-label-text">Shared</h2>
 		</div>
 		<div class="row-content">
-			<ContentHeader glyph="⇄" glyphColor="var(--coral)" title="Shared" count="3 items" />
 			<GearList
 				items={[
 					{
 						name: 'Zoom 75',
 						href: 'https://www.zsa.io/zoom75',
-						note: 'With Zooted keycaps. Sits between both machines via the CalDigit. The keyboard that ended the keyboard search.',
+						note: 'With Zooted keycaps. Sits between both machines via the CalDigit.',
 						category: 'peripheral',
 						tag: { label: 'shared', type: 'shared' }
 					},
@@ -148,35 +124,26 @@
 				]}
 			/>
 		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>shared peripherals</strong>
-				Keyboard and mousepad live between both machines — plug into whichever setup you're at.
-			</div>
-		</div>
 	</div>
 
 	<!-- Software -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--sage)"
-				>software<span class="row-label-num">§ 04</span></span
-			>
+			<h2 class="row-label-text">Software</h2>
 		</div>
 		<div class="row-content">
-			<ContentHeader glyph="◈" glyphColor="var(--sage)" title="Software" count="6 items" />
 			<GearList
 				items={[
 					{
 						name: 'Obsidian',
 						href: 'https://obsidian.md',
-						note: 'Notes, writing, thinking out loud. Local-first. The connective tissue of everything else.',
+						note: 'Notes, writing, thinking out loud. Local-first.',
 						category: 'notes / PKM'
 					},
 					{
 						name: 'Todoist',
 						href: 'https://todoist.com',
-						note: 'Task management. Simple enough to actually use, powerful enough when you need it.',
+						note: 'Task management.',
 						category: 'tasks'
 					},
 					{
@@ -206,22 +173,12 @@
 				]}
 			/>
 		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>the PKM stack</strong>
-				Obsidian + Todoist + Fantastical have been stable for 2+ years. That's a long time in productivity
-				app years.
-			</div>
-		</div>
 	</div>
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--amber)"
-				>homelab<span class="row-label-num">§ 05</span></span
-			>
+			<h2 class="row-label-text">Homelab</h2>
 		</div>
 		<div class="row-content">
-			<ContentHeader glyph="◈" glyphColor="var(--amber)" title="Homelab" count="4 items" />
 			<GearList
 				items={[
 					{
@@ -254,12 +211,9 @@
 	</div>
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--lavender)"
-				>devices<span class="row-label-num">§ 06</span></span
-			>
+			<h2 class="row-label-text">Devices</h2>
 		</div>
 		<div class="row-content">
-			<ContentHeader glyph="◈" glyphColor="var(--lavender)" title="Devices" count="2 items" />
 			<GearList
 				items={[
 					{
@@ -279,3 +233,10 @@
 		</div>
 	</div>
 </PageShell>
+
+<style>
+	/* Items without a note don't need an empty second line */
+	.row-content :global(.gear-note:empty) {
+		display: none;
+	}
+</style>
