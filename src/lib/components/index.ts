@@ -1,17 +1,10 @@
-export { default as Sidebar } from './Sidebar.svelte';
-export { default as Logo } from './Logo.svelte';
-export { default as UnderlineToBackground } from './UnderlineToBackground.svelte';
-export { default as Timeline } from './Timeline.svelte';
 export { default as SimpleTimeline } from './SimpleTimeline.svelte';
-export { default as PostList } from './PostList.svelte';
-export { default as PostListItem } from './PostListItem.svelte';
 export { default as Aside } from './Aside.svelte';
 export { default as Quote } from './Quote.svelte';
-export { default as MdxContent } from './MdxContent.svelte';
-export { default as Hero } from './Hero.svelte';
 
 // New design system components
-export { default as BgCanvas } from './BgCanvas.svelte';
+export { default as LightSwitch } from './LightSwitch.svelte';
+export { default as Stickers } from './Stickers.svelte';
 export { default as Topbar } from './Topbar.svelte';
 export { default as Footer } from './Footer.svelte';
 export { default as PageShell } from './PageShell.svelte';
@@ -27,5 +20,4 @@ export { default as GearList } from './GearList.svelte';
 export { default as ChangelogEntry } from './ChangelogEntry.svelte';
 export { default as MonthStats } from './MonthStats.svelte';
 export { default as CvEntry } from './CvEntry.svelte';
-export { default as CvTechTag } from './CvTechTag.svelte';
 export { default as SkillGroup } from './SkillGroup.svelte';

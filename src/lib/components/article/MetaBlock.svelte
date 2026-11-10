@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { format } from 'date-fns';
 	import TagList from './TagList.svelte';
 	import EpistemicStatus from './EpistemicStatus.svelte';
 
@@ -14,9 +13,9 @@
 
 	let { published, updated, status, tags, wordCount, readingTime }: Props = $props();
 
-	const formatDate = (date: Date | string) => {
-		return format(new Date(date), 'yyyy-MM-dd');
-	};
+	// Stored dates are YYYY-MM-DD strings; print them as written, no timezone shift
+	const formatDate = (date: Date | string) =>
+		typeof date === 'string' ? date.slice(0, 10) : date.toISOString().slice(0, 10);
 </script>
 
 <dl class="meta-block">

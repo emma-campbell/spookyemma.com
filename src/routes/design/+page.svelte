@@ -1,8 +1,9 @@
 <script lang="ts">
 	import {
-		BgCanvas,
 		Topbar,
 		Footer,
+		Stickers,
+		LightSwitch,
 		SectionRow,
 		ContentHeader,
 		PageHeaderRow,
@@ -16,952 +17,553 @@
 		ChangelogEntry,
 		MonthStats,
 		CvEntry,
-		CvTechTag,
 		SkillGroup,
 		Quote,
 		Aside
 	} from '#components';
 	import {
-		Callout,
-		Sidenote,
-		Dropcap,
-		Prose,
-		HrOrnament,
-		CodeBlock,
-		EpistemicStatus,
-		FeaturesBar,
 		Breadcrumb,
 		PrevNext,
-		TableOfContents,
-		Embed,
+		MetaBlock,
+		EpistemicStatus,
 		TagList,
-		Citations
+		FeaturesBar,
+		ArticleHeader,
+		TableOfContents,
+		Prose,
+		Citations,
+		ArticleFooter,
+		Sidenote,
+		Cite,
+		Callout,
+		Dropcap,
+		Embed,
+		HrOrnament,
+		CodeBlock
 	} from '#components/article';
+
+	// Swatches: daylight hex from DESIGN.md; the night panel re-reads the same
+	// custom properties with the lights-off values set on its wrapper.
+	const swatches = [
+		{ token: '--bg', day: '#cfd6f0', night: '#14182b', name: 'Wall' },
+		{ token: '--bg-raised', day: '#dbe0f5', night: '#1c2140', name: 'Raised' },
+		{ token: '--fg', day: '#262b52', night: '#e1e5f7', name: 'Ink' },
+		{ token: '--fg-muted', day: '#464c7d', night: '#a3aacd', name: 'Muted ink' },
+		{ token: '--accent', day: '#4338a8', night: '#b9f58c', name: 'Accent' },
+		{ token: '--sticker', day: '#e6f0d4', night: '#b9f58c', name: 'Sticker' },
+		{ token: '--panel', day: '#262b52', night: '#0c0f1f', name: 'Code plate' },
+		{ token: '--type-making', day: '#5b3a9e', night: '#cbb8ff', name: 'Making' },
+		{ token: '--type-thinking', day: '#963866', night: '#ffb1d2', name: 'Thinking' },
+		{ token: '--type-log', day: '#2b6844', night: '#9fdcb0', name: 'Log' },
+		{ token: '--type-danger', day: '#8f400a', night: '#ffb07a', name: 'Fixed' }
+	];
+
+	const headings = [
+		{ depth: 2, text: 'Installation', id: 'installation' },
+		{ depth: 3, text: 'Install Contentlayer', id: 'install' },
+		{ depth: 3, text: 'Wrap your Next config', id: 'wrap' },
+		{ depth: 2, text: 'Defining Schemas', id: 'schemas' }
+	];
 </script>
 
 <svelte:head>
-	<title>Component Library · spookyemma</title>
+	<title>Design system · SpookyEmma</title>
 </svelte:head>
 
-<BgCanvas />
+<Topbar />
 
 <div class="lib-page">
-	<h1 class="lib-title">spookyemma · components</h1>
-	<p class="lib-subtitle">design tokens + full component reference · spookyemma.com</p>
+	<h1 class="lib-title">Design system</h1>
+	<p class="lib-subtitle">
+		Glow-in-the-dark stickers on a painted wall. Tokens and components as they ship; DESIGN.md is
+		the written version. Dev only.
+	</p>
 
-	<!-- ══ 01 TOKENS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">01 · design tokens</p>
-
-		<span class="lib-label">color palette</span>
-		<div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2rem">
-			<div style="display:flex;flex-direction:column;gap:0.4rem;width:90px">
+	<!-- Colour -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Colour</h2>
+		<p class="lib-section-desc">
+			Every token has a daylight value and a lights-off value under the same custom property. The
+			entry-type colours only mark small things: a word, a pill outline.
+		</p>
+		<div class="lib-row">
+			{#each ['day', 'night'] as theme}
 				<div
-					style="height:40px;border-radius:3px;border:1px solid rgba(255,255,255,0.2);background:#181410"
-				></div>
-				<span style="font-size:0.58rem;color:var(--muted)">--ink</span>
-			</div>
-			<div style="display:flex;flex-direction:column;gap:0.4rem;width:90px">
-				<div style="height:40px;border-radius:3px;background:#f0e8d8"></div>
-				<span style="font-size:0.58rem;color:var(--muted)">--parchment</span>
-			</div>
-			<div style="display:flex;flex-direction:column;gap:0.4rem;width:90px">
-				<div style="height:40px;border-radius:3px;background:#e8a830"></div>
-				<span style="font-size:0.58rem;color:var(--muted)">--amber</span>
-			</div>
-			<div style="display:flex;flex-direction:column;gap:0.4rem;width:90px">
-				<div style="height:40px;border-radius:3px;background:#d4654a"></div>
-				<span style="font-size:0.58rem;color:var(--muted)">--coral</span>
-			</div>
-			<div style="display:flex;flex-direction:column;gap:0.4rem;width:90px">
-				<div style="height:40px;border-radius:3px;background:#7a9e7e"></div>
-				<span style="font-size:0.58rem;color:var(--muted)">--sage</span>
-			</div>
-			<div style="display:flex;flex-direction:column;gap:0.4rem;width:90px">
-				<div style="height:40px;border-radius:3px;background:#9b8ec4"></div>
-				<span style="font-size:0.58rem;color:var(--muted)">--lavender</span>
-			</div>
-			<div style="display:flex;flex-direction:column;gap:0.4rem;width:90px">
-				<div style="height:40px;border-radius:3px;background:#9a8e7e"></div>
-				<span style="font-size:0.58rem;color:var(--muted)">--muted</span>
-			</div>
-		</div>
-
-		<span class="lib-label">section → color → glyph mapping</span>
-		<div
-			style="display:flex;flex-direction:column;gap:0.35rem;font-size:0.78rem;margin-bottom:2rem"
-		>
-			<span
-				><span style="color:var(--amber)">✦</span> amber → blog &nbsp;&nbsp;
-				<span style="color:var(--coral)">⚗</span>
-				coral → experiments &nbsp;&nbsp; <span style="color:var(--sage)">◈</span> sage → notes
-				&nbsp;&nbsp; <span style="color:var(--lavender)">⌘</span> lavender → guides &nbsp;&nbsp;
-				<span style="color:var(--muted)">○</span> muted → micro</span
-			>
-		</div>
-
-		<span class="lib-label">typography scale</span>
-		<div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1rem">
-			<span
-				style="font-family:var(--font-display);font-style:italic;font-weight:700;font-size:2rem;color:var(--parchment);line-height:1"
-				>Playfair Display 700 italic — hero title</span
-			>
-			<span
-				style="font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--parchment)"
-				>Playfair Display 400 italic — site title, section labels</span
-			>
-			<span style="font-size:0.9rem;line-height:1.85"
-				>Courier Prime 0.9rem / 1.85lh — body prose</span
-			>
-			<span style="font-size:0.72rem;color:var(--muted)"
-				>Courier Prime 0.72rem muted — nav links, dates, meta</span
-			>
-			<span
-				style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)"
-				>0.62rem · 0.2em tracking · uppercase — eyebrows</span
-			>
-		</div>
-	</div>
-
-	<!-- ══ 02 TOPBAR ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">02 · topbar</p>
-		<div class="lib-row full">
-			<div class="lib-preview flush">
-				<Topbar />
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 03 SECTION ROW + POST LIST ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">03 · section row + post list</p>
-		<div class="lib-row full">
-			<div class="lib-preview flush">
-				<SectionRow label="blog" sectionNum="§ 01" labelColor="var(--amber)">
-					<ContentHeader glyph="✦" glyphColor="var(--amber)" title="Blog" count="5 entries" />
-					<ul class="post-list">
-						<li class="post-item">
-							<span class="post-icon icon-amber">✦</span
-							><!-- svelte-ignore a11y_invalid_attribute --><a class="post-link" href="#"
-								>Your AI Code Companion is Your Worst Practices on Steroids</a
-							><span class="post-meta">2025-08-19</span>
-						</li>
-						<li class="post-item">
-							<span class="post-icon icon-sage">◈</span
-							><!-- svelte-ignore a11y_invalid_attribute --><a class="post-link" href="#"
-								>2026 Volume 3</a
-							><span class="post-badge badge-sage">rewind</span><span class="post-meta"
-								>2026-04-02</span
-							>
-						</li>
-						<li class="post-item">
-							<span class="post-icon icon-lavender">⌘</span
-							><!-- svelte-ignore a11y_invalid_attribute --><a class="post-link" href="#"
-								>Hosting a RSS Feed on your Next.Js Blog</a
-							><span class="post-badge badge-lavender">guide</span><span class="post-meta"
-								>2024-02-26</span
-							>
-						</li>
+					class="lib-preview theme-panel"
+					class:day={theme === 'day'}
+					class:night={theme === 'night'}
+				>
+					<span class="lib-label">{theme === 'day' ? 'Daylight' : 'Lights off'}</span>
+					<ul class="swatches">
+						{#each swatches as s}
+							<li>
+								<span class="chip" style:background="var({s.token})"></span>
+								<span class="swatch-name">{s.name}</span>
+								<code>{s.token}</code>
+								<span class="swatch-hex">{theme === 'day' ? s.day : s.night}</span>
+							</li>
+						{/each}
 					</ul>
-				</SectionRow>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 04 FEATURES BAR ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">04 · features bar</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<div class="features-bar">
-					<div class="features-bar-item">
-						<span class="features-bar-label">created</span><span class="features-bar-value"
-							>2024-04-14</span
-						>
-					</div>
-					<div class="features-bar-item">
-						<span class="features-bar-label">modified</span><span class="features-bar-value"
-							>2026-04-03</span
-						>
-					</div>
-					<div class="features-bar-item">
-						<span class="features-bar-label">words</span><span class="features-bar-value"
-							>~1,877</span
-						>
-					</div>
-					<div class="features-bar-item">
-						<span class="features-bar-label">reading</span><span class="features-bar-value"
-							>~10 min</span
-						>
-					</div>
 				</div>
-			</div>
+			{/each}
 		</div>
-	</div>
+	</section>
 
-	<!-- ══ 05 POST TYPE PILL ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">05 · post type pill</p>
-		<div class="lib-row full">
-			<div class="lib-preview" style="display:flex;gap:0.5rem;flex-wrap:wrap">
-				<PostTypePill type="log" />
-				<PostTypePill type="thinking" />
-				<PostTypePill type="making" />
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 06 TABLE OF CONTENTS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">06 · table of contents</p>
-		<div class="lib-row">
+	<!-- Type -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Type</h2>
+		<p class="lib-section-desc">
+			Bricolage Grotesque for display and headings, Figtree for everything you read, JetBrains Mono
+			for code only.
+		</p>
+		<div class="type-ramp">
 			<div>
-				<span class="lib-label">inline variant</span>
-				<div class="lib-preview">
-					<div class="toc">
-						<p class="toc-title">table of contents</p>
-						<ol>
-							<li>
-								<a href={'#'}>External Cues</a>
-								<ol>
-									<li><a href={'#'}>Interrupters</a></li>
-									<li><a href={'#'}>Hints</a></li>
-								</ol>
-							</li>
-							<li><a href={'#'}>Do-Power</a></li>
-							<li><a href={'#'}>Next Steps</a></li>
-						</ol>
-					</div>
-				</div>
+				<span class="lib-label">Display, home hero</span>
+				<p class="hero-title">Emma Campbell</p>
 			</div>
 			<div>
-				<span class="lib-label">sidebar variant</span>
-				<div class="lib-preview">
-					<div class="toc-aside">
-						<span class="toc-aside-title">on this page</span>
-						<ol>
-							<li>
-								<a href={'#'}>External Cues</a>
-								<ol><li><a href={'#'}>Interrupters</a></li></ol>
-							</li>
-							<li><a href={'#'}>Do-Power</a></li>
-							<li><a href={'#'}>Next Steps</a></li>
-						</ol>
-					</div>
-				</div>
+				<span class="lib-label">Page title</span>
+				<p class="page-title">What I use</p>
 			</div>
-		</div>
-	</div>
-
-	<!-- ══ 07 DROPCAP ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">07 · dropcap</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<Dropcap
-					>Let me start this off by saying that I am not formally diagnosed with ADHD. I've had
-					symptoms all my life, and my Dad and brother have both been formally diagnosed and
-					medicated for it.</Dropcap
-				>
+			<div>
+				<span class="lib-label">Section heading</span>
+				<p class="h2">Installation</p>
 			</div>
-		</div>
-	</div>
-
-	<!-- ══ 08 CALLOUT ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">08 · callout</p>
-		<div class="lib-row">
-			<div class="lib-preview" style="display:flex;flex-direction:column;gap:1rem">
-				<Callout type="note"
-					>The experiment below is based on tips that work for my flavor of ADHD.</Callout
-				>
-				<Callout type="warning">This approach may not work for all ADHD presentations.</Callout>
+			<div>
+				<span class="lib-label">Subheading</span>
+				<p class="h3">Defining Schemas</p>
 			</div>
-			<div class="lib-preview" style="display:flex;flex-direction:column;gap:1rem">
-				<Callout type="info">Decision fatigue is a well-documented psychology concept.</Callout>
-				<Callout type="danger"
-					>Do not attempt to diagnose yourself without speaking to a professional.</Callout
-				>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 09 EPISTEMIC STATUS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">09 · epistemic status</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<div class="epistemic-status">
-					<span class="epistemic-status-label">epistemic<br />status</span>
-					<span
-						>Personal experience. I've been living with undiagnosed ADHD for 28 years and have found
-						these strategies helpful — your mileage may vary.</span
-					>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 10 SIDENOTE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">10 · sidenote</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
+			<div>
+				<span class="lib-label">Body, 1.0625rem / 1.75</span>
 				<p class="prose">
-					I originally published this article on Kindred, my company's health network.<Sidenote
-						id={1}
-						>Originally published on Kindred, Hugo Health's patient network. All opinions are my
-						own.</Sidenote
-					> I've taken a lot of the "how" and added some of my own personal opinions.
+					Previously, we talked through the choices behind the tech stack used to build my developer
+					blog. The step towards building a functional blog is wiring up contentlayer.
 				</p>
 			</div>
+			<div>
+				<span class="lib-label">Small, dates and meta</span>
+				<p class="post-meta">2022-11-22 · 3 min read</p>
+			</div>
+			<div>
+				<span class="lib-label">Code</span>
+				<p><code>yarn add contentlayer next-contentlayer</code></p>
+			</div>
 		</div>
-	</div>
+	</section>
 
-	<!-- ══ 11 BLOCKQUOTE + PULL QUOTE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">11 · blockquote + pull quote</p>
+	<!-- Stickers + switch -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Stickers and the light switch</h2>
+		<p class="lib-section-desc">
+			The only things that glow. Flip the switch: the wall goes dark and the stickers charge up over
+			about a second and a half, then hold. The margins variant pins a few stickers to the outer
+			edges of reading pages and hides below 1200px.
+		</p>
 		<div class="lib-row">
-			<div>
-				<span class="lib-label">blockquote</span>
-				<div class="lib-preview">
-					<div class="blockquote">
-						<p>Don't you know AI is going to take over your job?</p>
-						<cite>— some rando, probably</cite>
-					</div>
-				</div>
-			</div>
-			<div>
-				<span class="lib-label">pull quote</span>
-				<div class="lib-preview">
-					<div class="pull-quote">
-						<p>My weaknesses as a developer have become amplified.</p>
-						<cite>— from the AI companion post</cite>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 12 EMBED ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">12 · embed</p>
-		<div class="lib-row full">
 			<div class="lib-preview">
-				<div class="embed">
-					<div class="embed-label">
-						⌗ image · <span>A screen capture depicting an NFC triggered alarm</span>
-					</div>
-					<div class="embed-body" style="font-style:italic;text-align:center;padding:2rem">
-						[ image renders here ]
-					</div>
-				</div>
+				<span class="lib-label">Hero cluster</span>
+				<Stickers variant="hero" />
 			</div>
-		</div>
-	</div>
-
-	<!-- ══ 13 CITATIONS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">13 · citations + cited-by</p>
-		<div class="lib-row full">
 			<div class="lib-preview">
-				<div class="citations">
-					<p class="citations-title">references</p>
-					<ol>
-						<li>
-							<!-- svelte-ignore a11y_invalid_attribute --><a href="#"
-								>Spoon Theory: What It Is and How I Use It — Washington Post</a
-							>
-						</li>
-						<li>
-							<!-- svelte-ignore a11y_invalid_attribute --><a href="#"
-								>Decision Fatigue — Wikipedia</a
-							>
-						</li>
-						<li>
-							<!-- svelte-ignore a11y_invalid_attribute --><a href="#"
-								>The Beginner Template — Barbell Medicine</a
-							>
-						</li>
-					</ol>
-				</div>
-				<div class="cited-by">
-					<p class="cited-by-title">cited by</p>
-					<div class="cited-by-item">
-						◈ <!-- svelte-ignore a11y_invalid_attribute --><a href="#">2024 Volume 4</a> · note, 2024-05-02
-					</div>
-				</div>
+				<span class="lib-label">Light switch</span>
+				<LightSwitch />
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<!-- ══ 14 ASIDE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">14 · aside (floated annotation)</p>
-		<div class="lib-row full">
-			<div class="lib-preview prose" style="overflow:hidden">
-				<aside class="aside">
-					<span class="aside-title">interoperability</span>
-					The ability of various computer systems to exchange and make use of information.
-				</aside>
+	<!-- Code plate -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Code plate</h2>
+		<p class="lib-section-desc">
+			Tokyo Night on a dark plate with a rim and two screws. The dimmest Shiki colours are lifted so
+			every token passes 4.5:1.
+		</p>
+		<CodeBlock filename="next.config.js" lang="js">
+			<pre class="shiki"><code
+					><span class="line"
+						><span style="color:#BB9AF7">import</span><span
+							style="color:#C0CAF5"> {'{'} </span><span style="color:#0DB9D7">withContentLayer</span
+						><span style="color:#C0CAF5"> {'}'} </span><span style="color:#BB9AF7">from</span><span
+							style="color:#9ECE6A"> "next-contentlayer"</span
+						><span style="color:#89DDFF">;</span></span
+					>
+<span class="line"></span>
+<span class="line"
+						><span style="color:#51597D;font-style:italic"
+							>/** @type {"{import('next').NextConfig}"} */</span
+						></span
+					>
+<span class="line"
+						><span style="color:#9D7CD8;font-style:italic">const</span><span
+							style="color:#C0CAF5"> nextConfig </span><span style="color:#89DDFF">=</span><span
+							style="color:#C0CAF5"> {'{'}</span
+						></span
+					>
+<span class="line"
+						><span style="color:#73DACA">  reactStrictMode</span><span style="color:#89DDFF">:</span
+						><span style="color:#FF9E64"> true</span><span style="color:#89DDFF">,</span></span
+					>
+<span class="line"
+						><span style="color:#C0CAF5">{'}'}</span><span style="color:#89DDFF">;</span></span
+					></code
+				></pre>
+		</CodeBlock>
+	</section>
+
+	<!-- Prose -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Prose</h2>
+		<p class="lib-section-desc">Text below comes from real posts except where marked as sample.</p>
+		<div class="lib-preview">
+			<div class="prose">
+				<Dropcap>
+					So, I finally built my first PC. And like any reasonable ADHD person starting a hobby, I
+					went way overboard.
+				</Dropcap>
 				<p>
-					One of the largest provisions passed within the Cures Act was related to <strong
-						>interoperability</strong
-					>
-					and <strong>information blocking</strong>.
+					Contentlayer is a breeze to use, but in case you're stuck, here is
+					<a href="/notebook/blog-content-layer">how I set it up</a>. Inline code looks like
+					<code>next-contentlayer</code>. A sample sidenote sits here.<Sidenote id={1}
+						>Sample sidenote text.</Sidenote
+					> A citation marker looks like this.<Cite ref="1" />
 				</p>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 15 TIMELINE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">15 · timeline</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<SimpleTimeline
-					items={[
-						{
-							date: '2024-04-14',
-							title: 'Started the habit experiment',
-							body: 'Identified gym routine as the main area of breakdown.',
-							color: 'amber'
-						},
-						{
-							date: '2024-05-02',
-							title: 'Phase II — Iteration',
-							body: 'Bought a workout template to reduce decision fatigue.',
-							color: 'coral'
-						},
-						{
-							date: '2024-05-14',
-							title: 'Check-in',
-							body: 'Consistent for 6 weeks. Adding cue for travel days.',
-							color: 'sage'
-						}
-					]}
-				/>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 16 MARGIN NOTE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">16 · margin note</p>
-		<div class="lib-row full">
-			<div class="lib-preview" style="display:flex;flex-direction:column;gap:1.25rem">
-				<MarginNote label="context"
-					>Written after 6 months of daily claude code usage at arboretum lifesciences.</MarginNote
-				>
-				<MarginNote label="tags">software · adhd · ai tools · dev workflow</MarginNote>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 17 TAG LIST ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">17 · tag list</p>
-		<div class="lib-row">
-			<div>
-				<span class="lib-label">outline tags</span>
-				<div class="lib-preview">
-					<div class="tag-row">
-						<span class="tag tag-amber">✦ software</span>
-						<span class="tag tag-coral">⚗ experiments</span>
-						<span class="tag tag-sage">◈ notes</span>
-						<span class="tag tag-lavender">⌘ guides</span>
-					</div>
+				<ul>
+					<li>Install Contentlayer</li>
+					<li>Wrap your Next config</li>
+					<li>Add the generated types to tsconfig.json</li>
+				</ul>
+				<ol>
+					<li>Colors</li>
+					<li>Typography</li>
+				</ol>
+				<blockquote>
+					<p>I don't need it. I don't need it. I DON'T NEED IT.</p>
+				</blockquote>
+				<div class="pull-quote">
+					<p>
+						The experiment below is based on tips and tricks that have worked for <em>my</em> flavor of
+						ADHD.
+					</p>
 				</div>
-			</div>
-			<div>
-				<span class="lib-label">filled badges</span>
-				<div class="lib-preview">
-					<div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-						<span class="post-badge badge-sage">rewind</span>
-						<span class="post-badge badge-lavender">indiana</span>
-						<span class="post-badge badge-coral">experiment</span>
-						<span class="post-badge badge-amber">featured</span>
-					</div>
+				<HrOrnament />
+				<div class="table-wrapper">
+					<table>
+						<thead><tr><th>Entry type</th><th>Entries</th></tr></thead>
+						<tbody>
+							<tr><td>log</td><td>14</td></tr>
+							<tr><td>making</td><td>11</td></tr>
+							<tr><td>thinking</td><td>8</td></tr>
+						</tbody>
+					</table>
 				</div>
+				<Callout type="note">Sample callout text.</Callout>
+				<Callout type="warning">Sample warning text.</Callout>
+				<Aside title="Sample aside">Sample aside text.</Aside>
+				<Quote cite="Configuring Contentlayer with a Next.js App">
+					<p>Contentlayer is a breeze to use.</p>
+				</Quote>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<!-- ══ 18 NAVIGATION ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">18 · navigation — breadcrumb + prev/next</p>
-		<div class="lib-row full">
-			<span class="lib-label">breadcrumb</span>
-			<div class="lib-preview">
-				<nav class="breadcrumb">
-					<a href="/">index</a><span>/</span>
-					<a href="/notebook">notebook</a><span>/</span>
-					<span>your ai code companion...</span>
-				</nav>
-			</div>
-		</div>
-		<div class="lib-row full">
-			<span class="lib-label">prev / next</span>
-			<div class="lib-preview flush">
-				<nav class="post-nav">
-					<a class="post-nav-item prev" href={'#'}
-						><span class="post-nav-dir">← previous</span><span class="post-nav-title"
-							>Reflecting on Indiana</span
-						></a
-					>
-					<a class="post-nav-item next" href={'#'}
-						><span class="post-nav-dir">next →</span><span class="post-nav-title"
-							>Building in Public: The Logbook Adventures</span
-						></a
-					>
-				</nav>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 19 UNDERLINE TO BACKGROUND ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">19 · underline-to-background link</p>
-		<div class="lib-row full">
-			<div
-				class="lib-preview"
-				style="font-family:var(--font-display);font-style:italic;font-size:1.5rem"
+	<!-- Layout rows -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Page rows</h2>
+		<p class="lib-section-desc">
+			Static pages are built from a header row and section rows: a quiet label at left, content in
+			the middle, an optional aside at right.
+		</p>
+		<div class="lib-preview">
+			<PageHeaderRow
+				title="What I use"
+				lede="The hardware and software I use daily."
+				labelKey="last updated"
+				labelValue="2026-04-03"
 			>
-				<a class="utb" href={'#'}>the occult mundane</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 20 FOOTER ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">20 · footer</p>
-		<div class="lib-row full">
-			<div class="lib-preview flush">
-				<Footer />
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 25 PAGE HEADER ROW ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">25 · page header row</p>
-		<div class="lib-row full">
-			<div class="lib-preview flush">
-				<PageHeaderRow
-					eyebrow="∴ field notes · subject: self ∴"
-					title="about"
-					titleEmphasis="Emma"
-					lede="You've made your way to the page about me. Nice. I feel weird writing this."
-					labelKey="last updated"
-					labelValue="2026-04-03"
-				>
-					{#snippet aside()}
-						<QuickFacts
-							facts={[
-								{ label: 'currently', value: 'Bloomington, IN' },
-								{ label: 'day job', value: 'Software Engineer @ Arboretum' }
-							]}
-						/>
-					{/snippet}
-				</PageHeaderRow>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 26 QUICK FACTS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">26 · quick facts panel</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<QuickFacts
-					facts={[
-						{ label: 'currently', value: 'Bloomington, IN' },
-						{ label: 'day job', value: 'Software Engineer<br>@ Arboretum Lifesciences' },
-						{ label: 'origin', value: 'Columbus, OH' },
-						{ label: 'household', value: '1 partner, 1 dog' }
-					]}
-				/>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 27 STAT BLOCK ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">27 · stat block</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<StatBlock
-					stats={[
-						{ num: '7,000', desc: 'approximate number of active hobbies at any given time' },
-						{ num: '2', desc: 'pit-stops between Columbus and Bloomington' },
-						{ num: '2–1', desc: 'Columbus Crew over LAFC, MLS Cup Final' }
-					]}
-				/>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 28 INTERESTS LIST ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">28 · interests list</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<InterestsList
-					items={[
-						{ text: 'Columbus Crew — 2026 season ticket holder', fav: true },
-						{ text: 'Software engineering · TypeScript · Java Spring Boot', fav: true },
-						{ text: 'Personal knowledge management', fav: true },
-						{ text: 'The occult mundane' },
-						{ text: 'Habit experiments · ADHD self-research' },
-						{ text: 'PC building · first build February 2026' }
-					]}
-				/>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 29 GEAR LIST ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">29 · gear list</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
+				{#snippet aside()}
+					<QuickFacts
+						facts={[
+							{ label: 'editor', value: 'Zed' },
+							{ label: 'notes', value: 'Obsidian' }
+						]}
+					/>
+				{/snippet}
+			</PageHeaderRow>
+			<SectionRow label="Workstation">
+				<ContentHeader title="Workstation" count="3 items" />
 				<GearList
 					items={[
 						{
 							name: 'M4 MacBook Pro (64 GB)',
-							note: 'The only machine that matters for work.',
 							category: 'laptop',
-							tag: { label: '✦ daily driver', type: 'fav' }
+							tag: { label: 'daily driver', type: 'fav' }
 						},
 						{
-							name: 'Zoom 75',
-							href: '#',
-							note: 'With Zooted keycaps. The keyboard that ended the keyboard search.',
-							category: 'keyboard',
-							tag: { label: 'shared', type: 'shared' }
+							name: 'Apple Magic Trackpad',
+							note: "Can't go back to a mouse for Mac work.",
+							category: 'peripheral'
 						},
-						{
-							name: 'Custom Built PC',
-							note: 'Built February 2026. Gaming and big-screen work.',
-							category: 'desktop',
-							tag: { label: 'first build', type: 'built' }
-						},
-						{
-							name: 'Granola',
-							href: '#',
-							note: 'AI meeting notes. Still deciding if it earns a spot.',
-							category: 'meetings',
-							tag: { label: 'new', type: 'new' }
-						}
+						{ name: 'CalDigit TS3', note: 'Thunderbolt dock.', category: 'dock' }
+					]}
+				/>
+				{#snippet aside()}
+					<MarginNote label="Sample note">Sample margin note text.</MarginNote>
+				{/snippet}
+			</SectionRow>
+			<SectionRow label="Site">
+				<StatBlock
+					stats={[
+						{ num: '33', desc: 'notebook entries' },
+						{ num: '17', desc: 'photos' }
+					]}
+				/>
+			</SectionRow>
+		</div>
+	</section>
+
+	<!-- About + CV -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">About and CV pieces</h2>
+		<div class="lib-row">
+			<div class="lib-preview">
+				<span class="lib-label">Interests</span>
+				<InterestsList
+					items={[
+						{ text: 'Columbus Crew (season ticket holder)', fav: true },
+						{ text: 'Habit experiments' },
+						{ text: 'PC building' }
+					]}
+				/>
+			</div>
+			<div class="lib-preview">
+				<span class="lib-label">Timeline</span>
+				<SimpleTimeline
+					items={[
+						{ date: '2025-03', title: 'Arboretum Lifesciences', color: 'sage' },
+						{ date: '2023-03', title: 'Software Engineer II, Hugo Health' },
+						{ date: '2021-07', title: 'Software Engineer, Hugo Health' }
 					]}
 				/>
 			</div>
 		</div>
-	</div>
+		<div class="lib-preview cv-preview">
+			<CvEntry
+				role="Software Engineer"
+				org="Arboretum Lifesciences"
+				location="Remote"
+				dates="Mar 2025 — <span class='current'>Present</span>"
+				current
+				bullets={[
+					'Led post-acquisition maintenance and technical sunset of Hugo Health legacy applications',
+					"Engineered patient-authorized FHIR data ingestion <span class='cv-tech'>Java Spring Boot</span>"
+				]}
+			/>
+			<SkillGroup
+				label="Languages and frameworks"
+				skills={[
+					{ name: 'TypeScript', highlight: true },
+					{ name: 'Python', highlight: true },
+					{ name: 'ExpressJS' }
+				]}
+			/>
+		</div>
+	</section>
 
-	<!-- ══ 30 CHANGELOG ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">30 · changelog entry + month stats</p>
+	<!-- Entry types + changelog -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Entry types and changelog</h2>
 		<div class="lib-row">
-			<div>
-				<span class="lib-label">entry list</span>
-				<div class="lib-preview">
-					<ChangelogEntry
-						entries={[
-							{
-								date: 'Feb 18',
-								type: 'added',
-								desc: 'Sidenote component — margin notes on wide screens'
-							},
-							{
-								date: 'Feb 18',
-								type: 'changed',
-								desc: 'Redesign Now page with shared article components'
-							},
-							{
-								date: 'Feb 18',
-								type: 'fixed',
-								desc: 'TOC depth mismatch, heading anchor clickability'
-							},
-							{
-								date: 'Feb 15',
-								type: 'meta',
-								desc: 'Layout v4 begins — sidebar navigation, Gwern-inspired aesthetic'
-							}
-						]}
-					/>
-				</div>
-			</div>
-			<div>
-				<span class="lib-label">month stats</span>
-				<div class="lib-preview">
-					<MonthStats added={7} changed={1} fixed={3} meta={1} />
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 31 PROSE HEADINGS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">31 · prose headings</p>
-		<div class="lib-row full">
 			<div class="lib-preview">
-				<h2 class="h2">General Framework <span class="anchor">§</span></h2>
-				<p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.8;">
-					Paragraph of body text following an h2.
-				</p>
-				<h3 class="h3">Implementation detail</h3>
-				<p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.8;">
-					Paragraph under an h3.
-				</p>
-				<h4 class="h4">A note on configuration</h4>
-				<p style="font-size:0.85rem;color:var(--muted);line-height:1.8;">Paragraph under an h4.</p>
+				<span class="lib-label">Entry type pills</span>
+				<div class="tag-row">
+					<PostTypePill type="making" />
+					<PostTypePill type="thinking" />
+					<PostTypePill type="log" />
+				</div>
+			</div>
+			<div class="lib-preview">
+				<span class="lib-label">Month stats</span>
+				<MonthStats added={2} changed={6} fixed={3} meta={1} />
 			</div>
 		</div>
-	</div>
+		<div class="lib-preview">
+			<ChangelogEntry
+				entries={[
+					{
+						date: 'Nov 9',
+						type: 'added',
+						desc: 'Light switch in the top bar toggles the theme'
+					},
+					{
+						date: 'Nov 9',
+						type: 'fixed',
+						desc: 'Dates no longer show a day early'
+					},
+					{
+						date: 'Nov 9',
+						type: 'meta',
+						desc: 'Layout v6, glow-in-the-dark redesign'
+					}
+				]}
+			/>
+		</div>
+	</section>
 
-	<!-- ══ 32 PROSE LISTS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">32 · prose lists</p>
+	<!-- Article parts -->
+	<section class="lib-section">
+		<h2 class="lib-section-title">Article parts</h2>
+		<p class="lib-section-desc">
+			Article components from <code>#components/article</code>. The live post page sets its own
+			header; these remain for MDX content.
+		</p>
+		<div class="lib-preview">
+			<Breadcrumb
+				segments={[
+					{ label: 'notebook', href: '/notebook' },
+					{ label: 'Configuring Contentlayer with a Next.js App' }
+				]}
+			/>
+			<ArticleHeader
+				title="Configuring Contentlayer with a Next.js App"
+				published="2022-11-22"
+				status="likely"
+				tags={['nextjs', 'contentlayer']}
+				wordCount={640}
+				readingTime="~3 min"
+			/>
+		</div>
 		<div class="lib-row">
-			<div>
-				<span class="lib-label">unordered</span>
-				<div class="lib-preview prose">
-					<ul>
-						<li>Install the Prisma client</li>
-						<li>Configure your database connection</li>
-						<li>Run the initial migration</li>
-					</ul>
-				</div>
-			</div>
-			<div>
-				<span class="lib-label">ordered</span>
-				<div class="lib-preview prose">
-					<ol>
-						<li>Pre-Requisites</li>
-						<li>General Framework</li>
-						<li>Implementation</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 33 INLINE PROSE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">33 · inline prose elements</p>
-		<div class="lib-row full">
-			<div class="lib-preview prose">
-				<p>
-					Press <kbd>shift</kbd>+<kbd>tab</kbd> to enter plan mode. The tool is
-					<strong>not going to contradict you</strong>
-					unless asked — that's the <em>whole point</em> of the issue.
-					<del>Old approach abandoned</del> — use <mark>iterative prompting</mark> instead. The
-					<abbr title="Large Language Model">LLM</abbr> amplifies your defaults.
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 34 CODE BLOCK ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">34 · code block</p>
-		<div class="lib-row full">
-			<span class="lib-label">with filename header</span>
-			<div class="lib-preview flush" style="padding:0 1.5rem;">
-				<CodeBlock filename="app/api/rss/route.ts" lang="typescript">
-					<pre
-						style="background:#101010;border:1px solid rgba(196,169,106,0.15);border-top:none;border-radius:0 0 3px 3px;padding:1.25rem 1.5rem;overflow-x:auto;font-family:var(--font-mono);font-size:0.8rem;line-height:1.65;"><span
-							class="line"
-							><span style="color:#e8a830">export async function</span> <span style="color:#8ab494"
-								>GET</span
-							><span style="color:#b8a888">() {'{'}</span></span
-						>{'\n'}<span class="line"
-							><span style="color:#b8a888"></span><span style="color:#e8a830">return new</span
-							> <span style="color:#a898cc">Response</span><span style="color:#b8a888">(</span><span
-								style="color:#f0e8d8">feed</span
-							><span style="color:#b8a888">);</span></span
-						>{'\n'}<span class="line"><span style="color:#b8a888">{'}'}</span></span></pre>
-				</CodeBlock>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 36 PROSE WRAPPER ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">36 · prose wrapper (all elements in context)</p>
-		<div class="lib-row full">
 			<div class="lib-preview">
-				<div class="prose">
-					<h2>
-						General Framework <span style="font-size:0.65rem;color:var(--muted);opacity:0.6;"
-							>§</span
-						>
-					</h2>
-					<p>
-						When I first downloaded Cursor, the most useful part was the tab completions. Since
-						then, tools like <!-- svelte-ignore a11y_invalid_attribute --><a href="#">Claude Code</a
-						> have completely changed the way I go about development.
-					</p>
-					<h3>Implementation detail</h3>
-					<p>
-						Open your terminal and run <code>npx prisma init</code> to scaffold the config. The key
-						insight:
-						<strong
-							>unless specifically asked, your coding agent isn't going to contradict you.</strong
-						>
-					</p>
-					<ul>
-						<li>Install the Prisma client</li>
-						<li>Configure your database connection</li>
-						<li>Run the initial migration</li>
-					</ul>
-					<p>
-						My <em>weaknesses as a developer</em> have become <mark>amplified</mark>.
-						<del>Old approach abandoned</del> — use iterative prompting instead.
-					</p>
-				</div>
+				<span class="lib-label">Meta block</span>
+				<MetaBlock published="2022-11-22" status="certain" />
 			</div>
-		</div>
-	</div>
-
-	<!-- ══ 37 HR DIVIDER ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">37 · hr divider</p>
-		<div class="lib-row">
-			<div>
-				<span class="lib-label">plain hr</span>
-				<div class="lib-preview">
-					<p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;">
-						End of a section...
-					</p>
-					<hr />
-					<p style="font-size:0.85rem;color:var(--muted);">Start of the next section.</p>
-				</div>
-			</div>
-			<div>
-				<span class="lib-label">ornament variant</span>
-				<div class="lib-preview">
-					<p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;">
-						End of a section...
-					</p>
-					<HrOrnament />
-					<p style="font-size:0.85rem;color:var(--muted);">Start of the next section.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 38 FIGURE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">38 · figure / image</p>
-		<div class="lib-row full">
 			<div class="lib-preview">
-				<figure class="figure">
-					<div
-						style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,169,106,0.2);border-radius:3px;height:120px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;"
-					>
-						[ image: pr_created.png ]
-					</div>
-					<figcaption>
-						Fig. 1 — The PR comment created by the Azure Function on a new changeset.
-					</figcaption>
-				</figure>
+				<span class="lib-label">Status, tags, features</span>
+				<p><EpistemicStatus level="speculative" /></p>
+				<TagList tags={['rewind', 'personal']} />
+				<FeaturesBar features={['Sample feature', 'Sample feature']} />
 			</div>
 		</div>
-	</div>
-
-	<!-- ══ 39 TABLE ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">39 · table</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<div class="table-wrapper">
-					<table>
-						<thead><tr><th>Package</th><th>Version</th><th>Purpose</th></tr></thead>
-						<tbody>
-							<tr><td>prisma</td><td>5.x</td><td>ORM + schema definition</td></tr>
-							<tr><td>@prisma/client</td><td>5.x</td><td>Generated type-safe client</td></tr>
-							<tr><td>next</td><td>14.x</td><td>Framework + API routes</td></tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
+		<div class="lib-preview">
+			<TableOfContents {headings} />
+			<Prose html="<p>Sample prose rendered from an HTML string.</p>" />
+			<Embed placeholder="Sample embed" />
+			<Citations
+				references={[
+					{
+						id: '1',
+						title: 'Contentlayer: Getting started',
+						url: 'https://www.contentlayer.dev/docs/getting-started'
+					}
+				]}
+			/>
+			<PrevNext
+				prev={{
+					slug: 'blog-next-js',
+					title: 'Building a Content Driven Blog with Next.js and Typescript'
+				}}
+				next={{ slug: 'blog-metrics', title: 'Adding Metrics to a Next.js Blog Post' }}
+			/>
+			<ArticleFooter />
 		</div>
-	</div>
-
-	<!-- ══ 40 CV ENTRY ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">40 · cv entry</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<div class="cv-entries">
-					<CvEntry
-						role="Software Engineer"
-						org="Arboretum Lifesciences"
-						location="Remote"
-						dates="Mar 2025 — <span class='current'>Present</span>"
-						current={true}
-						bullets={[
-							'Designed and implemented a FHIR-to-OMOP clinical data transformation pipeline <span class="cv-tech">Python</span><span class="cv-tech">Databricks</span>',
-							'Engineered patient-authorized FHIR data ingestion from Epic, Cerner, and NexGen <span class="cv-tech">Java Spring Boot</span>'
-						]}
-					/>
-					<CvEntry
-						role="Software Engineer II"
-						org="Hugo Health"
-						location="Remote"
-						dates="Mar 2023 — Mar 2025"
-						bullets={[
-							'Maintained containerized API services <span class="cv-tech">Docker</span><span class="cv-tech">Amazon ECS</span>'
-						]}
-					/>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 42 SKILL TAGS ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">42 · skill tags + skill group</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<div class="skills-grid">
-					<SkillGroup
-						label="languages & frameworks"
-						skills={[
-							{ name: 'TypeScript', highlight: true },
-							{ name: 'Python', highlight: true },
-							{ name: 'Java Spring Boot', highlight: true },
-							{ name: 'ExpressJS' },
-							{ name: 'Svelte', highlight: true },
-							{ name: 'React' },
-							{ name: 'SQL' }
-						]}
-					/>
-					<SkillGroup
-						label="infrastructure & cloud"
-						skills={[
-							{ name: 'Azure', highlight: true },
-							{ name: 'AWS' },
-							{ name: 'Terraform / OpenTofu', highlight: true },
-							{ name: 'Docker' },
-							{ name: 'GitHub Actions' }
-						]}
-					/>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ══ 43 CV DOWNLOAD ══ -->
-	<div class="lib-section">
-		<p class="lib-section-title">43 · cv download button</p>
-		<div class="lib-row full">
-			<div class="lib-preview">
-				<button class="cv-download">⎙ print / save pdf</button>
-			</div>
-		</div>
-	</div>
+	</section>
 </div>
+
+<Footer />
+
+<style>
+	/* Each swatch panel pins its own theme's values, whatever the page theme is */
+	.day {
+		--bg: #cfd6f0;
+		--bg-raised: #dbe0f5;
+		--fg: #262b52;
+		--fg-muted: #464c7d;
+		--accent: #4338a8;
+		--line: rgba(38, 43, 82, 0.16);
+		--line-strong: rgba(38, 43, 82, 0.34);
+		--sticker: #e6f0d4;
+		--panel: #262b52;
+		--type-making: #5b3a9e;
+		--type-thinking: #963866;
+		--type-log: #2b6844;
+		--type-danger: #8f400a;
+	}
+	.night {
+		--bg: #14182b;
+		--bg-raised: #1c2140;
+		--fg: #e1e5f7;
+		--fg-muted: #a3aacd;
+		--accent: #b9f58c;
+		--line: rgba(225, 229, 247, 0.12);
+		--line-strong: rgba(225, 229, 247, 0.26);
+		--sticker: #b9f58c;
+		--panel: #0c0f1f;
+		--type-making: #cbb8ff;
+		--type-thinking: #ffb1d2;
+		--type-log: #9fdcb0;
+		--type-danger: #ffb07a;
+		background: var(--bg);
+		color: var(--fg);
+	}
+	.theme-panel {
+		background: var(--bg);
+		color: var(--fg);
+	}
+
+	.swatches {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.swatches li {
+		display: grid;
+		grid-template-columns: 2.25rem 1fr auto;
+		grid-template-rows: auto auto;
+		column-gap: 0.75rem;
+		align-items: center;
+	}
+	.chip {
+		grid-row: 1 / 3;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--line-strong);
+	}
+	.swatch-name {
+		font-weight: 650;
+	}
+	.swatches code {
+		grid-column: 2;
+		font-size: 0.8rem;
+		justify-self: start;
+	}
+	.swatch-hex {
+		grid-column: 3;
+		grid-row: 1 / 3;
+		font-size: 0.88rem;
+		color: var(--fg-muted);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.lib-subtitle,
+	.lib-section-desc {
+		max-width: var(--measure);
+	}
+
+	.type-ramp {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+	.type-ramp p {
+		margin: 0;
+	}
+
+	.cv-preview {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		padding-left: 3rem;
+	}
+</style>

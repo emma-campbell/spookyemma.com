@@ -1,16 +1,14 @@
 <script lang="ts">
-	import { PageShell, QuickFacts, StatBlock, InterestsList } from '#components';
+	import { PageShell, QuickFacts, InterestsList, Stickers } from '#components';
 </script>
 
 <svelte:head>
 	<title>About · Emma Campbell</title>
-	<meta
-		name="description"
-		content="About Emma Campbell — software engineer, habit experimenter, dog befriender."
-	/>
+	<meta name="description" content="About Emma Campbell, a software engineer." />
 </svelte:head>
 
 <PageShell>
+	<Stickers variant="margins" sides="right" top="24rem" />
 	<!-- Page header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
@@ -18,8 +16,7 @@
 			<span class="phl-val">2026-04-03</span>
 		</div>
 		<div class="page-header-content">
-			<p class="hero-eyebrow">∴ field notes · subject: self ∴</p>
-			<h1 class="page-title">about <em>Emma</em></h1>
+			<h1 class="page-title">About Emma</h1>
 			<p class="page-lede">
 				You've made your way to the page about me. Nice. I feel weird writing this. Seems sorta
 				conceited to write about yourself. Bleh, oh well.
@@ -32,9 +29,7 @@
 					{
 						label: 'day job',
 						value: 'Software Engineer<br>@ Arboretum Lifesciences'
-					},
-					{ label: 'origin', value: 'Columbus, OH' },
-					{ label: 'household', value: '1 partner, 1 dog' }
+					}
 				]}
 			/>
 		</div>
@@ -43,13 +38,11 @@
 	<!-- Section: Who -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--amber)"
-				>who<span class="row-label-num">§ 01</span></span
-			>
+			<span class="row-label-text">Who</span>
 		</div>
 		<div class="row-content">
 			<div class="prose">
-				<p class="dropcap">
+				<p>
 					I am Emma. Originally from Columbus, OH and currently living in Bloomington, IN with my
 					partner and dog. I had two pit-stops before this; one at the University of Rochester to
 					get my Bachelor's in Computer Science, and the other in Washington D.C. for a few years
@@ -62,70 +55,38 @@
 				</p>
 			</div>
 		</div>
-		<div class="row-aside">
-			<StatBlock
-				stats={[
-					{
-						num: '7,000',
-						desc: 'approximate number of active hobbies at any given time'
-					},
-					{
-						num: '2',
-						desc: 'pit-stops between Columbus and Bloomington'
-					}
-				]}
-			/>
-		</div>
 	</div>
 
-	<!-- Section: Path -->
+	<!-- Section: Where I've lived -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--sage)"
-				>path<span class="row-label-num">§ 02</span></span
-			>
+			<span class="row-label-text">Where I've lived</span>
 		</div>
 		<div class="row-content">
 			<ul class="path-list">
 				<li class="path-item">
-					<div class="path-place">Columbus, OH · origin</div>
-					<div class="path-desc">Grew up here. Home of the Columbus Crew. Always home.</div>
+					<div class="path-place">Columbus, OH</div>
 				</li>
 				<li class="path-item">
-					<div class="path-place">Rochester, NY · University of Rochester</div>
-					<div class="path-desc">
-						B.A. in Computer Science. First time living somewhere that actually got winter.
-					</div>
+					<div class="path-place">Rochester, NY</div>
+					<div class="path-desc">University of Rochester, Bachelor's in Computer Science.</div>
 				</li>
 				<li class="path-item">
-					<div class="path-place">Washington, D.C. · post-grad</div>
-					<div class="path-desc">
-						A few years after undergrad. Good food. Expensive rent. Strong opinions about metro
-						etiquette.
-					</div>
+					<div class="path-place">Washington, D.C.</div>
+					<div class="path-desc">A few years after undergrad.</div>
 				</li>
 				<li class="path-item now">
-					<div class="path-place">Bloomington, IN · now</div>
-					<div class="path-desc">
-						Living here with my partner and dog. Quieter. Good for focusing. The dog loves it.
-					</div>
+					<div class="path-place">Bloomington, IN</div>
+					<div class="path-desc">Now, with my partner and dog.</div>
 				</li>
 			</ul>
-		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>note</strong>
-				The filled dot marks current location. The line is a life path, not a career ladder.
-			</div>
 		</div>
 	</div>
 
 	<!-- Section: Quirks -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--coral)"
-				>quirks<span class="row-label-num">§ 03</span></span
-			>
+			<span class="row-label-text">Quirks</span>
 		</div>
 		<div class="row-content">
 			<div class="prose">
@@ -140,67 +101,33 @@
 				</p>
 			</div>
 		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>observed behavior</strong>
-				Will find and befriend your dog within 3 minutes of arriving at any social event. The dog will
-				like her immediately.
-			</div>
-		</div>
 	</div>
 
 	<!-- Section: Interests -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--lavender)"
-				>interests<span class="row-label-num">§ 04</span></span
-			>
+			<span class="row-label-text">Interests</span>
 		</div>
 		<div class="row-content">
 			<InterestsList
 				items={[
-					{
-						text: 'Columbus Crew — season ticket holder',
-						fav: true
-					},
-					{
-						text: '[NWSL2Columbus](https://nwsltocbus.com)',
-						fav: true
-					},
-					{
-						text: 'Software engineering · TypeScript · Python'
-					},
-					{
-						text: 'Personal knowledge management · building in public'
-					},
-					{
-						text: 'The occult mundane — things that haunt you in ordinary life'
-					},
+					{ text: 'Columbus Crew (season ticket holder)' },
+					{ text: '[NWSL2Columbus](https://nwsltocbus.com)' },
+					{ text: 'Software engineering · TypeScript · Python' },
+					{ text: 'Personal knowledge management · building in public' },
+					{ text: 'The occult mundane' },
 					{ text: 'Habit experiments · ADHD self-research' },
 					{ text: 'Video games' },
-					{ text: 'PC building — first build: February 2026' },
-					{ text: 'Whatever the 7,000th hobby is this week' }
+					{ text: 'PC building' }
 				]}
 			/>
-		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>highlight</strong>
-				Attended the MLS Cup Final with her mom. Columbus Crew won 2-1 over LAFC. One of her favorite
-				moments ever.
-			</div>
-			<div class="annotation" style="margin-top:1rem;">
-				<strong>✦ = current favorites</strong>
-			</div>
 		</div>
 	</div>
 
 	<!-- Section: Find me -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--muted)"
-				>find me<span class="row-label-num">§ 05</span></span
-			>
+			<span class="row-label-text">Find me</span>
 		</div>
 		<div class="row-content">
 			<div class="prose">
@@ -209,22 +136,26 @@
 					the most honest version of me that exists on the internet.
 				</p>
 			</div>
-			<div style="margin-top:1.25rem;display:flex;gap:1.5rem;flex-wrap:wrap;">
+			<div class="find-links">
 				<a
 					href="https://github.com/emma-campbell"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="accent-link">github ↗</a
+					class="accent-link">GitHub</a
 				>
-				<a href="/rss.xml" class="accent-link">rss feed ↗</a>
-				<a href="/notebook" class="accent-link">the notebook ↗</a>
-			</div>
-		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>preferred contact</strong>
-				Honestly? Just read the blog. It says more than any bio could.
+				<a href="/rss.xml" class="accent-link">RSS feed</a>
+				<a href="/notebook" class="accent-link">The notebook</a>
 			</div>
 		</div>
 	</div>
 </PageShell>
+
+<style>
+	.find-links {
+		margin-top: 1.25rem;
+		display: flex;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+		font-weight: 600;
+	}
+</style>

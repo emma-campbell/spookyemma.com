@@ -1,47 +1,24 @@
-import { getPublishedPosts, ENTRY_TYPES, SECTION_ORDER } from '#content';
-import type { PostEntry } from '#content';
+import { getPublishedPosts } from '#content';
 import type { PageServerLoad } from './$types';
 
+const LATEST_COUNT = 6;
+const THINKING_COUNT = 6;
+
 export const load: PageServerLoad = async () => {
-	const posts = getPublishedPosts();
+	const posts = getPublishedPosts().map((p) => ({
+		slug: p.slug,
+		title: p.title,
+		published: p.published,
+		entry: p.entry
+	}));
 
-	// Group posts by entry type
-	const grouped = new Map<PostEntry, typeof posts>();
-	for (const post of posts) {
-		const group = grouped.get(post.entry) || [];
-		group.push(post);
-		grouped.set(post.entry, group);
-	}
+	const latest = posts.slice(0, LATEST_COUNT);
+	const latestSlugs = new Set(latest.map((p) => p.slug));
 
-	// Build sections using SECTION_ORDER + ENTRY_TYPES
-	const sections = SECTION_ORDER.filter((key) => grouped.has(key)).map((key, i) => {
-		const cfg = ENTRY_TYPES[key];
-		const colorName = cfg.color.replace('var(--', '').replace(')', '');
-		return {
-			id: key,
-			label: cfg.label.charAt(0).toUpperCase() + cfg.label.slice(1),
-			icon: cfg.icon,
-			color: cfg.color,
-			badgeCls: colorName,
-			order: i + 1,
-			sectionNum: `\u00A7 0${i + 1}`,
-			posts: (grouped.get(key) || []).map((p) => ({
-				slug: p.slug,
-				title: p.title,
-				published: p.published,
-				entry: p.entry,
-				tags: p.tags
-			}))
-		};
-	});
+	// Longer-lived thinking pieces, skipping anything already under "Lately"
+	const thinking = posts
+		.filter((p) => p.entry === 'thinking' && !latestSlugs.has(p.slug))
+		.slice(0, THINKING_COUNT);
 
-	const pages = [
-		{ href: '/about', label: 'About' },
-		{ href: '/now', label: 'Now' },
-		{ href: '/uses', label: 'Uses' },
-		{ href: '/changelog', label: 'Changelog' },
-		{ href: '/notebook', label: 'Notebook' }
-	];
-
-	return { sections, pages };
+	return { latest, thinking, totalCount: posts.length };
 };

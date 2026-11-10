@@ -38,3 +38,13 @@
 	{/if}
 	{@render children()}
 </div>
+
+<style>
+	/* Leave room in the filename bar for the copy button */
+	.code-filename {
+		padding-right: 5.5rem;
+	}
+	.has-filename .code-copy {
+		top: 0.3rem;
+	}
+</style>

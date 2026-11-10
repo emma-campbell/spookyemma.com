@@ -15,8 +15,7 @@
 			<span class="phl-val">2026-04-03</span>
 		</div>
 		<div class="page-header-content">
-			<p class="page-eyebrow">∴ curriculum vitae ∴</p>
-			<h1 class="page-title">Emma <em>Campbell</em></h1>
+			<h1 class="page-title">Emma Campbell</h1>
 			<p class="page-lede">
 				Software engineer and maker of things. This is likely more up to date than LinkedIn or
 				anything else you might find out there.
@@ -29,25 +28,24 @@
 					{
 						label: 'github',
 						value:
-							'<a href="https://github.com/emma-campbell" style="color:var(--amber)">emma-campbell ↗</a>'
+							'<a class="accent-link" href="https://github.com/emma-campbell">emma-campbell</a>'
 					},
 					{
 						label: 'site',
-						value:
-							'<a href="https://spookyemma.com" style="color:var(--amber)">spookyemma.com ↗</a>'
+						value: '<a class="accent-link" href="https://spookyemma.com">spookyemma.com</a>'
 					}
 				]}
 			/>
-			<button class="cv-download" onclick={() => window.print()}>⎙ print / save pdf</button>
+			<button class="cv-download" type="button" onclick={() => window.print()}
+				>Print or save as PDF</button
+			>
 		</div>
 	</div>
 
 	<!-- Experience -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--amber)"
-				>experience<span class="row-label-num">§ 01</span></span
-			>
+			<h2 class="row-label-text">Experience</h2>
 		</div>
 		<div class="row-content">
 			<div class="cv-entries">
@@ -85,7 +83,7 @@
 					bullets={[
 						'Upheld responsibility for maintaining and enhancing existing software systems, ensuring ongoing stability and scalability <span class="cv-tech">TypeScript</span><span class="cv-tech">Node.js</span>',
 						'Implemented additional HL7® FHIR integrations with Epic, Cerner, and Humana',
-						'Enhanced stability of EHR integrations, increasing success rate from <strong style="color:var(--parchment)">72.8% → 83.4%</strong>, expanding reach to 300+ new hospital and clinic locations'
+						'Enhanced stability of EHR integrations, increasing success rate from <strong>72.8% → 83.4%</strong>, expanding reach to 300+ new hospital and clinic locations'
 					]}
 				/>
 				<CvEntry
@@ -99,55 +97,36 @@
 				/>
 			</div>
 		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>current focus</strong>
-				Clinical data engineering — FHIR pipelines, OMOP transformation, healthcare interoperability.
-			</div>
-			<div class="annotation">
-				<strong>72.8% → 83.4%</strong>
-				EHR integration success rate improvement. Concrete numbers are a gift in a CV.
-			</div>
-		</div>
 	</div>
 
 	<!-- Education -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--sage)"
-				>education<span class="row-label-num">§ 02</span></span
-			>
+			<h2 class="row-label-text">Education</h2>
 		</div>
 		<div class="row-content">
 			<div class="edu-entry">
 				<div class="edu-degree">B.A. Computer Science</div>
 				<div class="edu-org-line">
 					<span class="edu-org">University of Rochester</span>
-					<span style="opacity:0.4">&middot;</span>
+					<span class="sep">&middot;</span>
 					<span>Rochester, NY</span>
-					<span style="opacity:0.4">&middot;</span>
-					<span style="color:var(--muted);font-size:0.65rem;">Aug 2017 — May 2021</span>
+					<span class="sep">&middot;</span>
+					<span class="edu-dates">Aug 2017 — May 2021</span>
 				</div>
 				<div class="edu-focus">Focus in human-computer interaction</div>
 				<div class="edu-courses">
-					<strong>coursework</strong>
+					<strong>Coursework</strong>
 					Data Structures and Algorithms · Computer Organization · Intro to Human-Computer Interaction
 					· Mobile App Development · Intro to Artificial Intelligence · Computer Models and Limitations
 					· Advanced Web Development · Statistical Computing using R · Social Implications of Computer
 					· Computation and Formal Systems
 				</div>
 				<div class="edu-courses">
-					<strong>extracurriculars</strong>
+					<strong>Extracurriculars</strong>
 					Player/Coach — Varsity Soccer · Director of Communications — Grassroots Soccer · Member — Girls
 					Who Code · Volunteer — Quillen Robotics Lab
 				</div>
-			</div>
-		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>HCI focus</strong>
-				The human-computer interaction thread runs through everything — from the healthcare patient data
-				work to the embedded widget at Hugo.
 			</div>
 		</div>
 	</div>
@@ -155,9 +134,7 @@
 	<!-- Skills -->
 	<div class="section-row">
 		<div class="row-label">
-			<span class="row-label-text" style="color:var(--lavender)"
-				>skills<span class="row-label-num">§ 03</span></span
-			>
+			<h2 class="row-label-text">Skills</h2>
 		</div>
 		<div class="row-content">
 			<div class="skills-grid">
@@ -201,12 +178,6 @@
 				/>
 			</div>
 		</div>
-		<div class="row-aside">
-			<div class="annotation">
-				<strong>highlighted</strong>
-				Amber tags = primary/strongest skills. Plain = familiar and used in production.
-			</div>
-		</div>
 	</div>
 </PageShell>
 
@@ -214,93 +185,106 @@
 	.cv-entries {
 		position: relative;
 		padding-left: 1.75rem;
-		margin-left: 1rem;
+		margin-left: 0.35rem;
 	}
 	.cv-entries::before {
 		content: '';
 		position: absolute;
 		left: 0;
-		top: 0.4rem;
-		bottom: 0.4rem;
-		width: 1px;
-		background: var(--border);
+		top: 0.5rem;
+		bottom: 0.5rem;
+		border-left: 1.5px dashed var(--line-strong);
 	}
 
 	.cv-download {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.4rem;
-		font-size: 0.65rem;
-		letter-spacing: 0.1em;
-		color: var(--muted);
-		border: 1px solid var(--border);
-		padding: 5px 10px;
-		border-radius: 2px;
-		transition:
-			color var(--transition),
-			border-color var(--transition);
+		margin-top: 1.5rem;
+		font: inherit;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: var(--fg);
+		background: var(--bg-raised);
+		border: 1.5px solid var(--line-strong);
+		padding: 0.45rem 0.9rem;
+		border-radius: var(--radius-md);
 		cursor: pointer;
-		background: none;
-		font-family: var(--font-mono);
+		transition:
+			background-color var(--transition),
+			border-color var(--transition);
 	}
 	.cv-download:hover {
-		color: var(--amber);
-		border-color: var(--amber);
+		border-color: var(--fg-muted);
+		background: var(--bg);
 	}
 
-	.edu-entry {
-		padding-bottom: 1rem;
-	}
 	.edu-degree {
 		font-family: var(--font-display);
-		font-style: italic;
 		font-weight: 700;
-		font-size: 1rem;
-		color: var(--parchment);
-		margin-bottom: 0.25rem;
+		font-size: 1.35rem;
+		letter-spacing: -0.015em;
+		color: var(--fg);
+		margin-bottom: 0.2rem;
 	}
 	.edu-org-line {
-		font-size: 0.72rem;
-		color: var(--muted);
-		margin-bottom: 0.9rem;
+		font-size: 0.98rem;
+		color: var(--fg-muted);
+		margin-bottom: 0.75rem;
 		display: flex;
 		align-items: baseline;
 		gap: 0.5rem;
 		flex-wrap: wrap;
 	}
 	.edu-org {
-		color: var(--amber);
+		color: var(--fg);
+		font-weight: 600;
+	}
+	.edu-org-line .sep {
+		opacity: 0.6;
+	}
+	.edu-dates {
+		font-variant-numeric: tabular-nums;
 	}
 	.edu-focus {
-		font-size: 0.78rem;
-		color: var(--muted);
-		font-style: italic;
-		margin-bottom: 1rem;
+		color: var(--fg-muted);
+		margin-bottom: 1.25rem;
 	}
 	.edu-courses {
-		font-size: 0.75rem;
-		color: var(--muted);
-		line-height: 1.7;
-		margin-bottom: 0.75rem;
+		max-width: var(--measure);
+		font-size: 0.98rem;
+		color: var(--fg);
+		line-height: 1.65;
+		margin-bottom: 1rem;
 	}
 	.edu-courses strong {
 		display: block;
-		font-size: 0.58rem;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--amber);
-		margin-bottom: 0.3rem;
-		font-weight: 400;
+		font-weight: 700;
+		margin-bottom: 0.2rem;
 	}
 
-	/* Mobile: tighten CV layout */
-	@media (max-width: 599px) {
+	@media (max-width: 639px) {
 		.cv-entries {
 			padding-left: 1.25rem;
-			margin-left: 0.75rem;
 		}
-		.skills-grid {
-			gap: 1rem;
+	}
+
+	@media print {
+		.cv-download {
+			display: none;
+		}
+		.cv-entries::before {
+			border-left-color: #999;
+		}
+		:global(.section-row),
+		:global(.page-header-row) {
+			display: block;
+			border-top: none;
+			padding: 1rem 0;
+		}
+		:global(.row-label) {
+			align-items: flex-start;
+			text-align: left;
+			padding-bottom: 0.5rem;
 		}
 	}
 </style>
