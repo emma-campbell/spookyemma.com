@@ -131,8 +131,9 @@
 		border-radius: 999px;
 	}
 
-	/* The first paragraph opens a touch larger */
-	.prose > :global(p:first-child) {
+	/* The first paragraph opens a touch larger, even when a GitHub card sits above it */
+	.prose > :global(p:first-child),
+	.prose > :global(.github-card-wrap:first-child + p) {
 		font-size: 1.15rem;
 		line-height: 1.7;
 	}

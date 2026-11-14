@@ -1502,6 +1502,62 @@ ol.prose-list {
 	color: var(--fg-muted);
 }
 
+/* GitHub card: a link card, so it follows the post-nav card (flat, tonal hover). */
+.github-card {
+	margin: 2rem 0;
+	padding: 1rem 1.25rem;
+	display: flex;
+	gap: 0.9rem;
+	align-items: flex-start;
+	border: 1px solid var(--line-strong);
+	border-radius: var(--radius-md);
+	color: var(--fg);
+	transition:
+		background var(--transition),
+		border-color var(--transition);
+}
+.prose a.github-card {
+	text-decoration: none;
+}
+.github-card:hover {
+	background: var(--bg-raised);
+	border-color: var(--fg-muted);
+}
+.github-card-mark {
+	flex-shrink: 0;
+	margin-top: 0.15rem;
+	color: var(--fg-muted);
+}
+.github-card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	min-width: 0;
+}
+.github-card-name {
+	font-family: var(--font-display);
+	font-size: 1.15rem;
+	font-weight: 650;
+	overflow-wrap: anywhere;
+}
+.github-card-owner {
+	color: var(--fg-muted);
+	font-weight: 500;
+}
+.github-card-description {
+	font-size: 0.98rem;
+	line-height: 1.5;
+	color: var(--fg-muted);
+}
+.github-card-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1rem;
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+	color: var(--fg-muted);
+}
+
 .aside {
 	float: right;
 	width: 240px;

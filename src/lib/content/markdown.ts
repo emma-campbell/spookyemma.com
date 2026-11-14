@@ -107,6 +107,67 @@ function preprocessSidenotes(content: string): string {
 	);
 }
 
+interface GitHubRepo {
+	full_name: string;
+	html_url: string;
+	description: string | null;
+	language: string | null;
+	stargazers_count: number;
+	forks_count: number;
+	license: { spdx_id: string } | null;
+}
+
+// Rendering runs at prerender, so each repo is fetched once per build however many
+// pages mention it.
+const repoCache = new Map<string, Promise<GitHubRepo | null>>();
+
+function fetchRepo(repo: string): Promise<GitHubRepo | null> {
+	let cached = repoCache.get(repo);
+	if (!cached) {
+		const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
+		if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+		cached = fetch(`https://api.github.com/repos/${repo}`, { headers })
+			.then((res) => (res.ok ? (res.json() as Promise<GitHubRepo>) : null))
+			.catch(() => null);
+		repoCache.set(repo, cached);
+	}
+	return cached;
+}
+
+const GITHUB_MARK = `<svg class="github-card-mark" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>`;
+
+// <GitHubCard repo="owner/name" /> → a link card with the repo's description and stats.
+// If GitHub can't be reached the card still renders, with just the name. The <div> wrapper
+// makes marked treat it as an HTML block instead of wrapping it in a <p>.
+async function preprocessGitHubCards(content: string): Promise<string> {
+	const pattern = /<GitHubCard\s+repo="([\w.-]+\/[\w.-]+)"\s*\/>/g;
+	const repos = [...new Set([...content.matchAll(pattern)].map((m) => m[1]))];
+	if (repos.length === 0) return content;
+
+	const data = new Map(await Promise.all(repos.map(async (r) => [r, await fetchRepo(r)] as const)));
+
+	return content.replace(pattern, (_match, repo: string) => {
+		const info = data.get(repo);
+		const [owner, name] = repo.split('/');
+		const href = info?.html_url ?? `https://github.com/${repo}`;
+		const meta = info
+			? [
+					info.language,
+					`★ ${info.stargazers_count}`,
+					info.forks_count ? `${info.forks_count} forks` : null,
+					info.license && info.license.spdx_id !== 'NOASSERTION' ? info.license.spdx_id : null
+				]
+					.filter(Boolean)
+					.map((m) => `<span>${escapeHtml(String(m))}</span>`)
+					.join('')
+			: '';
+		const description = info?.description
+			? `<span class="github-card-description">${escapeHtml(info.description)}</span>`
+			: '';
+		return `<div class="github-card-wrap"><a class="github-card" href="${href}" target="_blank" rel="noopener noreferrer">${GITHUB_MARK}<span class="github-card-body"><span class="github-card-name"><span class="github-card-owner">${escapeHtml(owner)}/</span>${escapeHtml(name)}</span>${description}${meta ? `<span class="github-card-meta">${meta}</span>` : ''}</span></a></div>`;
+	});
+}
+
 export interface RenderOptions {
 	citeLinks?: boolean;
 }
@@ -117,6 +178,7 @@ export async function renderMarkdown(
 ): Promise<string> {
 	const highlighter = await getHighlighter();
 	content = preprocessSidenotes(content);
+	content = await preprocessGitHubCards(content);
 
 	const citeCounter = { n: 0, seen: new Map<string, number>() };
 	let imageIndex = 0;
@@ -297,7 +359,9 @@ export function createMDXPreview(
 
 	const allParagraphs = contentWithoutFrontmatter
 		.split(/\n\n+/)
-		.filter((p) => p.trim() && !p.startsWith('#') && !p.startsWith('```'));
+		.filter(
+			(p) => p.trim() && !p.startsWith('#') && !p.startsWith('```') && !p.startsWith('<GitHubCard')
+		);
 
 	const preview = allParagraphs.slice(0, paragraphs).join('\n\n');
 	const hasMore = allParagraphs.length > paragraphs;
