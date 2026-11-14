@@ -3,6 +3,9 @@ title: Changelog
 subtitle: What's changed on this site.
 entries:
   # ── November 2026 ──
+  - date: 2026-11-14
+    tag: added
+    text: "GitHub cards in posts: a link to a repo with its description, language, stars, and license"
   - date: 2026-11-09
     tag: meta
     text: "Layout v6, glow-in-the-dark redesign: a periwinkle wall by day, the night ceiling with the lights off, Bricolage Grotesque and Figtree"

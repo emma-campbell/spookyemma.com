@@ -1,0 +1,88 @@
+---
+title: "Roger that: Talking to agents with a Teenage Engineering EP-2350 (Ting)"
+published: 2026-11-14
+status: published
+entry: making
+---
+
+<GitHubCard repo="emma-campbell/ting-talk" />
+
+While completing my undergrad I was a member of the varsity soccer team. When you are a freshman, part of
+your duties involve making sure all the balls are pumped and helping ensure all the equipment is ready for training. My freshman class
+was (somewhat, at a minimum) dysfunctional and we had the hardest time getting our shit together to get what we needed out on the training pitch.
+
+Our first year was the first year of use for the newly built locker rooms that were a short walk from the stadium. So our solution to making sure we got
+everything we were responsible for out? **Walkie-Talkies**.
+
+When I came across [Teenage Engineering's EP-2350](https://teenage.engineering/store/ep-2350) (previously called the Ting) I was immediately reminded
+of our antics — calling between the locker room and the pitch, trying to avoid trouble for forgetting the basics. We'd also bring our walkies to nights out. These fond memories immediately led to inspiration.
+
+Like many engineers, I can't help but feel there's an overwhelming sense of need to move quicker than ever before now that we are augmented with
+AI agents and coding assistance. One of the tools that have become super popular is avoiding the need to type by utilizing dictation and passing your transcript through a model
+to tell your agents what to do. I tried a few tools like [SuperWhisper](https://superwhisper.com/) and [WisprFlow](https://wisprflow.ai/), and ultimately landed with Raycast
+when they launched their dictation because I already rely on them for a bunch of my utilities. But also like many engineers, the job has become as much about
+managing models, windows, agents, and various contexts as it has solving problems. I needed a little whimsy in my everyday.
+
+The idea was simple, and had been done before. I want to press the orange lever, speak my mind, let go and have the output just appear.
+Magic!
+
+## The Firmware
+
+Other tools have done this before — so we aren't doing anything new here. There is a helpful [EP-2350 Hacking Guide](https://learn.adafruit.com/hacking-the-teenage-engineering-ep-2350-ting?view=all#overview) written by the team at Adafruit about disassembling and installing
+[CircuitPython](https://circuitpython.org/board/teenage_engineering_ep2350/) on the board. Other tools accomplish this with a software/Mac app-only approach. I wanted to get down into the firmware to allow further customization.
+
+### My Goals for the Firmware
+
+The stock firmware knows and understands when the buttons have been pressed, but it doesn't tell anything downstream when those things happen. This isn't really conducive to a press-to-talk use case.
+
+1. I want the computer (the app) to know when the orange lever has been pressed.
+2. I want to know when any of the side buttons have been pressed.
+
+Basically, because of how the stock firmware works, this means I would have to write my own in order for the app to be configurable in the way that I want it to. There's a large list of what owning the firmware can bring to us.
+
+- **Lets us decide what the device is**. In the context of what we're trying to build, this means that we can show the device as a keyboard and audio input. This will allow us to send the keyboard shortcuts that trigger the dictation tool when the lever on this side of the walkie-talkie is pressed.
+- **We own the audio path.** Because we can set the codec chip path up ourselves, we can run all the signals that are coming out of the cable. This will be key to telling the computer what's going on.
+- **Owning the sent signals lets us borrow from FM radio.** This means sending a pilot tone, which is an 18 kHz tone in the line output, which the Mac app then listens for to know that the lever is pressed.
+- **We can write custom timing rules.** With the custom firmware, we can customize our state signal to send a steady state while we press the lever, which means that we can modify the timing to keyboard shortcuts moving forward.
+- **We can control power.** Because this is a battery-powered device, we can modify the sleep settings so that the device falls asleep but awakes later, preserving the battery life. We can also prevent it from falling asleep when it's plugged into USB power.
+
+### The How
+
+Flashing CircuitPython isn't as scary as it sounds. You hold the lever in, double-click the tiny reset button above the USB-C port, and a drive called `FX MIC BOOT` shows up. Drag a file onto it and you're done. The bootloader lives in the chip's ROM, so you can't actually brick it. Trust me... I triple checked. I didn't want to bork my new toy.
+
+My first attempt to get a working version of what I wanted was to tell the Mac the Ting is a USB microphone _and_ a USB keyboard. Squeeze the lever, the Ting "types" a double-tap of ⌘, Raycast starts listening. It worked! But jeez was it awkward. The method required a USB-C cord plugged into the Ting. If you're not familiar with where that port is, imagine the newer iterations of the Apple Magic Mouse. Basically, the end of the cable juts out into your hand while you try to hold it. Not quite the experience that I was aiming for.
+
+Meanwhile the coiled audio cable, the one that makes it look like a walkie-talkie, was just hanging there doing nothing. So I flipped the design around and did everything through audio.
+
+That cable only carries sound, and only in one direction. There's a lot you can do with audio waves, and it's all a solved problem. Take a look at FM radio. The broadcaster sends something called a [Pilot signal/tone](https://en.wikipedia.org/wiki/Pilot_signal) which is transmitted over the broadcast wavelength for administrative purposes. We can borrow this concept, and send a high-frequency tone while the lever is pressed so the receiver (the app, in this case) knows that I am speaking.
+
+The concept carries nicely to the side buttons as well. They each get their own tones (16, 17, and 19 kHz) which are recognized by the listening app. It's important that each tone is sent at a frequency outside of human speech, so the signals don't get muddied. I imagine this configuration would vary with different setups (a different microphone, or different background noise), so user beware.
+
+Bugs I found along the way:
+
+- **The Ting that turned itself off.** The board only stays powered while the software holds a "power" pin high. I made the code grab that pin at startup to be safe. But CircuitPython restarts your code every time a file on the drive changes — including macOS quietly writing its own hidden `.DS_Store` files when it mounts the drive — and every restart let go of the pin. Every save, the Ting switched off. The fix was to only touch that pin at the exact moment I _mean_ to power off.
+- **The audio that died after 19 seconds.** This one took the longest to figure out. Every so often the Ting went silent and stayed silent, while the code kept happily running and logging button presses. I had to really flex my memory of garbage collection (especially in Python). I had been declaring some of the audio objects as local variables, so they were getting swept up with collection, despite the fact that the hardware was still using them.
+
+## The App
+
+### My Goals for the App
+
+The firmware handles the hardware side; the app's job is to hear it and act on it. I wanted it to:
+
+1. Listen for the tones and press whatever shortcut my dictation tool needs.
+2. Turn the side buttons into keys. Mostly ↑, ↓, and Enter, so I can answer the multiple-choice questions agents love to ask without reaching for the keyboard.
+3. Be configurable without being fiddly: which input to listen on, which key each button sends, whether holding a button repeats.
+4. Stay out of the way. It lives in the menu bar and nothing else.
+
+### How I did it
+
+The app is called TingTalk and it's a small Swift menu-bar app. I don't know a ton of Swift (I again had to refresh on the difference between strong and weak references somewhere around here), so I leaned on writing the tests first and keeping the interesting logic separate from all the macOS bits.
+
+Hearing the tone is the core of it. The app checks how loud 18 kHz is compared to the frequencies right next to it. A pure tone sticks out; speech, music, and keyboard clicks are spread across everything. It also has to stay that way for a few dozen milliseconds before it counts, so a stray noise can't set it off. The tests run it against a recording from the real device, a recording of my partner's friends chatting in the next room, and generated noise, clicks, and sweeps.
+
+A few things I didn't see coming:
+
+- **macOS's orange "microphone in use" dot is on all the time.** The app has to listen constantly to hear the tone, and apps can't hide that indicator (which is the point of it). I think the indicator was new in the previous version of macOS. So there's a pause toggle in the menu to turn off dictation and save a menu bar slot when you aren't actively dictating.
+- **Holding buttons.** In an attempt to increase the amount you could map to the three available buttons, I attempted to map a "hold" function to each. I quickly found that holding the Enter button submitted when I wasn't ready and was a crappy user experience to navigate. Now Enter and Escape only fire on a quick click, when you let go. Holding doesn't submit anything.
+
+It's in the [TingTalk Repository](https://github.com/emma-campbell/ting-talk) if you want to build your own. It's early, and there are still more blips to iron out. But it was a fun weekend project that added a little whimsy to agent prompting and reminded me of some fun times and good people.
