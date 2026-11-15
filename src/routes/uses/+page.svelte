@@ -12,7 +12,7 @@
 	<div class="page-header-row">
 		<div class="page-header-label">
 			<span class="phl-key">last updated</span>
-			<span class="phl-val">2026-04-03</span>
+			<span class="phl-val">2026-11-14</span>
 		</div>
 		<div class="page-header-content">
 			<h1 class="page-title">What I use</h1>
@@ -20,18 +20,8 @@
 				The hardware and software I use daily. Inspired by <a
 					href="https://uses.tech"
 					class="accent-link">uses.tech</a
-				>. Kept updated whenever something changes.
+				>. Kept updated whenever something (permanently) changes.
 			</p>
-		</div>
-		<div class="page-header-aside">
-			<QuickFacts
-				facts={[
-					{ label: 'primary machine', value: 'M4 MacBook Pro 64GB' },
-					{ label: 'also runs', value: 'Custom PC (Omarchy)' },
-					{ label: 'editor', value: 'Zed' },
-					{ label: 'notes', value: 'Obsidian' }
-				]}
-			/>
 		</div>
 	</div>
 
@@ -50,13 +40,12 @@
 						tag: { label: 'daily driver', type: 'fav' }
 					},
 					{
-						name: 'Apple Magic Trackpad',
-						note: "Can't go back to a mouse for Mac work.",
+						name: 'Logitech Mx Master 4',
 						category: 'peripheral'
 					},
 					{
 						name: 'CalDigit TS3',
-						note: 'Thunderbolt dock.',
+						note: "Thunderbolt dock. I've had this for many years now and don't see any reason to update yet. I'll probably use it 'til it dies.",
 						category: 'dock'
 					}
 				]}
@@ -74,7 +63,8 @@
 				items={[
 					{
 						name: 'Custom Built PC',
-						note: 'Built February 2026. Gaming and anything that benefits from a big screen.',
+						note: 'Built February 2026. I get accused of hogging the tv, so a separate gaming station was long overdue.',
+						href: 'https://spookyemma.com/notebook/my-pc-build/',
 						category: 'desktop',
 						tag: { label: 'first build', type: 'built' }
 					},
@@ -86,7 +76,7 @@
 					},
 					{
 						name: 'Logitech Superlight Pro',
-						note: 'Extremely light. Good for gaming, also used on the Mac side when I need precision.',
+						note: 'Extremely light. Going back and forth between this and the MX Master is occasionally jarring.',
 						category: 'peripheral'
 					}
 				]}
@@ -104,14 +94,15 @@
 				items={[
 					{
 						name: 'Zoom 75',
-						href: 'https://www.zsa.io/zoom75',
-						note: 'With Zooted keycaps. Sits between both machines via the CalDigit.',
+						href: 'https://meletrix.com/collections/zoom75-collection',
+						note: 'With Zooted keycaps. Sits between both machines via the UGREEN KVM.',
 						category: 'peripheral',
 						tag: { label: 'shared', type: 'shared' }
 					},
 					{
 						name: 'Ryugashima Island Mousepad',
-						note: 'By the Mousepad Company. Large enough for both the Magic Trackpad and Superlight to coexist.',
+						note: 'By the Mousepad Company.',
+						href: 'https://themousepadcompany.com/products/ryugashima-island-by-hasui?variant=44225160544454',
 						category: 'peripheral',
 						tag: { label: 'shared', type: 'shared' }
 					},
@@ -134,12 +125,6 @@
 		<div class="row-content">
 			<GearList
 				items={[
-					{
-						name: 'Obsidian',
-						href: 'https://obsidian.md',
-						note: 'Notes, writing, thinking out loud. Local-first.',
-						category: 'notes / PKM'
-					},
 					{
 						name: 'Todoist',
 						href: 'https://todoist.com',
@@ -165,10 +150,10 @@
 						category: 'meetings'
 					},
 					{
-						name: 'Superwhisper',
-						href: 'https://superwhisper.ai',
-						note: 'There is nothing more useful than being able to just spitball your thoughts and watch them transform into text (especially in the age of AI assisted coding).',
-						category: 'transcription'
+						name: 'Raycast',
+						href: 'https://www.raycast.com/',
+						note: 'This is the launcher that spotlight wishes it could be.',
+						category: 'launcher'
 					}
 				]}
 			/>
@@ -221,12 +206,6 @@
 						href: 'https://supernote.com/pages/supernote-nomad',
 						note: "I adore this thing. Infinite paper. Barely have to charge. Upcoming plugins system. If you've been considering this, get it.",
 						category: 'note-taking'
-					},
-					{
-						name: 'Boox Palma 2',
-						href: 'https://boox.me/palma-2',
-						note: 'This has been my go-to eReader -- especially with the Wekind case. The size is just perfect.',
-						category: 'e-reader'
 					}
 				]}
 			/>
