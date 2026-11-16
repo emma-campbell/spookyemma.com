@@ -359,9 +359,8 @@ export function createMDXPreview(
 
 	const allParagraphs = contentWithoutFrontmatter
 		.split(/\n\n+/)
-		.filter(
-			(p) => p.trim() && !p.startsWith('#') && !p.startsWith('```') && !p.startsWith('<GitHubCard')
-		);
+		.map((p) => p.trim())
+		.filter((p) => p && !p.startsWith('#') && !p.startsWith('```') && !p.startsWith('<GitHubCard'));
 
 	const preview = allParagraphs.slice(0, paragraphs).join('\n\n');
 	const hasMore = allParagraphs.length > paragraphs;
