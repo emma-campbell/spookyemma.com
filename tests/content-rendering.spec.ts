@@ -27,11 +27,14 @@ test.describe('MDX Content Rendering', () => {
 		// Visit multiple posts to find one with lists
 		await page.goto('/notebook');
 
-		const posts = await page.locator('.feed-entry').all();
+		// Collect hrefs up front: the locators would re-resolve on each post page, where there are no
+		// feed entries.
+		const hrefs = await page
+			.locator('.feed-entry')
+			.evaluateAll((els) => els.map((el) => el.getAttribute('href')!));
 
-		for (const post of posts.slice(0, 5)) {
-			const href = await post.getAttribute('href');
-			await page.goto(href!);
+		for (const href of hrefs.slice(0, 5)) {
+			await page.goto(href);
 
 			const ul = page.locator('ul:not(.post-list):not(.link-list):not(.mobile-nav)');
 			const ol = page.locator('ol');
@@ -73,11 +76,14 @@ test.describe('Images', () => {
 	test('images load successfully', async ({ page }) => {
 		await page.goto('/notebook');
 
-		const posts = await page.locator('.feed-entry').all();
+		// Collect hrefs up front: the locators would re-resolve on each post page, where there are no
+		// feed entries.
+		const hrefs = await page
+			.locator('.feed-entry')
+			.evaluateAll((els) => els.map((el) => el.getAttribute('href')!));
 
-		for (const post of posts.slice(0, 5)) {
-			const href = await post.getAttribute('href');
-			await page.goto(href!);
+		for (const href of hrefs.slice(0, 5)) {
+			await page.goto(href);
 
 			const images = page.locator('article img, .prose img, .content img');
 			const imgCount = await images.count();
@@ -116,11 +122,14 @@ test.describe('Images', () => {
 	test('figure elements have captions', async ({ page }) => {
 		await page.goto('/notebook');
 
-		const posts = await page.locator('.feed-entry').all();
+		// Collect hrefs up front: the locators would re-resolve on each post page, where there are no
+		// feed entries.
+		const hrefs = await page
+			.locator('.feed-entry')
+			.evaluateAll((els) => els.map((el) => el.getAttribute('href')!));
 
-		for (const post of posts.slice(0, 10)) {
-			const href = await post.getAttribute('href');
-			await page.goto(href!);
+		for (const href of hrefs.slice(0, 10)) {
+			await page.goto(href);
 
 			const figures = page.locator('figure');
 
