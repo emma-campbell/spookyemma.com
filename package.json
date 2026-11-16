@@ -20,7 +20,7 @@
 		"test:debug": "playwright test --debug",
 		"test:report": "playwright show-report",
 		"test:update-snapshots": "playwright test --update-snapshots",
-		"test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.64.1-jammy sh -c 'npm install -g pnpm@10.28.2 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'",
+		"test:update-snapshots:linux": "docker run --rm --ipc=host --network host -v $(pwd):/work -v /work/node_modules -w /work -e CI=1 mcr.microsoft.com/playwright:v1.64.1-jammy sh -c 'npm install -g pnpm@12.21.0 && pnpm install --frozen-lockfile && pnpm exec playwright test visual.spec.ts --update-snapshots'",
 		"images:check": "node scripts/check-images.mjs",
 		"prepare": "simple-git-hooks",
 		"images": "node scripts/images.mjs",
@@ -76,5 +76,5 @@
 		"static/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}": "node scripts/images.mjs --stage",
 		"*": "vp fmt --no-error-on-unmatched-pattern"
 	},
-	"packageManager": "pnpm@10.28.2"
+	"packageManager": "pnpm@12.21.0"
 }
