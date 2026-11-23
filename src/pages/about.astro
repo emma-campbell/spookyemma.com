@@ -1,13 +1,9 @@
-<script lang="ts">
-	import { PageShell, QuickFacts, InterestsList, Stickers } from '#components';
-</script>
+---
+import PageShell from '../layouts/PageShell.astro';
+import { QuickFacts, InterestsList, Stickers } from '#components';
+---
 
-<svelte:head>
-	<title>About · Emma Campbell</title>
-	<meta name="description" content="About Emma Campbell, a software engineer." />
-</svelte:head>
-
-<PageShell>
+<PageShell title="About · Emma Campbell" description="About Emma Campbell, a software engineer.">
 	<Stickers variant="margins" sides="right" top="24rem" />
 	<!-- Page header -->
 	<div class="page-header-row">
@@ -92,8 +88,9 @@
 			<div class="prose">
 				<p>
 					I don't know my right from my left. Well, in concept I do but in practice it's a different
-					story. I have considered getting <em>R</em> and <em>L</em> tattooed on the appropriate wrist
-					to help me out with this, because when I hold up a hand in an L, they both look correct.
+					story. I have considered getting <em>R</em> and <em>L</em> tattooed on the appropriate
+					wrist to help me out with this, because when I hold up a hand in an L, they both look
+					correct.
 				</p>
 				<p>
 					In general, I am just odd and introverted. I hate small talk, and prefer to talk about
@@ -141,10 +138,16 @@
 					href="https://github.com/emma-campbell"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="accent-link">GitHub</a
+					class="accent-link"
 				>
-				<a href="/rss.xml" class="accent-link">RSS feed</a>
-				<a href="/notebook" class="accent-link">The notebook</a>
+					GitHub
+				</a>
+				<a href="/rss.xml" class="accent-link">
+					RSS feed
+				</a>
+				<a href="/notebook" class="accent-link">
+					The notebook
+				</a>
 			</div>
 		</div>
 	</div>

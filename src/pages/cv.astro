@@ -1,13 +1,12 @@
-<script lang="ts">
-	import { PageShell, QuickFacts, CvEntry, SkillGroup } from '#components';
-</script>
+---
+import PageShell from '../layouts/PageShell.astro';
+import { QuickFacts, CvEntry, SkillGroup } from '#components';
+---
 
-<svelte:head>
-	<title>CV · Emma Campbell</title>
-	<meta name="description" content="Curriculum vitae — Emma Campbell, software engineer." />
-</svelte:head>
-
-<PageShell>
+<PageShell
+	title="CV · Emma Campbell"
+	description="Curriculum vitae — Emma Campbell, software engineer."
+>
 	<!-- Page header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
@@ -36,9 +35,9 @@
 					}
 				]}
 			/>
-			<button class="cv-download" type="button" onclick={() => window.print()}
-				>Print or save as PDF</button
-			>
+			<button class="cv-download" type="button">
+				Print or save as PDF
+			</button>
 		</div>
 	</div>
 
@@ -117,15 +116,15 @@
 				<div class="edu-focus">Focus in human-computer interaction</div>
 				<div class="edu-courses">
 					<strong>Coursework</strong>
-					Data Structures and Algorithms · Computer Organization · Intro to Human-Computer Interaction
-					· Mobile App Development · Intro to Artificial Intelligence · Computer Models and Limitations
-					· Advanced Web Development · Statistical Computing using R · Social Implications of Computer
-					· Computation and Formal Systems
+					Data Structures and Algorithms · Computer Organization · Intro to Human-Computer
+					Interaction · Mobile App Development · Intro to Artificial Intelligence · Computer Models
+					and Limitations · Advanced Web Development · Statistical Computing using R · Social
+					Implications of Computer · Computation and Formal Systems
 				</div>
 				<div class="edu-courses">
 					<strong>Extracurriculars</strong>
-					Player/Coach — Varsity Soccer · Director of Communications — Grassroots Soccer · Member — Girls
-					Who Code · Volunteer — Quillen Robotics Lab
+					Player/Coach — Varsity Soccer · Director of Communications — Grassroots Soccer · Member —
+					Girls Who Code · Volunteer — Quillen Robotics Lab
 				</div>
 			</div>
 		</div>
@@ -180,6 +179,10 @@
 		</div>
 	</div>
 </PageShell>
+
+<script>
+	document.querySelector('.cv-download')!.addEventListener('click', () => window.print());
+</script>
 
 <style>
 	.cv-entries {

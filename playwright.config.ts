@@ -31,7 +31,7 @@ export default defineConfig({
 	},
 
 	use: {
-		baseURL: 'http://localhost:4173',
+		baseURL: 'http://localhost:4321',
 		trace: 'on-first-retry',
 		screenshot: 'only-on-failure',
 		actionTimeout: 15000,
@@ -69,7 +69,7 @@ export default defineConfig({
 
 	webServer: {
 		command: 'pnpm build && pnpm preview',
-		url: 'http://localhost:4173',
+		url: 'http://localhost:4321',
 		reuseExistingServer: !process.env.CI,
 		timeout: 120000
 	}

@@ -1,13 +1,9 @@
-<script lang="ts">
-	import { PageShell, GearList, QuickFacts } from '#components';
-</script>
+---
+import PageShell from '../layouts/PageShell.astro';
+import { GearList } from '#components';
+---
 
-<svelte:head>
-	<title>Uses · Emma Campbell</title>
-	<meta name="description" content="The hardware and software I use daily." />
-</svelte:head>
-
-<PageShell>
+<PageShell title="Uses · Emma Campbell" description="The hardware and software I use daily.">
 	<!-- Page header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
@@ -17,10 +13,11 @@
 		<div class="page-header-content">
 			<h1 class="page-title">What I use</h1>
 			<p class="page-lede">
-				The hardware and software I use daily. Inspired by <a
-					href="https://uses.tech"
-					class="accent-link">uses.tech</a
-				>. Kept updated whenever something (permanently) changes.
+				The hardware and software I use daily. Inspired by{' '}
+				<a href="https://uses.tech" class="accent-link">
+					uses.tech
+				</a>
+				. Kept updated whenever something (permanently) changes.
 			</p>
 		</div>
 	</div>

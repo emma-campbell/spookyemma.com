@@ -1,21 +1,45 @@
-<script lang="ts">
-	import { PageShell, QuickFacts } from '#components';
-	import type { PageData } from './$types';
+---
+import PageShell from '../layouts/PageShell.astro';
+import { QuickFacts } from '#components';
+import { getNowEntries } from '#content';
+import { renderMarkdown } from '#lib/content/markdown.ts';
 
-	let { data }: { data: PageData } = $props();
-</script>
+const MONTH_NAMES = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December'
+];
 
-<svelte:head>
-	<title>Now · Emma Campbell</title>
-	<meta name="description" content="What I'm up to, updated whenever something changes." />
-</svelte:head>
+const entries = await Promise.all(
+	getNowEntries().map(async (entry) => ({
+		...entry,
+		label: `${MONTH_NAMES[entry.month - 1]} ${entry.year}`,
+		contentHtml: await renderMarkdown(entry.content)
+	}))
+);
 
-<PageShell>
+const featured = entries.length > 0 ? entries[0] : null;
+const archive = entries.slice(1);
+---
+
+<PageShell
+	title="Now · Emma Campbell"
+	description="What I'm up to, updated whenever something changes."
+>
 	<!-- Page header -->
 	<div class="page-header-row">
 		<div class="page-header-label">
 			<span class="phl-key">last updated</span>
-			<span class="phl-val">{data.lastUpdated ?? ''}</span>
+			<span class="phl-val">{featured?.label ?? ''}</span>
 		</div>
 		<div class="page-header-content">
 			<h1 class="page-title">What I'm up to now</h1>
@@ -35,40 +59,36 @@
 	</div>
 
 	<!-- Latest entry -->
-	{#if data.featured}
+	{featured && (
 		<div class="section-row">
 			<div class="row-label">
 				<span class="row-label-text">Latest</span>
 			</div>
 			<div class="row-content">
-				<h2 class="entry-date">{data.featured.label}</h2>
-				<div class="prose">
-					{@html data.featured.contentHtml}
-				</div>
+				<h2 class="entry-date">{featured.label}</h2>
+				<div class="prose" set:html={featured.contentHtml} />
 			</div>
 		</div>
-	{/if}
+	)}
 
 	<!-- Older entries -->
-	{#if data.archive.length > 0}
+	{archive.length > 0 && (
 		<div class="section-row">
 			<div class="row-label">
 				<span class="row-label-text">Earlier</span>
 			</div>
 			<div class="row-content">
 				<ul class="now-timeline">
-					{#each data.archive as entry}
+					{archive.map((entry) => (
 						<li class="now-timeline-item">
 							<h3 class="tl-date">{entry.label}</h3>
-							<div class="prose tl-prose">
-								{@html entry.contentHtml}
-							</div>
+							<div class="prose tl-prose" set:html={entry.contentHtml} />
 						</li>
-					{/each}
+					))}
 				</ul>
 			</div>
 		</div>
-	{/if}
+	)}
 </PageShell>
 
 <style>

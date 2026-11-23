@@ -27,13 +27,13 @@ A hand-built personal index rather than a template blog. The site is itself one 
 
 - Content lives as Markdown/MDX/Markdoc files in `content/` (posts, `now/` entries, `cv.md`, `changelog.md`, `photos.md`, settings). Some of it is edited from Obsidian (`content/.obsidian` is ignored).
 - Photos are mostly iPhone HDR shots and Fujifilm images, processed by `pnpm images` on a Mac before commit.
-- Routes: `/` (index), `/notebook` and `/notebook/[slug]`, `/now`, `/photos`, `/about`, `/cv`, `/uses`, `/changelog`, `/design`, `/rss.xml`.
+- Routes: `/` (index), `/notebook` and `/notebook/[slug]`, `/now`, `/photos`, `/about`, `/cv`, `/uses`, `/changelog`, `/design` (dev only), `/rss.xml`.
 - Readers on desktop and phone; the responsive and visual Playwright suites cover both.
 
 ## Capabilities and Constraints
 
-- SvelteKit with `adapter-static`; every route is prerendered. No server runtime.
-- Tooling: pnpm, Vite+ (`vp dev`, `vp build`, `vp fmt`), Tailwind v4, mdsvex, Shiki for code. No Prettier.
+- Astro, static output; every route is prerendered. No server runtime. Svelte components render to HTML, and only the topbar hydrates; page interactions (notebook and photo filters, the lightbox) are small inline scripts.
+- Tooling: pnpm, Astro (`astro dev`, `astro build`), Vite+ (`vp fmt`), Tailwind v4, marked and Shiki for content. No Prettier.
 - RSS feed must keep working.
 - Photos keep their HDR gain maps; never flatten them to SDR. GPS and camera EXIF are stripped from published images, and shooting details are captured from EXIF before stripping.
 - Playwright covers pages, links, SEO, responsiveness, performance, and visual regressions (committed snapshot goldens in `tests/visual.spec.ts-snapshots`).

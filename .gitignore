@@ -2,8 +2,8 @@
 node_modules
 .pnpm-store
 
-# SvelteKit
-.svelte-kit
+# Astro
+.astro
 /build
 
 # env files

@@ -1,6 +1,11 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import LightSwitch from './LightSwitch.svelte';
+
+	interface Props {
+		pathname: string;
+	}
+
+	let { pathname }: Props = $props();
 
 	const links = [
 		{ href: '/notebook', label: 'notebook' },
@@ -10,8 +15,6 @@
 		{ href: '/uses', label: 'uses' },
 		{ href: '/changelog', label: 'changelog' }
 	];
-
-	const pathname = $derived(page?.url?.pathname ?? '/');
 
 	let menuOpen = $state(false);
 

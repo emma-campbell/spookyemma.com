@@ -29,7 +29,7 @@ test.describe('Notebook Filtering', () => {
 
 	test('filtering reduces displayed entries', async ({ page }) => {
 		// Get initial count
-		const initialCount = await page.locator('.feed-entry').count();
+		const initialCount = await page.locator('.feed-entry:visible').count();
 
 		// Apply a filter
 		await page.locator('.filter-btn.filter-log').click();
@@ -37,7 +37,7 @@ test.describe('Notebook Filtering', () => {
 		// Wait for filter to apply
 		await page.waitForTimeout(100);
 
-		const filteredCount = await page.locator('.feed-entry').count();
+		const filteredCount = await page.locator('.feed-entry:visible').count();
 
 		// Filtered count should be less than or equal to initial
 		expect(filteredCount).toBeLessThanOrEqual(initialCount);
@@ -51,7 +51,7 @@ test.describe('Notebook Filtering', () => {
 		await page.waitForTimeout(300);
 
 		const filteredText = await countText.textContent();
-		const filteredEntries = await page.locator('.feed-entry').count();
+		const filteredEntries = await page.locator('.feed-entry:visible').count();
 
 		// Count text should contain a number
 		expect(filteredText).toMatch(/\d+/);
@@ -74,7 +74,7 @@ test.describe('Notebook Filtering', () => {
 			await page.locator(filter.selector).click();
 			await page.waitForTimeout(100);
 
-			const entries = await page.locator('.feed-entry').all();
+			const entries = await page.locator('.feed-entry:visible').all();
 
 			if (entries.length > 0) {
 				// All visible entries should match the filter type
@@ -88,20 +88,20 @@ test.describe('Notebook Filtering', () => {
 
 	test('clicking all filter shows all entries again', async ({ page }) => {
 		// Get initial count with all filter
-		const initialCount = await page.locator('.feed-entry').count();
+		const initialCount = await page.locator('.feed-entry:visible').count();
 
 		// Apply a filter
 		await page.locator('.filter-btn.filter-log').click();
 		await page.waitForTimeout(500);
 
-		const filteredCount = await page.locator('.feed-entry').count();
+		const filteredCount = await page.locator('.feed-entry:visible').count();
 
 		// Click all filter
 		await page.locator('.filter-btn.filter-all').click();
 		await page.waitForTimeout(500);
 
 		// Should be back to at least the filtered count (verify filter toggling works)
-		const restoredCount = await page.locator('.feed-entry').count();
+		const restoredCount = await page.locator('.feed-entry:visible').count();
 		expect(restoredCount).toBeGreaterThanOrEqual(filteredCount);
 	});
 
@@ -110,14 +110,14 @@ test.describe('Notebook Filtering', () => {
 		await page.locator('.filter-btn.filter-thinking').click();
 		await page.waitForTimeout(100);
 
-		const countBefore = await page.locator('.feed-entry').count();
+		const countBefore = await page.locator('.feed-entry:visible').count();
 
 		// Scroll down
 		await page.evaluate(() => window.scrollBy(0, 500));
 		await page.waitForTimeout(100);
 
 		// Filter should still be applied
-		const countAfter = await page.locator('.feed-entry').count();
+		const countAfter = await page.locator('.feed-entry:visible').count();
 		expect(countAfter).toBe(countBefore);
 
 		// Filter button should still be active
