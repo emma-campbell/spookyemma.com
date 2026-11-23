@@ -1,0 +1,161 @@
+---
+import PageShell from '../../layouts/PageShell.astro';
+import { Stickers } from '#components';
+import { getPost, getAllPostSlugs, getPublishedPosts } from '#content';
+import { ENTRY_TYPES } from '#lib/content/entryTypes.ts';
+import { renderMarkdown, countWords } from '#lib/content/markdown.ts';
+import { extractReferences } from '#lib/server/backlinks.ts';
+
+export function getStaticPaths() {
+	return getAllPostSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = getPost(slug)!;
+
+const contentHtml = await renderMarkdown(post.content, { citeLinks: true });
+const wordCount = countWords(post.content);
+const readingTime = `${Math.ceil(wordCount / 200)} min`;
+
+// Get prev/next posts
+const published = getPublishedPosts();
+const currentIndex = published.findIndex((p) => p.slug === slug);
+const prevPost = currentIndex < published.length - 1 ? published[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? published[currentIndex - 1] : null;
+
+const references = extractReferences(post.content);
+
+const config = ENTRY_TYPES[post.entry];
+const publishedDay = post.published.slice(0, 10);
+---
+
+<PageShell title={`${post.title} · Emma Campbell`} description={post.description || post.title}>
+	<div class="article-wrap">
+		<Stickers variant="margins" />
+
+		<article class="article">
+			<header class="article-header">
+				<div class="article-meta">
+					<a href="/notebook">notebook</a>
+					<span style={{ color: config.color }}>{config.label}</span>
+					<time datetime={post.published}>{publishedDay}</time>
+					<span>{readingTime} read</span>
+				</div>
+
+				<h1 class="post-title">{post.title}</h1>
+
+				{post.tags.length > 0 && (
+					<ul class="tag-list" aria-label="Tags">
+						{post.tags.map((tag) => (
+							<li class="post-tag">{tag}</li>
+						))}
+					</ul>
+				)}
+			</header>
+
+			<div class="prose" set:html={contentHtml} />
+
+			{references.length > 0 && (
+				<div class="citations">
+					<h2 class="citations-title">References</h2>
+					<ol>
+						{references.map((ref) => (
+							<li id={`ref-${ref.id}`}>
+								<a href={ref.url}>{ref.title || ref.url}</a>
+							</li>
+						))}
+					</ol>
+				</div>
+			)}
+
+			{(prevPost || nextPost) && (
+				<nav class="post-nav" aria-label="More entries">
+					{prevPost && (
+						<a class="post-nav-item prev" href={`/notebook/${prevPost.slug}`}>
+							<span class="post-nav-dir">Previous</span>
+							<span class="post-nav-title">{prevPost.title}</span>
+						</a>
+					)}
+					{nextPost && (
+						<a class="post-nav-item next" href={`/notebook/${nextPost.slug}`}>
+							<span class="post-nav-dir">Next</span>
+							<span class="post-nav-title">{nextPost.title}</span>
+						</a>
+					)}
+				</nav>
+			)}
+		</article>
+	</div>
+</PageShell>
+
+<style>
+	.article-wrap {
+		position: relative;
+	}
+
+	.article {
+		max-width: var(--measure);
+		margin: 0 auto;
+		padding: 2.5rem 0 2rem;
+	}
+
+	.article-header {
+		margin-bottom: 2.5rem;
+	}
+
+	.article-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem 1.25rem;
+		font-size: 0.95rem;
+		font-weight: 500;
+		color: var(--fg-muted);
+		font-variant-numeric: tabular-nums;
+		margin-bottom: 1rem;
+	}
+	.article-meta a {
+		color: var(--fg);
+		text-decoration: underline;
+		text-decoration-color: var(--line-strong);
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 0.25em;
+	}
+	.article-meta a:hover {
+		text-decoration-color: var(--fg);
+	}
+
+	.post-title {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+		line-height: 1;
+		letter-spacing: -0.035em;
+		color: var(--fg);
+	}
+
+	.tag-list {
+		list-style: none;
+		margin-top: 1.25rem;
+	}
+	.post-tag {
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: var(--fg-muted);
+		padding: 1px 10px;
+		border: 1.5px solid var(--line-strong);
+		border-radius: 999px;
+	}
+
+	/* The first paragraph opens a touch larger, even when a GitHub card sits above it */
+	.prose > :global(p:first-child),
+	.prose > :global(.github-card-wrap:first-child + p) {
+		font-size: 1.15rem;
+		line-height: 1.7;
+	}
+
+	@media (max-width: 639px) {
+		.article {
+			padding-top: 1rem;
+		}
+	}
+</style>

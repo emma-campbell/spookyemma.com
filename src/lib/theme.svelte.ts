@@ -1,4 +1,4 @@
-import { browser } from '$app/env';
+const browser = typeof window !== 'undefined';
 
 type Theme = 'light' | 'dark';
 

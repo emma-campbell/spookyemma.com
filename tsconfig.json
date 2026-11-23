@@ -1,8 +1,8 @@
 {
-	"extends": "$app/tsconfig",
+	"extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
-		"sourceMap": true,
-		"strict": true
+		"sourceMap": true
 	},
-	"include": ["src", "tests", "*"]
+	"include": [".astro/types.d.ts", "src", "tests", "*"],
+	"exclude": ["build"]
 }

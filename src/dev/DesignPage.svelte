@@ -66,11 +66,7 @@
 	];
 </script>
 
-<svelte:head>
-	<title>Design system · SpookyEmma</title>
-</svelte:head>
-
-<Topbar />
+<Topbar pathname="/design" />
 
 <div class="lib-page">
 	<h1 class="lib-title">Design system</h1>

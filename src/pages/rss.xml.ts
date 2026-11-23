@@ -1,10 +1,8 @@
 import { getPublishedPosts, getSiteSettings } from '#content';
 import { Feed } from 'feed';
-import type { RequestHandler } from './$types';
+import type { APIRoute } from 'astro';
 
-export const prerender = true;
-
-export const GET: RequestHandler = async () => {
+export const GET: APIRoute = () => {
 	const posts = getPublishedPosts();
 	const settings = getSiteSettings();
 

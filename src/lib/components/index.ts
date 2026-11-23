@@ -7,7 +7,6 @@ export { default as LightSwitch } from './LightSwitch.svelte';
 export { default as Stickers } from './Stickers.svelte';
 export { default as Topbar } from './Topbar.svelte';
 export { default as Footer } from './Footer.svelte';
-export { default as PageShell } from './PageShell.svelte';
 export { default as SectionRow } from './SectionRow.svelte';
 export { default as PageHeaderRow } from './PageHeaderRow.svelte';
 export { default as ContentHeader } from './ContentHeader.svelte';

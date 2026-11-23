@@ -1,32 +1,69 @@
-<script lang="ts">
-	import { PageShell, Stickers } from '#components';
-	import { ENTRY_TYPES, FILTERS } from '#lib/content/entryTypes.ts';
-	import type { PageData } from './$types';
+---
+import PageShell from '../../layouts/PageShell.astro';
+import { Stickers } from '#components';
+import { getPublishedPosts } from '#content';
+import { ENTRY_TYPES, FILTERS } from '#lib/content/entryTypes.ts';
+import { createMDXPreview, renderMarkdown } from '#lib/content/markdown.ts';
 
-	let { data }: { data: PageData } = $props();
+const SHORT_MONTHS = [
+	'Jan',
+	'Feb',
+	'Mar',
+	'Apr',
+	'May',
+	'Jun',
+	'Jul',
+	'Aug',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dec'
+];
 
-	let activeFilter = $state('all');
+const posts = getPublishedPosts();
 
-	const filteredEntries = $derived(
-		activeFilter === 'all' ? data.entries : data.entries.filter((e) => e.entry === activeFilter)
-	);
+const entries = await Promise.all(
+	posts.map(async (post) => {
+		const { preview, hasMore } = createMDXPreview(post.content, 2);
+		// Each entry is a link already, and the HTML parser won't nest anchors: it would end the
+		// entry at the first link in the excerpt. Excerpt links read as plain text anyway.
+		const excerptHtml = preview
+			? (await renderMarkdown(preview)).replace(/<\/?a\b[^>]*>/g, '')
+			: '';
+		// Dates are stored as YYYY-MM-DD; read the parts directly so no timezone shifts the day
+		const [year, month, day] = post.published.slice(0, 10).split('-');
 
-	function setFilter(filter: string) {
-		activeFilter = filter;
-	}
+		return {
+			slug: post.slug,
+			title: post.title,
+			entry: post.entry,
+			tags: post.tags,
+			excerptHtml,
+			hasMore,
+			typeLabel: ENTRY_TYPES[post.entry].label,
+			day,
+			month: SHORT_MONTHS[Number(month) - 1],
+			year
+		};
+	})
+);
 
-	const typeStats = Object.entries(ENTRY_TYPES).map(([key, cfg]) => ({ ...cfg, key }));
-</script>
+// Count by type for the header aside
+const typeCounts: Record<string, number> = {};
+for (const post of posts) {
+	const label = ENTRY_TYPES[post.entry].label;
+	typeCounts[label] = (typeCounts[label] || 0) + 1;
+}
 
-<svelte:head>
-	<title>Notebook · Emma Campbell</title>
-	<meta
-		name="description"
-		content="All writing — blog posts, experiments, notes, guides, micro entries."
-	/>
-</svelte:head>
+const typeStats = Object.entries(ENTRY_TYPES).map(([key, cfg]) => ({ ...cfg, key }));
 
-<PageShell>
+const countLabel = (n: number) => `${n} ${n === 1 ? 'entry' : 'entries'}`;
+---
+
+<PageShell
+	title="Notebook · Emma Campbell"
+	description="All writing — blog posts, experiments, notes, guides, micro entries."
+>
 	<Stickers variant="margins" sides="right" top="20rem" />
 	<div class="page-header-row">
 		<div class="page-header-label"></div>
@@ -35,37 +72,40 @@
 		</div>
 		<div class="page-header-aside">
 			<div class="nb-type-stats">
-				{#each typeStats as stat}
+				{typeStats.map((stat) => (
 					<div class="nb-type-row">
-						<span class="nb-type-name" style:color={stat.color}>{stat.label}</span>
-						<span class="nb-type-count">{data.typeCounts[stat.key] || 0}</span>
+						<span class="nb-type-name" style={{ color: stat.color }}>
+							{stat.label}
+						</span>
+						<span class="nb-type-count">{typeCounts[stat.key] || 0}</span>
 					</div>
-				{/each}
+				))}
 			</div>
 		</div>
 	</div>
 
 	<div class="filter-row">
 		<div class="filter-content" role="group" aria-label="Filter by type">
-			{#each FILTERS as f}
+			{FILTERS.map((f) => (
 				<button
 					type="button"
-					class="filter-btn {f.cls}"
-					class:active={activeFilter === f.key}
-					aria-pressed={activeFilter === f.key}
-					onclick={() => setFilter(f.key)}>{f.label}</button
+					class:list={['filter-btn', f.cls, { active: f.key === 'all' }]}
+					aria-pressed={f.key === 'all' ? 'true' : 'false'}
+					data-filter={f.key}
 				>
-			{/each}
+					{f.label}
+				</button>
+			))}
 		</div>
-		<span class="filter-count" aria-live="polite"
-			>{filteredEntries.length} {filteredEntries.length === 1 ? 'entry' : 'entries'}</span
-		>
+		<span class="filter-count" aria-live="polite">
+			{countLabel(entries.length)}
+		</span>
 	</div>
 
 	<ul class="feed">
-		{#each filteredEntries as entry (entry.slug)}
-			<li>
-				<a href="/notebook/{entry.slug}" class="feed-entry type-{entry.entry}">
+		{entries.map((entry) => (
+			<li data-entry={entry.entry}>
+				<a href={`/notebook/${entry.slug}`} class={`feed-entry type-${entry.entry}`}>
 					<div class="entry-date-col">
 						<span class="entry-date-day">{entry.day}</span>
 						<span class="entry-date-month">{entry.month}</span>
@@ -74,24 +114,43 @@
 					<div class="entry-body">
 						<div class="entry-title">{entry.title}</div>
 						<div class="entry-meta">
-							<span class="entry-glyph" aria-hidden="true"></span>
+							<span class="entry-glyph" aria-hidden="true" />
 							<span class="entry-type-label">{entry.typeLabel}</span>
-							{#each entry.tags as tag}
+							{entry.tags.map((tag) => (
 								<span class="entry-tag">{tag}</span>
-							{/each}
+							))}
 						</div>
-						{#if entry.excerptHtml}
-							<div class="entry-excerpt">{@html entry.excerptHtml}</div>
-						{/if}
-						{#if entry.hasMore}
-							<span class="entry-read-link">Read more</span>
-						{/if}
+						{entry.excerptHtml && <div class="entry-excerpt" set:html={entry.excerptHtml} />}
+						{entry.hasMore && <span class="entry-read-link">Read more</span>}
 					</div>
 				</a>
 			</li>
-		{/each}
+		))}
 	</ul>
 </PageShell>
+
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+	const items = document.querySelectorAll<HTMLLIElement>('.feed > li');
+	const count = document.querySelector('.filter-count')!;
+
+	for (const button of buttons) {
+		button.addEventListener('click', () => {
+			const filter = button.dataset.filter;
+			for (const b of buttons) {
+				const active = b === button;
+				b.classList.toggle('active', active);
+				b.setAttribute('aria-pressed', String(active));
+			}
+			let shown = 0;
+			for (const item of items) {
+				item.hidden = filter !== 'all' && item.dataset.entry !== filter;
+				if (!item.hidden) shown++;
+			}
+			count.textContent = `${shown} ${shown === 1 ? 'entry' : 'entries'}`;
+		});
+	}
+</script>
 
 <style>
 	/* Type stats in the header aside */

@@ -1,0 +1,43 @@
+---
+import '../app.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = 'Emma Campbell', description = "Emma's Digital Presence" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="alternate" type="application/rss+xml" title="Emma's RSS Feed" href="/rss.xml" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script is:inline>
+			(function () {
+				var t = localStorage.getItem('theme');
+				if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				document.documentElement.setAttribute('data-theme', t);
+			})();
+		</script>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+	</head>
+	<body>
+		<slot />
+		<script>
+			import posthog from 'posthog-js';
+			import { PUBLIC_POSTHOG_KEY } from 'astro:env/client';
+
+			if (PUBLIC_POSTHOG_KEY) {
+				posthog.init(PUBLIC_POSTHOG_KEY, {
+					api_host: 'https://n.spookyemma.com',
+					ui_host: 'https://us.posthog.com'
+				});
+			}
+		</script>
+	</body>
+</html>
